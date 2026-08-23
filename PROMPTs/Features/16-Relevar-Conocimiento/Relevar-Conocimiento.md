@@ -1,6 +1,6 @@
 # Tool-Prompt — Relevamiento de conocimiento
 
-> **Invocación**: Leer y ejecutar este archivo, completando antes el bloque de parámetros.
+> **Invocación**: `Leer y ejecutar /IA/SDD/IA.SDD.Documentacion/PROMPTs/Features/16-Relevar-Conocimiento/Relevar-Conocimiento.md`, completando antes el bloque de parámetros.
 >
 > **Overview**: Caracteriza un artefacto externo —un template, una arquitectura, una convención de nomenclatura, un componente reusable— y lo incorpora como documento a la base de conocimiento de la organización, con el formato que el `Framework SDD` regula.
 
@@ -115,7 +115,7 @@ techo.
 Escribir el documento y su fila en `Index-Knowledge.md`, con las diez columnas de §7.1. Si el índice no
 existe todavía, crearlo con el encabezado de esas columnas.
 
-**Antes de devolver, correr la lista de §6.1 completa y declarar el resultado de cada ítem**, los doce,
+**Antes de devolver, correr la lista de §6.1 completa y declarar el resultado de cada ítem**, los trece,
 con su marca `[enumerable]` o `[interpretativo]`.
 
 ---
@@ -140,7 +140,7 @@ resuelve sin preguntar.
 1. Las respuestas del paso 1, textuales.
 2. La ruta del documento creado y su alias.
 3. La fila del índice, tal como quedó.
-4. El resultado de los doce ítems de §6.1.
+4. El resultado de los trece ítems de §6.1.
 5. **Lo que se dejó afuera y por qué**, que es lo que permite auditar la captura sin releer el artefacto.
 
 ---
