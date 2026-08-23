@@ -1,7 +1,7 @@
 # Plan — Base de conocimiento del Framework SDD
 
 **Documento:** Plan-Base-Conocimiento-SDD.md
-**Versión:** 2.1
+**Versión:** 3.0
 **Estado:** Borrador
 **Fecha:** 2026-08-23
 **Origen:** `PROMPTs/Features/15-RAG/01-Crear-Rag.md`
@@ -433,10 +433,13 @@ envejecen mal al insertar un documento intermedio.
 versión vigente por nombre, copia completa a `_legacy/` antes de sobrescribir.
 
 **Archivo.** El problema es real —un destino generado con conocimiento cargado no se reconstruye sin
-él, que es la propiedad que `README.md` le atribuye a `_legacy/`— pero **la solución cambió con §4.8**.
-Los documentos no entran en el snapshot del framework porque no son suyos: viven en la base de la
-organización. La reconstrucción se preserva porque el intake registra **qué base y en qué versión** se
-usó, que es el criterio con que se identifica cualquier dependencia externa. Se cita, no se copia.
+él, que es la propiedad que `README.md` le atribuye a `_legacy/`— y con la base anexada **se resuelve
+solo**: `Conocimiento/` **entra en el snapshot**, por el criterio de `SDD-Development-Guide.md` §VI.5,
+que sólo excluye lo que no condiciona lo que el orquestador genera. El precedente es `Templates/`.
+Un destino que declara con qué versión del framework se generó **ya declara con qué conocimiento**.
+
+Este plan sostuvo lo contrario hasta la 2.1, apoyándose en la exclusión de `Examples/`. Era mala
+analogía: `Examples/` es material ilustrativo que no entra a ningún despacho.
 
 ---
 
@@ -532,84 +535,69 @@ por aceptación humana y produce un artefacto durable en vez de una inyección e
 La simetría a escribir en el archivo de reglas se mantiene, con el matiz que esta revisión agrega:
 **se busca al escribir, se selecciona al pedir, se cita al leer.**
 
-### 4.8 Dónde vive la base: el cuarto rol de repositorio
+### 4.8 Dónde vive la base: una carpeta anexa del framework
 
-**Esta decisión corrige la que este documento traía hasta la 1.4, y la corrige de raíz.** Hasta acá la
-base de conocimiento se proponía como subárbol de `IA.SDD`. Está mal, y el planteo del PO lo deja en
-evidencia: *«cada empresa tiene su forma de ordenar y estructurar el código… no dejar atado el framework
-a una forma particular, que dependiendo quién lo use pueda añadir de forma no acoplada sus conocimientos
-y variantes»*.
+**Esta sección se reescribió dos veces y conviene dejar las dos correcciones a la vista, porque el
+error del medio es instructivo.** La 1.0 la ponía como subárbol normativo de `IA.SDD`. La 1.5 la sacó
+afuera, como cuarto rol de repositorio propiedad de la organización. **Las dos estaban mal, y por el
+mismo motivo: confundían el desacoplamiento con la ubicación.**
 
-**El conocimiento útil es, por definición, el que está acoplado a una casa. El framework, por
-definición, no puede estarlo.** Meterlo adentro produce tres contradicciones simultáneas:
+La versión correcta es `Conocimiento/`, **carpeta anexa del framework**, y el argumento que decide es
+operativo: `IA.SDD` es el repositorio **desde el que se lanza** el orquestador. La base tiene que viajar
+con lo que se clona, no ser alcanzada.
 
-1. **Acopla el framework a una organización.** El que clone `IA.SDD` se lleva la variante de DAO de otro.
-2. **Choca de frente con D7.** La neutralidad de dominio prohíbe filtrar vocabulario, ejemplos o
-   convenciones de un dominio concreto a los artefactos normativos. Un documento cuyo valor **es** ser la
-   variante de la casa no puede cumplirla sin dejar de servir.
-3. **Convierte la compuerta de ofuscación en un impuesto permanente y absurdo.** Estaríamos exigiendo
-   borrar precisamente lo que hace valioso al documento.
+#### Qué es el desacoplamiento, entonces
 
-Las tres desaparecen moviéndolo afuera.
+No es privacidad. No es ubicación. Es esto, y hay que poder verificarlo:
 
-#### El cuarto rol
+> **El framework corre con `Conocimiento/` vacía, y su comportamiento base no cambia cuando se llena.**
 
-`README.md` declara tres repositorios por responsabilidad. La base de conocimiento no entra en ninguno:
-no es el framework —lo acoplaría—, no es el destino —es reutilizable entre productos— y no es el de
-documentación —que es de prompts y análisis—. Es un **cuarto rol**:
+Lo que lo sostiene es que **ninguna regla nombra un documento de conocimiento**. Lo único que el
+framework fija es el formato y el contrato del índice. De ahí que agregar conocimiento **no toque una
+sola regla**, que es la definición operativa de «no desfigurar la esencia del SDD».
 
-| Rol | Dueño | Visibilidad | Contiene |
-|---|---|---|---|
-| **Framework SDD** | Anthropic del método, público | Público | Reglas, plantillas, orquestadores. **Incluye `Rules-Base-Conocimiento.md`**, que gobierna el formato |
-| **Repositorio destino** | Los orquestadores escriben | Del producto | Intake, documentación generada, código |
-| **Repositorio de documentación** | El usuario, a mano | Del usuario | Tool-prompts, investigación, análisis |
-| **Base de conocimiento** | **La organización** | **Privada, suya** | Sus documentos de conocimiento y su índice. Uno por organización, no uno por producto |
+| | El conjunto normativo | `Conocimiento/` |
+|---|---|---|
+| Qué es | Reglas, plantillas, orquestadores | Documentos que se consultan |
+| Se puede vaciar | No. Sin él no hay método | **Sí.** El framework corre igual |
+| Cómo se extiende | Interviniendo el framework | **Agregando documentos** |
 
-**El framework aporta el continente; la organización, el contenido.** El framework define el formato
-(`Rules-Base-Conocimiento.md`), el contrato del índice, y la mecánica de resolución e inyección. No
-aporta ni un documento de conocimiento. El catálogo del framework **arranca y se queda vacío**: es una
-interfaz, no una biblioteca.
+**El mecanismo de distribución es el fork.** Quien quiera su propia base forkea, agrega sus documentos y
+se lleva el método intacto. No hay segunda raíz que declarar, ni ruta que configurar, ni repositorio
+ajeno que alcanzar.
 
-#### Cómo se engancha sin romper la autosuficiencia
+#### Lo que esta ubicación elimina del diseño
 
-`README.md` es taxativo: «Ningún archivo de este repositorio referencia otro repositorio. Es lo que
-permite clonarlo solo, moverlo o distribuirlo sin arrastrar dependencias.» De modo que **el framework no
-puede llevar la ruta de la base de conocimiento escrita en ningún lado**.
+Y es bastante, todo peso muerto que las versiones anteriores cargaban:
 
-La resuelve el intake, que es donde ya viven todos los datos del producto: una declaración de nivel
-producto en la Parte B con la **raíz de la base de conocimiento** y su **identidad de versión**. El
-framework referencia **un campo del intake**, no un repositorio, y la autosuficiencia queda intacta.
+| Lo que hacía falta con la base afuera | Con la base anexada |
+|---|---|
+| Un cuarto rol de repositorio | No existe |
+| Declarar la raíz de la base en el intake | No se declara |
+| Declarar una identidad de versión de la base | **Es la del framework** |
+| Un rodeo para no romper la autosuficiencia de `README.md` | El framework referencia su propia carpeta |
+| Un criterio propio de reconstrucción | El de siempre: `_legacy/` |
 
-Esa identidad de versión resuelve además, y mejor, lo que §4.6 dejaba abierto sobre `_legacy/`:
-**los documentos de conocimiento no entran en el snapshot del framework** —no son suyos—, y la
-reconstrucción se preserva porque el intake registra qué base y en qué versión se usó. Es el mismo
-criterio con que se registra cualquier dependencia externa: no se copia, se identifica.
+El intake **cita alias, y nada más**.
 
-#### Cinco consecuencias que hay que escribir
+#### Tres consecuencias que invierten lo que este plan decía
 
-1. **El framework tiene que funcionar con cero documentos de conocimiento.** Si el intake no declara
-   base, todo se comporta exactamente como hoy. La base es una capacidad opcional, apagada por defecto,
-   con el mismo patrón que `requiere_maqueta` o `usa_llm`.
-2. **D7 no alcanza a la base de conocimiento**, porque no es un artefacto normativo del framework. Lo
-   que la organización guarde en su casa es asunto suyo. Se elimina así la compuerta de ofuscación
-   bloqueante que §5.6 proponía para toda captura.
-3. **La compuerta de ofuscación no desaparece: se mueve.** Rige **solo en la promoción**, cuando una
-   organización quiere aportar un documento suyo al catálogo público del framework. Ahí sí vuelven D7 y
-   la verificación de `Coherencia-Panel-Monolitico.md` §3, y con razón.
-4. **`References/Design/` y `Modelos-UX-UI/` se quedan donde están.** Son neutros por construcción y
-   material del método. Lo que se abandona es la idea de §4.3 de reencuadrarlos junto con la base de la
-   organización: son dos animales distintos y mezclarlos vuelve a acoplar el framework. La Etapa 7 se
-   retira del plan.
-5. **Los dos niveles conviven en una sola resolución.** Un documento de la organización puede declarar
-   `hereda-de` apuntando a uno del catálogo del framework cuando lo especializa. Ante conflicto rige lo
-   que `Index-Design-Rules.md` §4 ya fija: manda el base, salvo desviación documentada y justificada.
+1. **Una captura es una intervención sobre el framework.** Escribe en su repositorio, así que lleva
+   entrada en el `CHANGELOG.md`, copia del conjunto superado a `_legacy/` y nota de coherencia si
+   alcanza a varios archivos. Las versiones anteriores decían lo contrario.
+2. **`Conocimiento/` entra en el snapshot.** `SDD-Development-Guide.md` §VI.5 sólo excluye del snapshot
+   lo que **no condiciona lo que el orquestador genera**, y un documento cargado sí lo condiciona. El
+   precedente exacto es `Templates/`; `Examples/` **no servía de analogía** y este plan se apoyaba en él.
+   La consecuencia es la buena: un destino que declara con qué versión del framework se generó **ya
+   declara con qué conocimiento**.
+3. **La compuerta de ofuscación corre y es bloqueante.** `IA.SDD` es público —`Maqueta-Rules.md` §310 e
+   `Index-Modelos-UX-UI.md` §61 lo declaran—, de modo que ningún documento puede llevar nombres de
+   clientes, datos reales ni assets del proyecto de origen. Un fork privado puede guardar lo que quiera
+   en su carpeta; este repositorio, no.
 
-**Lo que este cambio abarata.** La intervención sobre `IA.SDD` se reduce a: un archivo de reglas nuevo,
-el contrato del índice, dos campos de intake y una nota genérica en el master-prompt. Todo lo demás
-—los documentos, su gobierno, su versionado, su privacidad— es de la organización y no toca el
-framework. Es, además, la única forma de que la capacidad escale a más de un usuario.
+**Y una que se conserva**: `References/Design/` y `Modelos-UX-UI/` se quedan donde están. Son material
+del método, neutros por construcción, y no se mezclan con el catálogo de oficio.
 
----
 
 ### 4.9 Método y oficio: el piso mínimo que el framework conserva
 
@@ -703,30 +691,23 @@ para la 07, lo más probable es que esté escribiendo una regla en el lugar equi
 
 ## 5. Propuesta de materialización
 
-### 5.1 Los dos lados, según §4.8
+### 5.1 Lo que se agrega al framework
 
-**Lo que se agrega al framework** —público, neutro, sin un solo documento de conocimiento adentro:
+Un archivo de reglas y una carpeta. Nada más:
 
 ```
 SDD/Devs/Rules/
-  Rules-Base-Conocimiento.md      archivo de reglas: formato, relevamiento, aceptación, prompt-snippet
+  Rules-Base-Conocimiento.md      formato del documento, contrato del índice, relevamiento, AG-00980
+Conocimiento/
+  README.md                       qué es la carpeta y la propiedad que hay que preservar
+  Index-Knowledge.md              el índice: alias, naturaleza, consumidor, condición de carga, estado
+  Knowledge-<Tema>.md             un documento por artefacto o convención caracterizada
 ```
 
-Es todo. El framework aporta el continente: el formato del documento, el contrato que el índice de una
-base debe cumplir, y la mecánica de resolución e inyección en `Master-Prompt.md`.
+`Conocimiento/` **no es parte del conjunto normativo**: es una carpeta anexa. La distinción no es
+formal. El conjunto normativo no se puede vaciar sin quedarse sin método; `Conocimiento/` sí, y el
+framework corre igual.
 
-**Lo que vive en la base de la organización** —privada, suya, declarada en el intake:
-
-```
-<raiz-base-conocimiento>/
-  Index-Knowledge.md              índice: alias, naturaleza, tema, consumidor, condición de carga, `sustituye`, estado
-  Knowledge-<Tema>.md             un documento por artefacto caracterizado
-```
-
-El `Index-Knowledge.md` de la organización cumple el contrato que el archivo de reglas fija, y es lo que
-el orquestador abre para resolver un alias. La organización versiona su base como quiera; lo único que
-el método le exige es una **identidad de versión citable**, que el intake registra para que la corrida
-sea reconstruible.
 
 ### 5.2 El índice, y por qué es el corazón del diseño
 
@@ -856,148 +837,118 @@ es replicarlo, con la compuerta de ofuscación aplicando al artefacto con el mis
 documento. Queda como decisión abierta en §8 por su costo en tamaño de repositorio.
 ### 5.4 El enganche en el master-prompt
 
-**Se agrega una nota operativa. No se toca ninguna de las que están.** Es la corrección más importante
-que esta revisión introduce, y sale de §4.9: el catálogo de diseño de `References/Design/` y la base de
-la organización son **dos resoluciones distintas** y no se pueden fundir en una nota genérica.
+**Se agrega una nota operativa. No se toca ninguna de las que están.** El catálogo de diseño de
+`References/Design/` y `Conocimiento/` son **dos resoluciones distintas** y no se funden: el primero es
+insumo normativo de la 03 y está siempre; el segundo es consultivo y puede estar vacío.
 
-| | Catálogo de diseño del framework | Base de conocimiento de la organización |
-|---|---|---|
-| Dueño | El framework | La organización |
-| Ubicación | Dentro de `IA.SDD`, path fijo | Fuera, raíz declarada en el intake |
-| Presencia | **Siempre.** Es el piso mínimo de oficio (§4.9) | **Opcional.** Puede no haber ninguna |
-| Obligatoriedad | Insumo normativo de la 03 | Insumo consultivo, subordinado a la regla de categoría |
-| Resolución | `Index-Design-Rules.md`, por condición | `Index-Knowledge.md` de la base declarada, por condición y por cita |
+> Si `Conocimiento/Index-Knowledge.md` tiene filas, el orquestador lo abre, evalúa la condición de carga
+> de cada una contra el intake, los flags y el tipo D8 del proyecto de código en curso, y suma los
+> documentos que corresponden a la lista de insumos del despacho **del consumidor que el índice
+> declara** —una categoría o un subagente de fase—. Además suma los citados explícitamente en el intake,
+> hayan disparado o no por condición. El conjunto cargado se registra en el log. Los documentos de
+> conocimiento son insumo consultivo: ante conflicto con el archivo de reglas de la categoría manda la
+> regla, salvo sustitución declarada sobre un ítem rotulado como decisión de stack. **Con el índice sin
+> filas esta nota no aplica y el despacho se arma exactamente como hoy.**
 
-Fundirlas obligaría al framework a escribir la ruta de un repositorio ajeno, que es exactamente lo que
-la autosuficiencia de `README.md` prohíbe. La nota nueva tiene esta forma:
+En `Master-Prompt.md` §8, el esqueleto de despacho suma `{{LISTA_DOCUMENTOS_DE_CONOCIMIENTO}}` a los
+insumos obligatorios, que puede venir vacía. La prohibición de buscar fuera del scope queda intacta: el
+conocimiento entra por la lista, no por búsqueda.
 
-> Si el intake declara una base de conocimiento, el orquestador abre el `Index-Knowledge.md` de la raíz
-> declarada, evalúa la condición de carga de cada fila contra el intake, los flags y el tipo D8 del
-> proyecto de código en curso, y suma los documentos que corresponden a la lista de insumos del
-> despacho del consumidor que el índice declara —categoría o subagente de fase—. Además suma los documentos citados
-> explícitamente en la subsección de conocimiento del intake, hayan disparado o no por condición. El
-> conjunto cargado se registra en el log del orquestador. Los documentos de conocimiento son insumo
-> consultivo: ante conflicto con el archivo de reglas de la categoría, manda la regla, salvo desviación
-> documentada y justificada en el documento de conocimiento. **Si el intake no declara base, esta nota
-> no aplica y el despacho se arma exactamente como hoy.**
+**Lo que queda fuera del alcance.** Las versiones anteriores proponían además reemplazar «las seis notas
+operativas» de §6 por una genérica. El conteo era falso —son **once** notas, **cinco** mencionan el
+catálogo de diseño y **cuatro** tienen esa forma— y el refactor es una mejora del catálogo propio del
+framework, no de esta capacidad. Se registra como deuda en §8.3.
 
-En `Master-Prompt.md` §8, el esqueleto de despacho suma una línea a «Insumos a leer obligatoriamente»:
-`{{LISTA_DOCUMENTOS_DE_CONOCIMIENTO}}`, que puede venir vacía. Con eso la prohibición de buscar fuera del
-scope queda intacta: el conocimiento entra por la lista, no por búsqueda.
-
-**Lo que esta revisión saca del alcance.** Las versiones anteriores proponían además reemplazar «las
-seis notas operativas» de §6 por una genérica. Dos motivos para retirarlo, y el segundo pesa más que el
-primero. El conteo era falso: verificado sobre `Master-Prompt.md` §6, hay **once notas operativas**, de
-las cuales **cinco** mencionan el catálogo de diseño y sólo **cuatro** tienen la forma «vía el mismo
-índice» —la nota base cubre dos documentos, de modo que no hay «una por documento»—. Y el refactor es
-una mejora del **catálogo propio del framework**, independiente de esta capacidad: incluirlo mezcla dos
-intervenciones, sube la severidad y toca el comportamiento base que el PO pidió conservar tal cual. El
-defecto de escalado que §2.4 describe **sigue siendo real y sigue valiendo la pena**, pero como
-intervención propia y posterior. Se registra como deuda declarada en §8.
 
 ### 5.5 El enganche en el intake y la cadena de resolución
 
-Son **dos declaraciones distintas**, y confundirlas es el error más fácil de cometer acá:
+**Una sola declaración, y es la más simple que este plan tuvo.** Con la base anexada no hay raíz que
+declarar ni identidad de versión que registrar: el intake **cita alias, y nada más**.
 
-| Qué se declara | Dónde | Obligatoriedad | Campos |
-|---|---|---|---|
-| **La base** | Parte B, nivel producto, sección nueva al final | Una sola vez por producto. Si no está, la capacidad queda apagada y todo corre como hoy | Raíz de la base e **identidad de versión** |
-| **Las citas** | Parte C, `§17.P.13`, por proyecto de código | Cero o más | Alias citado, motivo, alcance |
+Subsección nueva `§17.P.13` al final del bloque repetible de la Parte C, por proyecto de código, con
+tres campos: **alias citado**, motivo de la cita y alcance. Sin renumerar nada.
 
-La primera es la que hace la corrida reconstruible sin copiar archivos, y es la que mantiene intacta la
-autosuficiencia de `README.md`: el framework referencia **un campo del intake**, nunca un repositorio.
-La segunda es la cita explícita que el planteo pide. La decisión 1 de §8 sigue abierta sólo sobre si
-además conviene una lista de citas de nivel producto para el conocimiento que aplica a todos los
-proyectos de código.
-
-**El subagente no consulta: recibe.** Es la precisión que hace que el mecanismo sea compatible con el
-método. `Master-Prompt.md` §8 prohíbe al subagente «buscar información fuera del scope de los insumos
-listados», de modo que la resolución del alias ocurre **entera en el orquestador**, antes del despacho,
-y el subagente ve el documento ya puesto en su lista de insumos obligatorios. La cadena es:
+**El subagente no consulta: recibe.** `Master-Prompt.md` §8 le prohíbe buscar fuera de sus insumos, de
+modo que la resolución del alias ocurre **entera en el orquestador**, antes del despacho:
 
 | Paso | Quién | Qué hace |
 |---|---|---|
 | 1 | Humano | Escribe el alias en el intake, con su motivo |
-| 2 | Orquestador, en la fase de validación de intake | Resuelve el alias contra `Index-Knowledge.md`. Si no existe, **bloqueante** |
-| 3 | Orquestador, al planificar | Lee del índice el **consumidor** del documento —categoría o subagente de fase— y lo asigna a ese despacho, no a todos |
-| 4 | Orquestador, al despachar | Suma el path a `{{LISTA_DOCUMENTOS_DE_CONOCIMIENTO}}` del esqueleto de §8 y lo registra en el log |
-| 5 | Subagente | Lo lee como un insumo más, junto al manifiesto, el intake y su archivo de reglas |
+| 2 | Orquestador, en la validación de intake | Resuelve el alias contra `Conocimiento/Index-Knowledge.md`. Si no existe, **bloqueante** |
+| 3 | Orquestador, al planificar | Lee del índice el **consumidor** —categoría o subagente de fase— y lo asigna a ese despacho, no a todos |
+| 4 | Orquestador, al despachar | Suma el path a `{{LISTA_DOCUMENTOS_DE_CONOCIMIENTO}}` y lo registra en el log |
+| 5 | Subagente | Lo lee como un insumo más |
 
-Tres consecuencias de diseño que salen de esa cadena:
+Tres consecuencias de diseño:
 
-1. **El consumidor declarado es lo que evita la inflación de contexto.** Sin él, un alias citado en
-   el intake terminaría inyectado en los doce despachos. Un documento puede declarar más de una
-   consumidor —la caracterización de un template alimenta razonablemente a 03 y a 11—, y por
-   eso el campo del índice admite lista.
-
+1. **El consumidor es lo que evita la inflación de contexto.** Sin él, un alias citado terminaría
+   inyectado en los doce despachos. Admite lista, y admite **subagentes de fase**: sin eso, el
+   conocimiento sobre cómo construir una página web no llegaría nunca a AG-00031, que es quien la
+   construye.
 2. **La validación va en la fase de validación de intake, no en runtime.** `Intake-Rules.md` §8 declara
-   que esas reglas corren «una sola vez, antes de la Fase A». Un alias inexistente detectado ahí cuesta
-   una corrección del intake; detectado en la Fase B, cuesta la Fase A entera. El nivel es
-   **bloqueante** según la escala de `Intake-Rules.md` §7, junto a los campos de §2 y las fallas de
-   derivación del manifiesto.
-
-3. **Citar algo cuya condición no dispara no es un conflicto y no lleva ADR.** La condición del índice
-   es un disparador por defecto, no una obligación, así que citar de más simplemente amplía el
-   conjunto: no hay obligación incumplida y `Root-Rules.md` §11 no aplica —su propia cláusula advierte
+   que esas reglas corren una sola vez antes de la Fase A. Un alias inexistente detectado ahí cuesta una
+   corrección del intake; en la Fase B, cuesta la Fase A entera.
+3. **Citar algo cuya condición no dispara no es conflicto y no lleva ADR.** La condición es un
+   disparador por defecto, no una obligación. `Root-Rules.md` §11 no aplica —su propia cláusula advierte
    que «un apartamiento usado para evadir una condición que ya existe es un anti-patrón»—. El campo
-   **motivo** de la subsección alcanza como registro de intención, y el log del orquestador deja la
-   traza de qué se cargó.
+   **motivo** alcanza como registro de intención.
+
 
 ### 5.6 El prompt de captura
 
-Vive en la documentación de prompts del usuario y produce un documento de conocimiento a partir de un
-proyecto existente. Sus pasos, calcados de lo que la Fase B2 y la incorporación del panel monolítico ya
-hacen:
+Vive en la documentación de prompts del usuario, se ejecuta **fuera de una corrida de generación**, y
+produce un documento de conocimiento a partir de un artefacto existente.
 
-1. **Orientación**: el usuario declara qué conocimiento quiere capturar y de qué proyecto. Sin esto la
-   captura produce un resumen del proyecto en vez de conocimiento reutilizable.
-2. **Relevamiento**: lectura del proyecto y extracción de patrones recurrentes, decisiones y
-   anti-patrones observados.
-3. **Determinación de naturaleza**: `canonico` o `propio`, que decide si el documento escribe el delta o
-   escribe todo (§5.2.1).
-4. **Destilación**: redacción contra `Rules-Base-Conocimiento.md` §4, respetando el techo de tamaño de su §6.
-5. **Alta en la base de la organización**: el documento y su fila en el `Index-Knowledge.md` de esa base.
+1. **Orientación**: qué se captura, de qué artefacto, para qué consumidor, y si es `canonico` o `propio`.
+   **Bloqueante**: sin esto la captura produce un resumen del proyecto en lugar de conocimiento
+   reutilizable, y el resultado *parece* válido, que es lo que lo vuelve el modo de falla más caro.
+2. **Relevamiento**: recorre el artefacto según las preguntas guía del archivo de reglas.
+3. **Composición con el piso**: si contradice algo que el framework fija, resuelve si es **sustitución**
+   —el ítem está rotulado como decisión de stack— o **desviación justificada** —y entonces manda la
+   regla—.
+4. **Destilación**: redacta contra §4 del archivo de reglas, bajo el techo de tamaño de su §6.2.
+5. **Verificación de ofuscación, bloqueante y previa**: búsqueda de términos del dominio, del cliente y
+   del stack de origen, con los falsos positivos léxicos declarados uno por uno.
+6. **Aceptación humana explícita**, antes de escribir.
+7. **Alta**: documento, fila en `Conocimiento/Index-Knowledge.md`, y las obligaciones de toda
+   intervención sobre el framework —`CHANGELOG.md`, copia a `_legacy/` y nota de coherencia si alcanza a
+   varios archivos—.
 
-**Nada de esto escribe en `IA.SDD`**, y por eso ninguno de los pasos lleva nota de coherencia, entrada
-de CHANGELOG ni copia a `_legacy/`: la base es de la organización y su gobierno es suyo (§4.8). Tampoco
-corre la compuerta de ofuscación, porque no hay repositorio público al que contaminar. El vocabulario
-neutro deja de ser obligación y pasa a ser recomendación: un documento que nombra el dominio de la casa
-es válido en la base de la casa.
+**Los pasos 5 a 7 son la corrección que trajo anexar la carpeta.** Las versiones anteriores de este plan
+los daban por innecesarios, con el argumento de que la base era privada y externa. No lo es: es pública
+y vive en el repositorio del framework.
 
-**Existe un segundo prompt, y es otro.** La **promoción** de un documento de la base al catálogo público
-del framework sí escribe en `IA.SDD`, y ahí vuelven enteras las obligaciones que este documento traía:
-verificación de ofuscación bloqueante con búsqueda de términos del dominio, del cliente y del stack de
-origen y los falsos positivos léxicos declarados uno por uno; aceptación humana explícita previa; y el
-alta con nota de coherencia, CHANGELOG y copia a `_legacy/`. Ese paso no es ceremonia: es lo único que
-impide que un repositorio público se contamine con material de un cliente, y `Parana.Net` en el
-workspace es el recordatorio de que el riesgo es concreto. **La promoción queda fuera del alcance de
-este plan** y se registra como ítem diferido en §8.
+El paso 5 no es ceremonia. En su primera ejecución real **encontró dos nombres de entidad del proyecto
+de origen** en el documento piloto.
 
----
 
 ## 6. Impacto normativo
 
 | Archivo | Cambio | Severidad estimada |
 |---|---|---|
-| `SDD/Devs/Rules/Rules-Base-Conocimiento.md` | Nuevo. Archivo de reglas del catálogo, bajo el patrón de los dieciocho existentes | — |
-| `SDD/Devs/Orchestrator/Master-Prompt.md` | §6: **nota operativa nueva**, condicionada a que el intake declare base. Ninguna nota existente se toca. §8: línea nueva en el esqueleto de despacho, que puede venir vacía. §9 o sección nueva: el ciclo de pedido a AG-00980 | **Minor.** Los tres cambios son aditivos y sin base declarada el comportamiento es idéntico al actual |
-| `SDD/Devs/Intake/PRODUCT-INTAKE-template.md` | `§17.P.13` al final del bloque repetible de la Parte C, y una sección nueva de nivel producto al final de la Parte B. **Sin renumerar** | **Minor.** Ver la nota de abajo: la evidencia cierra la decisión que este documento traía abierta |
+| `SDD/Devs/Rules/Rules-Base-Conocimiento.md` | Nuevo. Archivo de reglas del catálogo, bajo el patrón de los existentes | — |
+| `Conocimiento/` | Nueva. Carpeta anexa con su `README.md` y su `Index-Knowledge.md`. **No es parte del conjunto normativo**, y entra en el snapshot | — |
+| `SDD/Devs/Orchestrator/Master-Prompt.md` | §6: **nota operativa nueva**, condicionada a que el índice tenga filas. Ninguna nota existente se toca. §8: línea nueva en el esqueleto de despacho, que puede venir vacía. §9 o sección nueva: el ciclo de pedido a AG-00980 | **Minor.** Los tres cambios son aditivos y sin base declarada el comportamiento es idéntico al actual |
+| `SDD/Devs/Intake/PRODUCT-INTAKE-template.md` | `§17.P.13` al final del bloque repetible de la Parte C: alias citado, motivo y alcance. **Sin renumerar y sin sección de nivel producto**: con la base anexada no hay raíz ni versión que declarar | **Minor** |
 | `SDD/Devs/Rules/Intake-Rules.md` | Validación de cita de conocimiento | Minor |
 | `SDD/Devs/Rules/Maqueta-Rules.md` | §4: rotular **§4.1 Tecnología** como capa de decisión de stack y §4.2 a §4.6 como método, moviendo a método los dos ítems de §4.1 que no son tecnología (iconografía y autonomía sin backend). §1: sumar la base de conocimiento a los insumos de AG-00031, hoy lista cerrada | Minor. El texto de cada regla se conserva y las exigencias sobre una maqueta sin base declarada no cambian; dos ítems cambian de bloque |
 | `SDD/Devs/Guides/Marco-Teorico-SDD.md` | §1.5 mapa de carpetas; sección nueva sobre la capa de conocimiento | Edición |
 | `SDD/Guides/SDD-User-Guide.md` | §10.2 árbol del plano `Devs/` | Edición |
 | `SDD/Guides/SDD-Development-Guide.md` | Eje de extensión nuevo: cómo se incorpora un documento de conocimiento | Minor |
 | `SDD/Devs/Rules/Root-Rules.md` | §9.2: alta de **AG-00980** en la tabla de bloques de la familia `AG`. Verificado que el identificador está libre y que el bloque `009xx` hoy sólo nombra a `AG-00990`. **No** se acuña familia nueva de identificadores | Minor. Es una fila de tabla, y ningún documento generado deja de cumplir por ella; pero `Root-Rules.md` §9 declara alcance transversal y viaja en todo despacho, así que no es una edición cosmética |
-| `README.md` (framework) | Anatomía del repositorio: fila del subárbol nuevo | Edición |
+| `README.md` (framework) | Anatomía del repositorio: fila de `Conocimiento/`, declarada como carpeta anexa | Edición |
 | `CHANGELOG.md` + `_legacy/<version>/` | Obligatorio por la regla de publicación | — |
 
 **La versión del conjunto la fija la plantilla de intake.** Por `README.md`, reglas de intervención: si
-la plantilla sube major, el conjunto sube major. La forma de evitarlo es agregar las secciones **sin
+la plantilla sube major, el conjunto sube major. La forma de evitarlo es agregar la subsección **sin
 renumerar** las existentes, y **la evidencia dice que se puede**: la plantilla ya tiene numeración no
 monótona en orden de archivo —`§19 Checklist de completitud` aparece **después** de `§20` y de `§21`—,
-de modo que agregar `§17.P.13` al final del bloque repetible y una sección de nivel producto al final
-de la Parte B no rompe ninguna convención que la plantilla sostenga hoy. **La intervención es minor.**
-Con eso la decisión 2 que este documento traía abierta queda cerrada por evidencia y no llega al PO.
+de modo que agregar `§17.P.13` al final del bloque repetible no rompe ninguna convención que la
+plantilla sostenga hoy. **La intervención es minor.**
+
+**Nota sobre el estado de ejecución.** Los dos primeros archivos de esta tabla **ya están aplicados**:
+el framework publicó `Rules-Base-Conocimiento.md` y `Conocimiento/` en su **13.0**. El resto es el
+Bloque II, todavía sin ejecutar.
 
 Toda la intervención alcanza a varios archivos, de modo que **emite nota de coherencia** siguiendo
 `Coherencia-Auditoria-Marco.md`, con alcance, inventario, verificación de invariantes, trazabilidad,
@@ -1014,12 +965,12 @@ observaciones y veredicto.
 | **La base borra el piso mínimo** | Un documento de la casa que redefine en silencio lo que `References/Design/` o una regla de categoría ya fijan deja al framework con dos fuentes de verdad sobre lo mismo | Regla de composición de §4.9 escrita en `Rules-Base-Conocimiento.md` §0: se apila, no reemplaza; la contradicción se declara como desviación justificada |
 | **El conocimiento se disfraza de regla** | Un documento que declara criterios de aceptación desplaza en la práctica al archivo de reglas, sin haber pasado por su gobierno | §8 obligatoria en la estructura de documento; anti-patrón declarado; regla de subordinación explícita (§4.2) |
 | **Detenciones por conflicto** | `Root-Rules.md` §13 no decide entre dos reglas que no viajan, y detiene | La regla de subordinación da resolución en el árbol y saca el caso de §13 |
-| **Contaminación de dominio (D7)** | Riesgo real **sólo en la promoción**: la base de la organización es privada y D7 no la alcanza (§4.8), pero `IA.SDD` es público | Compuerta de ofuscación bloqueante **en la promoción de un documento al catálogo público del framework**, con búsqueda de términos y falsos positivos declarados. En la captura hacia la base propia no corre |
+| **Contaminación de dominio** | `IA.SDD` es público y la captura opera sobre proyectos reales. **El riesgo es permanente, no eventual** | Compuerta de ofuscación **bloqueante y previa a toda captura**, con búsqueda de términos del dominio, del cliente y del stack de origen y los falsos positivos léxicos declarados uno por uno. **Ya encontró material real en su primera corrida** |
 | **El subagente no sabe qué existe** | Con condiciones gruesas, o se inyecta de más y se infla el contexto, o de menos y el subagente trabaja sin conocimiento disponible | El despacho avisa que la base existe; lo que falte se pide por detención de `Master-Prompt.md` §9 y lo resuelve AG-00980 devolviendo alias, nunca texto. Cada pedido recalibra una condición (§4.7) |
 | **Inflación de contexto** | Un despacho que carga base + especialización + cuatro capacidades + conocimiento puede volverse enorme | Índice liviano primero; condición de carga estricta; documentos de tema único y acotado |
 | **Catálogo que nadie cita** | Ya pasó: `Modelos-UX-UI/` está vacío desde su incorporación en la 5.1 | Carga por condición además de por cita explícita, para que el conocimiento se aplique sin que el usuario tenga que saber que existe |
-| **Deriva de la base respecto del framework** | Un documento escrito contra una versión vieja de `Rules-Base-Conocimiento.md` queda mintiendo, y **el barrido por concepto de `SDD-Development-Guide.md` §VI.3.1 no puede detectarlo**: recorre el árbol del framework y la base vive afuera | El contrato del índice (§7 del archivo de reglas) suma el campo **`compatible-con`**, la versión del archivo de reglas contra la que se escribió el documento, y la validación de intake avisa —no bloquea— cuando queda por detrás. **La verificación real la hace la organización, no el framework**: se registra como deuda declarada en §8 |
-| **Reconstrucción rota** | Un destino generado con conocimiento cargado no se reconstruye si no se sabe con qué conocimiento se generó | El intake registra **raíz e identidad de versión** de la base, y el log del orquestador registra qué documentos se cargaron. Los documentos **no** entran en `_legacy/`: no son del framework. Se cita la versión, no se copia el archivo (§4.6, §4.8) |
+| **Deriva de la base respecto del framework** | Un documento escrito contra una versión vieja de `Rules-Base-Conocimiento.md` queda mintiendo | **Con la base anexada el barrido por concepto de `SDD-Development-Guide.md` §VI.3.1 sí la alcanza**, porque recorre el árbol del repositorio y la carpeta está adentro. El campo `compatible-con` del índice deja además el dato declarado y comparable |
+| **Reconstrucción rota** | Un destino generado con conocimiento cargado no se reconstruye si no se sabe con qué conocimiento se generó | **Resuelto sin mecanismo nuevo**: `Conocimiento/` entra en `_legacy/<version>/`, de modo que la versión del framework ya identifica el conocimiento. El log del orquestador registra además qué se cargó en cada despacho (§4.6, §4.8) |
 
 ---
 
@@ -1029,9 +980,9 @@ observaciones y veredicto.
 
 | # | Decisión | Dónde |
 |---|---|---|
-| 1 | La base **vive fuera del framework**, como cuarto rol de repositorio propiedad de la organización | §4.8 |
-| 2 | **D7 no la alcanza**; la compuerta de ofuscación rige sólo en la promoción al catálogo público | §4.8, §5.6 |
-| 3 | Los documentos **no entran en `_legacy/`**: el intake cita raíz e identidad de versión | §4.6, §7 |
+| 1 | La base es **`Conocimiento/`, carpeta anexa del framework**, y el desacoplamiento es que **el framework corre con ella vacía**. El mecanismo de extensión es el **fork** | §4.8 |
+| 2 | **La compuerta de ofuscación corre y es bloqueante** en toda captura: el repositorio es público | §4.8, §5.6 |
+| 3 | **`Conocimiento/` entra en `_legacy/`**, por el criterio de §VI.5 y el precedente de `Templates/`. El intake **no declara raíz ni versión de base** | §4.6, §4.8 |
 | 4 | `References/Design/` y `Modelos-UX-UI/` **se quedan donde están**; el reencuadre se retira | §4.3, §4.8 |
 | 5 | El bibliotecario **se adopta con el contrato de entrega**, no de resumen | §4.7 |
 | 6 | El framework **conserva su piso mínimo de oficio** y la base se apila sobre él, no lo reemplaza | §4.9 |
@@ -1041,20 +992,23 @@ observaciones y veredicto.
 | 10 | La sustitución **se habilita desde el framework, no desde el conocimiento**: exige que el ítem esté etiquetado como decisión de stack y que el índice lo declare en `sustituye`. Sin etiqueta, el caso vuelve a ser conflicto y manda la regla | §4.2, §5.2 |
 | 11 | El **consumidor** declarado en el índice admite **subagentes de fase**, no sólo las doce categorías. Sin esto el conocimiento no llega a AG-00031, que es el consumidor del caso de §2.5 | §5.2, §5.5 |
 
-Las decisiones 7 y 8 las cerró la evaluación por mesa con evidencia, y hasta la 1.8 figuraban como
-abiertas o como una fusión dada por buena. La **9** la abrió y la cerró el caso de §2.5, que el PO puso
-sobre la mesa después de esa evaluación: la regla de composición de la 1.9 era correcta pero
-insuficiente, porque trataba como excepción declarable algo que en la práctica es permanente.
+Las decisiones 7 y 8 las cerró la evaluación por mesa con evidencia. La **9** la abrió y la cerró el
+caso de §2.5. Y **las tres primeras se cerraron al revés de como este plan las traía**: la corrección
+la aportó el PO con un argumento operativo —`IA.SDD` es el repositorio desde el que se lanza— y con él
+se cayeron el cuarto rol de repositorio, la raíz declarada en el intake y la identidad de versión
+propia. **Vale registrar por qué estaban mal**: se confundía el desacoplamiento con la ubicación. El
+desacoplamiento es que **ninguna regla nombre un documento**, no que los documentos vivan lejos.
 
 ### 8.2 Abiertas al PO
 
 | # | Decisión | Por qué es del PO |
 |---|---|---|
-| 1 | **Alcance de la cita**: si además de las citas por proyecto de código en `§17.P.13` conviene una lista de nivel producto. La declaración de **raíz e identidad de versión** va sí o sí a nivel producto y no está en discusión | Es una preferencia de uso, no un problema técnico |
+| 1 | **Alcance de la cita**: si además de las citas por proyecto de código en `§17.P.13` conviene una lista de nivel producto para el conocimiento que aplica a todos | Es una preferencia de uso, no un problema técnico |
 | 2 | **Un archivo de reglas o dos**: si `Rules-Base-Conocimiento.md` cubre también la especificación de AG-00980, o si el bibliotecario lleva el suyo, con el precedente de `Maqueta-Rules.md` para AG-00031 | Costo de mantenimiento contra claridad de dueño |
-| 3 | **Primer tema a capturar**, uno solo para el piloto. El caso de §2.5 lo sugiere solo: **una forma alternativa de construir páginas web**, que es lo único que hoy el framework no puede absorber sin ser editado, y por lo tanto lo que mejor prueba los tres modos de §4.9 —en particular la sustitución—. Las alternativas siguen siendo válidas: arquitectura de la casa, asistente de formularios, nomenclatura de base de datos | **Es la que destraba el Bloque I** |
-| 4 | **Artefacto de referencia**: si una captura sobre algo ejecutable deposita además el artefacto en la base, junto a su caracterización | Es de la organización, y depende de cuánto pese su repositorio |
-| 5 | **Techo de tamaño por documento**, distinto para `canonico` y para `propio`. Conviene fijarlo con el piloto en la mano en vez de a priori | Se decide mejor con evidencia que ahora |
+| 3 | **Cerrada por ejecución.** El piloto capturó `Clean-Architecture-DataManager`, un caso `canonico` que ejercita la regla de mayor riesgo —escribir el delta— y se valida entero dentro del Bloque I. Lo que sigue abierto es **qué se captura después**, y ahí el caso de §2.5 sigue siendo el candidato natural | Ya no bloquea |
+| 4 | **Artefacto de referencia**: si una captura sobre algo ejecutable deposita además el artefacto, con el precedente de `Templates/` | Pesa en el tamaño del repositorio, que ya archiva una copia por versión |
+| 5 | **Techo de tamaño por documento**. Fijado en **250 líneas** para `canonico` y **600** para `propio`. El piloto entró en **247 sobre 250**, o sea ajustado: hay evidencia de un solo caso | Se confirma o se corrige con dos o tres documentos más |
+| 6 | **Cuánto cuesta agregar conocimiento.** Al vivir `Conocimiento/` en el repositorio, cada alta es una intervención con `CHANGELOG.md` y copia a `_legacy/`. Tensiona con el «simplemente copiarlos» del planteo original: conviene decidir si las altas **se agrupan por lote** en vez de publicarse de a una | Es un costo operativo real, y la decisión es de quien mantiene el repositorio |
 
 ### 8.3 Deuda declarada
 
@@ -1063,9 +1017,9 @@ Defectos y trabajos reconocidos que **deliberadamente no se hacen acá**, con su
 | Ítem | Motivo de la postergación |
 |---|---|
 | **El refactor de las notas operativas del catálogo de diseño** (§2.4). El defecto de escalado es real y sigue en pie | Es una mejora del catálogo propio del framework, no de esta capacidad. Mezclarlas sube la severidad y toca el comportamiento base que se decidió conservar. Va como intervención propia y posterior |
-| **La verificación de deriva de una base externa.** El campo `compatible-con` del índice deja el dato declarado, pero **nada del framework puede comprobarlo**: el barrido de `SDD-Development-Guide.md` §VI.3.1 recorre el árbol del framework y la base vive afuera | Verificarlo exigiría que el framework lea un repositorio ajeno, que es lo que la autosuficiencia prohíbe. La verificación es de la organización |
+| **La verificación mecánica de `compatible-con`.** El barrido de §VI.3.1 ahora **sí** alcanza a `Conocimiento/`, porque la carpeta está en el árbol, pero nadie comprueba todavía que el valor declarado sea el vigente | No bloquea: con un catálogo chico el dato se compara a ojo. Conviene resolverlo cuando crezca |
 | **La separación de capas en las reglas de 02, 05, 08 y 09.** `Maqueta-Rules.md` se separa acá porque es la que bloquea el caso de §2.5; las demás cargan la misma mezcla de método y decisión de stack | No bloquea esta capacidad. Conviene hacerlas cuando una base real necesite sustituir algo de ellas, para separar con un caso concreto en la mano en vez de a priori |
-| **El prompt de promoción** de un documento de la base al catálogo público del framework (§5.6) | No hace falta hasta que exista al menos una base con documentos que valga la pena promover. Sus obligaciones ya están escritas y no se pierden |
+| **El prompt de promoción, que deja de existir como ítem.** Con la base anexada no hay dos catálogos entre los cuales promover: se captura directamente en `Conocimiento/`, con la ofuscación puesta desde el principio | Desaparece con el cambio de modelo. Se registra para que no se reintroduzca |
 
 ## 9. Plan de trabajo
 
@@ -1076,7 +1030,7 @@ mecanismo y tienen dueños, tiempos y riesgos distintos.
 |---|---|---|
 | Pregunta que responde | ¿Cómo entra el conocimiento a la base? | ¿Cómo lo aplica el framework cuando corre? |
 | Entrega | El archivo de reglas de formato y el prompt de relevamiento | El contrato del índice, el andamiaje de intake, la mecánica del orquestador y AG-00980 |
-| Toca `IA.SDD` | Un archivo nuevo | Master-prompt, plantilla de intake, `Intake-Rules.md`, `Root-Rules.md` §9.2 y `Maqueta-Rules.md` §4 |
+| Toca `IA.SDD` | Un archivo de reglas y la carpeta `Conocimiento/` | Master-prompt, plantilla de intake, `Intake-Rules.md`, `Root-Rules.md` §9.2 y `Maqueta-Rules.md` §4 y §1 |
 | Severidad | Minor | **Minor.** La plantilla de intake se amplía sin renumerar; `Root-Rules.md` suma una fila. Ver §6 |
 | **Vale por sí solo** | **Sí.** Podés empezar a construir tu base ya, aunque el framework todavía no la consuma | No: sin Bloque I no hay qué consumir |
 
@@ -1138,18 +1092,17 @@ ninguno de los dos catálogos actuales del framework ejerció.
 
 #### II.1 Andamiaje de intake
 
-Dos declaraciones, y no son lo mismo:
+**Una sola declaración**, y es lo que el cambio de modelo simplificó: no hay raíz que declarar ni
+identidad de versión que registrar.
 
-| Qué | Dónde | Contenido |
-|---|---|---|
-| **La base** | Parte B, nivel producto | Raíz de la base de conocimiento e **identidad de versión**. Es lo que hace la corrida reconstruible sin copiar archivos |
-| **Las citas** | Parte C, por proyecto de código (y Parte B si la decisión 1 lo confirma) | Alias citado, motivo y alcance |
+`§17.P.13` al final del bloque repetible de la Parte C, por proyecto de código, con tres campos: alias
+citado, motivo y alcance. Sin renumerar nada, y sin sección de nivel producto salvo que la decisión 1
+de §8.2 la confirme.
 
-`Intake-Rules.md` suma las validaciones, todas **bloqueantes** según su §7 y corriendo en la fase de
-validación previa a la Fase A según su §8: la raíz declarada existe y es legible; su índice cumple el
-contrato de §7 del archivo de reglas; y **todo alias citado resuelve** contra ese índice.
+`Intake-Rules.md` suma **una** validación, **bloqueante** según su §7 y corriendo en la fase previa a la
+Fase A según su §8: **todo alias citado resuelve** contra `Conocimiento/Index-Knowledge.md`.
 
-Sin declaración de base, nada de esto aplica y el framework corre exactamente como hoy.
+Con el índice sin filas no hay alias que citar, y el framework corre exactamente como hoy.
 
 #### II.2 Mecánica del orquestador
 
@@ -1240,19 +1193,21 @@ conjunto superado a `_legacy/<version>/`.
 
 ### Orden y dependencias
 
-| Paso | Qué | Bloque | Depende de |
-|---|---|---|---|
-| 0 | Cerrar las cinco decisiones abiertas de §8.2 | — | — |
-| 1 | `Rules-Base-Conocimiento.md` | I | 0 |
-| 2 | Prompt de relevamiento | I | 1 |
-| 3 | Piloto | I | 2 |
-| 4 | Andamiaje de intake y validaciones | II | 1, y el piloto como prueba de que el contrato del índice sirve |
-| 5 | Mecánica del orquestador y AG-00980 | II | 4 |
-| 6 | Separación de capas en `Maqueta-Rules.md` §4 y §1 | II | 1 |
-| 7 | Cierre normativo y publicación | II | 5, 6 |
+| Paso | Qué | Bloque | Estado | Depende de |
+|---|---|---|---|---|
+| 0 | Cerrar las decisiones abiertas de §8.2 | — | Parcial | — |
+| 1 | `Rules-Base-Conocimiento.md` y `Conocimiento/` | I | **Aplicado** — framework 12.2, corregido en 12.3 y 13.0 | 0 |
+| 2 | Prompt de relevamiento | I | **Aplicado** — `Features/16-Relevar-Conocimiento/` | 1 |
+| 3 | Piloto | I | **Aplicado** — `Clean-Architecture-DataManager` | 2 |
+| 4 | Andamiaje de intake y validaciones | II | Pendiente | 1, y el piloto como prueba de que el contrato del índice sirve |
+| 5 | Mecánica del orquestador y AG-00980 | II | Pendiente | 4 |
+| 6 | Separación de capas en `Maqueta-Rules.md` §4 y §1 | II | Pendiente | 1 |
+| 7 | Cierre normativo y publicación | II | Pendiente | 5, 6 |
 
-El paso 3 es la compuerta real entre bloques: si el piloto muestra que el archivo de reglas no alcanza
-para caracterizar un artefacto externo, se corrige el paso 1 antes de tocar el intake, que es lo caro.
+El paso 3 era la compuerta real entre bloques, y **se ejerció**: el piloto encontró cuatro defectos en
+el archivo de reglas y se corrigieron en el paso 1 antes de tocar el intake, que es lo caro. Los cuatro
+vivían en la costura entre el documento y el índice, y ninguno se habría visto releyendo el archivo.
+**Veredicto: se pasa.** El Bloque II puede avanzar.
 
 **Un matiz sobre «el Bloque I vale por sí solo», si el piloto es el de sustitución.** Un documento que
 sustituye una decisión de stack se puede **escribir y guardar** con sólo el Bloque I, y eso conserva la
@@ -1291,6 +1246,7 @@ del paso 6.
 
 | Versión | Fecha | Cambios |
 |---|---|---|
+| 3.0 | 2026-08-23 | **Cambia dónde vive la base, y con eso se cae buena parte del andamiaje que este plan venía cargando.** La corrección la aportó el PO con un argumento operativo que decide: `IA.SDD` es **el repositorio desde el que se lanza** el orquestador, de modo que la base tiene que viajar con lo que se clona en vez de ser alcanzada. §4.8 se reescribe por tercera vez y queda en **`Conocimiento/`, carpeta anexa del framework**; se registran las dos versiones equivocadas anteriores porque **las dos fallaban por el mismo motivo: confundir el desacoplamiento con la ubicación**. El desacoplamiento se define ahora de forma verificable —**el framework corre con la carpeta vacía y ninguna regla nombra un documento**— y el mecanismo de distribución es el **fork**. Se cae el cuarto rol de repositorio, la raíz declarada en el intake, la identidad de versión propia de la base y el rodeo por autosuficiencia: **el intake cita alias y nada más**. Tres inversiones: una captura **es** una intervención sobre el framework; **`Conocimiento/` entra en el snapshot**, por el criterio de `SDD-Development-Guide.md` §VI.5 y el precedente de `Templates/` —`Examples/` era mala analogía y este plan se apoyaba en ella—; y **la compuerta de ofuscación corre y es bloqueante**, porque el repositorio es público. §5.1, §5.4, §5.5 y §5.6 se reescriben en consecuencia, §6 y §7 se actualizan, y §8 registra las tres decisiones cerradas al revés de como el plan las traía más dos nuevas: el techo de tamaño con evidencia de un caso y **el costo operativo de que cada alta sea una intervención**, que tensiona con el «simplemente copiarlos» del planteo original. §9 suma el **estado de ejecución**: los pasos 1, 2 y 3 están aplicados, y el piloto **ejerció la compuerta** entre bloques encontrando cuatro defectos en el archivo de reglas. |
 | 2.1 | 2026-08-23 | **Segundo ciclo de la mesa evaluadora, sobre la 2.0. Siete hallazgos, todos aplicados y verificados.** Dos salen de leer `Maqueta-Rules.md` en detalle en vez de citarla. **El primero refuerza el argumento de §2.5**: la válvula de escape ya existe —§7.2 admite apartarse del no-build **registrando un ADR en 05 del proyecto de código**—, de modo que lo que §4.9 predecía como riesgo es hoy **observable**: para una casa que construye así siempre, esa vía produce el mismo ADR en cada proyecto. El apartamiento **por proyecto** está resuelto; el **por organización** no tiene dónde declararse, y eso es lo que la base aporta. **El segundo abarata §II.4 y corrige una afirmación floja**: `Maqueta-Rules.md` §4 **ya está subdividido** en §4.1 Tecnología más cinco subsecciones de método, así que la separación es casi rotular lo que existe; el trabajo real es **sacar de §4.1 los dos ítems que no son tecnología** —iconografía vectorial y autonomía sin backend—, y por lo tanto era falso que «ninguna regla cambia de contenido: cambian de etiqueta». **Hueco S1 cerrado**: los insumos de AG-00031 son una lista cerrada en `Maqueta-Rules.md` §1 que no incluye la base, de modo que el conocimiento sobre cómo construir una página web **no llegaba al agente que construye la página**; el campo del índice pasa de «categoría consumidora» a **consumidor**, que admite subagentes de fase. **Contradicción cerrada entre §4.2 y §4.9**: la subordinación gobierna el **conflicto** —gana la regla— y la sustitución es un **reemplazo previsto y etiquetado** —gana el conocimiento en el ítem declarado—, con tabla comparativa; la sustitución **la habilita el framework por adelantado**, no el que escribe el conocimiento. Campo **`sustituye`** nuevo en el contrato del índice, sin el cual la sustitución quedaba declarada pero inejecutable, más el riesgo de **sustitución tácita** en §7. §9 declara el matiz sobre «el Bloque I vale por sí solo» cuando el piloto es de sustitución: se puede escribir, no se puede ejercer hasta el paso 6. §8.1 suma las decisiones cerradas 10 y 11. |
 | 2.0 | 2026-08-23 | **El caso que motiva la capacidad entra al documento como evidencia, y obliga a corregir la regla de composición de la 1.9.** Nueva **§2.5**: el framework construye toda maqueta y todo código web a partir de **un único template**, `Templates/Modelo-Generico/`, y el acoplamiento real no está en el template sino en `Maqueta-Rules.md` §4, que fija como norma JavaScript vanilla, Bootstrap por CDN y ausencia de proceso de build, con §7 justificando la decisión. El punto de extensión que existe —capturar un modelo en la Fase B2— **sólo permite variar el modelo visual**, porque todo modelo nuevo sigue obligado por §4; de modo que aportar otra forma de construir páginas web hoy exige **editar el framework**, que es exactamente lo que esta capacidad existe para evitar. **§4.9 se amplía en consecuencia**: el piso mínimo tiene **dos capas**, método —criterios de aceptación, no desplazables— y **decisión de stack** —elecciones legítimas, sustituibles—, hoy mezcladas en el mismo párrafo. La regla de composición de la 1.9 era correcta pero insuficiente: tratar como desviación declarable algo que se declara en cada corrida convierte la base en una fábrica de apartamientos, que es el anti-patrón que `Root-Rules.md` §11 nombra. Se declaran los **tres modos de aportar** —sumar, especializar y **sustituir**— y el límite duro de la sustitución. **La separación de capas entra en el alcance**: nueva **§II.4** sobre `Maqueta-Rules.md` §4, sin cambiar ninguna regla de contenido, con verificación de equivalencia ítem por ítem; el cierre normativo pasa a II.5 y el orden suma un paso. §8.1 suma la decisión cerrada 9; §8.2 reformula el primer tema del piloto, que el caso de §2.5 sugiere solo; §8.3 suma la deuda de separar las mismas capas en las reglas de 02, 05, 08 y 09. Riesgo nuevo en §7: la sustitución desbordándose hacia el método. |
 | 1.9 | 2026-08-23 | **Evaluación por mesa multiagente (`05-Mejora-Continuar-Mesa-Evaluadora.md`) y aplicación de los parches aprobados.** Nueva **§4.9 «Método y oficio»**, a pedido del PO: el SDD está fundado en gestión y su identidad es el proceso; el oficio no puede vivir adentro sin acoplar el framework a una casa, pero **el piso mínimo que ya tiene se conserva tal cual** —`References/Design/` como insumo normativo de la 03, `Modelos-UX-UI/`, y los criterios de las reglas de 02, 05, 08 y 09— con una **regla de composición** explícita: la base se apila sobre el piso, no lo reemplaza. Se corrigen **cuatro contradicciones internas S1** que la 1.8 arrastraba de versiones anteriores a §4.8: los documentos entrando en `_legacy/`, la compuerta de ofuscación declarada bloqueante en toda captura, el `Index-Knowledge.md` ubicado dentro del framework, y §5.6 escribiendo en `IA.SDD`. Se separa lo que la 1.8 fundía: **el catálogo de diseño del framework y la base de la organización son dos resoluciones distintas** y el master-prompt suma una nota en vez de reemplazar las suyas —el refactor de §2.4 sale del alcance y pasa a deuda declarada, con el conteo de «seis notas» corregido: son once notas, cinco mencionan el catálogo y cuatro tienen esa forma—. Se corrige el ámbito de unicidad del alias, que la 1.8 ataba al conjunto normativo del framework cuando la base vive afuera, y se suma la regla de colisión. Se registra que **`Root-Rules.md` sí se toca** para dar de alta `AG-00980`, verificado libre. Se cierran por evidencia **dos decisiones que estaban abiertas**: la plantilla de intake se amplía sin renumerar —§19 ya aparece después de §20 y §21— y por lo tanto **la intervención es minor, no major**. §8 se reestructura en cerradas, abiertas y **deuda declarada**. |

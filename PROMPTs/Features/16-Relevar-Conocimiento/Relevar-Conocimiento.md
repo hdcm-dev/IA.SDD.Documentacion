@@ -1,6 +1,6 @@
 # Tool-Prompt — Relevamiento de conocimiento
 
-> **Invocación**: Leer y ejecutar este archivo, completando antes el bloque de parámetros.
+> **Invocación**: `Leer y ejecutar /IA/SDD/IA.SDD.Documentacion/PROMPTs/Features/16-Relevar-Conocimiento/Relevar-Conocimiento.md`, completando antes el bloque de parámetros.
 >
 > **Overview**: Caracteriza un artefacto externo —un template, una arquitectura, una convención de nomenclatura, un componente reusable— y lo incorpora como documento a la base de conocimiento de la organización, con el formato que el `Framework SDD` regula.
 
@@ -13,9 +13,12 @@ Completar antes de ejecutar. Los cuatro son obligatorios.
 ```yaml
 que_capturar: <qué conocimiento se quiere capturar, en una oración>
 de_donde: <ruta del artefacto o del proyecto del que se lo extrae>
-base_de_conocimiento: <ruta raíz de la base de la organización>
-archivo_de_reglas: <ruta a Rules-Base-Conocimiento.md del Framework SDD>
+framework: <ruta raíz del Framework SDD>
 ```
+
+La base es `Conocimiento/` de ese mismo repositorio, y el archivo de reglas es
+`SDD/Devs/Rules/Rules-Base-Conocimiento.md`. **No hay raíz de base que declarar**: la carpeta es anexa
+del framework.
 
 Opcionales, y si no se declaran los deriva el paso 1:
 
@@ -32,7 +35,7 @@ alias: <alias citable propuesto>
 1. **`Rules-Base-Conocimiento.md`**, entero. Es la norma que este prompt aplica y **no se resume acá**:
    un prompt que reescribe su regla crea una segunda fuente y las dos se desincronizan.
 2. El artefacto o proyecto de `de_donde`.
-3. El `Index-Knowledge.md` de `base_de_conocimiento`, si ya existe. Si no existe, se crea en el paso 5.
+3. `Conocimiento/Index-Knowledge.md` y su `README.md`.
 
 **No se lee nada más.** En particular, no se leen los archivos de reglas de categoría del framework: lo
 que este prompt produce **no es una regla** y no tiene que parecerse a una.
@@ -41,13 +44,15 @@ que este prompt produce **no es una regla** y no tiene que parecerse a una.
 
 ## Objetivo
 
-Producir **dos artefactos, y sólo dos**, los dos dentro de `base_de_conocimiento`:
+Producir **dos artefactos**, los dos dentro de `Conocimiento/`:
 
 1. `Knowledge-<Tema>.md`, con la cabecera de §4.1 y las secciones de §4.2 del archivo de reglas.
-2. La fila correspondiente en su `Index-Knowledge.md`, con las columnas de §7.1.
+2. La fila correspondiente en `Index-Knowledge.md`, con las columnas de §7.1.
 
-**No se escribe nada en el repositorio del `Framework SDD`.** Una captura no es una intervención sobre
-el framework: no emite nota de coherencia, no toca su `CHANGELOG.md` y no copia nada a `_legacy/`.
+**Esto escribe en el repositorio del `Framework SDD`, y por lo tanto es una intervención sobre él.**
+Rigen sus obligaciones de publicación: entrada en el `CHANGELOG.md`, copia del conjunto superado a
+`_legacy/<version>/` y nota de coherencia si alcanza a varios archivos. Y `IA.SDD` es **público**, de
+modo que la verificación de ofuscación es previa y bloqueante.
 
 ---
 
@@ -110,13 +115,35 @@ Cerrar con las tres preguntas de §5.6 antes de pasar al alta: si un agente que 
 puede usarlo leyendo sólo esto, si hay algo repetido de otro documento de la base, y si entra bajo el
 techo.
 
-### Paso 5 — Alta
+### Paso 5 — Verificación de ofuscación, bloqueante y previa
 
-Escribir el documento y su fila en `Index-Knowledge.md`, con las diez columnas de §7.1. Si el índice no
-existe todavía, crearlo con el encabezado de esas columnas.
+`IA.SDD` es un repositorio público. Antes de escribir nada:
 
-**Antes de devolver, correr la lista de §6.1 completa y declarar el resultado de cada ítem**, los doce,
-con su marca `[enumerable]` o `[interpretativo]`.
+1. Buscar en el documento los **términos del proyecto de origen**: nombre de la solución, de sus
+   proyectos, de sus entidades, de sus proveedores externos y de su dominio de negocio.
+2. Buscar los **términos del stack de origen** que no sean genéricos.
+3. **Enumerar uno por uno los falsos positivos léxicos** —un término técnico que coincide con un nombre
+   del dominio— con el motivo por el que lo son.
+4. Lo que no sea falso positivo **se reemplaza por un marcador** del tipo `<Entidad>`, `<Solucion>`,
+   `<Tabla>`, que además deja el documento consistente con sus esqueletos.
+
+Lo que se conserva a propósito son las **convenciones de la casa** —prefijos de esquema, formas de
+nombre, decisiones de estructura—: son el conocimiento que el documento existe para transmitir y no
+identifican a nadie. Se declaran como conservados, no como falsos positivos.
+
+### Paso 6 — Aceptación humana
+
+Presentar el documento, la fila del índice y el resultado de la verificación anterior. **No se escribe
+sin aceptación explícita.**
+
+### Paso 7 — Alta
+
+Escribir el documento y su fila en `Index-Knowledge.md`, con las diez columnas de §7.1. Y cumplir las
+obligaciones de intervención sobre el framework: `CHANGELOG.md`, copia a `_legacy/<version>/` tomada
+**antes** de editar, y nota de coherencia si alcanza a varios archivos.
+
+**Antes de devolver, correr la lista de §6.1 completa y declarar el resultado de cada ítem**, los
+catorce, con su marca `[enumerable]` o `[interpretativo]`.
 
 ---
 
@@ -140,8 +167,9 @@ resuelve sin preguntar.
 1. Las respuestas del paso 1, textuales.
 2. La ruta del documento creado y su alias.
 3. La fila del índice, tal como quedó.
-4. El resultado de los doce ítems de §6.1.
-5. **Lo que se dejó afuera y por qué**, que es lo que permite auditar la captura sin releer el artefacto.
+4. El resultado de los catorce ítems de §6.1.
+5. La tabla de verificación de ofuscación: términos buscados, coincidencias, y qué se hizo con cada una.
+6. **Lo que se dejó afuera y por qué**, que es lo que permite auditar la captura sin releer el artefacto.
 
 ---
 
@@ -150,7 +178,7 @@ resuelve sin preguntar.
 - **No inventar información.** Lo que no se pudo verificar en el artefacto no entra al documento.
 - **Describir el artefacto, no el método del framework.** Criterios de aceptación, nomenclatura de
   artefactos generados y gating por tipo D8 son del framework y no se redefinen desde acá.
-- **No escribir en el repositorio del `Framework SDD`.**
 - **No resumir el archivo de reglas dentro del documento producido.** Se lo cita.
-- **La compuerta de ofuscación no corre acá.** La base es privada y D7 no la alcanza. Rige sólo si algún
-  día se promueve un documento al catálogo público del framework.
+- **La compuerta de ofuscación es bloqueante y previa.** El repositorio es público. Lo que no sea
+  publicable no va: un fork privado puede guardar lo que quiera en su carpeta, este repositorio no.
+- **No escribir sin aceptación humana explícita.**
