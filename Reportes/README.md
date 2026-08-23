@@ -1,9 +1,9 @@
 # Reportes de evidencia sobre el Framework SDD
 
 **Documento:** README.md
-**Versión:** 1.13
+**Versión:** 1.14
 **Fecha:** 2026-08-20
-**Estado:** Vigente — **quince reportes**: catorce **RESUELTOS** y **uno para evaluación**, el `12`
+**Estado:** Vigente — **quince reportes**, los **quince RESUELTOS**
 **Cierre:** los doce primeros, sobre **SDD 7.0** (2026-08-15), como una sola intervención. Los siguientes, de a uno: el `13` en **9.19**, el `14` en **10.0** y **11.0** —dos intervenciones, porque la primera dejó un criterio sin auditar— y el `15` en **10.1**
 
 Índice de los reportes de hallazgos contra el `Framework SDD`, escritos para ser **insumo de prompts de intervención sobre el framework**. Ninguno modifica el framework: cada uno documenta un hueco con evidencia reproducible, para que la corrección se decida con datos y no con impresiones.
@@ -47,7 +47,7 @@ escribió sobre los doce primeros. Su desenlace, uno por uno:
 
 | # | Desenlace |
 |---|---|
-| `12` | **Para evaluación.** No es un fix: es una decisión de alcance —si el framework debe distribuir un verificador ejecutable— y **requiere intención de producto** (`Master-Prompt.md` §8.1) |
+| `12` | **Resuelto en 12.1.** No era un fix sino una **decisión de alcance** —si el framework debe distribuir un verificador ejecutable— y la decisión fue **que no**, escrita como `SDD-Development-Guide.md` **§II.7**. El fundamento estaba en el propio reporte, en su §6: un verificador que reimplementa las condiciones **es** la duplicación que `Migracion-Rules.md` §3 rechaza. Las cuatro mediciones de su §7 siguen sin hacer y §II.7 las declara como **condición de reapertura** |
 | `13` | **Resuelto en 9.19.** Su eje de estratos fue **rechazado con fundamento escrito** y el resto entró como *la pregunta previa* de §8.1 |
 | `14` | **Resuelto en 10.0**, con `Root-Rules.md` §12.2, y **completado en 11.0**: su criterio 4 —auditar el empaquetado sobre las quince reglas— se había declarado resuelto sin correrse. De ese desvío salió la **comprobación 13** del framework |
 | `15` | **Resuelto en 10.1**, con la séptima clase de exclusión de §VI.3.2 |
@@ -115,6 +115,7 @@ Cuatro de los doce salieron de la **Fase B2**, y tampoco es casualidad: es la pr
 | 1.11 | 2026-08-17 | Suma el **reporte 12**, primero emitido después del cierre de los doce originales. La cabecera distingue los RESUELTOS del que está para evaluación. |
 | 1.12 | 2026-08-20 | Suma el **reporte 15**, empujado a la carpeta sin indexar, y reescribe el desenlace de los cuatro últimos como tabla, uno por uno. **Esta fila faltaba**: la intervención subió la cabecera a 1.12 y no la escribió, de modo que el índice declaró durante dos días una versión que su propio registro no conocía. Se restituye acá, con su fecha real, al detectarla la comprobación 10 de `SDD-Development-Guide.md` §VI.3. |
 | 1.13 | 2026-08-20 | **El índice declaraba «para evaluación» a tres reportes ya aplicados y se contradecía a sí mismo**: la tabla de desenlaces daba el `13` por resuelto en 9.19 y la sección del `12` lo seguía listando abierto. Los `13`, `14` y `15` pasan a **RESUELTO** —cada uno con su sección «Cómo se resolvió» y el veredicto de cada criterio de aceptación—, el `14` suma su segunda intervención, la **11.0**, y la sección del `12` deja de repetir el estado de otros reportes. Se declara además la mitad que faltaba de la regla del índice: **quien resuelve, cierra la fila**, contrastable desde `SDD 11.1` contra la **devolución al origen** de la comprobación 13. |
+| 1.14 | 2026-08-23 | **El `12` pasa a RESUELTO y el índice queda sin reportes abiertos.** La decisión de alcance que el reporte pedía —si el framework distribuye código ejecutable— se tomó y se escribió como `SDD-Development-Guide.md` §II.7 en **SDD 12.1**: **no lo distribuye**, con la frontera declarada —un comando publicado dentro del texto que lo funda no es código distribuido— y con las cuatro mediciones del §7 del reporte como condición de reapertura. La cabecera pasa de «catorce resueltos y uno para evaluación» a **los quince resueltos**. |
 
 
 ---
