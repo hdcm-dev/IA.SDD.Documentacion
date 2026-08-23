@@ -1,9 +1,9 @@
 # Reportes de evidencia sobre el Framework SDD
 
 **Documento:** README.md
-**Versión:** 1.14
+**Versión:** 1.15
 **Fecha:** 2026-08-20
-**Estado:** Vigente — **quince reportes**, los **quince RESUELTOS**
+**Estado:** **Serie cerrada** — dieciséis reportes (`00` a `15`), **todos RESUELTOS**. La serie **no se reanaliza**: ver «Línea de corte». Un reporte nuevo evalúa **SDD 12.1 o posterior**
 **Cierre:** los doce primeros, sobre **SDD 7.0** (2026-08-15), como una sola intervención. Los siguientes, de a uno: el `13` en **9.19**, el `14` en **10.0** y **11.0** —dos intervenciones, porque la primera dejó un criterio sin auditar— y el `15` en **10.1**
 
 Índice de los reportes de hallazgos contra el `Framework SDD`, escritos para ser **insumo de prompts de intervención sobre el framework**. Ninguno modifica el framework: cada uno documenta un hueco con evidencia reproducible, para que la corrección se decida con datos y no con impresiones.
@@ -116,26 +116,61 @@ Cuatro de los doce salieron de la **Fase B2**, y tampoco es casualidad: es la pr
 | 1.12 | 2026-08-20 | Suma el **reporte 15**, empujado a la carpeta sin indexar, y reescribe el desenlace de los cuatro últimos como tabla, uno por uno. **Esta fila faltaba**: la intervención subió la cabecera a 1.12 y no la escribió, de modo que el índice declaró durante dos días una versión que su propio registro no conocía. Se restituye acá, con su fecha real, al detectarla la comprobación 10 de `SDD-Development-Guide.md` §VI.3. |
 | 1.13 | 2026-08-20 | **El índice declaraba «para evaluación» a tres reportes ya aplicados y se contradecía a sí mismo**: la tabla de desenlaces daba el `13` por resuelto en 9.19 y la sección del `12` lo seguía listando abierto. Los `13`, `14` y `15` pasan a **RESUELTO** —cada uno con su sección «Cómo se resolvió» y el veredicto de cada criterio de aceptación—, el `14` suma su segunda intervención, la **11.0**, y la sección del `12` deja de repetir el estado de otros reportes. Se declara además la mitad que faltaba de la regla del índice: **quien resuelve, cierra la fila**, contrastable desde `SDD 11.1` contra la **devolución al origen** de la comprobación 13. |
 | 1.14 | 2026-08-23 | **El `12` pasa a RESUELTO y el índice queda sin reportes abiertos.** La decisión de alcance que el reporte pedía —si el framework distribuye código ejecutable— se tomó y se escribió como `SDD-Development-Guide.md` §II.7 en **SDD 12.1**: **no lo distribuye**, con la frontera declarada —un comando publicado dentro del texto que lo funda no es código distribuido— y con las cuatro mediciones del §7 del reporte como condición de reapertura. La cabecera pasa de «catorce resueltos y uno para evaluación» a **los quince resueltos**. |
+| 1.15 | 2026-08-23 | **La serie `00` a `15` se declara cerrada y no reanalizable**, y entra la sección «Línea de corte» que lo funda. El motivo es de aritmética: un reporte declara la versión que evaluó, y entre la `9.13` del `12` y la `12.1` vigente se publicaron más de treinta versiones que reescribieron los mecanismos que estos reportes examinaban — un hallazgo contra un artefacto reescrito tres veces describe algo que ya no está. La práctica de **volver a medir antes de retomar** existía desde el prompt que resolvió el `12` al `14` y **nunca fue regla**. Se declara además lo que la línea de corte **no** cierra: los ítems diferidos de §12.2, que nombran un evento futuro y no un estado pasado. La sección «Reporte 12, abierto» se reescribe como su cierre. |
 
 
 ---
 
-## Reporte 12, abierto
+## Reporte 12, cerrado — y con él la serie entera
 
-**El circuito volvió a usarse.** El `12` se emitió el 2026-08-17 sobre la compuerta mecánica: está
-declarada en prosa y **su ejecución depende del agente que la lee**, así que no es reproducible, no
-deja evidencia estructurada y su cobertura no se puede medir.
+**El `12` fue el último en cerrarse, seis días después de emitido.** Se emitió el 2026-08-17 sobre la
+compuerta mecánica —declarada en prosa, con su ejecución dependiendo del agente que la lee— y **proponía
+evaluar un verificador**, declarando que la decisión *no era de implementación sino de alcance del
+método*. Se emitió **sin conclusión a propósito**, con las cuatro mediciones que faltaban para decidir.
 
-Propone evaluar un **verificador**, y declara que la decisión **no es de implementación sino de alcance
-del método**: hoy el framework no contiene código ejecutable —verificable con `find SDD -type f -not
--name '*.md'`, que devuelve cero—, y agregarlo cambia qué significa versionar el conjunto, cómo se
-audita, quién lo mantiene y dónde vive.
+**La decisión se tomó en `SDD 12.1`: el framework no distribuye código ejecutable**, escrito como
+`SDD-Development-Guide.md` §II.7. Se tomó **sin contestar las cuatro mediciones**, y el motivo estaba en
+el propio reporte: su §6 arma el caso en contra citando a `Migracion-Rules.md` §3 —*«una duplicación que
+hay que mantener en paralelo se desincroniza»*— y un verificador que reimplementa las condiciones **es**
+esa duplicación. Las mediciones dimensionan el costo de construirlo; ninguna toca el argumento que lo
+desaconseja. Las cuatro quedan declaradas en §II.7 como **condición de reapertura**.
 
-**Se emite sin conclusión a propósito**, con las cuatro mediciones que faltan para decidir.
+**Lo que el `12` consiguió no es lo que proponía.** Su abstención deliberada es lo que evitó que el
+framework incorporara un verificador por inercia técnica. **El aporte fue la pregunta.**
 
-**Sigue abierto**, y es el único de los quince. La tabla de desenlaces de más arriba es la fuente: acá
-no se repite el estado de ningún otro reporte, que es lo que produjo la contradicción que la 1.13
-corrigió —esta sección declaraba «para evaluación» al `13`, resuelto en 9.19 dos días antes—.
+---
+
+## Línea de corte: la serie 00–15 no se reanaliza
+
+**Los dieciséis reportes están cerrados y la serie se declara terminada.** Ninguno se reabre por su
+cuenta, y **ninguno es insumo válido de una intervención nueva sin volver a medirlo antes**.
+
+**El motivo es de aritmética, no de cansancio.** Un reporte declara en su cabecera **la versión del
+framework que evaluó**, y esa versión ya no existe: el `00` al `11` evaluaron hasta `SDD 6.x`, el `12`
+evaluó **9.13**, el `14` evaluó **9.19**. El conjunto está en **12.1**. Entre la 9.13 y la 12.1 se
+publicaron **más de treinta versiones**, y varias reescribieron exactamente los mecanismos que estos
+reportes examinaban —la compuerta de §10.0, el barrido por concepto, el sistema de identificadores, la
+figura del ítem diferido—. **Un hallazgo contra un artefacto que se reescribió tres veces no es un
+hallazgo: es una descripción de algo que ya no está.**
+
+**La práctica ya existía y no estaba escrita.** El prompt que resolvió el `12` al `14` la enunció así:
+*«verificar primero qué ya está resuelto… una intervención que reescribe lo que ya está hecho es peor
+que no haberla corrido»*. Se aplicó cada vez y **nunca fue regla**, que es la misma figura que §II.7
+vino a cerrar del otro lado.
+
+**Qué significa en la práctica:**
+
+| | |
+|---|---|
+| **Un reporte de esta serie** | Es **registro histórico**. Se lee para entender por qué el framework es como es, no para derivar trabajo |
+| **Si alguien quiere retomar uno** | **Vuelve a medir contra el conjunto vigente primero.** Si el defecto sigue vivo, se emite un **reporte nuevo** con la versión actual en su cabecera; no se reabre el viejo |
+| **Un reporte nuevo** | Evalúa **12.1 o posterior** y lo declara en su cabecera, como todos |
+
+**Lo que esta línea de corte NO cierra, y se dice para que no se lea de más.** Los **ítems diferidos**
+que las intervenciones dejaron abiertos **no son reportes y siguen vigentes**: viven con la forma de
+cuatro campos de `Root-Rules.md` §12.2, cada uno nombrando el artefacto y la sección donde se cierra.
+Los seis de la `12.0` están en `SDD/Devs/Guides/Coherencia-Renumeracion-AG.md` §8. **Un ítem diferido
+nombra un evento futuro; un reporte describe un estado pasado.** Cerrar la serie no toca los primeros.
 
 ---
 
