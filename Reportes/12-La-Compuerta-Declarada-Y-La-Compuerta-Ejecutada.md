@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD 9.13 (`Master-Prompt.md` §10.0; `SDD/Devs/Rules/Catalogo-De-Criterios.md` 1.2) |
 | Artefactos del framework alcanzados | `SDD/Devs/Orchestrator/Master-Prompt.md` §10.0; las 16 reglas con tabla de anti-patrones; por extensión, la definición de alcance del framework |
 | Naturaleza | Una propuesta de alcance, no un defecto. El framework funciona; la pregunta es si debe incorporar código ejecutable |
-| Estado | **Para evaluación.** Ninguna modificación aplicada por este reporte |
+| Estado | **RESUELTO** — la decisión de alcance se tomó y se aplicó sobre el framework en **SDD 12.1**. Ver «Cómo se resolvió», al final |
 | Reportes relacionados | `09-El-Audit-Como-Unica-Compuerta.md`, que originó la compuerta mecánica que este reporte propone volver ejecutable |
 
 Este documento está escrito para ser **insumo de un prompt de intervención sobre el framework**, y
@@ -169,8 +169,62 @@ mediciones, no opiniones.
 | 645 marcas en criterios de aceptación | `grep -rn '\[enumerable\]\|\[interpretativo\]' SDD/Devs/Rules` |
 | El framework no contiene código ejecutable | `find SDD -type f -not -name '*.md'` |
 
+
+---
+
+## Cómo se resolvió
+
+**Estado: RESUELTO.** La decisión de alcance se tomó y quedó escrita en el framework en la intervención
+**SDD 12.1**. Su nota de coherencia es `SDD/Devs/Guides/Coherencia-Sin-Codigo-Ejecutable.md`.
+
+### La decisión
+
+**El framework no distribuye código ejecutable.** Quedó como `SDD-Development-Guide.md` **§II.7**, el
+séptimo contrato interno, con el anti-patrón correspondiente en la Parte V y su fila en
+`Catalogo-De-Criterios.md`.
+
+### Por qué se decidió sin contestar las cuatro mediciones del §7
+
+**Porque el fundamento en contra no dependía de ellas.** Este reporte lo dejó escrito en su propio §6:
+`Migracion-Rules.md` §3 rechazó los playbooks por salto de versión con el argumento de que *«una
+duplicación que hay que mantener en paralelo se desincroniza»*, y **un verificador que reimplementa las
+condiciones de las reglas es exactamente esa duplicación**. Las cuatro mediciones dimensionan el costo
+de construirlo; ninguna toca el argumento que lo desaconseja.
+
+**Y hay un hecho que el reporte no podía ver en su fecha:** entre la 9.13 que evaluó y la 12.1, el
+framework publicó **treinta y cuatro versiones** resolviendo con texto todo lo que este reporte
+imaginaba resolviendo con código —la compuerta mecánica, el barrido por concepto, la migración por
+árbol declarado—. `find SDD -type f -not -name '*.md'` devuelve vacío en las cuarenta y siete versiones
+publicadas. **La pregunta se contestó por acumulación de decisiones y nadie la había registrado.**
+
+### Lo que este reporte consiguió, y no es lo que proponía
+
+**Su §5 pedía que la decisión se tomara antes que la implementación, y eso es lo que ocurrió.** El
+reporte se emitió a propósito sin proponer una decisión —*«propone lo que hay que medir para
+tomarla»*—, y esa abstención es lo que evitó que el framework incorporara un verificador por inercia
+técnica. **El aporte fue la pregunta, no la respuesta.**
+
+### Lo que quedó abierto, y cómo se reabre
+
+**Las cuatro mediciones del §7 siguen sin hacer** y §II.7 las declara como su **condición de
+reapertura**: cuántos de los 97 `[enumerable]` son evaluables sin leer prosa, si un verificador puede
+**derivar** sus reglas del texto en vez de codificarlas, cuánto cuesta mantenerlo, y dónde viviría. Si
+alguien las mide y dan a favor, §II.7 se revisa por §III.8 como cualquier contrato interno.
+
+**Un cierre que declara qué lo revertiría es contestable; uno que no lo declara se lee como definitivo
+sin serlo.**
+
+### La frontera, que es lo que faltaba
+
+§II.7 no prohíbe los comandos: el corpus **ya publica comandos** —el barrido de §VI.3.2 es el caso—, y
+una prohibición sin frontera los habría vuelto ilegítimos. Lo que la sección declara es **por qué no son
+código distribuido**: no se versionan aparte, no se instalan, y **no pueden desincronizarse de la regla
+porque viven en el mismo documento que la regla**. Lo prohibido es el artefacto ejecutable **con versión
+propia**, que es el que puede divergir del texto sin que ninguna comprobación lo vea.
+
 ## Control de cambios
 
 | Versión | Fecha | Cambios |
 |---|---|---|
 | 1.0 | 2026-08-17 | Reporte inicial. La compuerta mecánica está declarada en prosa y su ejecución depende del agente que la lee: no es reproducible, no deja evidencia estructurada y su cobertura no se puede medir. Se propone evaluar un verificador, se declara que la decisión es **de alcance del método y no de implementación**, y se enumeran las cuatro mediciones que faltan para decidir. |
+| 1.1 | 2026-08-23 | **Cerrado.** La decisión de alcance se tomó: el framework **no** distribuye código ejecutable, y quedó escrita como `SDD-Development-Guide.md` §II.7 en **SDD 12.1**. Se decidió sin contestar las cuatro mediciones del §7 porque el fundamento en contra —la duplicación que se desincroniza, `Migracion-Rules.md` §3— no dependía de ellas, y porque entre la 9.13 evaluada y la 12.1 el framework resolvió con texto todo lo que este reporte imaginaba resolviendo con código. Las cuatro mediciones quedan declaradas en §II.7 como **condición de reapertura**. Entra la sección «Cómo se resolvió» y el estado pasa a **RESUELTO**. |
