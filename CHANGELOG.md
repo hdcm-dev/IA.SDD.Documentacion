@@ -3,6 +3,14 @@
 Todos los cambios relevantes de este repositorio (`IA.SDD.Documentacion`) se documentan acá.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.17] - 2026-08-26
+
+Los tres archivos del hilo `15-RAG` que habían quedado con el nombre incompleto lo completan. Es un cambio de nombre y nada más: el contenido de los tres es idéntico al commiteado en `[1.16]`.
+
+### Cambiado
+
+- **`PROMPTs/Features/15-RAG/03-.md`, `04-.md` y `06..md` renombrados a `03-Comentario-Sobre.md`, `04-Comentario-Sobre.md` y `06-Comentario-Sobre.md`**, con lo que la carpeta queda con la secuencia completa y sin huecos de nombre: `01-Crear-Rag`, `02-Propuesta`, los tres comentarios y `05-Mejora-Continuar-Mesa-Evaluadora`. El nombre nuevo dice lo que los tres son —el comentario del PO sobre lo que el debate venía sosteniendo— y no lo que el hilo tenía en el número. La entrada `[1.16]` declaraba que esos tres nombres se incorporaban tal cual, sin renombrar, «porque el hilo se registra como quedó»; **esa decisión queda revertida acá**, y se deja escrita para que la lectura de las dos entradas no se contradiga. Los tres archivos se mueven sin un solo cambio de contenido.
+
 ## [1.16] - 2026-08-26
 
 Entra el material de trabajo que quedó fuera de `[1.15]`: el hilo de conversación que produjo el plan de la base de conocimiento, la pieza de marco que gobierna esas corridas y el mapeo de renumeración que el plan de reestructuración necesitaba antes de tocar un archivo. Ninguno de los cuatro grupos modifica el framework: son el registro de cómo se llegó a lo que ya está publicado, y en el caso del mapeo, el paso previo que dos tramos retirados habían salteado.
