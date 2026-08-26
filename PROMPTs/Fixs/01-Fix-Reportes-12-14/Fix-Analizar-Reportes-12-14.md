@@ -1,6 +1,6 @@
 # Tool-Prompt — Análisis y Fix de los reportes 12 a 14
 
-> **Invocación**: `Leer y ejecutar /IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/01-Fix-Reportes-12-14/Fix-Analizar-Reportes-12-14.md`
+> **Invocación**: Leer y ejecutar `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/01-Fix-Reportes-12-14/Fix-Analizar-Reportes-12-14.md`
 >
 > **Overview**: Análisis y Fix de los tres reportes que quedaron fuera del cierre de SDD 7.0
 
