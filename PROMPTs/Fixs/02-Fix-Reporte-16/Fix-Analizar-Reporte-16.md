@@ -1,8 +1,8 @@
-# Tool-Prompt — Análisis y Fix de los reportes 15 a 16
+# Tool-Prompt — Análisis y Fix del reporte 16
 
-> **Invocación**: Leer y ejecutar `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/02-Fix-Reportes-15-16/Fix-Analizar-Reportes-15-16.md`
+> **Invocación**: Leer y ejecutar `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/02-Fix-Reporte-16/Fix-Analizar-Reporte-16.md`
 >
-> **Overview**: Evaluar el `Framework SDD` contra los reportes **15 y 16** —el rango que sigue al de la intervención `01`—, decidir un plan de corrección y aplicarlo sobre el framework.
+> **Overview**: Evaluar el `Framework SDD` contra el reporte **16**, decidir un plan de corrección y aplicarlo sobre el framework.
 
 ---
 
@@ -10,14 +10,16 @@
 
 Leer `/IA/SDD/IA.SDD/README.md`: es un `Framework SDD` (Spec-Driven Development) para especificar y programar con asistencia de IA.
 
-**El rango de esta intervención es `15` a `16`**, que es donde terminó la `01`. Los dos reportes entran al alcance; **su estado no es el mismo y eso decide el trabajo**:
+**El reporte a aplicar es uno solo:**
 
-| Reporte | Estado declarado | Qué hay que hacer |
-|---|---|---|
-| [`15-Las-Exclusiones-Estructurales-Del-Barrido.md`](../../../Reportes/15-Las-Exclusiones-Estructurales-Del-Barrido.md) | **RESUELTO en SDD 10.1** | **Verificarlo, no reaplicarlo.** Comprobación hecha al escribir este prompt: `SDD-Development-Guide.md` §VI.3.2 tiene su séptima clase de exclusión —«La declaración de la propia intervención»— y el control de cambios de la guía lo registra en la fila **1.20 del 2026-08-20**, que es lo que su «Cómo se resolvió» declara. **Rehacé esa verificación**: si el estado cambió, decilo |
-| [`16-La-Exclusion-De-Alcance-Se-Concede-Contra-Una-Declaracion.md`](../../../Reportes/16-La-Exclusion-De-Alcance-Se-Concede-Contra-Una-Declaracion.md) | **«Para evaluación. Ninguna modificación aplicada sobre el framework»** | **Es el trabajo de esta intervención** |
+- [`16-La-Exclusion-De-Alcance-Se-Concede-Contra-Una-Declaracion.md`](../../../Reportes/16-La-Exclusion-De-Alcance-Se-Concede-Contra-Una-Declaracion.md) — estado: **«Para evaluación. Ninguna modificación aplicada sobre el framework»**.
 
-**El README de la serie declara que un reporte resuelto no se reanaliza**, de modo que el `15` entra al rango para que su estado quede verificado y declarado, no para volver a intervenirlo.
+**Por qué no entra el `15`, aunque sea el que sigue al rango de la intervención `01`.** Está
+**RESUELTO en SDD 10.1** y se verificó antes de sacarlo del alcance, en vez de creerle a su cabecera:
+`SDD-Development-Guide.md` §VI.3.2 tiene su séptima clase de exclusión —«La declaración de la propia
+intervención»— y el control de cambios de la guía lo registra en la fila **1.20 del 2026-08-20**, que
+es lo que su «Cómo se resolvió» declara. El README de la serie además dice que **un reporte resuelto
+no se reanaliza**.
 
 Los tres hallazgos medidos en la migración de `Lab-Geometria` **todavía no son reporte** y tomarán el `17`; quedan fuera del rango. Si al leer el índice encontrás que algún estado cambió, **decilo y detenete** antes de ampliar el alcance por tu cuenta.
 
@@ -64,7 +66,7 @@ Determinar si el hueco que el reporte 16 describe sigue vivo en **SDD 13.4**, y 
 - **No reabrir la decisión del reporte `12`** —que el framework no distribuye un verificador ejecutable, `SDD-Development-Guide.md` §II.7—. El reporte 16 es explícito: propone una **condición sobre el verificador que cada destino escribe**, no un verificador central. Una propuesta que termine distribuyendo un banco desde el framework cae en §II.7 y hay que descartarla con ese fundamento.
 - **La medición es de un destino.** Ocho rondas, sí, pero un solo producto. Si la corrección necesita generalidad que ese destino no prueba, **construila mirando las 20 reglas vivas**, no la heredes del reporte.
 
-**4 · Diagnosticar y producir evidencia en `OUTPUTs`.** Escribir los resultados intermedios en `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/02-Fix-Reportes-15-16/OUTPUTs`. Cada afirmación con su ancla: archivo, sección y, cuando sea medible, el comando y su salida.
+**4 · Diagnosticar y producir evidencia en `OUTPUTs`.** Escribir los resultados intermedios en `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/02-Fix-Reporte-16/OUTPUTs`. Cada afirmación con su ancla: archivo, sección y, cuando sea medible, el comando y su salida.
 
 **5 · Los dos hallazgos menores de §8 se deciden explícitamente, uno por uno.**
 
