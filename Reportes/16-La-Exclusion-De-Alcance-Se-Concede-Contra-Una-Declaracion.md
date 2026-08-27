@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.3** (`Master-Prompt.md` §10.0 y §10.1) |
 | Artefactos del framework alcanzados | `SDD/Devs/Orchestrator/Master-Prompt.md` §10.0 |
 | Naturaleza | Un hueco de método **en el acto de conceder**, no en la compuerta. §10.0 le quita alcance al auditor a cambio de lo que la compuerta **declara**, sin exigir ninguna evidencia de que lo declarado sea lo medido |
-| Estado | **Para evaluación.** Ninguna modificación aplicada sobre el framework |
+| Estado | **RESUELTO en SDD 13.6.** Ver «Cómo se resolvió» al final |
 | Reportes relacionados | `12`, cuya decisión —que el framework **no** distribuye un verificador— este reporte **no reabre**: lo que propone es una condición sobre el verificador que cada destino escribe. Y `09`, que separó lo enumerable de lo interpretativo y creó esta compuerta |
 
 ## Tabla de contenido
@@ -238,3 +238,71 @@ figura que falta: **una fe de erratas adjunta que no toque el snapshot**.
 > **distinto**— nombra el mismo hueco desde el otro lado: una política de archivado que el destino
 > aplica y que §5.1 no contempla. **Dos destinos independientes chocando con la misma sección** es
 > mejor evidencia que dos incidentes del mismo. Conviene que las dos mitades se resuelvan juntas.
+
+---
+
+## 9. Cómo se resolvió
+
+**Aplicado en SDD 13.6**, con nota de coherencia `Coherencia-Compuerta-Con-Banco.md`. El framework había
+avanzado de la **13.3** que este reporte evaluó a la **13.5**, de modo que lo primero fue comprobar qué
+de lo propuesto ya había entrado.
+
+### 9.1 Qué ya estaba resuelto antes de tocar nada
+
+| Propuesta | Estado medido en 13.5 | Cómo se midió |
+| --- | --- | --- |
+| **6.1** | **No había entrado** | `grep -c "banco de inyección\|caso que la ejerce"` sobre `Master-Prompt.md` y `SDD-Development-Guide.md`: **0** en los dos |
+| **6.2** | **Parcial**: §10.0 obligaba a declarar el alcance, pero en prosa | Lectura de §10.0 |
+| **6.3** | **No había entrado** | `grep -c "no se declara cerrado sin"`: **0** |
+| §7 criterio 4 | **Ya existía** en §10 punto 6.2 | Lectura de la estructura del informe de ronda |
+
+### 9.2 Desenlace de cada propuesta
+
+| Propuesta | Desenlace |
+| --- | --- |
+| **6.1** Banco de inyección | **Aplicada.** §10.0 obliga a que toda comprobación entre con un caso que la ejerce, y todo recorte declarado con su caso de la clase inversa |
+| **6.2** Alcance como lista | **Aplicada.** La declaración pasa de prosa a lista enumerada de recortes, para que el despacho del audit distinga «salió de tu alcance» de «no lo miré y es tuyo» |
+| **6.3** Cerrado exige su caso | **Aplicada**, y con la condición explícita de que el caso **falle antes y pase después** |
+| **6.4** No distribuir un banco central | **Respetada.** La obligación es del método; el banco es del destino. Se descarta con el fundamento de `SDD-Development-Guide.md` §II.7 |
+| **§8.1** El recuento | **Aplicada, y distinto de lo propuesto.** Ver 9.3 |
+| **§8.2** Archivado fallido | **Diferida**, con los cuatro campos de `Root-Rules.md` §12.2. Ver 9.4 |
+
+### 9.3 §8.1: se midió antes de corregir, y el hallazgo no era del reporte
+
+Este reporte señaló la discrepancia entre §10.0 —«97 de 202»— y `Catalogo-De-Criterios.md` §4 —«208 /
+100 / 108»— sin decidir cuál estaba mal. **Se contaron las filas con marca sobre los diecinueve archivos
+de regla vivos**, excluyendo las de control de cambios: **100 `[enumerable]`, 108 `[interpretativo]`,
+208 en total.**
+
+**El catálogo estaba bien; §10.0 era el que había quedado viejo.**
+
+**Y la corrección no fue actualizar el número.** Ya había envejecido dos veces sin que nada lo
+detectara, que es lo que `Root-Rules.md` §10 prohíbe para un dato derivado en la prosa. §10.0 **dejó de
+transcribirlo** y cita el catálogo como única fuente. Actualizarlo lo dejaba listo para envejecer una
+tercera vez — que es, en pequeño, el mismo patrón que este reporte enuncia: **un dato que se declara y
+que nadie comprueba**.
+
+### 9.4 §8.2: se difirió, y la decisión se declara
+
+El prompt de la intervención pedía elegir explícitamente entre resolverlo con la evidencia de un solo
+destino o diferirlo hasta que exista el reporte que lo acompaña. **Se difirió**, por dos motivos: la
+evidencia converge con un hallazgo medido en un destino **cuyo reporte todavía no existe**, y una regla
+sobre archivados fallidos escrita desde un único incidente es justamente la generalidad que no conviene
+heredar. Se cierra cuando ese reporte se emita, o cuando un segundo destino mida el mismo defecto.
+
+### 9.5 Veredicto de cada criterio de aceptación de §7, uno por uno
+
+| # | Criterio | Veredicto |
+| --- | --- | --- |
+| 1 | Toda comprobación tiene al menos un caso; casos ≥ comprobaciones | **Exigido desde 13.6**, §10.0 obligación 1. No se verifica sobre el framework: se verifica en cada destino, que es donde vive la compuerta |
+| 2 | Todo recorte declarado tiene su caso de la clase inversa | **Exigido desde 13.6**, §10.0 obligación 2 |
+| 3 | Un hallazgo sobre el instrumento no pasa a «cerrado» sin su caso | **Exigido desde 13.6**, §10.0 obligación 3, con la condición de que el caso **falle antes y pase después**. Es el decisivo y quedó escrito con esa palabra |
+| 4 | La proporción de hallazgos detectables por guion se declara en cada informe | **No se tocó, y es deliberado.** Ya estaba exigido en §10 punto 6.2. Lo que este reporte midió es **incumplimiento de una norma existente**, no un hueco normativo; agregarla otra vez la habría duplicado y tratado el síntoma |
+
+### 9.6 Impacto sobre destinos existentes
+
+**Ninguno forzado por la publicación, y no es una migración.** §10.0 declara que la obligación rige para
+las compuertas escritas **desde la 13.6 en adelante**; una compuerta ya escrita trae su banco **en la
+próxima intervención que la toque** y hasta entonces declara la ausencia como recorte. El precedente del
+alcance temporal es la conformidad D9 de la propia §10.0, que tampoco se aplicó retroactivamente.
+
