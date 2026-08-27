@@ -3,7 +3,7 @@
 **Documento:** README.md
 **Versión:** 1.16
 **Fecha:** 2026-08-27
-**Estado:** **Serie reabierta** — dieciséis reportes (`00` a `15`) **RESUELTOS**, y el `16` **para evaluación**. Los tres hallazgos ya medidos en la migración de `Lab-Geometria` esperan su reporte y tomarán el **`17`**. La serie **no se reanaliza**: ver «Línea de corte». Un reporte nuevo evalúa **SDD 12.1 o posterior**
+**Estado:** **Serie reabierta** — diecisiete reportes (`00` a `16`) **RESUELTOS**. Los tres hallazgos ya medidos en la migración de `Lab-Geometria` esperan su reporte y tomarán el **`17`**. La serie **no se reanaliza**: ver «Línea de corte». Un reporte nuevo evalúa **SDD 12.1 o posterior**
 **Cierre:** los doce primeros, sobre **SDD 7.0** (2026-08-15), como una sola intervención. Los siguientes, de a uno: el `13` en **9.19**, el `14` en **10.0** y **11.0** —dos intervenciones, porque la primera dejó un criterio sin auditar— y el `15` en **10.1**
 
 Índice de los reportes de hallazgos contra el `Framework SDD`, escritos para ser **insumo de prompts de intervención sobre el framework**. Ninguno modifica el framework: cada uno documenta un hueco con evidencia reproducible, para que la corrección se decida con datos y no con impresiones.
@@ -52,8 +52,9 @@ escribió sobre los doce primeros. Su desenlace, uno por uno:
 | `13` | **Resuelto en 9.19.** Su eje de estratos fue **rechazado con fundamento escrito** y el resto entró como *la pregunta previa* de §8.1 |
 | `14` | **Resuelto en 10.0**, con `Root-Rules.md` §12.2, y **completado en 11.0**: su criterio 4 —auditar el empaquetado sobre las quince reglas— se había declarado resuelto sin correrse. De ese desvío salió la **comprobación 13** del framework |
 | `15` | **Resuelto en 10.1**, con la séptima clase de exclusión de §VI.3.2 |
+| `16` | **Resuelto en 13.6.** Sus tres propuestas de §6 entraron —el caso que ejerce cada comprobación, el caso inverso por recorte declarado y el hallazgo que no cierra sin su caso—, la cuarta se **descartó con fundamento** por `SDD-Development-Guide.md` §II.7, y su §8.1 se corrigió **distinto de lo propuesto**: medido, el catálogo estaba bien y el recuento **salió de la prosa** en vez de actualizarse. Su §8.2 **se difirió** con los cuatro campos de `Root-Rules.md` §12.2 |
 
-**Los cuatro llevan al final su sección «Cómo se resolvió»**, con el desenlace de cada propuesta y **el veredicto de cada criterio de aceptación, uno por uno** — salvo el `12`, que no se aplicó.
+**Los cinco llevan al final su sección «Cómo se resolvió»**, con el desenlace de cada propuesta y **el veredicto de cada criterio de aceptación, uno por uno** — salvo el `12`, que no se aplicó.
 
 > **Quien agrega un reporte, agrega su fila.** El `12` y el `13` estuvieron en la carpeta **sin fila
 > acá** hasta el 2026-08-18, y el `15` se empujó sin indexar y se corrigió el 2026-08-20 — **tres

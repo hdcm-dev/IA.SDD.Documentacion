@@ -1199,10 +1199,10 @@ conjunto superado a `_legacy/<version>/`.
 | 1 | `Rules-Base-Conocimiento.md` y `Conocimiento/` | I | **Aplicado** — framework 12.2, corregido en 12.3 y 13.0 | 0 |
 | 2 | Prompt de relevamiento | I | **Aplicado** — `Features/16-Relevar-Conocimiento/` | 1 |
 | 3 | Piloto | I | **Aplicado** — `Clean-Architecture-DataManager` | 2 |
-| 4 | Andamiaje de intake y validaciones | II | Pendiente | 1, y el piloto como prueba de que el contrato del índice sirve |
-| 5 | Mecánica del orquestador y AG-00980 | II | Pendiente | 4 |
-| 6 | Separación de capas en `Maqueta-Rules.md` §4 y §1 | II | Pendiente | 1 |
-| 7 | Cierre normativo y publicación | II | Pendiente | 5, 6 |
+| 4 | Andamiaje de intake y validaciones | II | **Aplicado** — framework 13.2 | 1, y el piloto como prueba de que el contrato del índice sirve |
+| 5 | Mecánica del orquestador y AG-00980 | II | **Aplicado** — 13.2, y el bibliotecario se activa en 13.5 | 4 |
+| 6 | Separación de capas en `Maqueta-Rules.md` §4 y §1 | II | **Aplicado** — framework 13.4 | 1 |
+| 7 | Cierre normativo y publicación | II | **Aplicado** — guías en 13.1 y 13.3 | 5, 6 |
 
 El paso 3 era la compuerta real entre bloques, y **se ejerció**: el piloto encontró cuatro defectos en
 el archivo de reglas y se corrigieron en el paso 1 antes de tocar el intake, que es lo caro. Los cuatro
