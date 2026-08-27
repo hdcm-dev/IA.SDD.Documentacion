@@ -1,8 +1,8 @@
-# Reporte 17 — La exclusión de alcance se concede contra una declaración, no contra una evidencia
+# Reporte 16 — La exclusión de alcance se concede contra una declaración, no contra una evidencia
 
 | Campo | Valor |
 |---|---|
-| Reporte | 17 |
+| Reporte | 16 |
 | Fecha | 2026-08-27 |
 | Origen | Ocho rondas de auditoría sobre la migración normativa **9.18 → 13.3** de un destino real, más un ciclo de mesa evaluadora multiagente. Las rondas 5, 6, 7 y 8 nombraron **la misma causa raíz** y las cuatro fueron RECHAZADO |
 | Versión del framework evaluada | SDD **13.3** (`Master-Prompt.md` §10.0 y §10.1) |
@@ -233,7 +233,8 @@ En la corrida medida, esa ambigüedad produjo directamente un `P0`: se eligió c
 versión que su contenido desmiente. El destino lo resolvió con un ADR de apartamiento y propuso la
 figura que falta: **una fe de erratas adjunta que no toque el snapshot**.
 
-> **Convergencia con el reporte `16`, pendiente.** Su hallazgo `HM-03` —medido en un destino
+> **Convergencia con los hallazgos pendientes de otro destino.** El `HM-03` medido en la
+> migración de `Lab-Geometria` —todavía sin escribir como reporte— —medido en un destino
 > **distinto**— nombra el mismo hueco desde el otro lado: una política de archivado que el destino
 > aplica y que §5.1 no contempla. **Dos destinos independientes chocando con la misma sección** es
 > mejor evidencia que dos incidentes del mismo. Conviene que las dos mitades se resuelvan juntas.
