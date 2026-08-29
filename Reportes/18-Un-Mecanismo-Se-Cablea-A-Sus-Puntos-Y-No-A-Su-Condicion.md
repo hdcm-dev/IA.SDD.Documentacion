@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.7** (`Mesa-Rules.md` 1.0, `Master-Prompt-Reanudacion.md` §3.1, `Master-Prompt-Migracion.md` M1) |
 | Artefactos del framework alcanzados | `SDD/Devs/Rules/Mesa-Rules.md` §0, §2.1 y §6.7; `SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md` §3.1.1; `SDD/Devs/Orchestrator/Master-Prompt-Migracion.md` M1 |
 | Naturaleza | Un hueco **en el cableado y no en el mecanismo**. El análisis que creó la mesa enunció su momento como una **condición**; la intervención codificó **los dos prompts donde esa condición ocurría**, y el resto de los casos que la satisfacen quedaron sin quién los convoque |
-| Estado | **ABIERTO** |
+| Estado | **RESUELTO en SDD 13.8**, con **un criterio de aceptación declarado a medias** y su motivo. Ver «Cómo se resolvió» al final |
 | Reportes relacionados | `16`, que este reporte **no reabre**: su corrección —el banco de casos— funcionó y se midió funcionando en estas tres corridas. Y el ítem diferido de `CHANGELOG.md` **13.7**, cuyo evento de cierre era «la primera corrida real»: **este reporte lo cierra con medición**, en §3.4 |
 
 ## Tabla de contenido
@@ -21,6 +21,7 @@
 - [6. Propuestas de intervención](#6-propuestas-de-intervención)
 - [7. Cómo verificar que la corrección funcionó](#7-cómo-verificar-que-la-corrección-funcionó)
 - [8. Tres hallazgos menores del mismo origen](#8-tres-hallazgos-menores-del-mismo-origen)
+- [9. Cómo se resolvió](#9-cómo-se-resolvió)
 
 ## 1. Resumen
 
@@ -330,6 +331,65 @@ para dirimir que el registro estaba aplicando la regla **a su propio ciclo**, qu
 
 **Corrección propuesta:** §6.7 declara explícitamente que el contador del ciclo de mesa **es propio y
 no acumula con el de las rondas de audit**, y que el registro lo nombra al cerrar.
+
+---
+
+## 9. Cómo se resolvió
+
+**Aplicado en SDD 13.8**, con nota de coherencia `Coherencia-Condicion-De-Convocatoria.md`. El
+framework estaba en la **13.7** que este reporte evaluó, de modo que no hubo que medir qué de lo
+propuesto ya había entrado: nada había entrado, porque el reporte se emitió contra la versión vigente.
+
+### 9.1 Lo que bloqueaba la intervención antes de empezar
+
+**`_legacy/` llegaba hasta la 13.5.** Las intervenciones que publicaron la **13.6** y la **13.7** no
+tomaron su snapshot, contra `SDD-Development-Guide.md` §VI.5. No es un detalle de archivo: el diff
+normativo de una migración se construye leyendo `_legacy/`, de modo que **un salto desde 13.6 o desde
+13.7 salía vacío**, y una migración sin nada que aplicar se declara completa sin haber hecho nada.
+
+Se repusieron los dos desde los commits de publicación de cada versión, **antes** de aplicar ningún
+cambio, y se verificó lo que esa sección exige: `_legacy/13.7/` lleva `Mesa-Rules.md` en **1.0** y no
+en la 1.1, y `_legacy/13.6/` no lo lleva, que es correcto porque la mesa entró en la 13.7.
+
+**No es un hallazgo de este reporte** y se registra acá porque lo destapó su intervención.
+
+### 9.2 Desenlace de cada propuesta
+
+| Propuesta | Desenlace |
+| --- | --- |
+| **6.1** Declarar la condición y derivar los puntos | **Aplicada.** `Mesa-Rules.md` §0.0 enuncia las tres cláusulas; los dos puntos existentes quedan como **casos y no como definición**, y un caso que la cumple sin orquestador **se convoca igual**, declarando desde dónde |
+| **6.2** Corregir la exclusión de la generación | **Aplicada** en los dos lugares: `Mesa-Rules.md` §0.3 y `Master-Prompt-Reanudacion.md` §3.1.1 distinguen «destino vacío» de «generación», con el límite contra el audit de fase escrito en ambos |
+| **6.3** Contrastar la fuente cuando funda un `P0` | **Aplicada.** `Mesa-Rules.md` §6.1, con los dos errores medidos citados como su fundamento |
+| **6.4** Lo que el reporte pedía NO tocar | **Respetado.** El refutador, la ceguera del panel, la escala de ancla, el jurado, el cuerpo de parches y el contrato de entrada **no fueron modificados**, y la nota de coherencia §1 los enumera para que la próxima intervención no los toque por inercia |
+| **8.1** Espacio de nombres de los hallazgos | **Aplicada.** §2.2 obliga a declarar el prefijo de familia del ciclo, que no reusa ninguna ya presente en la carpeta de auditoría |
+| **8.2** Dos ciclos el mismo día | **Aplicada.** §2.1 admite sufijo de ciclo; con un solo ciclo en el día se omite |
+| **8.3** Dos contadores sobre §10.1 | **Aplicada.** §6.7 declara que el contador del ciclo **es propio y no acumula**, y que el registro nombra cuál declara al cerrar |
+
+### 9.3 Los cinco criterios de §7, uno por uno
+
+| # | Criterio | Veredicto |
+| --- | --- | --- |
+| 1 | La condición está declarada y los puntos derivan de ella | **CUMPLIDO** |
+| 2 | Un caso que cumple la condición sin orquestador se convoca | **CUMPLIDO.** Recorrido sobre el caso de §3.1: resuelve a «se convoca» sin agregar ningún punto |
+| 3 | La generación deja de estar excluida categóricamente | **CUMPLIDO** |
+| 4 | Un `P0` anclado en una fuente declarativa exige su contraste, **y entra como caso de banco** | **A MEDIAS.** La regla entró en §6.1. **El caso de banco no**, y no por omisión: el banco es del destino y **el framework no lo distribuye** —decisión del reporte `12`, ratificada por la 13.6—, de modo que el framework no puede agregarlo sin contradecirse. Lo que queda es la obligación de `Master-Prompt.md` §10.0 sobre el destino que escriba esa comprobación |
+| 5 | El ítem diferido de la 13.7 queda cerrado con su medición | **CUMPLIDO.** La entrada `13.8` lo cierra con las cuatro lecturas, y la advertencia sobre el rendimiento por especialista entró en §6.7 |
+
+**Cuatro cumplidos y uno a medias, declarado.** El criterio 4 no se puede cumplir entero desde el
+framework sin violar una decisión anterior. **Se declara en lugar de darse por resuelto**, que es lo
+que la comprobación 13 de `SDD-Development-Guide.md` §VI.3 existe para obligar: una intervención que
+contesta menos de lo que su origen pedía y se declara resuelta igual es un defecto medido.
+
+### 9.4 Lo que este reporte deja andando
+
+**La advertencia de §3.4 quedó escrita en la regla y no sólo acá.** El rendimiento por especialista no
+cayó entre las dos primeras corridas —4,9 y 5,8—, y si no cae, el criterio de corte del ciclo de mesa
+va a cerrar **por decisión y no por criterio de forma sistemática**, igual que le pasó al audit por
+rondas. `Mesa-Rules.md` §6.7 lo declara, con la aclaración de que cerrar por decisión es una salida
+legítima y lo que no lo es es cerrar por decisión sin decirlo.
+
+**Es la clase de dato que sólo aparece con corridas reales**, y por eso este reporte pide que la
+próxima medición se haga sobre tres o cuatro ciclos y no sobre dos.
 
 ---
 
