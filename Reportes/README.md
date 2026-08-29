@@ -1,8 +1,8 @@
 # Reportes de evidencia sobre el Framework SDD
 
 **Documento:** README.md
-**Versión:** 1.16
-**Fecha:** 2026-08-27
+**Versión:** 1.17
+**Fecha:** 2026-08-29
 **Estado:** **Serie reabierta** — diecisiete reportes (`00` a `16`) **RESUELTOS**, y el **`18` RESUELTO en SDD 13.8**, primer reporte contra la mesa de evaluación, el primero que **cierra un ítem diferido del propio framework con medición** (`CHANGELOG.md` 13.7) y el primero que **declara un criterio de aceptación cumplido a medias** en lugar de darlo por resuelto. Los tres hallazgos ya medidos en la migración de `Lab-Geometria` esperan su reporte y conservan el **`17`**. La serie **no se reanaliza**: ver «Línea de corte». Un reporte nuevo evalúa **SDD 12.1 o posterior**
 **Cierre:** los doce primeros, sobre **SDD 7.0** (2026-08-15), como una sola intervención. Los siguientes, de a uno: el `13` en **9.19**, el `14` en **10.0** y **11.0** —dos intervenciones, porque la primera dejó un criterio sin auditar— y el `15` en **10.1**, el `16` en **13.6** y el `18` en **13.8**
 
@@ -43,6 +43,7 @@ Un prompt que vaya a intervenir el framework cita el reporte por su número y us
 | [15](15-Las-Exclusiones-Estructurales-Del-Barrido.md) | Las exclusiones estructurales del barrido | Una lista de excepciones que vive lejos del momento en que se enumera **se reescribe a mano aunque esté completa**; y la excepción que la mecánica de la comprobación produce siempre —la declaración de la propia intervención— no estaba en ella | Tres intervenciones consecutivas sobre el framework y un destino real |
 | [16](16-La-Exclusion-De-Alcance-Se-Concede-Contra-Una-Declaracion.md) | La exclusión de alcance se concede contra una declaración | `Master-Prompt.md` §10.0 le quita alcance al auditor a cambio de lo que la compuerta **declara**, sin exigir evidencia de que lo declarado sea lo medido; el instrumento que sobredeclara produce la misma salida verde que el correcto, y el único que podría notarlo es a quien la exclusión se lo prohíbe | Ocho rondas de auditoría de una migración real |
 | [18](18-Un-Mecanismo-Se-Cablea-A-Sus-Puntos-Y-No-A-Su-Condicion.md) | Un mecanismo se cablea a sus puntos y no a su condición | El framework declara **cuándo** se convoca un mecanismo y no **qué condición** lo hace necesario. La especificación es correcta el día que se escribe —los puntos y la condición coinciden— y se vuelve incompleta con el primer caso que satisface la condición desde otro lugar. Agregar el punto que faltó deja el defecto donde estaba | Tres corridas reales de la mesa de evaluación, la tercera **convocada fuera de norma** |
+| [19](19-El-Apartamiento-Declara-Hacia-Adelante-Y-Nadie-Barre-Lo-Que-Deja-Atras.md) | El apartamiento declara hacia adelante y nadie barre lo que deja atrás | Toda regla nueva tiene una población que la precede, y el método sólo barre las que vienen de arriba: cuando la regla nace en el destino por apartamiento declarado, el corpus que la incumple queda sin inventariar, sin plan y sin evento | Dos ciclos de la mesa de evaluación sobre `Lab-Geometria` |
 
 **Los cuatro últimos están fuera del cierre de SDD 7.0** y de la lectura común de más abajo, que se
 escribió sobre los doce primeros. Su desenlace, uno por uno:
