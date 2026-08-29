@@ -3,6 +3,16 @@
 Todos los cambios relevantes de este repositorio (`IA.SDD.Documentacion`) se documentan acá.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.18] - 2026-08-29
+
+Entra la unidad `19`, el tool-prompt que pidió catalogar como conocimiento el procedimiento de trabajo que el framework ya tenía reglado. Es una unidad de un solo archivo: su salida no vive acá, vive en `IA.SDD`, que publicó la versión **13.9** al ejecutarlo.
+
+### Añadido
+
+- **`PROMPTs/Features/19-Extraer-Perfil-GitHub-SDD/Extraer-Perfil-GitHub-SDD.md`**, el tool-prompt de extracción de comportamientos. Parte de un hecho del oficio y no de una regla: el orquestador determina cuándo commitear, crear la rama y armar el informe final con el enlace del pull request; el agente humano fusiona, borra la rama y avisa que la tarea está lista. Pide relevar **cómo está realmente acordado ese diálogo** —la presentación del informe, el enlace del PR, la delegación al humano y su acuse de vuelta— y plasmarlo en la base de conocimiento desacoplada, con dos condiciones que ordenan el resultado: **buscarle un nombre con el que citarlo desde los documentos intake**, y que sirva de base para **agregar otras variantes sin quitar el procedimiento acordado por defecto**. Sus dos reglas son no inventar información y respaldar toda afirmación con evidencia verificable.
+
+**Qué produjo su ejecución, que es lo que esta entrada deja trazado.** En `IA.SDD`, el alta de `Conocimiento/Knowledge-Conformacion-Pull-Request-Manual.md` 1.0 —alias `Conformacion-Pull-Request-Manual`, `canonico`, consumidor `transversal`—, su fila en `Index-Knowledge.md` 1.1, la nota de coherencia y el conjunto **13.9**. El documento **cita** turno por turno la norma de `Master-Prompt.md` §12.1 y §8.1 en lugar de reescribirla, y deja anotado el límite que apareció al usarlo: una variante que cambie quién fusiona todavía no puede declararse como sustitución, porque ningún ítem de §12.1 está rotulado como decisión de stack. **Rotularlo se evaluó y se descartó**: el alcance del pedido era sumar a la base desacoplada, no modificar el conjunto normativo.
+
 ## [1.17] - 2026-08-26
 
 Los tres archivos del hilo `15-RAG` que habían quedado con el nombre incompleto lo completan. Es un cambio de nombre y nada más: el contenido de los tres es idéntico al commiteado en `[1.16]`.
