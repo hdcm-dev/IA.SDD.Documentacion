@@ -3,6 +3,23 @@
 Todos los cambios relevantes de este repositorio (`IA.SDD.Documentacion`) se documentan acá.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.19] - 2026-09-01
+
+La carpeta `PROMPTs/Analisis/` queda entera en unidades numeradas, como `Features/` y `Fixs/`. El `debate.md` que había quedado suelto en la raíz se muda adentro de la unidad `01`, la única que ya existía, y entra la unidad `02` completa —tool-prompt y salida—: la extracción del patrón de base de conocimiento desacoplada, escrita para que otros frameworks lo incorporen a sus prompts orquestadores y puedan consumir los documentos de `IA.SDD/Conocimiento/` sin traducirlos.
+
+### Añadido
+
+- **`PROMPTs/Analisis/02-Extraccion-Concepto-Base-Conocimiento-Desacoplado/Extraer-Concepto-Base-Conocimiento-Desacoplado.md`**, el tool-prompt de extracción del patrón. No pide construir nada: pide **describir lo que ya está construido** de forma que sea evaluable por agentes e incorporable a otros frameworks de concepto similar pero de estructura distinta, con un doble destino declarado —que esos frameworks puedan consumir los documentos de `IA.SDD/Conocimiento/` y que puedan meter el patrón en sus propios prompts orquestadores—. Sus dos reglas son las de siempre: no inventar información y respaldar toda afirmación con evidencia verificable.
+- **`PROMPTs/Analisis/02-Extraccion-Concepto-Base-Conocimiento-Desacoplado/OUTPUTs/Especificacion-Base-Conocimiento-Desacoplada.md`** 1.0, la salida de esa corrida, leída contra el conjunto normativo **13.9** de `IA.SDD`. Extrae el patrón en catorce secciones y deja afuera, explícitamente, el método SDD, el contenido de los documentos de conocimiento existentes y el procedimiento de relevamiento. Lo que declara:
+  - **Cinco piezas** —catálogo anexo, índice-contrato, documento de conocimiento, enganche en el orquestador y bibliotecario—, con el bibliotecario marcado como **opcional** y la evidencia de por qué: en la fuente tuvo identificador y contrato desde el conjunto 13.2 y **no se convocaba nunca** hasta el 13.5.
+  - **Siete invariantes con su método de comprobación**, escritas para que un agente evaluador las audite: vaciable, ninguna regla nombra un documento, se extiende sin tocar una regla, cita por alias, consumidor obligatorio, consultivo y no normativo, y sin identidad de versión propia. La madre es la primera —con el catálogo vacío el framework corre igual, y no hay flag que apagar—; las otras seis la sostienen.
+  - El **contrato del documento y el del índice**, que es lo que hace que los documentos sean intercambiables y no meramente parecidos; los tres modos de aportar y su precedencia; los cinco puntos de enganche en el framework anfitrión; los tres campos acoplados que hay que mapear para importar, más el cuarto de gobierno; ocho anti-patrones —los seis de la fuente y dos propios del anfitrión—; una lista de conformidad para evaluación por agentes; y **cuatro bloques citables literalmente** en el prompt orquestador del anfitrión, con los tramos variables entre `<>`.
+  - Una **tabla de evidencia** con doce archivos, la versión leída de cada uno y qué respalda, más tres verificaciones ejecutadas —entre ellas el barrido que confirma que ninguna regla nombra un `Knowledge-*.md`—. Y una **discrepancia que registra sin resolver**: `Index-Knowledge.md` declara compatibilidad con `Rules-Base-Conocimiento.md` **2.0** mientras el archivo de reglas está en **2.2**. No afecta al patrón extraído, porque el contrato del índice no cambió entre esas dos versiones, y se deja anotada porque la propia lista de conformidad del documento la marcaría.
+
+### Cambiado
+
+- **`PROMPTs/Analisis/debate.md` movido a `PROMPTs/Analisis/01-Generacion-Ayuda-Usuario-Documentacion/debate.md`**, sin un solo cambio de contenido. La entrada `[1.16]` lo había incorporado suelto en la raíz de `Analisis/`, separado del prompt de generación de la ayuda de usuario que `[1.8]` ya había dado de alta en esa carpeta; queda ahora adentro de la unidad que lo motivó, y `PROMPTs/Analisis/` pasa a no tener archivos sueltos.
+
 ## [1.18] - 2026-08-29
 
 Entra la unidad `19`, el tool-prompt que pidió catalogar como conocimiento el procedimiento de trabajo que el framework ya tenía reglado. Es una unidad de un solo archivo: su salida no vive acá, vive en `IA.SDD`, que publicó la versión **13.9** al ejecutarlo.
