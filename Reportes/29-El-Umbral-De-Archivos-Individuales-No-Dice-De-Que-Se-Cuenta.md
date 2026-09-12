@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.14** (`Rules-Backlog-Tecnico.md` **5.2**: cabecera, §2.1, §3.3, §5.2, §5.5, §6 y §8) |
 | Artefactos del framework alcanzados | `SDD/Devs/Rules/Rules-Backlog-Tecnico.md` — **§2.1 y §3.3**, donde nace, y §6 y §8, que heredan la lectura de §3.3 |
 | Naturaleza | **Una regla que se contradice consigo misma en dos ejes a la vez.** Declara el umbral de archivos individuales **por proyecto de código con tres bandas** en su tabla maestra, y **por unidad de entrega con dos bandas** en su convención, su criterio de aceptación y su snippet. Las dos lecturas producen resultados opuestos sobre un destino real, y la que aplica el auditor es la que ningún destino aplica |
-| Estado | **Abierto** |
+| Estado | **RESUELTO en SDD 13.15** |
 | Reportes relacionados | **`28`**, precedente de forma: también una regla contradicha consigo misma, resuelta dentro de su propio archivo porque `Root-Rules.md` §13 no alcanza a un conflicto interno. **`25`**, cuyo evento de §3.6 es el que produjo la primera corrida que tropezó con esto. No comparte artefacto con ninguno: va separado |
 
 ---
@@ -231,3 +231,55 @@ por unidad y probar la existencia de una carpeta.
 | Versión | Fecha | Cambios | Autor |
 |---|---|---|---|
 | 1.0 | 2026-09-12 | Emisión inicial. Documenta que `Rules-Backlog-Tecnico.md` cuenta el umbral de archivos individuales **por proyecto de código con tres bandas** en §2.1 y **por unidad de entrega con dos bandas** en §3.3, §6 y §8; que sobre `Lab-Geometria` las dos lecturas dan resultados opuestos; y que **ningún destino del workspace tiene `tareas-tecnicas/`**. Nace de la **primera corrida que ejerció el evento de §3.6** escrito por la 13.14. **Todas las citas y recuentos se midieron en el acto de escribirlo**, con los comandos a la vista. El destino resolvió su caso en la misma corrida con la lectura por proyecto de código, como autocorrección de un hecho de la corrida (13.11), y lo declara; esa resolución **no decide** la pregunta de §5.1. | Orquestador, en la apertura de la fase `k` de `Lab-Geometria` |
+| 1.1 | 2026-09-12 | **Pasa a RESUELTO en SDD 13.15**, con esta sección «Cómo se resolvió». | Intervención `07` |
+
+## 9. Cómo se resolvió
+
+**Verificación previa (solicitud 1).** Las seis/siete citas del reporte seguían literales en la
+base (`Rules-Backlog-Tecnico.md` 5.2, framework 13.14): el comando de §2.1 devolvió exactamente lo
+que el reporte transcribe. Nada se había corregido entre la emisión y esta intervención. Detalle y
+comandos en `PROMPTs/Fixs/07-Fix-Reporte-29/OUTPUTs/00-Verificacion-De-Citas-Y-Recuentos.md`.
+
+**La decisión de fondo (§5.1): por proyecto de código.** No por conteo de menciones —cuatro contra
+dos no es un criterio, y `Root-Rules.md` §13 lo dice explícito para el conflicto entre reglas—, sino
+por impacto medido: bajo «por proyecto de código», **cero destinos del workspace incumplen**, y el
+único cruce de umbral (`GeometriaFactory-Api`, bloque BT, 26→35) se está resolviendo en la misma
+corrida que lo produjo. Bajo «por unidad de entrega», **dos destinos reales incumplen de golpe en
+cuatro documentos** —los BT de las dos unidades de `Lab-Geometria` y las US de
+`GeometriaFactory-Web` y de `RPI.VideoControl`, un destino que el reporte original no había
+medido—, sin que nadie lo hubiera detectado porque el criterio de §6 era `[interpretativo]`.
+Fundamento completo en `OUTPUTs/10-Decision-Del-Umbral-Y-Las-Cuatro-Preguntas.md`.
+
+**El caso mixto (la tercera pregunta que el reporte esconde) es la forma correcta, no un estado
+transitorio.** `Lab-Geometria` lo estaba construyendo en el momento de escribir esta intervención:
+un `Backlog-Tecnico.md` con el bloque `0` (`GeometriaFactory-Api`) extraído a `tareas-tecnicas/` y
+los bloques `2`, `4` y `6` inline en el mismo documento, porque están en banda recomendada. Forzar
+que toda la unidad pasara a archivo individual, o que ninguna lo hiciera, habría tocado secciones
+de proyectos que no cruzaron el umbral.
+
+**Las otras tres preguntas de §5**: tres bandas (las que la tabla maestra ya tenía; «recomendado»
+no obliga nada mecánico, es señal de buena práctica); ningún destino incumple bajo la lectura
+adoptada y el salto es **minor**, no major (la lectura adoptada es la que los destinos reales ya
+aplicaban); §6 pasa a `[enumerable]` con su comando de conteo por bloque/rango y `test -d`.
+
+**Extensión a las US (solicitud 6).** Ya venía resuelta en el mismo texto: §3.3, §6 y §8 tratan las
+dos familias —US y BT— en los mismos párrafos, así que el fix no pudo dejar una corregida y la otra
+con la contradicción.
+
+**Aplicado**: un solo artefacto, `SDD/Devs/Rules/Rules-Backlog-Tecnico.md` (5.2 → 5.3, minor), con
+snapshot previo en `_legacy/13.14/`. Plan completo, verificación de los cinco criterios de §7 (los
+cinco **cumplidos**, ninguno a medias) y lo no verificado, en
+`PROMPTs/Fixs/07-Fix-Reporte-29/OUTPUTs/20-Plan-De-Aplicacion.md` y
+`.../30-Verificacion-Del-Plan-Aplicado.md`.
+
+**Qué le exige a `Lab-Geometria` (solicitud 12): alcanza con las 35 BT del proyecto
+`GeometriaFactory-Api` en archivos bajo `tareas-tecnicas/`.** Verificado en vivo contra la rama
+`fase-k/backlog-tecnico-v2` (SHA `77d145ec0375667085afec76679234c342dafff7`): al momento de esta
+medición, esos 35 archivos ya existían. Los otros tres proyectos de la unidad y los dos de
+`GeometriaFactory-Web` siguen en banda recomendada y pueden seguir inline. No se tocó ningún
+archivo de `Lab-Geometria`: es un destino de solo lectura para esta intervención.
+
+**Lo no verificado**: si `RPI.VideoControl` debe repartir sus BT por proyecto de código
+(`DEC-00003`) queda como decisión propia de ese destino, ajena al umbral que gobierna este reporte;
+y no se corrió una migración completa de `Lab-Geometria` con la regla 5.3 vigente, porque esa fase
+sigue en curso en la rama de otro agente al cierre de esta intervención.

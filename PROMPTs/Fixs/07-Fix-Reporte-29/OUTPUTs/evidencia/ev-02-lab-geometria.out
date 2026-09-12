@@ -1,0 +1,52 @@
+== SHA de main y de fase-k/backlog-tecnico-v2 ==
+9167e68f3a3f75992a0fff338ffcb00cd5936bc4
+77d145ec0375667085afec76679234c342dafff7
+
+== BT por bloque, unidad GeometriaFactory-Api (main) ==
+6 26
+2 16
+4 21
+0 26
+
+== BT por bloque, unidad GeometriaFactory-Api (fase-k/backlog-tecnico-v2) ==
+6 26
+2 16
+4 21
+0 35
+
+== BT por bloque, unidad GeometriaFactory-Web (main) ==
+10 23
+12 18
+
+== carpetas tareas-tecnicas/ e historias-usuario/ existentes en cada rama ==
+-- main --
+Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/historias-usuario/
+Unidades-Entrega/GeometriaFactory-Web/06-Backlog-Tecnico/historias-usuario/
+-- fase-k/backlog-tecnico-v2 --
+Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/historias-usuario/
+Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/tareas-tecnicas/
+Unidades-Entrega/GeometriaFactory-Web/06-Backlog-Tecnico/historias-usuario/
+
+== US por bloque, Product-Backlog de GeometriaFactory-Api (main, todas las menciones únicas) ==
+6 25
+2 27
+4 32
+0 30
+total 114
+
+== US por bloque, Product-Backlog de GeometriaFactory-Web (main) ==
+10 30
+12 17
+total 47
+
+== US con archivo individual bajo historias-usuario/, por proyecto (bloque), main ==
+10 30
+8 22
+6 25
+2 27
+4 32
+0 30
+total 166
+
+== archivos tareas-tecnicas/ en fase-k (¿ya movió la API sus 35 BT?) ==
+35

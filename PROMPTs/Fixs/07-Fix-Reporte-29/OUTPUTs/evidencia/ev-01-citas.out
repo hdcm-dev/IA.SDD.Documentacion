@@ -1,0 +1,15 @@
+== git show main:.../Rules-Backlog-Tecnico.md, comando literal del reporte (líneas fijas 58,59,107,108,293,314,338,468) ==
+58 | ### 2.1 Tabla maestra | | `historias-usuario/US-XXXXX-<Nombre>.md` | Proyectos de código con más de 20 US | Proyectos de código con 10
+59 | ### 2.1 Tabla maestra | | `tareas-tecnicas/BT-XXXXX-<Nombre>.md` | Proyectos de código con más de 30 BT | Proyectos de código con 15 a
+107 | ### 3.3 Convención de archivos individuales p | - Para unidades de entrega con más de 30 BT, cada tarea técnica vive en su archivo individual bajo `tareas-tec
+108 | ### 3.3 Convención de archivos individuales p | - Para unidades de entrega por debajo de esos umbrales, las US y BT pueden vivir inline en el `Product-Backlog
+293 | ### 5.2 Scope | - ¿El umbral de archivos individuales (20 US y 30 BT) está aplicado correctamente?
+314 | ### 5.5 Convenciones | - ¿Las US y BT individuales viven en sus carpetas (`historias-usuario/` y `tareas-tecnicas/`) cuando aplica el
+338 | ## 6. Criterios de aceptación | - [ ] [interpretativo] Si la unidad de entrega supera 20 US, existen archivos individuales bajo `historias-usu
+468 | ## 8. Prompt-snippet sugerido | - tareas-tecnicas/BT-XXXXX-<Nombre>.md si la unidad de entrega supera 30 BT; en caso contrario, BT inline en e
+
+== version declarada ==
+6:**Versión de las reglas:** 5.2
+
+== grep de desempate en el resto del framework (reproduce el 'sin salida' del reporte) ==
+(sin salida)
