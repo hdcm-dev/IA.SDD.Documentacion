@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.10** (`Vocabulario-Rules.md` cabecera, §1, §8, §9 y §10 · `Master-Prompt.md` §10.0 y §15 · `Migracion-Rules.md` cabecera · `Master-Prompt-Migracion.md` insumos · `Root-Rules.md` §13 · `SDD-Development-Guide.md` §VI.3.1) |
 | Artefactos del framework alcanzados | `SDD/Devs/Rules/Vocabulario-Rules.md` **§8 y §10** —donde nace— y §9.4 · `SDD/Devs/Rules/Mesa-Rules.md` · `SDD/Devs/Orchestrator/Master-Prompt.md` §10.0 |
 | Naturaleza | **Tres huecos encadenados, y el tercero es de la regla contra sí misma.** (a) `Vocabulario-Rules.md` es **la única de las diecinueve reglas del framework que no aporta ni una comprobación mecánica**. (b) La exigencia de verificar antes de afirmar una colisión **existe escrita dos veces** —§9.4 y la guía de desarrollo §VI.3.1— y **ninguna de las dos alcanza** al acto en que el defecto ocurrió. (c) La regla **se contradice sobre su propio alcance**: su cabecera la declara universal, su §8 la acota a seis términos, y su §9.6 la aplica a un término que no es ninguno de los seis |
-| Estado | **Abierto** |
+| Estado | **RESUELTO en SDD 13.12** — ver §8, «Cómo se resolvió» |
 | Reportes relacionados | **`26`** y **`27`**, con los que comparte la corrida de origen y **no el artefacto**: por el criterio de la serie con el AND, va separado. **`24`**, precedente **de forma**: el primero en incluir entre su evidencia un error del orquestador cometido mientras escribía otros reportes. No comparte ni corrida ni artefacto. **`11`**, resuelto, que fijó el reparto del vocabulario en §8: este reporte **encuentra que ese reparto quedó desactualizado por la práctica posterior del propio archivo**, y lo documenta sin reabrir la decisión de fondo |
 
 ---
@@ -334,8 +334,50 @@ acuñados o renombrados, nunca prosa libre.**
 
 ---
 
+## 8. Cómo se resolvió
+
+**RESUELTO en SDD 13.12**, el 2026-09-12, por la intervención `06`, **segunda** del orden `04` → `06` → `05` → `03`.
+Evidencia con cada comando y su salida en `PROMPTs/Fixs/06-Fix-Reporte-28/OUTPUTs/`, y en el framework la nota
+`SDD/Devs/Guides/Coherencia-Colision-Lexica.md`.
+
+**Lo que la verificación corrigió de este reporte antes de usarlo.** Los tres recuentos **se reprodujeron** con sus
+comandos, en 13.10 y en 13.11. Pero:
+
+- **§2.6 hereda una premisa de §9.2 que era cierta a medias**: el despacho del subagente nombra por sección el intake
+  y las reglas transversales, **y por ruta** la regla de su categoría, los documentos upstream y los de conocimiento.
+- **§2.5 y §5.1 fundan la resolución en una cronología falsa**: §9.6 es de la 2.1 de la regla (2026-07-29) y el
+  párrafo de §8 de la 2.2 (2026-08-15). **La conclusión se sostiene por otras tres citas**; «desactualizado por la
+  práctica posterior», no.
+- **La fila 6 de §2.4 era un recuento de líneas**: `grep -c procedencia` da 16 y 19. Y el 22 es 24 sin distinguir
+  mayúsculas.
+- **El 45 de §2.6 suma dos archivos como un contexto**, y §9.6 ya había declarado que viajar juntos no los junta.
+- **§2.5 dice que §15 no tiene criterio de colisión**: define «colisión de sentidos» y remite a §9.2. No decide casos.
+- **La cita de `Root-Rules.md` §13 omite sin marcar** el paréntesis y su cláusula final; y **§8 no se titula**
+  «Alcance de esta regla, declarado»: es el arranque de un párrafo de «Pendientes declarados y su cierre».
+
+| Pregunta | Desenlace |
+|---|---|
+| **§5.1** El alcance | **§8 se corrige**: significado y precedencia sobre los seis términos; **criterio de colisión sobre todo término, incluido el vocabulario del método**. **§15 define y §9 decide la colisión**; el `11` **no se reabre**. Se resolvió con el árbol y sin detener: origen del hecho ajeno a la corrida, calculado, y respuesta con cita literal |
+| **§5.2** El criterio enumerable | **Entra** como primer `[enumerable]` de §10, **con comando reproducible obligatorio**, que decide la presencia de la medición y no la colisión, desde la 3.3. **El argumento del comando falso se verificó**: los tres errores de medición de esta corrida fueron comandos reales que medían otra cosa, y los tres se ven con el comando al lado |
+| **§5.3** Dónde corre | **En tres lugares**: `Vocabulario-Rules.md` §9.4 y §10; `Mesa-Rules.md` §6.1 —sin comando, una afirmación de colisión es `C`— y §8; y la **comprobación 14** de la guía §VI.3, que alcanza a la verificación previa y a lo que trae el origen. **Escribir un reporte sigue fuera de todo target**, por autosuficiencia: se lo alcanza cuando lo produce una mesa y cuando lo usa una intervención |
+| **§5.4** El contexto por lector | **§9.2 lo declara leyendo los insumos de cada lector**: sección cuando la lista la nombra, archivo cuando no. Co-ocurrencia y costo en el contexto mayor, desambiguación en el menor, y **la suma de lo que un lector recibe no es un contexto** |
+| **§5.5** La compuerta | **Comprobación 7 de `Master-Prompt.md` §10.0**: localiza por sección y por archivo los términos que la fase acuña o renombra, **calculados contra la base de la corrida**, como insumo y **nunca como veredicto**. Volumen medido: tres términos acuñados en 4 a 6 archivos y milisegundos; `estado`, 711 ocurrencias en 90 |
+| **§5.6** El caso concreto | **No se decidió acá.** Para la `05`: calificar en `Migracion-Rules.md` cuesta **23**; **45 sólo si el sentido nuevo se escribe también en `Master-Prompt-Migracion.md`** |
+
+| # | Criterio de §7 | Veredicto |
+|---|---|---|
+| 1 | El recuento de §2.1 cambia | **CUMPLIDO**: `Vocabulario-Rules.md enum=1 interp=13` |
+| 2 | Cabecera, §8 y §9.6 dejan de contradecirse | **CUMPLIDO** |
+| 3 | Afirmar una colisión sin comando en una verificación previa es hallazgo por vía del método | **CUMPLIDO A MEDIAS.** La comprobación 14 marca las dos afirmaciones sin comando con que la 13.11 descartó `procedencia` —que resultaron ciertas—, **pero no se ejerció sobre una verificación previa en vivo**, y la localización por cadena deja escapar sinónimos. Precedente: el `18` |
+| 4 | El costo de calificar en un archivo que se lee íntegro sale sin refutador | **CUMPLIDO**: 23, por la fila del orquestador de migración de §9.2 |
+| 5 | La compuerta localiza sin decidir | **CUMPLIDO sobre el comando publicado**, corrido sobre los términos que la 13.11 agregó a §15: cero palabras de veredicto. El banco es del destino |
+| 6 | Un término con contextos disjuntos no aparece como hallazgo | **CUMPLIDO**: «migración» en `Rules-Devops.md` y `Migracion-Rules.md`, localizado en dos archivos, descarte escrito en §9.6, y §9.2 impide sumarlos |
+
+**Cinco cumplidos y uno a medias.**
+
 ## Control de cambios
 
 | Versión | Fecha | Cambios | Autor |
 |---|---|---|---|
 | 1.0 | 2026-09-12 | Emisión inicial. Documenta tres huecos encadenados en `Vocabulario-Rules.md` —la única de diecinueve reglas sin enumerables, una exigencia de verificar que existe dos veces y no alcanza al acto real, y una contradicción de alcance entre cabecera, §8 y §9.6— más la unidad de contexto declarada para un solo lector. **Su evidencia central es un cuadro de seis afirmaciones sin verificar producidas en el mismo trabajo**, cinco del orquestador y una del refutador, todas detectadas por relectura ajena. **Todas las citas de este reporte se midieron en el acto de escribirlo**, con los comandos a la vista en §2, porque las seis del cuadro se escribieron creyendo que ya estaban medidas. | Mesa del 2026-09-12 sobre colisión léxica (requisitos, verificación, terminología, lector sin contexto, refutador), sobre un planteo del Product Owner |
+| 1.1 | 2026-09-12 | **RESUELTO en SDD 13.12.** Suma §8, «Cómo se resolvió», con el desenlace de las seis preguntas de §5 y el veredicto de los seis criterios de §7 —cinco cumplidos y el 3 a medias—. **El cuerpo no se reescribe**: lo que la verificación encontró inexacto —la cronología de §2.5 y §5.1, la premisa de §2.6, el alcance del 45, la afirmación sobre §15, la cita elidida de `Root-Rules.md` §13— se declara en §8 en lugar de corregirse en silencio, por la misma razón por la que el cuadro de §2.4 quedó completo. | Intervención `06` |
