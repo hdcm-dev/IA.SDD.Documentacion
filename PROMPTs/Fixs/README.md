@@ -14,11 +14,40 @@ modifica nada, y este prompt sí.
 |---|---|---|---|
 | `00` | [Fix-Analizar-Reportes-00-11.md](00-Fix-Reportes-00-11/Fix-Analizar-Reportes-00-11.md) | `00` a `11` — los doce primeros, como una sola intervención | **Aplicado.** Cerró en **SDD 7.0**, el 2026-08-15 |
 | `01` | [Fix-Analizar-Reportes-12-14.md](01-Fix-Reportes-12-14/Fix-Analizar-Reportes-12-14.md) | `12`, `13` y `14` — los que quedaron fuera del cierre de 7.0 | **Aplicado**, de a uno y en versiones distintas: el `13` en **9.19**, el `14` en **10.0** y **11.0**, el `12` en **12.1** |
-| `02` | [Fix-Analizar-Reporte-16.md](02-Fix-Reporte-16/Fix-Analizar-Reporte-16.md) | `16` — la exclusión de alcance concedida contra una declaración | **Sin aplicar** |
+| `02` | [Fix-Analizar-Reporte-16.md](02-Fix-Reporte-16/Fix-Analizar-Reporte-16.md) | `16` — la exclusión de alcance concedida contra una declaración | **Sin objeto: el reporte se resolvió por otra vía.** El `16` está **RESUELTO en SDD 13.6**, con su sección «Cómo se resolvió», y este prompt nunca fue el vehículo. Verificado el 2026-09-12 contra [`Reportes/README.md`](../../Reportes/README.md) y contra el propio reporte, no contra el nombre de esta carpeta |
+| `03` | [Fix-Analizar-Reporte-25.md](03-Fix-Reporte-25/Fix-Analizar-Reporte-25.md) | `25` — el producto evoluciona y el método no tiene dónde registrarlo | **Sin aplicar.** Cuarta y última del orden `04` → `06` → `05` → `03` |
+| `04` | [Fix-Analizar-Reporte-26.md](04-Fix-Reporte-26/Fix-Analizar-Reporte-26.md) | `26` — la pregunta previa no distingue quién generó la situación | **Sin aplicar.** **Primera del orden**: corrige la compuerta de escalada, para que las otras dos no lleguen como preguntas sueltas |
+| `05` | [Fix-Analizar-Reporte-27.md](05-Fix-Reporte-27/Fix-Analizar-Reporte-27.md) | `27` — la especificación no se puede correlacionar con el ciclo que la produjo | **Sin aplicar.** Tercera del orden. Reutiliza el mecanismo de procedencia derivada que decide la `04`, y decide el nombre de su campo con la unidad de contexto que fija la `06`. Su carpeta `OUTPUTs/` guarda además los expedientes de la mesa que originó el reporte `28` |
+| `06` | [Fix-Analizar-Reporte-28.md](06-Fix-Reporte-28/Fix-Analizar-Reporte-28.md) | `28` — la afirmación de colisión léxica no tiene compuerta, ni regla que la alcance | **Sin aplicar.** Segunda del orden: fija la unidad de contexto con la que la `05` decide su nombre |
+
+**El `16` siguió el camino del `15`, y la fila de arriba lo dice en lugar de dejar «Sin aplicar».** Una fila que declara trabajo pendiente sobre un reporte resuelto hace que la próxima intervención lo re-trabaje, que es la mitad de circuito que este mismo README declara incumplida tres veces. Se detectó el 2026-09-12, dos versiones del framework después del cierre real.
 
 **El `15` no tiene prompt acá y está resuelto**: entró en **SDD 10.1** por otra vía, y se verificó
 —§VI.3.2 con su séptima clase de exclusión, y la fila 1.20 del control de cambios de la guía—. El
-**`17`** todavía no existe: lo esperan tres hallazgos ya medidos en la migración de `Lab-Geometria`.
+**`17`** **ya existe** —se emitió el 2026-08-31 con dos de los tres hallazgos de la migración de
+`Lab-Geometria`, y el tercero se declaró del destino— y **sigue sin intervención asignada**, igual que
+los `19` a `24`. Esta línea decía lo contrario hasta el 2026-09-12: se corrige acá porque una fila
+desactualizada de este README ya produjo una vez que se re-trabajara un reporte resuelto.
+
+**Las intervenciones `04`, `06`, `05` y `03` salieron de la misma corrida y se aplican en ese orden.** No es
+alfabético y tiene fundamento: la `04` corrige **cuándo un agente detiene y pregunta**, y mientras ese
+hueco siga vivo las otras dos van a producir consultas al humano durante su propia aplicación —que es
+exactamente el problema que la `04` cierra—. La `06` va segunda porque la `05` tiene que **decidir el nombre de un campo** que colisiona o no según la
+unidad de contexto de `Migracion-Rules.md`, y esa unidad es lo que la `06` declara. La `05` va tercera porque **reutiliza** la pieza que la
+`04` decide: un dato de procedencia que se **deriva** del estado previo en vez de pedírselo al agente
+que lo generó. La `03` va última porque decide el **disparador del ciclo**, y conviene decidirlo con los
+huecos ya correlacionables. **Si alguna se ejecuta fuera de orden, su prompt pide declararlo.**
+
+**Van separadas y no fusionadas**, por el criterio del ciclo 3 aplicado **con el AND y no con el OR**:
+comparten la corrida de origen y **no el artefacto** —la `03` toca el disparador, la `04` la compuerta de
+escalada, la `05` el formato del hueco—. Fusionarlas produciría una intervención que nadie puede
+auditar por partes.
+
+**La intervención `03` abre un eje que la serie no tenía.** Las tres anteriores corrigen cómo el método
+especifica, propaga o audita. La `03` decide **si el método recibe un cambio de alcance del producto
+después del handoff**, y por eso su prompt empieza pidiendo que se decida eso antes que nada: si la
+respuesta es que no, las otras cuatro preguntas del reporte cambian de forma. **Una decisión negativa
+con fundamento escrito es un desenlace válido**, y el precedente es el reporte `12`.
 
 ## Cómo se numera
 
