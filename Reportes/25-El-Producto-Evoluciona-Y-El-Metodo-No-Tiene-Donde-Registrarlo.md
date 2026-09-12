@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.10** (`Master-Prompt.md` §7, §12 y §13 · `Master-Prompt-Reanudacion.md` §1 y §4 · `Rules-Backlog-Tecnico.md` §3.4 y §3.6 · `Rules-Plan-Sprint.md` §3.6 · `Rules-Documentacion.md` §0.6 · `Migracion-Rules.md` §0 y §3) |
 | Artefactos del framework alcanzados | `SDD/Devs/Orchestrator/Master-Prompt.md` **§13** —donde nace— · `SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md` §4 · `SDD/Devs/Rules/Rules-Backlog-Tecnico.md` §3.4 · `SDD/Devs/Rules/Rules-Documentacion.md` §0.6 · `SDD/Devs/Rules/Vocabulario-Rules.md` §2 |
 | Naturaleza | **Un hueco de disparador y de criterio, no de figura.** El método tiene mecanismo para re-alinearse cuando **la normativa avanza** (migración normativa, con orquestador y regla propios) y para actualizarse cuando **el sistema se construye** (Fases I y J, ciclo de documentación viva). **No tiene ninguno para cuando avanza el alcance comprometido del producto**, y el evento «el Product Owner decidió cambiar el alcance después del handoff» **no está declarado como evento en ninguna regla**. **Y donde el método sí escribe de hecho —el intake— lo hace sin criterio: decisiones del mismo peso reciben trato distinto** (§2.4) |
-| Estado | **Abierto** |
+| Estado | **RESUELTO en SDD 13.14** |
 | Reportes relacionados | **`21`**, del que toma el patrón y al que no reemplaza: aquél enuncia en general que **una decisión barre hacia arriba y la categoría que la ejercita queda atrás**, y que no hay matriz de propagación para un ADR. **Éste aporta la instancia que le faltaba**: cuando lo que la decisión cambia es el **alcance**, no hay siquiera una categoría a la cual barrer, porque el artefacto que debería recibirla —el backlog, el plan, el roadmap— está cerrado y nada lo reabre. **`08`**, con el que **no** se confunde: aquél es sobre el **nivel de aplicación** del artefacto de iteración (del equipo o del proyecto de código); éste es sobre **qué evento lo reabre**. **`19`** y **`22`**, con los que comparte la forma —mecanismo bien diseñado sin evento que lo active— y no el objeto |
 
 ---
@@ -348,10 +348,62 @@ decisiones de producto (2026-09-11), con **cero altas** en el medio.
 
 ---
 
+## Cómo se resolvió
+
+**Resuelto en SDD 13.14**, por la intervención `03-Fix-Reporte-25`
+(`IA.SDD.Documentacion/PROMPTs/Fixs/03-Fix-Reporte-25/`). Verificación completa, plan y evidencia en
+`OUTPUTs/10-Verificacion-Citas.md`, `OUTPUTs/20-Decision-Solicitud-5-Y-Las-Cuatro-Restantes.md` y
+`OUTPUTs/30-Plan-Y-Verificacion-Criterios.md`.
+
+### La pregunta de fondo (§5.1 en su forma original): no corresponde un tercer caso de escritura del intake
+
+`Master-Prompt.md` §13 sigue cerrando su regla 2 en **dos casos**. Los dos ocurren durante una corrida
+de un orquestador; una decisión de alcance del Product Owner posterior al handoff ocurre sin ninguna
+corrida en curso, y la regla 1 de §13 solo gobierna «durante la generación». El intake es documento
+humano (`Migracion-Rules.md` §4.4): su autor ya podía editarlo fuera de una corrida sin que esta regla
+se lo prohibiera, que es lo que explica que el reporte haya medido veinte decisiones de producto
+absorbidas de hecho (§2.4). Es una decisión negativa con fundamento escrito, con el mismo precedente que
+el reporte `12`. `Master-Prompt.md` §13.1 (nueva) lo declara.
+
+### Las cuatro preguntas restantes de §5
+
+- **§5.2 (evento que reabre planificación)**: sí. La entrada de control de cambios que el Product Owner
+  asienta en el `PRODUCT-INTAKE` al registrar la decisión, el mismo evento para backlog y roadmap.
+  `Master-Prompt.md` §13.1, `Rules-Backlog-Tecnico.md` §3.6, `Rules-Contexto.md` §3.5.
+- **§5.3 (criterio de clasificación)**: sí, el de la mesa —modifica una fila de la matriz del roadmap,
+  incluido su contenido, o el conjunto de proyectos de código del manifiesto—, verificado contra los dos
+  casos que este mismo reporte midió. `Rules-Backlog-Tecnico.md` §3.6.
+- **§5.4 (estado de vida del producto)**: sí hace falta nombrarlo. `vigencia operativa abierta`, en el
+  glosario operativo de `Master-Prompt.md` §15 y no en `Vocabulario-Rules.md` (que gobierna seis
+  términos de identidad, no un estado), sin gobierno nuevo: reusa roadmap, backlog/plan y operación.
+- **§5.5 (salto de la decisión al control)**: sí, reusando instrumentos existentes. Una `BT-XXXXX` con
+  criterio de aceptación, o un ítem diferido de `Root-Rules.md` §12.2 cuando todavía no se puede
+  resolver — sin crear ningún control ejecutable, conforme a §6 de este mismo reporte.
+
+### Verificación de §7, criterio por criterio
+
+| Paso | Resultado |
+| --- | --- |
+| 1 | Sin cambio: sigue siendo el paso que arma el caso de reproducción |
+| 2 | El caso de escritura sigue sin existir, **y se decide con fundamento que no hace falta uno**: la edición del Product Owner nunca necesitó que §13 la autorizara |
+| 3 | Sin cambio, y se declara por qué: `SDD-Development-Guide.md` §III.4 no alcanzaba porque el hueco no es de una fase, y no se creó ninguna |
+| 4 | Sin cambio, y se declara por qué: no hace falta una cuarta cardinalidad; el evento es un asiento de control de cambios, no una corrida |
+| **5 (el decisivo)** | **Cambia.** `Rules-Backlog-Tecnico.md` §3.6 declara el evento y el criterio que antes faltaban; `Rules-Contexto.md` §3.5 lo replica para el roadmap |
+| 6 | No se re-ejecutó sobre `Lab-Geometria`, de solo lectura para esta intervención; queda para su próxima reanudación |
+
+### Lo que no se tocó
+
+`Master-Prompt.md` §13 no ganó un tercer caso ni cambió sus dos existentes. `Vocabulario-Rules.md` no se
+modificó. No se creó ningún control ejecutable ni ninguna fase nueva del orquestador. `Lab-Geometria` no
+se tocó: el `CHANGELOG.md` de `IA.SDD` 13.14 declara qué le exige a su próxima reanudación.
+
+---
+
 ## Control de cambios
 
 | Versión | Fecha | Cambios | Autor |
 |---|---|---|---|
+| 1.3 | 2026-09-12 | **Estado pasa a RESUELTO en SDD 13.14.** Suma la sección «Cómo se resolvió» con el desenlace de las cinco preguntas de §5 y el veredicto de §7 criterio por criterio. La decisión de fondo es negativa: no corresponde un tercer caso de escritura del intake (`Master-Prompt.md` §13.1), con precedente en el reporte `12`. El hueco del paso 5 de §7 —el decisivo— se cierra en `Rules-Backlog-Tecnico.md` §3.6 y `Rules-Contexto.md` §3.5. Intervención `03-Fix-Reporte-25`, evidencia completa en `PROMPTs/Fixs/03-Fix-Reporte-25/OUTPUTs/`. | Intervención del disparador de alcance |
 | 1.2 | 2026-09-12 | **Corrige la caracterización de `ADR-08007` en §2.4**, que decía que agregaba «el séptimo miembro del contrato de la fachada». El ADR decide **exactamente lo contrario**: el aviso va en las opciones **y no** como séptima función, y las funciones siguen siendo seis. **El hueco sigue existiendo y es el mismo** —el intake no tiene ninguna ocurrencia del aviso ni del tipo de opciones—, pero es más fino: lo que no se absorbió es que **el contrato ganó una dirección de vuelta y subió de versión**. Lo levantó el refutador del ciclo 4 al verificar el ADR, y se corrige acá porque un reporte que describe mal su propia evidencia no puede fundar una intervención. Sube patch. | Mesa R1.5, ciclo 4 (refutador) |
 | 1.1 | 2026-09-12 | **Suma §2.4 y reescribe §5.1**, por una reflexión del Product Owner que la mesa verificó midiendo: el intake **sí** recibe decisiones de producto —unas veinte de sus cuarenta y siete entradas, diecisiete después de estar «Aprobado»— y **la versión 4.0 ya es un tercer caso de escritura de facto**, hecha en respuesta a una escalada de mesa y fuera de «la generación». La pregunta de §5.1 deja de ser «¿se puede escribir el intake?» y pasa a ser **qué es el intake y con qué criterio se lo escribe**, con el par de ADR gemelos —`08006` absorbido, `08007` no— como la evidencia de que hoy no hay criterio. La Naturaleza suma «y de criterio». Sube minor: no cambia el patrón de §4, lo precisa. | Mesa R1.5, ciclo 3 (AH-004 gestión de requisitos y línea base) |
 | 1.0 | 2026-09-12 | Emisión inicial. Documenta **un hueco de disparador**: el método tiene mecanismo de re-alineación para cuando avanza la normativa y para cuando se construye lo especificado, y **ninguno para cuando avanza el alcance comprometido del producto**. Origen: la sexta reanudación de `Lab-Geometria` y su mesa de dos ciclos, con once especialistas. La calibración de dónde nace el defecto —**`Master-Prompt.md` §13 y no `Rules-Backlog-Tecnico.md` §3.4**— la corrigió el refutador del ciclo 2, y es lo que evita que la intervención invierta la trazabilidad del método. Se distingue del reporte `21`, que enuncia el patrón general del barrido de una decisión, y del `08`, que es sobre el nivel de aplicación del artefacto de iteración. | Mesa de evaluación R1.5, ciclo 2 (AH-001 metodologías ágiles, AH-002 gestión de proyecto, AH-003 normativa del ciclo, refutador), sobre el planteo del Product Owner |
