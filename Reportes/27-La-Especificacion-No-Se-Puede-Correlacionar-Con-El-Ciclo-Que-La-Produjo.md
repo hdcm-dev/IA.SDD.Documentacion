@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.10** (`Root-Rules.md` §9, §10, §12.1 y §12.2 · `Migracion-Rules.md` §3 y §4 · `Deriva-Rules.md` · `Rules-Documentacion.md` §0.6) |
 | Artefactos del framework alcanzados | `SDD/Devs/Rules/Root-Rules.md` §12.1 —donde nace—, §9 y §10 · `SDD/Devs/Rules/Migracion-Rules.md` §3 y §4 · `SDD/Devs/Rules/Deriva-Rules.md` |
 | Naturaleza | **Un enlace que sólo existe hacia adelante.** El método sabe declarar que algo **falta** (`referencia pendiente`, `ítem diferido`) y sabe declarar que algo **se apartó** de la norma, pero ninguno de esos instrumentos registra **en qué momento del ciclo se produjo el hueco ni qué trabajo lo produjo**. Un hueco declarado hoy es indistinguible de un hueco que nació con el producto |
-| Estado | **Abierto** |
+| Estado | **RESUELTO en SDD 13.13** — ver §8, «Cómo se resolvió» |
 | Reportes relacionados | **`25`**, que documenta que el producto evoluciona y el método no tiene dónde registrarlo: es la causa; éste es el efecto sobre la **trazabilidad**. Comparten la corrida de origen y **no el artefacto** —`25` toca el disparador del ciclo, éste toca el formato del hueco—, por lo que van separados. **`26`**, que trata el momento en que un hueco se convierte en pregunta al humano: éste trata qué queda escrito cuando **no** se convierte |
 
 ---
@@ -224,6 +224,76 @@ después si se demuestra que hace falta.**
 
 ---
 
+## 8. Cómo se resolvió
+
+**Aplicado en SDD 13.13**, con nota de coherencia `SDD/Devs/Guides/Coherencia-Ciclo-De-Origen.md`. El
+framework estaba en la **13.10** cuando este reporte lo evaluó, y llegó a la 13.13 sin cambios en las
+secciones que este reporte cita: la 13.11 (reporte `26`) y la 13.12 (reporte `28`) no tocaron
+`Root-Rules.md` §9/§10/§11/§12.1/§12.2 ni `Migracion-Rules.md` §3/§4. La verificación de las citas, el
+recuento de los 118, la decisión de la solicitud 4 con su costo medido, el plan y la verificación
+criterio por criterio están en
+[`PROMPTs/Fixs/05-Fix-Reporte-27/OUTPUTs/`](../PROMPTs/Fixs/05-Fix-Reporte-27/OUTPUTs/).
+
+### 8.1 Lo que la verificación le corrigió a este reporte antes de intervenir
+
+**El cuerpo no se reescribe**: es evidencia con su fecha. Lo que la verificación encontró queda acá.
+
+| Lo que el reporte afirma | Lo medido contra 13.12 y contra `Lab-Geometria` |
+|---|---|
+| Todas las citas a `Root-Rules.md` §9, §10, §11, §12.1, §12.2, `Migracion-Rules.md` §3, §4 y `Deriva-Rules.md` | **Siguen siendo literales.** Ninguna de las dos intervenciones anteriores de esta corrida las tocó |
+| §2.4: los 118 diferidos de `Lab-Geometria` en **«tres recuentos… tomados en momentos distintos por instrumentos distintos»**, que **«no se pueden cruzar sin abrir los 118 uno por uno»** | **Sobredimensionado en este punto.** Los tres números —87, 25 y 6— salen de **una** tabla, en **un** documento, de **una** fecha (`Estado-Del-Destino-2026-09-12.md` §4), y ese documento cruza su propio recuento contra el del 08-27 con aritmética exacta (86+9+12+11=118 → 87+25+6=118, transición de 20 filas verificada), sin abrir los 118 ítems uno por uno. La reconciliación existe y **fue manual**, escrita por un orquestador de reanudación — que es el costo de reconstrucción que el reporte describe, no la ausencia de él |
+| §2.4: ningún ítem declara contra qué estado del producto se difirió | **Se sostiene.** El campo que §12.2 ya exige —«en qué evento se cierra»— apunta hacia adelante, no hacia atrás. Ninguno de los 118 lleva un dato de origen |
+| §2.1: el nombre `ciclo de origen`, elegido en la v1.1 sin verificar y reabierto en la v1.2 | **Confirmado, con la verificación que faltaba**: `grep -rn "ciclo de origen" SDD/Devs --include='*.md'` da cero antes de esta intervención, en los tres archivos donde el campo vive y en el resto del árbol |
+
+**Ninguna corrección cae sobre el patrón central del reporte**, que seguía vivo en 13.12: los tres
+instrumentos apuntaban hacia adelante y ninguno hacia atrás.
+
+### 8.2 Desenlace de las seis preguntas de §5
+
+| # | Pregunta | Desenlace |
+|---|---|---|
+| §5.1 | El campo de procedencia del hueco | **Sí: `ciclo de origen`**, con fase, unidad de trabajo y base de la corrida, calculado y congelado al declararse — no recalculado como el origen del hecho, porque el hueco se lee en corridas futuras y cada una tiene su propia base. `Root-Rules.md` §11/§12.1/§12.2; mecanismo en `Master-Prompt.md` §8.2 |
+| §5.2 | El estado del producto contra el que se declaró | **No como campo declarado.** Se deriva del commit del ciclo de origen con `git show {{base}}:{{manifiesto}}`: lo que se puede derivar de un commit no se declara aparte (`Root-Rules.md` §10) |
+| §5.3 | La clasificación que la migración necesita | **Sí**, `Migracion-Rules.md` §4.8: hueco del ciclo (se completa) contra hueco de norma posterior (se declara deuda), derivada del ciclo de origen contra el control de cambios de la regla citada. Sólo eleva lo que ninguna de las dos alcanza |
+| §5.4 | El tratamiento retroactivo | **Derivar donde se pueda, marcar `no derivable — anterior al mecanismo` donde no** (`Migracion-Rules.md` §4.9), probado sobre una fila real de `Lab-Geometria` sin tocar ese destino. Ni exigir retroactivo ni vaciar sin más: las dos elevarían o perderían información que el propio commit todavía tiene |
+| §5.5 | El criterio de aceptación enumerable | **Sí**: fila de escalamiento P1 en `Root-Rules.md` §12.2, dos criterios en `Migracion-Rules.md` §6, y comprobación 8 de `Master-Prompt.md` §10.0 que verifica presencia en generación |
+| §5.6 | A qué rol se le atribuye | **Ninguno nuevo.** El orquestador que ya calcula el origen del hecho calcula el ciclo de origen con el mismo mecanismo y dos datos más. Confirma la posición del propio reporte: el dato primero, y con el dato el rol no hacía falta |
+
+**§6, respetado.** Los tres instrumentos no se fusionaron. El ciclo de origen es un campo, no una marca
+dentro del identificador. Ningún rol nuevo. No se afirma que los 118 de `Lab-Geometria` estén mal
+declarados: se declaró qué versión les faltaba para poder derivarse. El reporte `25` no se tocó.
+
+### 8.3 Los cinco criterios de §7, uno por uno
+
+| # | Criterio | Veredicto |
+|---|---|---|
+| 1 | Declarar un hueco nuevo y comprobar que su ciclo de origen queda escrito sin que ningún agente lo tipee | **SIN VEREDICTO: requiere una corrida real posterior a la 13.13.** El mecanismo está escrito y no se ejerció, porque esta intervención no generó documentación de producto |
+| 2 | Cruzar dos recuentos de diferidos sin abrir los ítems | **CUMPLIDO A MEDIAS, con el precedente del reporte `18`.** Se comprobó sobre `Lab-Geometria` que el total se cruza sin abrir los 118 (§8.1), pero con reconstrucción manual anterior al mecanismo, no con el campo puesto: no hay todavía un par de recuentos posteriores a la 13.13 que lo ejerzan |
+| 3 | Correr una migración sobre huecos de las dos clases; el número elevado tiene que ser menor que el total | **SIN VEREDICTO: requiere correr `Migracion-Rules.md` §4.8 sobre un destino real**, y los destinos son de solo lectura para esta intervención. El criterio enumerable que lo exige está escrito |
+| 4 | Probar el caso retroactivo sobre los 118 de `Lab-Geometria` | **CUMPLIDO A MEDIAS.** El mecanismo de §4.9 se probó con éxito sobre **una** fila real y no sobre las 118: correrlo entero es una migración sobre un destino, fuera de alcance acá |
+| 5 | El criterio de §5.5, enumerable | **CUMPLIDO** |
+
+**Un cumplido, dos a medias y dos sin veredicto.** El reporte se cierra **en el framework** —sus seis
+preguntas tienen desenlace escrito y su hueco central está corregido— y **no se declara funcionando**:
+tres de sus cinco criterios dependen de correr contra un destino real, que esta intervención no hace
+por regla propia.
+
+### 8.4 Lo que este reporte deja andando
+
+- **Los tres criterios sin corrida real** (1, 3 y a medias 2 y 4) se ejercen recién cuando una
+  migración normativa corra sobre un destino con huecos declarados — `Lab-Geometria` es el candidato
+  natural, con sus 118.
+- **El registro de coherencia queda para la próxima intervención sobre `Lab-Geometria`**: correr
+  `Migracion-Rules.md` §4.8 y §4.9 sobre sus ocho documentos es lo que cerraría los criterios 2, 3 y 4
+  enteros, no a medias.
+- **Un hallazgo propio de esta verificación**: la mesa que originó el reporte `28` había medido el
+  costo de calificar `procedencia` para el sentido de este reporte —35, y después 23— dando por
+  supuesto que había que reusar esa palabra. Verificado antes de aplicar: **no hacía falta reusarla**,
+  porque `ciclo de origen` no colisiona con nada. El costo de calificación correcto para este reporte
+  es **cero**, no 23.
+
+---
+
 ## Control de cambios
 
 | Versión | Fecha | Cambios | Autor |
@@ -231,4 +301,5 @@ después si se demuestra que hace falta.**
 | 1.0 | 2026-09-12 | Emisión inicial. Documenta que los tres instrumentos del método para declarar lo que falta **apuntan hacia adelante y ninguno hacia atrás**, y que por eso una migración no puede distinguir un hueco del ciclo de un hueco de norma posterior sin reconstruirlo a mano. Mide el caso de los **118 ítems diferidos** de `Lab-Geometria` en tres recuentos no cruzables. Señala que `Deriva-Rules.md` ya demuestra que el framework sabe fechar una afirmación cuando decide hacerlo. Toma posición sobre el rol —**el dato primero, el rol después**— y declara el tratamiento retroactivo como pregunta de aplicación previa. | Mesa R1.5, ciclo 4 (AH-007 correlación con el historial), sobre un requisito del Product Owner |
 | 1.1 | 2026-09-12 | **Corrección de nombre levantada al verificar el árbol**, antes de intervenir: el término **`procedencia` ya está tomado** por el framework con otro significado —la versión de formato bajo la que el destino se estructuró, con decenas de ocurrencias— de modo que el campo propuesto **no puede llamarse así** sin colisionar con un término vigente. Pasa a nombrarse **`ciclo de origen`**, y la acuñación definitiva queda para la intervención bajo `Vocabulario-Rules.md`. Se explicita además que §5.1 comparte fundamento con §5.3 del reporte `26` —el campo se **deriva**, no se pide—, que es la razón por la que las dos intervenciones van en ese orden. | Verificación previa de la intervención `05` |
 | 1.2 | 2026-09-12 | **Corrección de una cita propia, levantada por el refutador de la mesa del 2026-09-12 y verificada contra el árbol**: §2.1 citaba `Intake-Rules.md` **§1.1**, sección que **no existe** en ese archivo; la oración está en **§2.1**, «Tabla maestra de documentos», línea 39. **Y queda declarado lo que importa más que la cita**: el renombre de `procedencia` a `ciclo de origen` que esta v1.1 introdujo **se hizo sin verificar las secciones destino del propio campo**. `Root-Rules.md` §11/§12.1/§12.2 —donde el campo viviría— tiene **cero** ocurrencias de `procedencia`. La decisión de nombre queda **reabierta** y es de la intervención `05`, con la evidencia del expediente de mesa en `PROMPTs/Fixs/05-Fix-Reporte-27/OUTPUTs/`. | Refutación del ciclo 5 |
+| 1.3 | 2026-09-12 | **RESUELTO en SDD 13.13**, con su §8. La intervención confirmó `ciclo de origen` con la verificación que faltaba —cero colisiones— y corrigió una afirmación de evidencia: los 118 de `Lab-Geometria` no son tres recuentos inconexos, son tres categorías de una tabla que su propio destino ya cruzó una vez con reconstrucción manual, que es el costo que este reporte describe y no su ausencia. El campo entra como `Root-Rules.md` §11/§12.1/§12.2, calculado y congelado por `Master-Prompt.md` §8.2, y la clasificación de `Migracion-Rules.md` §4.8/§4.9 no exige retroactivo: deriva donde puede y marca no derivable donde no. Un criterio cumplido, dos a medias y dos sin veredicto hasta una migración real sobre un destino. | Intervención `05` |
 
