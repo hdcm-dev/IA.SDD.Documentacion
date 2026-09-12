@@ -17,7 +17,7 @@ modifica nada, y este prompt sí.
 | `02` | [Fix-Analizar-Reporte-16.md](02-Fix-Reporte-16/Fix-Analizar-Reporte-16.md) | `16` — la exclusión de alcance concedida contra una declaración | **Sin objeto: el reporte se resolvió por otra vía.** El `16` está **RESUELTO en SDD 13.6**, con su sección «Cómo se resolvió», y este prompt nunca fue el vehículo. Verificado el 2026-09-12 contra [`Reportes/README.md`](../../Reportes/README.md) y contra el propio reporte, no contra el nombre de esta carpeta |
 | `03` | [Fix-Analizar-Reporte-25.md](03-Fix-Reporte-25/Fix-Analizar-Reporte-25.md) | `25` — el producto evoluciona y el método no tiene dónde registrarlo | **Sin aplicar.** Cuarta y última del orden `04` → `06` → `05` → `03` |
 | `04` | [Fix-Analizar-Reporte-26.md](04-Fix-Reporte-26/Fix-Analizar-Reporte-26.md) | `26` — la pregunta previa no distingue quién generó la situación | **Aplicado.** Cerró en **SDD 13.11**, el 2026-09-12, **primera del orden**. El origen del hecho se **calcula contra la base de la corrida** —el commit sobre el que corre T0—, **no contra el snapshot por despacho** que el reporte proponía, que ya contiene lo que dejaron las unidades anteriores; y las detenciones de una fase salen en lote. Un criterio de aceptación queda a medias y dos esperan una corrida real, declarados en su [`OUTPUTs/30`](04-Fix-Reporte-26/OUTPUTs/30-Verificacion-Del-Plan-Aplicado.md) |
-| `05` | [Fix-Analizar-Reporte-27.md](05-Fix-Reporte-27/Fix-Analizar-Reporte-27.md) | `27` — la especificación no se puede correlacionar con el ciclo que la produjo | **Sin aplicar.** Tercera del orden. Reutiliza el mecanismo de procedencia derivada que decide la `04`, y decide el nombre de su campo con la unidad de contexto que fija la `06`. Su carpeta `OUTPUTs/` guarda además los expedientes de la mesa que originó el reporte `28` |
+| `05` | [Fix-Analizar-Reporte-27.md](05-Fix-Reporte-27/Fix-Analizar-Reporte-27.md) | `27` — la especificación no se puede correlacionar con el ciclo que la produjo | **Sin aplicar.** Tercera del orden. Reutiliza la **base de la corrida** con que la `04` calcula el origen del hecho, y decide el nombre de su campo con la unidad de contexto que fija la `06`. Su carpeta `OUTPUTs/` guarda además los expedientes de la mesa que originó el reporte `28` |
 | `06` | [Fix-Analizar-Reporte-28.md](06-Fix-Reporte-28/Fix-Analizar-Reporte-28.md) | `28` — la afirmación de colisión léxica no tiene compuerta, ni regla que la alcance | **Aplicado.** Cerró en **SDD 13.12**, el 2026-09-12, **segunda del orden**. `Vocabulario-Rules.md` gobierna la colisión de **todo término** y §15 sólo define; el contexto de lectura se declara **por lector**; toda afirmación de colisión lleva su comando, en la regla, en la mesa y en la intervención; y la compuerta **localiza sin decidir**. **Para la `05`**: calificar en `Migracion-Rules.md` cuesta 23, y 45 sólo si el sentido nuevo se escribe también en `Master-Prompt-Migracion.md`. Un criterio a medias, declarado en su [`OUTPUTs/30`](06-Fix-Reporte-28/OUTPUTs/30-Verificacion-Del-Plan-Aplicado.md) |
 
 **El `16` siguió el camino del `15`, y la fila de arriba lo dice en lugar de dejar «Sin aplicar».** Una fila que declara trabajo pendiente sobre un reporte resuelto hace que la próxima intervención lo re-trabaje, que es la mitad de circuito que este mismo README declara incumplida tres veces. Se detectó el 2026-09-12, dos versiones del framework después del cierre real.
@@ -31,16 +31,18 @@ desactualizada de este README ya produjo una vez que se re-trabajara un reporte 
 
 **Las intervenciones `04`, `06`, `05` y `03` salieron de la misma corrida y se aplican en ese orden.** No es
 alfabético y tiene fundamento: la `04` corrige **cuándo un agente detiene y pregunta**, y mientras ese
-hueco siga vivo las otras dos van a producir consultas al humano durante su propia aplicación —que es
+hueco siga vivo las otras tres van a producir consultas al humano durante su propia aplicación —que es
 exactamente el problema que la `04` cierra—. La `06` va segunda porque la `05` tiene que **decidir el nombre de un campo** que colisiona o no según la
 unidad de contexto de `Migracion-Rules.md`, y esa unidad es lo que la `06` declara. La `05` va tercera porque **reutiliza** la pieza que la
-`04` decide: un dato de procedencia que se **deriva** del estado previo en vez de pedírselo al agente
-que lo generó. La `03` va última porque decide el **disparador del ciclo**, y conviene decidirlo con los
+`04` decidió: el **origen del hecho**, que se **calcula contra la base de la corrida** en vez de
+pedírselo al agente que lo generó. **Esta frase decía «un dato de procedencia que se deriva del estado
+previo» hasta la aplicación de la `04`**, que midió que el snapshot no contiene el dato y descartó el
+nombre `procedencia` por colisión. La `03` va última porque decide el **disparador del ciclo**, y conviene decidirlo con los
 huecos ya correlacionables. **Si alguna se ejecuta fuera de orden, su prompt pide declararlo.**
 
 **Van separadas y no fusionadas**, por el criterio del ciclo 3 aplicado **con el AND y no con el OR**:
 comparten la corrida de origen y **no el artefacto** —la `03` toca el disparador, la `04` la compuerta de
-escalada, la `05` el formato del hueco—. Fusionarlas produciría una intervención que nadie puede
+escalada, la `05` el formato del hueco, la `06` la regla de vocabulario—. Fusionarlas produciría una intervención que nadie puede
 auditar por partes.
 
 **La intervención `03` abre un eje que la serie no tenía.** Las tres anteriores corrigen cómo el método
