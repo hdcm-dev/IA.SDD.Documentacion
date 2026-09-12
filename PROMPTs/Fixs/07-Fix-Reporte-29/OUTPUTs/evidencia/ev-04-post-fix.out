@@ -1,0 +1,31 @@
+== versión de las reglas ==
+6:**Versión de las reglas:** 5.3
+
+== criterio 1 de §7: las seis/siete menciones dicen lo mismo (por texto, no por línea fija) ==
+64:| `historias-usuario/US-XXXXX-<Nombre>.md` | Proyectos de código con más de 20 US | Proyectos de código con 10 a 20 US | Proyectos de código con menos de 10 US (US inline en `Product-Backlog.md`) | Un archivo por historia, con criterios BDD, INVEST check, trazabilidad y DoR. |
+65:| `tareas-tecnicas/BT-XXXXX-<Nombre>.md` | Proyectos de código con más de 30 BT | Proyectos de código con 15 a 30 BT | Proyectos de código con menos de 15 BT (BT inline en `Backlog-Tecnico.md`) | Un archivo por tarea técnica, con justificación, dependencias, tipo y trazabilidad a US. |
+116:- Para un **proyecto de código** con más de 20 US, cada historia de ese proyecto vive en su archivo
+117:  individual bajo `historias-usuario/`; con 10 a 20 US es recomendado y no obligatorio; por debajo de
+119:- Para un **proyecto de código** con más de 30 BT, cada tarea técnica de ese proyecto vive en su
+120:  archivo individual bajo `tareas-tecnicas/`; con 15 a 30 BT es recomendado y no obligatorio; por
+503:- historias-usuario/US-XXXXX-<Nombre>.md para las US de cada proyecto de código que supere 20 US; en caso contrario, esas US quedan inline en el product-backlog.
+504:- tareas-tecnicas/BT-XXXXX-<Nombre>.md para las BT de cada proyecto de código que supere 30 BT; en caso contrario, esas BT quedan inline en el backlog-tecnico.
+-- ninguna mención sobreviviente de 'unidad de entrega' pegada a un umbral de US/BT --
+(sin salida: correcto)
+
+== criterio 2 de §7: §6 marcado [enumerable] con comando ==
+374:- [ ] [enumerable] Por cada proyecto de código de la unidad (reporte `29`, antes `[interpretativo]` por no decir de qué se contaba): si sus US superan 20, existen archivos individuales bajo `historias-usuario/` para las US de ese proyecto; si sus BT superan 30, existen archivos individuales bajo `tareas-tecnicas/` para las BT de ese proyecto. Se decide contando las US y las BT atribuidas a cada proyecto (por el bloque, el rango o la sección que el producto ya usa para organizarlas, §3.3) y probando la existencia de la carpeta correspondiente — por ejemplo, sobre un `Backlog-Tecnico.md` que numera sus BT por bloques de mil por proyecto: `grep -o -E "BT-[0-9]{5}" Backlog-Tecnico.md | sort -u | awk '{n=substr($1,4)+0; c[int(n/1000)]++} END{for(b in c) print b, c[b]}'` seguido de `test -d tareas-tecnicas/` para cada bloque que supere 30.
+
+== criterio 4 de §7: el caso mixto está contemplado ==
+135:resultado habitual es **mixto**, y es la forma correcta y no un estado transitorio: el proyecto que
+543:| 5.3 | 2026-09-12 | **El umbral de archivos individuales de §2.1 pasa a decir lo mismo en las seis menciones que lo tocaban** (framework 13.15, reporte `29`). §2.1 lo cuenta desde la 1.0 **por proyecto de código con tres bandas** —obligatorio, recomendado, omitir—; §3.3, el criterio de aceptación de §6 y el snippet de §8 lo contaban **por unidad de entrega con dos bandas**, una contradicción que un destino real (`Lab-Geometria`) resolvió sin saber que había dos lecturas, citando la tabla y atribuyéndole a §3.3 una lectura que §3.3 no decía. Se adopta **por proyecto de código**, la que la tabla maestra siempre dijo y la que ningún destino medido rompe: `Lab-Geometria` (BT y US, dos unidades) y `RPI.VideoControl` (US, cinco proyectos en una unidad) ya la aplican con coherencia; la lectura por unidad de entrega los habría dejado a los dos incumpliendo de golpe, en tres de sus cuatro documentos medidos, sin que ninguno lo hubiera podido detectar porque el criterio era `[interpretativo]`. **§3.3 suma el caso del documento consolidado**: cuando una unidad agrupa más de un proyecto de código, el umbral se evalúa proyecto por proyecto dentro del mismo `Product-Backlog.md` o `Backlog-Tecnico.md`, y el resultado mixto —un proyecto en archivos individuales, otros inline en el mismo documento— es la forma correcta y no un estado transitorio; forzar a toda la unidad por el cruce de un solo proyecto reescribiría secciones que no cambiaron. **§6 reclasifica el criterio de `[interpretativo]` a `[enumerable]`**, con el comando de conteo por bloque de identificador y `test -d`. **§5.2 y §5.5 nombran la unidad de conteo** que antes no decían. La cabecera suma una nota que distingue el nivel de aplicación —dónde vive el documento— del conteo del umbral —de qué proyecto es cada US o BT—, para que las dos preguntas no se vuelvan a fundir. Sube **minor**: la lectura adoptada es la que ya se aplicaba sin excepción; ningún documento generado deja de cumplir, y el que parecía incumplir bajo la lectura vieja pasa a cumplir bajo la corregida. | Intervención del umbral de archivos individuales (reporte 29) |
+
+== grep de desempate en el resto del framework, otra vez, después del fix ==
+(sin salida)
+
+== rama y diff del único archivo tocado ==
+intervencion/07-reporte-29
+ M SDD/Devs/Rules/Rules-Backlog-Tecnico.md
+?? _legacy/13.14/
+ SDD/Devs/Rules/Rules-Backlog-Tecnico.md | 57 +++++++++++++++++++++++++++------
+ 1 file changed, 47 insertions(+), 10 deletions(-)
