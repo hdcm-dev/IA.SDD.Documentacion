@@ -1,0 +1,169 @@
+### S1 — citas contra 13.11 (9dc8ded). Cada grep -n devuelve la línea literal, o nada
+## S1.a Vocabulario cabecera
+3:**Archivo target:** todo artefacto del framework y toda documentación que el framework genera
+## S1.b Vocabulario §1
+11:Esta es una regla meta, como `Root-Rules.md` e `Intake-Rules.md`: no gobierna una de las doce categorías, gobierna una capacidad transversal. Fija **qué designa cada término del framework**, con un término por concepto y un concepto por término.
+## S1.c Vocabulario §8 — título de la sección y dónde está el párrafo de alcance
+163:## §8 Pendientes declarados y su cierre
+177:**Alcance de esta regla, declarado.** Esta regla gobierna **los términos del framework que colisionan
+179:de desambiguación de §9. No gobierna el resto del vocabulario propio del framework —`sonda`, `pasada
+180:de diseño`, `pasada de ejecución`, `arnés` y equivalentes—, que **vive en el glosario operativo de
+## S1.d Vocabulario §9.1 a §9.6 — títulos y frases citadas
+211:### §9.1 La regla de decisión
+217:### §9.2 Qué cuenta como «mismo contexto de lectura»
+229:### §9.3 Las tres formas de desambiguar, por costo creciente
+239:### §9.4 Prohibición
+241:**No se declara una invariante de desambiguación sin haber verificado que los contextos colisionan.** Enumerar los sentidos de un término cuyos contextos son disjuntos, y prohibir su fusión, es tratar como defecto lo que no lo es. El patrón queda primado: una vez que un producto declara una invariante para un término, la forma del patrón —enumerar sentidos, prohibir la fusión— se aplica al siguiente término sin volver a verificar la premisa.
+245:### §9.5 Sustituir un término en un corpus ya escrito
+254:### §9.6 Familia calificada declarada: «migración normativa»
+262:| **R1** | La intervención sobre el propio framework que renombró su vocabulario en la versión 5.0 | Las filas de control de cambios de diez archivos del árbol vivo, que la nombran «la migración de la 5.0» | Preexistente |
+263:| **R2** | Las migraciones de datos y de esquema del **producto documentado** | `Rules-Arquitectura-Tecnica.md` (migración inicial del modelo lógico, su anti-patrón de modelo sin migración versionada y el plan de migraciones de un estilo arquitectónico), `Rules-Devops.md` (guía de migración ante un cambio incompatible y su ejemplo de mensaje de commit) y el ejemplo de dolor de `PRODUCT-INTAKE-template.md` | Preexistente |
+264:| **R3** | Llevar un destino de la versión de origen a la vigente preservando su contenido | La capacidad nueva: `Migracion-Rules.md` y el orquestador que la ejecuta | Nuevo |
+## S1.e Vocabulario §10 — criterio de invariante y total de criterios
+308:- [ ] [interpretativo] Toda invariante de desambiguación declarada cita la verificación de colisión que la justifica (§9.4).
+13
+## S1.f Vocabulario §9 intro — alcance de §9 en su propia letra
+209:Las secciones anteriores fijan el vocabulario **del framework**. Esta fija cómo se decide, en cualquier documentación que el framework genere, si un término con más de un referente es un defecto o es lenguaje natural funcionando. Sin ella, el framework verifica «glosario sin contradicciones» sin tener con qué separar un caso real de un falso positivo.
+## S1.g Vocabulario §4 R6 — regla de uso sobre un término que no es de los seis
+109:**R6. «Migración» a secas no designa la capacidad del framework.** Llevar un destino generado con una versión an
+## S1.h Vocabulario §11 — fechas de §9.6 (2.1) y del párrafo de alcance de §8 (2.2)
+319:| 2.1 | 2026-07-29 | Adopción del término de la capaci
+320:| 2.2 | 2026-08-15 | Nivel por artefacto y alcance decla
+## S1.i Master-Prompt §10.0 — las seis comprobaciones transversales
+19:1. **Las comprobaciones transversales**, que se enumeran 
+20:2. **Los anti-patrones marcados `[enumerable]`** en la ta
+39:1. **Enlaces y anclas** sobre el árbol de la fase: toda 
+50:2. **Recuentos anclados**: por cada recuento que declara 
+54:3. **Idempotencia de los generadores**: correr dos veces 
+55:4. **Identificadores**: forma y ancho conformes a `Root-R
+57:5. **Anclaje de las referencias** (`Root-Rules.md` §10 R
+64:6. **Ítems diferidos** (`Root-Rules.md` §12.2): se cuen
+93:1. **Toda comprobación entra a la compuerta con un caso 
+96:2. **Todo recorte declarado entra con su caso de la clase
+99:3. **Un hallazgo sobre la propia compuerta no pasa a «ce
+## S1.j Master-Prompt §15 — línea de inicio y fin
+1740:## §15 Glosario operativo
+1810:## §16 Versionado del prompt orquestador
+## S1.k Migracion-Rules cabecera
+8:Dentro de este archivo «migración» se usa en forma desnuda, según la excep
+## S1.l Master-Prompt-Migracion insumos
+68:- `Migracion-Rules.md`, íntegra. Es la regla que gobierna esta corrida.
+69:- `Mesa-Rules.md`, íntegra, por la fase M1.
+72:- El archivo de reglas de cada categoría cuyos documentos se migren, y las plantillas vigentes de intake y de manifiesto.
+## S1.m Root-Rules §13 — el criterio literal y la detención
+750:> **Una regla que viaja en la lista de insumos obligatorios de todo despacho (`Master-Prompt.md` §8)
+751:> desplaza a una que no viaja, cuando las dos alcanzan al mismo ítem.**
+757:**Si el criterio no decide —las dos viajan, o ninguna—, el conflicto se detiene**: no tiene resolución
+## S1.n Guía §VI.3.1 punto 1
+813:1. **Enumerar el concepto, no los archivos.** Buscar el término y sus formas en **todo el árbol**, sin
+
+### S2 — los tres recuentos del reporte, en 13.10 (el que evaluó) y en 13.11
+## S2.a §2.1 en v1310 — el comando del reporte, literal
+Deriva-Rules.md                    enum=1   interp=14
+Maqueta-Rules.md                   enum=2   interp=16
+Mesa-Rules.md                      enum=9   interp=5
+Migracion-Rules.md                 enum=21  interp=20
+Root-Rules.md                      enum=7   interp=8
+Rules-Arquitectura-Tecnica.md      enum=7   interp=18
+Rules-Backlog-Tecnico.md           enum=5   interp=13
+Rules-Base-Conocimiento.md         enum=9   interp=5
+Rules-Calidad-Y-Pruebas.md         enum=9   interp=14
+Rules-Contexto.md                  enum=7   interp=11
+Rules-Devops.md                    enum=9   interp=15
+Rules-Documentacion.md             enum=4   interp=40
+Rules-Especificacion-Funcional.md  enum=12  interp=11
+Rules-Examples.md                  enum=3   interp=25
+Rules-Necesidades-Negocio.md       enum=8   interp=11
+Rules-Plan-Sprint.md               enum=9   interp=13
+Rules-Prompts-AI.md                enum=6   interp=11
+Rules-UX-UI-DX.md                  enum=5   interp=14
+Vocabulario-Rules.md               enum=0   interp=13
+reglas con el esquema: 19; con enum=0: 1
+## S2.b §2.6 en v1310 — el comando del reporte (grep -o | wc -l), y grep -c e -i al lado
+Devs/Rules/Migracion-Rules.md                 grep -o|wc -l=23  grep -c=16  grep -oi|wc -l=23
+Devs/Orchestrator/Master-Prompt-Migracion.md  grep -o|wc -l=22  grep -c=19  grep -oi|wc -l=24
+## S2.c §2.5 en v1310 — procedencia dentro de §15 (sección acotada por título)
+0
+## S2.a §2.1 en v1311 — el comando del reporte, literal
+Deriva-Rules.md                    enum=1   interp=14
+Maqueta-Rules.md                   enum=2   interp=16
+Mesa-Rules.md                      enum=10  interp=5
+Migracion-Rules.md                 enum=21  interp=20
+Root-Rules.md                      enum=7   interp=8
+Rules-Arquitectura-Tecnica.md      enum=7   interp=18
+Rules-Backlog-Tecnico.md           enum=5   interp=13
+Rules-Base-Conocimiento.md         enum=9   interp=5
+Rules-Calidad-Y-Pruebas.md         enum=9   interp=14
+Rules-Contexto.md                  enum=7   interp=11
+Rules-Devops.md                    enum=9   interp=15
+Rules-Documentacion.md             enum=4   interp=40
+Rules-Especificacion-Funcional.md  enum=12  interp=11
+Rules-Examples.md                  enum=3   interp=25
+Rules-Necesidades-Negocio.md       enum=8   interp=11
+Rules-Plan-Sprint.md               enum=9   interp=13
+Rules-Prompts-AI.md                enum=6   interp=11
+Rules-UX-UI-DX.md                  enum=5   interp=14
+Vocabulario-Rules.md               enum=0   interp=13
+reglas con el esquema: 19; con enum=0: 1
+## S2.b §2.6 en v1311 — el comando del reporte (grep -o | wc -l), y grep -c e -i al lado
+Devs/Rules/Migracion-Rules.md                 grep -o|wc -l=23  grep -c=16  grep -oi|wc -l=23
+Devs/Orchestrator/Master-Prompt-Migracion.md  grep -o|wc -l=22  grep -c=19  grep -oi|wc -l=24
+## S2.c §2.5 en v1311 — procedencia dentro de §15 (sección acotada por título)
+0
+
+### S3 — la medición con que la 04 descartó «procedencia», reproducida (13.11 nota §2.4 y CHANGELOG 13.11)
+## S3.a por sección, en la base de la 04 (13.10)
+v1310/Devs/Orchestrator/Master-Prompt.md	## §0 Cómo usar este prompt	1
+v1310/Devs/Orchestrator/Master-Prompt.md	### §2.1 Reconciliación normativa	9
+v1310/Devs/Orchestrator/Master-Prompt.md	## §3 Fase de validación de intake y derivación de la jerarquía	1
+v1310/Devs/Orchestrator/Master-Prompt.md	### §5.1 Detalle operativo de la política de deprecación	2
+v1310/Devs/Orchestrator/Master-Prompt.md	### §7.0 Registro de decisiones pendientes y detención por arbitraje	1
+v1310/Devs/Orchestrator/Master-Prompt.md	## §16 Versionado del prompt orquestador	3
+v1310/Devs/Orchestrator/Master-Prompt.md	(archivo)	17
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §1 El principio: una dimensión, una fuente, y contraste contra lo observable	1
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §3 R1 — Presentación del estado	2
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	### §4.0.1 El umbral de continuidad: cuándo «seguir en la versión declarada» deja de ser barato	4
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	### §4.0.2 El encadenamiento después de reparar	7
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §5 R3 — El informe de estado, que es el instrumento de entrega	1
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §6 Criterios de aceptación	1
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §7 Anti-patrones	2
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §8 Control de cambios	2
+v1310/Devs/Orchestrator/Master-Prompt-Reanudacion.md	(archivo)	20
+## S3.b la frase de la 04, tal como quedó publicada
+/tmp/tmp.XtpwvKRa7W/v1311/Devs/Guides/Coherencia-Origen-Del-Hecho.md:56:`procedencia` **colisiona en secciones que esta intervención toca** —`Master-Prompt.m
+57:**El nombre del campo se midió antes de elegirse.** `procedencia` colisiona en tres secciones que esta versión toca —la procedencia d
+
+### S4 — qué recibe cada lector, leído de sus insumos (13.11)
+## S4.a Master-Prompt §8, despacho: qué se nombra por sección y qué por ruta
+3:- PRODUCT-MANIFEST: SDD/Intake/PRODUCT-MANIFEST-{{SLUG_PRODUCTO}}.md
+4:- PRODUCT-INTAKE: SDD/Intake/PRODUCT-INTAKE-{{SLUG_PRODUCTO}}.md (Parte A negocio; §13 composición; §17 bloque técnico de la unidad de entrega {{NOMBRE_UNIDAD_ENTREGA}})
+5:- Reglas de la categoría: {{PATH_REGLA}}
+6:- Reglas de vocabulario: ../IA.SDD/SDD/Devs/Rules/Vocabulario-Rules.md (§2 los seis términos, §4 reglas de uso, §9 criterio de desambiguación léxica)
+7:- Reglas transversales de `Root-Rules.md` (§9 sistema de identificadores, §10 datos derivados en la prosa, §11 apartamiento declarado, §12 referencia pendiente, §13 precedencia entre reglas): ../IA.SDD/SDD/Devs/Rules/Root-Rules.md
+8:- Mapa de rangos de identificadores del producto: {{BLOQUE_RANGOS_DE_SECCION_3_4}} (solo cuando el manifiesto declara más de un proyecto de código)
+9:- Documentos upstream ya generados: {{LISTA_PATHS_UPSTREAM}}
+10:- Documentos de conocimiento aplicables: {{LISTA_DOCUMENTOS_DE_CONOCIMIENTO}} (puede venir vacía; son insumo **consultivo**, ver la nota de §6)
+## S4.b Master-Prompt §10, perfil del auditor
+1334:Perfil del auditor: Arquitecto de S
+## S4.c Master-Prompt, orquestador de generación: intake íntegro
+83:2. Leer `PRODUCT-INTAKE-<Slug-Producto>.md` íntegro: la 
+## S4.d Mesa-Rules §10, snippet del especialista
+673:Insumos: {{LISTA}}, `Vocabulario-Rules.md`, y el contrato de entrada de la mesa.
+## S4.e Reanudación R0: lee el árbol y no abre categorías para juzgar contenido
+144:   **Es la comprobación más barata de todo el método y por eso vive acá.** La rean
+155:**Lo que no se hace en R0.** No se abre ninguna categoría documental para juzgar su c
+546:| 1.8 | 2026-08-19 | **R0 paso 4 suma los ítems diferidos** de `Root-Rules.md` §12.2
+## S4.f §15 Contexto de lectura
+1791:| Contexto de lectura | El alcance de texto que un lector tiene efectivamente delante. Para el humano es el documento; **para un subagente es la 
+## S4.g Vocabulario §9.6: R3 contra R2 se declaró disjunto aunque el orquestador de migración recibe las dos reglas íntegras
+272:| R3 contra R2 | **Nada** | Los contextos son disjuntos:
+2
+
+### S5 — volumen del localizador sobre el árbol vivo de 13.11 (121 .md), sin _legacy
+archivos .md bajo SDD/: 95 · líneas: 30431
+término declarado «base de la corrida»: 22 ocurrencias en 6 archivos, 15 ms
+término declarado «origen del hecho»: 52 ocurrencias en 6 archivos, 17 ms
+término declarado «lote de la fase»: 8 ocurrencias en 4 archivos, 16 ms
+término declarado «procedencia»: 116 ocurrencias en 15 archivos, 15 ms
+palabra común «estado» (palabra entera): 711 ocurrencias en 90 archivos
+palabra común «registro» (palabra entera): 290 ocurrencias en 70 archivos

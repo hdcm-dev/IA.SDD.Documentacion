@@ -1,0 +1,223 @@
+### C1 — el recuento de §2.1, con el comando del reporte
+Mesa-Rules.md                      enum=11  interp=5
+Vocabulario-Rules.md               enum=1   interp=13
+
+### C2 — cabecera, §8 y §9.6 leídos juntos
+3:**Archivo target:** todo artefacto del framework y toda documentación que el framework genera
+19:| Qué designa un término, y qué pasa cuando el dominio de un cliente lo usa con otro sentido | **Los seis de §2**, con sus reglas de uso de §4 y su precedencia de §6 | §2 a §7 |
+20:| Cuándo un término con más de un referente colisiona, y cómo se desambigua | **Todo término** del framework y de la documentación que genera, **incluido el vocabulario propio del método** | §9 |
+26:sus sentidos chocan, lo decide §9**, como para cualquier otro término: §15 **define**, §9 **decide la
+29:**Hasta la 3.2 este párrafo acotaba también §9 a los seis términos**, y remitía el resto a §15. **Contradecía
+SDD/Devs/Rules/Vocabulario-Rules.md:311:**Forma desnuda admitida.** Dentro de `Migracion-Rules.md` y del maste
+SDD/Devs/Rules/Migracion-Rules.md:8:Dentro de este archivo «migración» se usa en forma desnuda, según la e
+residuo de la acotación vieja (esperado: vacío fuera del control de cambios):
+
+### C3 — la comprobación 14 aplicada a una afirmación real sin comando: la nota y la entrada de la 13.11
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md · SIN comando → hallazgo · `procedencia` **colisiona en secciones que esta intervención toca** —`Master-Prompt.md` §7.0 y `Master-Prompt-Reanudacion.md` §3 y §6, con el se…
+CHANGELOG.md · SIN comando → hallazgo · **El nombre del campo se midió antes de elegirse.** `procedencia` colisiona en tres secciones que esta versión toca —la procedencia declarada del …
+
+### C4 — el costo de calificar un sentido nuevo en un archivo que se lee íntegro, sin refutador
+245:| Orquestador de migración | `Migracion-Rules.md` y `Mesa-Rules.md` **íntegras**; `Master-Prompt.md` por los mecanismos que cita; la regla de cada categor
+253:1. **La co-ocurrencia se mide sobre 
+SDD/Devs/Rules/Migracion-Rules.md	(archivo)	23
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	(archivo)	24
+
+### C5 — la compuerta localiza sin decidir: el comando publicado en §10.0, extraído y corrido
+comando extraído: 7 líneas
+términos declarados por la 13.11, calculados contra su base (476f927), no declarados aparte:
+Origen del hecho
+Base de la corrida
+Origen del hecho
+Lote de la fase
+== T=«Origen del hecho»
+SDD/Devs/Rules/Catalogo-De-Criterios.md	## 3. Criterios por situación	2
+SDD/Devs/Rules/Catalogo-De-Criterios.md	## 6. Control de cambios	1
+SDD/Devs/Rules/Catalogo-De-Criterios.md	(archivo)	3
+SDD/Devs/Rules/Mesa-Rules.md	## 7. Escalada: la lista cerrada de lo que no tiene respuesta en el árbol	1
+SDD/Devs/Rules/Mesa-Rules.md	### 7.1 Forma de la escalada	1
+SDD/Devs/Rules/Mesa-Rules.md	## 8. Criterios de aceptación	2
+SDD/Devs/Rules/Mesa-Rules.md	## 11. Control de cambios	4
+SDD/Devs/Rules/Mesa-Rules.md	(archivo)	8
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §6 Criterios de aceptación	2
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §8 Control de cambios	1
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	(archivo)	3
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	## §8 M4 — Migración de `SDD/Docs/`	1
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	## §13 Control de cambios	1
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	(archivo)	2
+SDD/Devs/Orchestrator/Master-Prompt.md	### §7.0 Registro de decisiones pendientes y detención por arbitraje	3
+SDD/Devs/Orchestrator/Master-Prompt.md	## §8 Mecánica de despacho de subagentes	3
+SDD/Devs/Orchestrator/Master-Prompt.md	### Qué lleva obligatoriamente una detención	1
+SDD/Devs/Orchestrator/Master-Prompt.md	### La autocorrección: qué hace el agente cuando el defecto es suyo	7
+SDD/Devs/Orchestrator/Master-Prompt.md	## §9 Manejo de ambigüedad	2
+SDD/Devs/Orchestrator/Master-Prompt.md	### T0 · La compuerta de arranque	1
+SDD/Devs/Orchestrator/Master-Prompt.md	## §15 Glosario operativo	3
+SDD/Devs/Orchestrator/Master-Prompt.md	## §16 Versionado del prompt orquestador	5
+SDD/Devs/Orchestrator/Master-Prompt.md	(archivo)	25
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	# Nota de coherencia — El origen del hecho, y la base contra la que se calcula	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.3 Por qué no es el estrato de la 9.19	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.4 El nombre, medido antes de elegirse	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 3. Inventario de archivos tocados	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 4. Barrido por concepto (§VI.3.2)	4
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 8. Lo que esta nota deja anotado	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## Control de cambios	2
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	(archivo)	11
+== T=«Base de la corrida»
+SDD/Devs/Rules/Catalogo-De-Criterios.md	## 3. Criterios por situación	1
+SDD/Devs/Rules/Catalogo-De-Criterios.md	(archivo)	1
+SDD/Devs/Rules/Mesa-Rules.md	## 7. Escalada: la lista cerrada de lo que no tiene respuesta en el árbol	1
+SDD/Devs/Rules/Mesa-Rules.md	## 8. Criterios de aceptación	1
+SDD/Devs/Rules/Mesa-Rules.md	## 11. Control de cambios	1
+SDD/Devs/Rules/Mesa-Rules.md	(archivo)	3
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §3 R1 — Presentación del estado	1
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §6 Criterios de aceptación	1
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §8 Control de cambios	1
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	(archivo)	3
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	## §8 M4 — Migración de `SDD/Docs/`	1
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	(archivo)	1
+SDD/Devs/Orchestrator/Master-Prompt.md	### §7.0 Registro de decisiones pendientes y detención por arbitraje	1
+SDD/Devs/Orchestrator/Master-Prompt.md	## §8 Mecánica de despacho de subagentes	2
+SDD/Devs/Orchestrator/Master-Prompt.md	### La autocorrección: qué hace el agente cuando el defecto es suyo	2
+SDD/Devs/Orchestrator/Master-Prompt.md	### T0 · La compuerta de arranque	1
+SDD/Devs/Orchestrator/Master-Prompt.md	## §15 Glosario operativo	2
+SDD/Devs/Orchestrator/Master-Prompt.md	## §16 Versionado del prompt orquestador	2
+SDD/Devs/Orchestrator/Master-Prompt.md	(archivo)	10
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.2 Contra la base de la corrida, y no contra el snapshot de §8	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.4 El nombre, medido antes de elegirse	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 4. Barrido por concepto (§VI.3.2)	2
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## Control de cambios	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	(archivo)	5
+== T=«Origen del hecho»
+SDD/Devs/Rules/Catalogo-De-Criterios.md	## 3. Criterios por situación	2
+SDD/Devs/Rules/Catalogo-De-Criterios.md	## 6. Control de cambios	1
+SDD/Devs/Rules/Catalogo-De-Criterios.md	(archivo)	3
+SDD/Devs/Rules/Mesa-Rules.md	## 7. Escalada: la lista cerrada de lo que no tiene respuesta en el árbol	1
+SDD/Devs/Rules/Mesa-Rules.md	### 7.1 Forma de la escalada	1
+SDD/Devs/Rules/Mesa-Rules.md	## 8. Criterios de aceptación	2
+SDD/Devs/Rules/Mesa-Rules.md	## 11. Control de cambios	4
+SDD/Devs/Rules/Mesa-Rules.md	(archivo)	8
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §6 Criterios de aceptación	2
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	## §8 Control de cambios	1
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md	(archivo)	3
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	## §8 M4 — Migración de `SDD/Docs/`	1
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	## §13 Control de cambios	1
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md	(archivo)	2
+SDD/Devs/Orchestrator/Master-Prompt.md	### §7.0 Registro de decisiones pendientes y detención por arbitraje	3
+SDD/Devs/Orchestrator/Master-Prompt.md	## §8 Mecánica de despacho de subagentes	3
+SDD/Devs/Orchestrator/Master-Prompt.md	### Qué lleva obligatoriamente una detención	1
+SDD/Devs/Orchestrator/Master-Prompt.md	### La autocorrección: qué hace el agente cuando el defecto es suyo	7
+SDD/Devs/Orchestrator/Master-Prompt.md	## §9 Manejo de ambigüedad	2
+SDD/Devs/Orchestrator/Master-Prompt.md	### T0 · La compuerta de arranque	1
+SDD/Devs/Orchestrator/Master-Prompt.md	## §15 Glosario operativo	3
+SDD/Devs/Orchestrator/Master-Prompt.md	## §16 Versionado del prompt orquestador	5
+SDD/Devs/Orchestrator/Master-Prompt.md	(archivo)	25
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	# Nota de coherencia — El origen del hecho, y la base contra la que se calcula	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.3 Por qué no es el estrato de la 9.19	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.4 El nombre, medido antes de elegirse	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 3. Inventario de archivos tocados	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 4. Barrido por concepto (§VI.3.2)	4
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 8. Lo que esta nota deja anotado	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## Control de cambios	2
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	(archivo)	11
+== T=«Lote de la fase»
+SDD/Devs/Rules/Catalogo-De-Criterios.md	## 3. Criterios por situación	1
+SDD/Devs/Rules/Catalogo-De-Criterios.md	(archivo)	1
+SDD/Devs/Rules/Mesa-Rules.md	### 7.1 Forma de la escalada	1
+SDD/Devs/Rules/Mesa-Rules.md	(archivo)	1
+SDD/Devs/Orchestrator/Master-Prompt.md	### §7.0 Registro de decisiones pendientes y detención por arbitraje	1
+SDD/Devs/Orchestrator/Master-Prompt.md	## §15 Glosario operativo	1
+SDD/Devs/Orchestrator/Master-Prompt.md	## §16 Versionado del prompt orquestador	1
+SDD/Devs/Orchestrator/Master-Prompt.md	(archivo)	3
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	### 2.4 El nombre, medido antes de elegirse	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## 3. Inventario de archivos tocados	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	## Control de cambios	1
+SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md	(archivo)	3
+líneas de salida con palabra de veredicto (colisi|disjunt|hallazgo): 0
+caso inverso — un término no declarado no se pide y no aparece:
+0
+
+### C6 — criterio negativo: «migración» en contextos disjuntos
+SDD/Devs/Rules/Rules-Devops.md	(archivo)	3
+SDD/Devs/Rules/Migracion-Rules.md	(archivo)	95
+309:| R3 contra R2 | **Nada** | Los contextos son disjuntos: R2 vive en la documentación técnica del producto —persi
+256:**Lo que no es un contexto de lectura: la suma de lo que un lector recibe.** Dos archivos que llegan en la misma lis
+362:| 3.3 | 2026-09-12 | **§8 declara el alcance que la regla ejerce**: el significado y la precedencia, sobre los seis
+
+### Comprobación 10 — cabecera igual a la mayor fila, en orden, sin repetidas
+SDD/Devs/Rules/Vocabulario-Rules.md: cabecera=3.3 última=3.3 ordenada=sí repetidas=[]
+SDD/Devs/Orchestrator/Master-Prompt.md: cabecera=8.16 última=8.16 ordenada=sí repetidas=[]
+SDD/Devs/Rules/Mesa-Rules.md: cabecera=1.3 última=1.3 ordenada=sí repetidas=[]
+SDD/Guides/SDD-Development-Guide.md: cabecera=1.30 última=1.30 ordenada=sí repetidas=[]
+SDD/Guides/SDD-User-Guide.md: cabecera=1.21 última=1.21 ordenada=sí repetidas=[]
+SDD/Devs/Rules/Catalogo-De-Criterios.md: cabecera=1.17 última=1.17 ordenada=sí repetidas=[]
+SDD/Devs/Guides/Coherencia-Colision-Lexica.md: (todavía no existe)
+
+### Filas reordenadas: toda fila fechada quitada reaparece idéntica
+quitadas: 6 · agregadas: 12 · quitadas que no reaparecen: 0
+agregadas nuevas:
+| 1.17 | 2026-09-12 | **
+| 1.21 | 2026-09-12 | El
+| 1.3 | 2026-09-12 | **�
+| 1.30 | 2026-09-12 | **
+| 3.3 | 2026-09-12 | **�
+| 8.16 | 2026-09-12 | **
+
+### Barrido §VI.3.2 — formas anteriores sobre el árbol vivo, cercos incluidos
+== «es la sección, no el documento»
+./CHANGELOG.md:2262:- **`Vocabulario-Rules.md` §9** (1.0 → 2.0), en cinco subsecciones. **§9.1** fija la regla de decisión: un término polisémi
+./SDD/Devs/Rules/Vocabulario-Rules.md:238:Hasta la 3.2 esta sección declaraba la unidad para un solo lector —«el contexto de lectura de un subagen
+== «para un subagente es la sección»
+== «trece comprobaciones»
+./SDD/Devs/Guides/Coherencia-Renumeracion-AG.md:196:## 5. Verificación — las trece comprobaciones
+./SDD/Devs/Guides/Coherencia-Renumeracion-AG.md:291:**Lo verificado, que queda en pie y no depende de la detención:** las trece comprobaciones pasan,
+./SDD/Devs/Guides/Coherencia-Devolucion-Al-Origen.md:46:| La lista de verificación deja de tener doce entradas | `Las doce comprobaciones` | `Las tre
+./SDD/Devs/Guides/Coherencia-Devolucion-Al-Origen.md:115:**CONFORME.** Las trece comprobaciones pasan, el residuo del barrido es **3 de clases estable
+./SDD/Devs/Guides/Coherencia-Sin-Codigo-Ejecutable.md:92:## 5. Verificación — las trece comprobaciones
+./SDD/Devs/Guides/Coherencia-Sin-Codigo-Ejecutable.md:159:**CONFORME.** Las trece comprobaciones pasan, los dos comandos de §3 devuelven vacío y el 
+./SDD/Devs/Guides/Coherencia-Precedencia-Entre-Reglas.md:73:## 4. Verificación — las trece comprobaciones
+== «gobierna seis palabras»
+== «No gobierna el resto del vocabulario propio»
+
+### Snapshot — _legacy/13.11 conserva las versiones anteriores de lo tocado
+SDD/Devs/Rules/Vocabulario-Rules.md           Versión de las reglas:** 3.2
+SDD/Devs/Orchestrator/Master-Prompt.md        Versión:** 8.15
+SDD/Devs/Rules/Mesa-Rules.md                  Versión de las reglas:** 1.2
+SDD/Guides/SDD-Development-Guide.md           Versión:** 1.29
+SDD/Guides/SDD-User-Guide.md                  Versión: 1.20
+SDD/Devs/Rules/Catalogo-De-Criterios.md       Versión:** 1.16
+
+### Autosuficiencia — líneas agregadas que nombran algo fuera de este repositorio
+0
+### Código ejecutable distribuido
+0
+
+### Regla 4 sobre el texto propio — afirmaciones de colisión en las líneas agregadas
++   colisión**. Localizar es contar; decidir si una ocurrencia tiene otro referente es leer, y un guion que lo
++   más, que sigue afirmando «no colisiona» el día que alguien edita una sección sin tocarlo. **Nunca prosa
++  - **Polisemia gobernada**: todo término con más de un referente dentro de la fase tiene entrada de glosario que los declara, o forma calificada en todas las ocurrenc
++| Contexto de lectura | La unidad con la que la lista de insumos de un lector le entrega el texto: **la sección cuando la nombra, el archivo cuando lo nombra sin secci�
++| Glosario operativo | Esta sección: el glosario del **vocabulario del método**. Es el destino declarado de todo término que el framework acuña y usa en más de uno 
++| 8.16 | 2026-09-12 | **La compuerta localiza los términos declarados y no decide colisiones** (framework 13.12). **§10.0 suma la comprobación 7**: por cada término 
++| Se va a **afirmar que un término colisiona o no colisiona** —para elegir un nombre, calificar un sentido o descartar una polisemia— | Con qué contexto de lectura
++| 1.17 | 2026-09-12 | **Una situación nueva y dos reapuntadas**, por la comprobación 12: **se va a afirmar que un término colisiona o no colisiona**, de `Vocabulario-
++**Una afirmación de colisión o de no colisión de un término se ancla sólo en E1.** Una cita literal muestra
++- [ ] [enumerable] Todo hallazgo, parche o escalada que **afirma que un término colisiona o no colisiona**
++      la colisión.
++| 1.3 | 2026-09-12 | **§6.1: una afirmación de colisión o de no colisión se ancla sólo en E1**, con el comando que localiza sus ocurrencias por el contexto de lectu
++| Cuándo un término con más de un referente colisiona, y cómo se desambigua | **Todo término** del framework y de la documentación que genera, **incluido el vocabu
++citan desde la documentación generada sin redefinirlos. Que un término del método no colisione con el
++colisión**. §15 no tiene criterio de colisión y no lo necesita.
++«migración», que no es ninguno de los seis y cuya colisión es de framework contra framework; y
++`Master-Prompt.md` §10 audita la polisemia de «todo término». **No quedó desactualizado por una práctica
++2. **La desambiguación se mide sobre el contexto más chico.** Un término cuyos sentidos se distinguen solo leyendo el documento completo **sí colisiona** para quien 
++**Lo que no es un contexto de lectura: la suma de lo que un lector recibe.** Dos archivos que llegan en la misma lista son **dos** contextos. El orquestador de migració
++**La prohibición no se agota en la invariante, y la medición se adjunta.** La invariante es la forma más cara de §9.3, y el mismo defecto ocurre en las baratas: **un
++**Comando, y no una prosa que diga «revisé tal sección».** El criterio de §10 verifica **la presencia de la medición, nunca el veredicto**, y por eso no promete qu
++**Remitir a una resolución ya escrita no es afirmar de nuevo.** Citar con su sección una colisión ya resuelta —la de §9.6, por ejemplo— no pide otro comando: res
++- [ ] [enumerable] **Toda afirmación de colisión o de no colisión de un término** —en un glosario, en una decisión de nombre, en una resolución como la de §9.6,
++| 3.3 | 2026-09-12 | **§8 declara el alcance que la regla ejerce**: el significado y la precedencia, sobre los seis términos de §2; **el criterio de colisión de §9,
++| 14 | **Afirmaciones de colisión con su medición**: toda afirmación de colisión o de no colisión de un término que la intervención **escribe** —en su nota, en 
++colisión ocurre antes**: en la verificación previa, al elegir el nombre de algo que todavía no se escribió, o
++colisión** salieron sin su medición —una colisión que no existía en las secciones donde el campo iba a vivir,
++la vuelve enumerable y no una cuestión de cuidado: la comprobación no mira si la colisión es real, mira que la
++| 1.30 | 2026-09-12 | **§VI.3 suma la comprobación 14, afirmaciones de colisión con su medición**: toda afirmación de colisión o de no colisión que una intervenci
++| Contexto de lectura | Lo que un lector tiene efectivamente delante, y lo decide su lista de insumos: **la sección cuando se la nombran, el archivo cuando se lo pasan 

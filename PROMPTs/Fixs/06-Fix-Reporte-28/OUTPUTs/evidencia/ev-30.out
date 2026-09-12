@@ -1,0 +1,66 @@
+=== 1. git diff --stat contra main (lo aplicado) ===
+ CHANGELOG.md                            | 66 +++++++++++++++++++++++++++++++
+ SDD/Devs/Orchestrator/Master-Prompt.md  | 43 +++++++++++++++++---
+ SDD/Devs/Rules/Catalogo-De-Criterios.md |  8 ++--
+ SDD/Devs/Rules/Mesa-Rules.md            | 13 ++++++-
+ SDD/Devs/Rules/Vocabulario-Rules.md     | 69 ++++++++++++++++++++++++++-------
+ SDD/Guides/SDD-Development-Guide.md     | 29 ++++++++++----
+ SDD/Guides/SDD-User-Guide.md            | 11 +++---
+ 7 files changed, 203 insertions(+), 36 deletions(-)
+
+=== 2. Fidelidad del snapshot _legacy/13.11/ contra main ===
+total=128 fail=0
+archivos de main fuera de exclusiones:
+128
+
+=== 3. Criterio 1 del reporte 28: enum/interp en §10 de Vocabulario-Rules.md (13.12) ===
+1
+13
+
+=== Mismo recuento contra 13.10 (476f927), para contraste ===
+0
+13
+
+=== 4. Criterio 4: costo de calificar en Migracion-Rules.md y Master-Prompt-Migracion.md ===
+23
+22
+
+=== 5. Criterio 6: migración disjunta declarada en §9.6 ===
+228:**Un término polisémico se desambigua solo cuando sus sentidos pueden aparecer en el mismo contexto de lectura.** Cuando los contextos son disjuntos, no se califica: hacerlo carga el texto sin resolver un problema que no existe.
+256:**Lo que no es un contexto de lectura: la suma de lo que un lector recibe.** Dos archivos que llegan en la misma lista son **dos** contextos. El orquestador de migración recibe íntegras `Migracion-Rules.md` y la regla de cada categoría migrada, y §9.6 declaró **disjuntos** el sentido de «migración» de la primera y el de `Rules-Devops.md`. Lo que junta a dos archivos no es que viajen juntos: es que **el sentido nuevo se escriba en los dos**, y entonces se costea en cada uno.
+272:**No se declara una invariante de desambiguación sin haber verificado que los contextos colisionan.** Enumerar los sentidos de un término cuyos contextos son disjuntos, y prohibir su fusión, es tratar como defecto lo que no lo es. El patrón queda primado: una vez que un producto declara una invariante para un término, la forma del patrón —enumerar sentidos, prohibir la fusión— se aplica al siguiente término sin volver a verificar la premisa.
+309:| R3 contra R2 | **Nada** | Los contextos son disjuntos: R2 vive en la documentación técnica del producto —persistencia, devops, configuración— y R3 en la normativa del framework sobre sus propios destinos. Calificar R2 sería el falso positivo que §9.1 describe y que el criterio negativo de §10 declara defecto del informe. Se declara acá para que una ronda de auditoría posterior no lo levante como hallazgo |
+341:- [ ] [enumerable] **Toda afirmación de colisión o de no colisión de un término** —en un glosario, en una decisión de nombre, en una resolución como la de §9.6, en un informe— **adjunta en el mismo punto el comando reproducible que localiza sus ocurrencias por el contexto de lectura de §9.2, y su salida** (§9.4). Las afirmaciones se localizan por las cadenas `colisi`, `disjunt` y `polisem`. **Decide la presencia de la medición; no decide si la colisión es real**, que sigue siendo lectura. Remitir con su sección a una resolución ya escrita no es una afirmación nueva. Su ausencia es hallazgo aunque la conclusión resulte correcta. Rige para lo escrito desde la 3.3.
+345:- [ ] [interpretativo] **Criterio negativo:** ninguna polisemia con contextos disjuntos se reporta como defecto. Reportarla es un hallazgo del informe de auditoría, no del documento auditado.
+357:| 2.1 | 2026-07-29 | Adopción del término de la capacidad de migración normativa (prerrequisito F5). **§9.6 nueva**: declara la familia calificada «migración normativa» con sus tres referentes verificados por barrido —la intervención sobre el propio framework en la 5.0, las migraciones de datos y de esquema del producto documentado, y la capacidad nueva—, y su resolución por la escalera de §9.3. Se adopta la **forma calificada obligatoria** frente al primer referente, con el primer escalón declarado insuficiente y su evidencia: los dos sentidos coexisten dentro de §9.5 de este mismo archivo, y por §9.2 el criterio de colisión es la sección. Frente al segundo referente **no se desambigua nada**, por contextos disjuntos, y la constancia queda escrita para que una ronda de auditoría posterior no lo levante como hallazgo. Se declara la forma desnuda admitida y que «reconciliación normativa» conserva su nombre porque compara y no transforma. **§4 suma R6** con la regla de uso operativa. **§9.5** libera el sentido viejo sustituyendo «migración» por «intervención» en sus dos ocurrencias de prosa normativa; las filas de control de cambios que nombran «la migración de la 5.0» **no se tocan**, por `SDD-Development-Guide.md` §VI.2, y por eso ese referente sigue vivo y la calificación sigue siendo necesaria. **§10** suma un criterio. Sube **minor**: incorpora una declaración y una regla de uso sin invalidar ninguna de las anteriores. | Framework SDD (migración normativa) |
+
+=== 6. Integridad de registro (comprobación 10) en los seis archivos tocados ===
+--- SDD/Devs/Rules/Vocabulario-Rules.md ---
+**Versión de las reglas:** 3.3
+| 3.3 | 2026-09-12 | **§8 declara el alcance que la regla ejerce**: el significado y la precedencia, sobre los seis té
+--- SDD/Devs/Orchestrator/Master-Prompt.md ---
+**Versión:** 8.16
+| 8.16 | 2026-09-12 | **La compuerta localiza los términos declarados y no decide colisiones** (framework 13.12). **§1
+--- SDD/Devs/Rules/Mesa-Rules.md ---
+**Versión de las reglas:** 1.3
+| 1.3 | 2026-09-12 | **§6.1: una afirmación de colisión o de no colisión se ancla sólo en E1**, con el comando que 
+--- SDD/Guides/SDD-Development-Guide.md ---
+**Versión:** 1.30
+| 1.30 | 2026-09-12 | **§VI.3 suma la comprobación 14, afirmaciones de colisión con su medición**: toda afirmación 
+--- SDD/Guides/SDD-User-Guide.md ---
+| 1.21 | 2026-09-12 | El glosario pone al día **«Contexto de lectura»** contra `Vocabulario-Rules.md` 3.3: la unidad 
+--- SDD/Devs/Rules/Catalogo-De-Criterios.md ---
+**Versión:** 1.17
+| 1.17 | 2026-09-12 | **Una situación nueva y dos reapuntadas**, por la comprobación 12: **se va a afirmar que un tér
+
+=== 7. No hay artefacto ejecutable nuevo (§II.7) ===
+
+=== 8. Diff completo de archivos tocados, contrastado contra el plan de 20-Plan-De-Aplicacion.md ===
+ CHANGELOG.md                            | 66 +++++++++++++++++++++++++++++++
+ SDD/Devs/Orchestrator/Master-Prompt.md  | 43 +++++++++++++++++---
+ SDD/Devs/Rules/Catalogo-De-Criterios.md |  8 ++--
+ SDD/Devs/Rules/Mesa-Rules.md            | 13 ++++++-
+ SDD/Devs/Rules/Vocabulario-Rules.md     | 69 ++++++++++++++++++++++++++-------
+ SDD/Guides/SDD-Development-Guide.md     | 29 ++++++++++----
+ SDD/Guides/SDD-User-Guide.md            | 11 +++---
+ 7 files changed, 203 insertions(+), 36 deletions(-)
