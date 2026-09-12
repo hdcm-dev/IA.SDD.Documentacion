@@ -1,0 +1,187 @@
+### V0  Qué se tocó (comprobación 7)
+
+$ git diff --stat 476f927 -- . ':(exclude)_legacy'
+ CHANGELOG.md                                       |  73 +++++++++
+ SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md     | 178 +++++++++++++++++++++
+ SDD/Devs/Orchestrator/Master-Prompt-Migracion.md   |   5 +-
+ SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md |   7 +-
+ SDD/Devs/Orchestrator/Master-Prompt.md             | 144 ++++++++++++++---
+ SDD/Devs/Rules/Catalogo-De-Criterios.md            |  11 +-
+ SDD/Devs/Rules/Mesa-Rules.md                       |  20 ++-
+ 7 files changed, 408 insertions(+), 30 deletions(-)
+
+$ git status --short --untracked-files=all | grep -v '^ M' | sed 's#/[^/]*$##' | sort | uniq -c | head
+
+### V1  Integridad del registro (comprobación 10): cabecera = mayor fila, en orden, sin repetidas
+SDD/Devs/Orchestrator/Master-Prompt.md: cabecera 8.15 · mayor fila 8.15 · filas 45 · en orden True · repetidas 0 · termina en salto True
+SDD/Devs/Rules/Mesa-Rules.md: cabecera 1.2 · mayor fila 1.2 · filas 3 · en orden True · repetidas 0 · termina en salto True
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md: cabecera 1.12 · mayor fila 1.12 · filas 13 · en orden True · repetidas 0 · termina en salto True
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md: cabecera 2.10 · mayor fila 2.10 · filas 12 · en orden True · repetidas 0 · termina en salto True
+SDD/Devs/Rules/Catalogo-De-Criterios.md: cabecera 1.16 · mayor fila 1.16 · filas 17 · en orden True · repetidas 0 · termina en salto True
+
+### V2  Corrida contra la base (§VI.3.2): ninguna fila fechada alterada por el reordenamiento
+
+$ git diff 476f927 -- SDD/Devs/Orchestrator/Master-Prompt.md SDD/Devs/Rules/Mesa-Rules.md SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md SDD/Devs/Orchestrator/Master-Prompt-Migracion.md SDD/Devs/Rules/Catalogo-De-Criterios.md CHANGELOG.md | grep -cE '^-\| [0-9]+\.[0-9]+ \| 20'
+4
+filas quitadas: 4 · agregadas: 9 · quitadas que no reaparecen idénticas: 0
+filas agregadas que son nuevas: ['| 2.10 | 202', '| 1.12 | 202', '| 8.15 | 202', '| 1.16 | 202', '| 1.2 | 2026']
+
+### V3  Barrido por concepto (§VI.3.2): formas anteriores, árbol vivo con bloques cercados
+
+$ grep -rn --include='*.md' --exclude-dir=_legacy -- 'Hay que separar dos' .
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:82:| La autocorrección tiene dos filas | `Hay que separar dos` | `Hay que separar tres`, con la tercera fila |
+(total: 1)
+
+$ grep -rn --include='*.md' --exclude-dir=_legacy -- 'no agrega ninguna detención ni quita ninguna' .
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:83:| §8.1 no quita detenciones | `no agrega ninguna detención ni quita ninguna` | `no agrega ninguna detención.** **S�
+(total: 1)
+
+$ grep -rn --include='*.md' --exclude-dir=_legacy -- 'devuelve la lista de ambigüedades al usuario' .
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:84:| Las ambigüedades se reenvían al humano de a una | `devuelve la lista de ambigüedades al usuario` | `las presenta 
+(total: 1)
+
+$ grep -c 'COMPUERTA DE ARRANQUE — {{' SDD/Devs/Orchestrator/Master-Prompt.md
+1
+
+$ grep -c '^  Base:            {{' SDD/Devs/Orchestrator/Master-Prompt.md
+1
+
+$ grep -c '^  Base de la corrida:      {{' SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md
+1
+
+$ grep -rn --include='*.md' --exclude-dir=_legacy 'contenido que el snapshot no refleja' . | grep -c 'origen del hecho'
+4
+
+$ grep -rn --include='*.md' --exclude-dir=_legacy 'contenido que el snapshot no refleja' . | wc -l
+4
+
+### V4  Presencia de la forma vigente, por archivo
+== «origen del hecho»
+./CHANGELOG.md:12
+./SDD/Devs/Rules/Catalogo-De-Criterios.md:3
+./SDD/Devs/Rules/Mesa-Rules.md:5
+./SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:3
+./SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:2
+./SDD/Devs/Orchestrator/Master-Prompt.md:19
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:9
+== «base de la corrida»
+./CHANGELOG.md:5
+./SDD/Devs/Rules/Catalogo-De-Criterios.md:1
+./SDD/Devs/Rules/Mesa-Rules.md:3
+./SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:3
+./SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:1
+./SDD/Devs/Orchestrator/Master-Prompt.md:8
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:5
+== «lote de la fase»
+./CHANGELOG.md:2
+./SDD/Devs/Rules/Catalogo-De-Criterios.md:1
+./SDD/Devs/Rules/Mesa-Rules.md:1
+./SDD/Devs/Orchestrator/Master-Prompt.md:3
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:3
+== «ajeno a la corrida»
+./CHANGELOG.md:2
+./SDD/Devs/Rules/Catalogo-De-Criterios.md:1
+./SDD/Devs/Orchestrator/Master-Prompt.md:4
+./SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md:2
+
+### V5  Regla 4 sobre el texto propio: «origen» suelto en líneas agregadas
+
+$ git diff -U0 476f927 -- SDD | grep '^+' | grep -v '^+++' | grep -oE '.{0,40}[Oo]rigen([^a-zA-Z]|$).{0,25}' | grep -v 'rigen del hecho'
++**Documento:** Coherencia-Origen-Del-Hecho.md
++**Origen:** Reporte `26` de `IA.SD
+*Qué NO se toca, y se declara porque el origen lo delimita.** La pregunt
++**El origen proponía el snapshot que 
+ules.md` §9.1 obligaría a desambiguar. `origen` a secas tiene otros refe
+/Mesa-Rules.md` | 1.1 | **1.2** | §7 el origen antes de la lista; §7.1 e
+La cláusula del snapshot sin cálculo de origen | `contenido que el snaps
+ **La regla 4 sobre el texto propio** —`origen` suelto en las líneas agr
+entre comillas de §15 que advierte que «origen» a secas tiene otros refe
+rentes, y un «origen del / hecho»
+queda acotado a lo ajeno y la tabla del origen manda lo de la corrida a 
+ón; §9 remite al lote de §7.0 y §7.0 al origen de §8.1 |
++| 13 | Devolución al origen | **§6** |
++## 6. Devolución al origen (comprobación 13)
+na de las dos fuentes tenía un campo de origen que leer** |
++origen sólo citaba el primero. S
+be mirarlos **no es la pregunta de este origen**.
+de editar y verificado; y devolución al origen con **dos criterios cumpl
+ontra el snapshot por despacho** que el origen proponía; la tercera fila
+8.1). **Se escribe siempre completo**: «origen» a secas tiene otros refe
+ el hecho**. El presidente calcula el **origen del
+
+$ git diff -U0 476f927 -- SDD | grep '^+' | grep -v '^+++' | grep -ci 'procedencia'
+4
+
+### V6  Autosuficiencia (comprobación 2): el texto agregado a las reglas no cita afuera del repositorio
+
+$ git diff -U0 476f927 -- SDD | grep '^+' | grep -v '^+++' | grep -ciE 'Lab-Geometria|IA\.SDD\.Documentacion|reporte .?2[0-9]'
+1
+
+### V7  Referencias internas nuevas (comprobación 3)
+
+$ grep -n '^### 7.1 Forma de la escalada' SDD/Devs/Rules/Mesa-Rules.md
+578:### 7.1 Forma de la escalada
+
+$ grep -n '^### T0 \|^### T5 ' SDD/Devs/Orchestrator/Master-Prompt.md
+1557:### T0 · La compuerta de arranque
+1655:### T5 · La reanudación se verifica, y deja el repositorio listo
+
+$ grep -n '^## §5.1 R4' SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md
+463:## §5.1 R4 — La continuación
+
+$ grep -n '^### §7.0 \|^## §8.1 \|^## §12.1 \|^## §9 \|^## §15 ' SDD/Devs/Orchestrator/Master-Prompt.md
+596:### §7.0 Registro de decisiones pendientes y detención por arbitraje
+878:## §8.1 La forma de toda detención: análisis y propuesta
+1096:## §9 Manejo de ambigüedad
+1547:## §12.1 El traspaso por pull request
+1740:## §15 Glosario operativo
+
+### V8  Coherencia interna (comprobación 9): la tabla de autocorrección tiene tres filas y «Qué no cambia» ya no niega que se quiten detenciones
+
+$ awk '/^### La autocorrección/{f=1} f && /^\| \*\*/{c++} /^\*\*Y la contraparte/{f=0} END{print c}' SDD/Devs/Orchestrator/Master-Prompt.md
+3
+
+$ grep -n 'Hay que separar tres' SDD/Devs/Orchestrator/Master-Prompt.md
+947:**Detectar un defecto propio y ofrecerlo como opción es entregar trabajo a medias.** Hay que separar tres
+
+$ grep -n 'Esta sección no agrega ninguna detención' SDD/Devs/Orchestrator/Master-Prompt.md
+1089:**Esta sección no agrega ninguna detención.** **Sí quita** —y lo hace desde la pregunta previa, aunque
+
+$ grep -n 'Ante la duda, se detiene\*\* —sobre un hecho ajeno a la corrida—' SDD/Devs/Orchestrator/Master-Prompt.md
+1024:**Ante la duda, se detiene** —sobre un hecho ajeno a la corrida—. Clasificar mal hacia «lo resuelvo yo» es peor que hacia «lo pregunto»: el
+
+### V9  Catálogo (comprobación 12): filas de §3 y total de §4
+
+$ awk '/^## 3\./{f=1} /^## 4\./{f=0} f && /^\| / && !/^\| Situación/ && !/^\|---/' SDD/Devs/Rules/Catalogo-De-Criterios.md | wc -l
+46
+
+$ git show 476f927:SDD/Devs/Rules/Catalogo-De-Criterios.md | awk '/^## 3\./{f=1} /^## 4\./{f=0} f && /^\| / && !/^\| Situación/ && !/^\|---/' | wc -l
+44
+
+$ grep -n '^| \*\*Total\*\* | \*\*222\*\*' SDD/Devs/Rules/Catalogo-De-Criterios.md
+118:| **Total** | **222** | **108** | **114** |
+
+### V10  Snapshot _legacy/13.10 (§VI.5)
+
+$ grep -h '^\*\*Versión' _legacy/13.10/SDD/Devs/Orchestrator/Master-Prompt.md _legacy/13.10/SDD/Devs/Rules/Mesa-Rules.md _legacy/13.10/SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md _legacy/13.10/SDD/Devs/Orchestrator/Master-Prompt-Migracion.md _legacy/13.10/SDD/Devs/Rules/Catalogo-De-Criterios.md
+**Versión:** 8.14
+**Versión de las reglas:** 1.1
+**Versión:** 1.11
+**Versión:** 2.9
+**Versión:** 1.15
+
+$ find _legacy/13.10 -type f | wc -l
+127
+
+$ git ls-tree -r --name-only 476f927 -- Conocimiento Examples PROMPTS README.md SDD Templates | wc -l
+127
+
+$ ls _legacy/13.10/CHANGELOG.md _legacy/13.10/_legacy 2>&1 | head -2
+ls: no se puede acceder a '_legacy/13.10/CHANGELOG.md': No existe el fichero o el directorio
+ls: no se puede acceder a '_legacy/13.10/_legacy': No existe el fichero o el directorio
+
+$ diff -r <(cd _legacy/13.10 && find . -type f | sort) <(git ls-tree -r --name-only 476f927 -- Conocimiento Examples PROMPTS README.md SDD Templates | sed 's#^#./#' | sort) && echo 'mismos archivos'
+mismos archivos
+
+$ for f in $(cd _legacy/13.10 && find . -type f); do git show 476f927:${f#./} | cmp -s - _legacy/13.10/$f || echo DIFIERE $f; done | wc -l
+0
