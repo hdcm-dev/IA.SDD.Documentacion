@@ -31,11 +31,16 @@ que fija la `06`**: la mesa midió que si la clasificación que el `27` propone 
 de una familia calificada es de **45 ocurrencias**, no cero. **Verificar al empezar que la `06` esté
 aplicada.** La evidencia está en esta misma carpeta, `OUTPUTs/Mesa-2026-09-12-Colision-Lexica/`.
 
-**Y de la `04` depende el mecanismo.** La razón es que el mecanismo que acá se
-decide —un campo derivado que se calcula en vez de declararse— **es la misma forma** que la intervención
-`04` resuelve para la procedencia de una detención. Si el `26` ya se aplicó, acá se **reutiliza** su
-pieza en vez de inventar una segunda. **Verificar al empezar si el `26` está aplicado**, y si no lo
-está, decidir explícitamente si se espera o se avanza declarando el riesgo de duplicar mecanismo.
+**Y de la `04` depende el mecanismo.** La razón es que el mecanismo que acá se decide —un campo que se
+**calcula** en vez de declararse— **es la misma forma** que la intervención `04` resolvió para una
+detención. **La `04` ya está aplicada, en SDD 13.11, y decidió distinto de lo que este prompt suponía
+al emitirse**: el dato se llama **`origen del hecho`** y se calcula **contra la base de la corrida** —el
+commit sobre el que T0 devolvió EN ORDEN, publicado en su línea `Base`—, **no contra el snapshot del
+estado previo**, porque medido el snapshot se toma por despacho y no contiene el dato. Ver
+`Master-Prompt.md` §8.1 y el glosario de §15, y la decisión con su evidencia en
+`04-Fix-Reporte-26/OUTPUTs/10-Decision-Origen-Del-Hecho.md`. **Acá se reutiliza esa pieza** en vez de
+inventar una segunda; si no sirve para un hueco —que a diferencia de una detención **persiste entre
+corridas**—, decir exactamente por qué.
 
 **Lo que este reporte tiene de distinto.** Como el `25`, señala algo que el método **no hace**, y su
 corrección **agrega** en vez de arreglar. Pero tiene una particularidad que ninguno de los otros tiene:
@@ -124,8 +129,10 @@ Si se concluye que hace falta una figura nueva, **decir por qué ninguna de las 
 - Con el **`25`**: aquél trata el **disparador** del ciclo y éste el **formato del hueco** dentro de él.
   Son separables y se decidió aplicarlos separados. **Si durante la intervención aparece que no lo son,
   eso es un hallazgo** y se declara en vez de fusionarlos por comodidad.
-- Con el **`26`**: los dos piden un dato de procedencia derivado. **Si el `26` ya se aplicó, reutilizar
-  su mecanismo**; si se crea uno paralelo, decir por qué el existente no servía.
+- Con el **`26`**: los dos piden un dato que se **calcula** y no se declara. El `26` está aplicado y su
+  pieza es la **base de la corrida**: **reutilizarla**, y si se crea una paralela, decir por qué la
+  existente no servía. **Cuidado con el caso que la distingue**: la base es de **una** corrida, y un
+  hueco declarado hoy se lee en corridas futuras.
 
 **8 · Diagnosticar y producir evidencia en `OUTPUTs`.** Escribir los resultados intermedios en
 `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/05-Fix-Reporte-27/OUTPUTs/`: el resultado de las solicitudes

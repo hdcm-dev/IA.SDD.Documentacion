@@ -16,12 +16,29 @@ Leer `/IA/SDD/IA.SDD/README.md`: es un `Framework SDD` (Spec-Driven Development)
 
 **Por qué no entran los otros que quedan sin aplicar.** Verificar el estado en
 [`Reportes/README.md`](../../../Reportes/README.md) **antes** de fijar el alcance, y no heredarlo del
-nombre de la carpeta anterior —es la advertencia que el README de esta serie deja escrita—. Al emitirse
-este prompt, el `16` tiene su propia intervención (`02`) **sin aplicar**, y el `17` y los `19` a `24`
-están abiertos sin intervención asignada. **Ninguno entra acá**: el `25` se aplica solo porque **toca un
-eje que ninguno de los otros toca** —qué hace el método cuando cambia el alcance del producto— y
-mezclarlo con correcciones de otros ejes produciría una intervención que nadie puede auditar por
-partes.
+nombre de la carpeta anterior —es la advertencia que el README de esta serie deja escrita—. **El
+estado que este párrafo declaraba al emitirse ya cambió, y se corrige acá en vez de dejarlo envejecer**:
+decía que el `16` tenía su intervención (`02`) «sin aplicar», y la `02` está declarada **sin objeto**
+porque el `16` se resolvió en SDD 13.6. El `17` y los `19` a `24` siguen abiertos sin intervención
+asignada. **Ninguno entra acá**: el `25` se aplica solo porque **toca un eje que ninguno de los otros
+toca** —qué hace el método cuando cambia el alcance del producto— y mezclarlo con correcciones de otros
+ejes produciría una intervención que nadie puede auditar por partes.
+
+**Esta intervención es la última de cuatro, y corre sobre un framework que ya cambió.** El orden de la
+corrida del 2026-09-12 es **`04` (reporte `26`) → `06` (reporte `28`) → `05` (reporte `27`) → ésta**, y
+el reporte `25` se evaluó contra SDD **13.10**, antes de las tres. **Verificar al empezar, en el
+`CHANGELOG.md`, que las tres estén aplicadas**, y leer sus entradas: las tres tocan terreno que esta
+intervención pisa.
+
+- La `04` agregó **el origen del hecho**, calculado contra **la base de la corrida**, y **el lote de la
+  fase**. Una decisión de producto posterior al handoff es exactamente la clase de hecho cuyo origen hay
+  que calcular antes de elevarla.
+- La `06` fijó **qué términos gobierna `Vocabulario-Rules.md` y con qué unidad de contexto**. Si esta
+  intervención acuña vocabulario —un estado de vida del producto, por ejemplo, que es su pregunta
+  §5.4—, la colisión se decide con esa regla y **se afirma con su comando al lado**.
+- La `05` decidió **cómo se registra el ciclo de origen de un hueco**. El disparador que esta
+  intervención decide abre un ciclo nuevo: **los huecos que ese ciclo declare tienen que salir ya
+  correlacionables**, y conviene reutilizar la pieza de la `05` en vez de inventar otra.
 
 **Lo que este reporte tiene de distinto, y conviene saber antes de empezar.** Los veinticuatro
 anteriores señalan defectos en cómo el método especifica, propaga o audita. **El `25` señala algo que
