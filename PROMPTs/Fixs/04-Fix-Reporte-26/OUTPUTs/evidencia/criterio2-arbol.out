@@ -1,0 +1,59 @@
+### Corrida de la intervención 04 — base 476f927, comparado contra el árbol de trabajo
+
+## H1 · «la autocorrección tiene una fila para el estado a medias de la corrida»
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -cF '| **Un estado a medias que produjo esta corrida**'
+0
+
+$ git diff 476f927  -- SDD/Devs/Orchestrator/Master-Prompt.md | grep -c '^+.*Un estado a medias que produjo esta corrida'
+1
+=> no está en la base y lo agregó la corrida: DE LA CORRIDA
+
+## H2 · «el disparador 4 de la mesa es la irreversibilidad con impacto material»
+
+$ git show 476f927:SDD/Devs/Rules/Mesa-Rules.md | grep -cF '| 4 | **Irreversibilidad con impacto material**'
+1
+
+$ git diff 476f927  -- SDD/Devs/Rules/Mesa-Rules.md | grep -c 'Irreversibilidad con impacto material'
+0
+=> está en la base y la corrida no tocó esas líneas: AJENO A LA CORRIDA
+
+## H3 · «la cláusula del snapshot de §8 manda detener sin editar» — el caso de la línea que estaba y la corrida cambió
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -c 'contenido que el snapshot no refleja, detenete y devolvelo como ambigüedad según §9, sin editar.$'
+1
+
+$ git diff 476f927  -- SDD/Devs/Orchestrator/Master-Prompt.md | grep -c '^-.*contenido que el snapshot no refleja, detenete'
+1
+=> estaba en la base y un cambio de la corrida la reescribió: DE LA CORRIDA
+
+### Un caso real: la escalada E-04 de Lab-Geometria (2026-09-12), sólo lectura
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
+8:**Revisión leída:** `5c95dab` de `main`, árbol de trabajo limpio
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'Estrategia-Versionado.md. dice que la regla de etiquetar'
+336:**Qué pasó.** `Estrategia-Versionado.md` dice que la regla de etiquetar «rige desde la fase `i` en adelante», `git tag` corta en `v0.8.0`, hubo dos despliegues reales sin etiqueta y `/salud` informa `1.0.0+<sha>`, que es el valor por omisión del SDK. Operación propone `v0.9.0` retroactiva; el refutador sostiene que la regla habla de **etapa cerrada** y ninguno de los dos PR lo es.
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria cat-file -e 5c95dab:SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/09-Devops/Estrategia-Versionado.md && echo existe-en-la-base
+existe-en-la-base
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria diff --stat 5c95dab archivo/reanudacion-6-2026-09-12 -- SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/09-Devops/Estrategia-Versionado.md | wc -l
+0
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria cat-file -e 5c95dab:SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/09-Devops/Estrategia-Versionado.md && echo existe-en-la-base
+existe-en-la-base
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria diff --stat 5c95dab archivo/reanudacion-6-2026-09-12 -- SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/09-Devops/Estrategia-Versionado.md | wc -l
+0
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show 5c95dab:SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/09-Devops/Estrategia-Versionado.md | grep -n 'fase .i. en adelante' | cut -c1-160
+39:4. **Cada etapa cerrada y fusionada recibe una etiqueta**, y la reversión es volver a la etiqueta anterior y reconstruir. **Con una excepción declarada, y 
+501:| 4.1 | 2026-08-27 | **Default `E-01` de la mesa de evaluación del 2026-08-27** ([`../../../Audit/Mesa-2026-08-27.md`](../../../Audit/Mesa-2026-08-27.md)),
+=> el documento que sostiene el hecho está en la base y la corrida no lo tocó: AJENO A LA CORRIDA. No se leyó ninguna declaración del agente sobre su origen: el registro de mesa no tiene ese campo.
+
+### El caso no calculable: E-05 cita DESPLIEGUE.md
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep -ci 'DESPLIEGUE.md'
+0
+=> no vive en el repositorio en la base: NO CALCULABLE, se trata como de la corrida y la detención dice por qué

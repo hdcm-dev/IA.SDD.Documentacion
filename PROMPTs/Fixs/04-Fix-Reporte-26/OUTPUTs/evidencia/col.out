@@ -1,0 +1,19 @@
+### Colisión de los nombres candidatos — árbol vivo, sin _legacy/
+    0  «origen del hecho»
+    0  «base de la corrida»
+  136  «procedencia»
+  492  «origen»
+
+### «procedencia» y «origen» dentro de las secciones que la intervención toca (contexto de lectura: la sección, Vocabulario-Rules §9.2)
+--- [Pp]rocedencia
+SDD/Devs/Orchestrator/Master-Prompt.md:631  [§7.0 Registro de decisiones pendientes y detenci�]  Reconciliación normativa (solo si `SDD/Docs/` tiene contenido previo, antes de todo lo demás). El orquestador ejecuta §2.1: compara la procedencia 
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:170  [§3 R1 — Presentación del estado]    Procedencia declarada:   SDD {{VERSION_ORIGEN}}
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:172  [§3 R1 — Presentación del estado]    Estado:                  {{al día | desfasado en N versiones | sin procedencia}}
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:507  [§6 Criterios de aceptación]  - [ ] [interpretativo] Si se eligió actualizar la procedencia sin migrar, **la verificación
+--- [Oo]rigen\\b
+
+
+$ grep -n '^## §8 M4\|^## §7 M3\|^## §9 M5' SDD/Devs/Orchestrator/Master-Prompt-Migracion.md
+246:## §7 M3 — Re-derivación del manifiesto
+261:## §8 M4 — Migración de `SDD/Docs/`
+297:## §9 M5 — Cierre de procedencia

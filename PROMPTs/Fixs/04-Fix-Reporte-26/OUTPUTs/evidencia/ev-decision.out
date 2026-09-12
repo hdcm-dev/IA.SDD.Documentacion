@@ -1,0 +1,136 @@
+### S3.a  Despachos paralelos y documentos compartidos (por qué la cláusula de §8 sí se dispara dentro de una corrida)
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'unidades del mismo nivel paralelizables'
+640:Bucle por **unidad de entrega**, en orden topológico del grafo de integración (niveles 0, 1, 2, ...; unidades del mismo nivel paralelizables). Para cada unidad de entrega **no diferida** se ejecutan las fases B a G con su `tipo_unidad_entrega` y sus flags:
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'Los compartidos con otras unidades de entrega van marcados'
+768:- **Se compone de los proyectos de código**: {{LISTA_PROYECTOS_CODIGO}}, con su stack. Los compartidos con otras unidades de entrega van marcados: un cambio sobre uno de ellos alcanza a las demás
+
+### S3.b  T2: el historial es el contraste observable, y no incluye lo no commiteado
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'Antes de la primera escritura\*\*, el árbol de trabajo tiene que estar limpio'
+1513:**Antes de la primera escritura**, el árbol de trabajo tiene que estar limpio. Si hay cambios sin
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'historial del repositorio es el contraste observable'
+1518:historial del repositorio es el contraste observable de varias dimensiones, y no incluye lo que no
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'Antes de la primera escritura de cualquier unidad de trabajo'
+1469:**Antes de la primera escritura de cualquier unidad de trabajo**, el orquestador contrasta el
+
+### S3.c  T5 republica con el formato de T0
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'y lo publica con el formato'
+1568:4. **Deja el repositorio en el estado que la unidad siguiente necesita**, y lo publica con el formato
+
+### S3.d  «procedencia» y «origen» suelto en las secciones que se tocan (nombre del campo)
+
+$ cat /tmp/claude-1000/-home-fernando-workspaces-workspace-dev/eb413e91-8465-41bd-a046-ce8e9f27fb41/scratchpad/col.out
+### Colisión de los nombres candidatos — árbol vivo, sin _legacy/
+    0  «origen del hecho»
+    0  «base de la corrida»
+  136  «procedencia»
+  492  «origen»
+
+### «procedencia» y «origen» dentro de las secciones que la intervención toca (contexto de lectura: la sección, Vocabulario-Rules §9.2)
+--- [Pp]rocedencia
+SDD/Devs/Orchestrator/Master-Prompt.md:631  [§7.0 Registro de decisiones pendientes y detenci�]  Reconciliación normativa (solo si `SDD/Docs/` tiene contenido previo, antes de todo lo demás). El orquestador ejecuta §2.1: compara la procedencia 
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:170  [§3 R1 — Presentación del estado]    Procedencia declarada:   SDD {{VERSION_ORIGEN}}
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:172  [§3 R1 — Presentación del estado]    Estado:                  {{al día | desfasado en N versiones | sin procedencia}}
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:507  [§6 Criterios de aceptación]  - [ ] [interpretativo] Si se eligió actualizar la procedencia sin migrar, **la verificación
+--- [Oo]rigen\\b
+
+
+$ grep -n '^## §8 M4\|^## §7 M3\|^## §9 M5' SDD/Devs/Orchestrator/Master-Prompt-Migracion.md
+246:## §7 M3 — Re-derivación del manifiesto
+261:## §8 M4 — Migración de `SDD/Docs/`
+297:## §9 M5 — Cierre de procedencia
+
+$ cat /tmp/claude-1000/-home-fernando-workspaces-workspace-dev/eb413e91-8465-41bd-a046-ce8e9f27fb41/scratchpad/col2.out
+### «origen» suelto dentro de las secciones que la intervención toca
+$ awk (patrón [Oo]rigen seguido de no-letra) por sección
+SDD/Devs/Orchestrator/Master-Prompt.md:624  [§7.0 Registro de decisiones pendientes y detenci�]    emitido y hallazgos aguas arriba de §10 sin corregir en su origen.
+SDD/Devs/Orchestrator/Master-Prompt.md:631  [§7.0 Registro de decisiones pendientes y detenci�]  Reconciliación normativa (solo si `SDD/Docs/` tiene contenido previo, antes de todo lo demás). El orquestador ejecuta §2.1: compara la pr
+SDD/Devs/Orchestrator/Master-Prompt.md:929  [La autocorrección: qué hace el agente cuando el ]  trece encabezados verificables contra su origen, y el orden en que consolidar dos categorías—. Ninguna
+
+### Dónde se reproduce el bloque de T0
+$ grep -rn "COMPUERTA DE ARRANQUE\|Veredicto de arranque\|Entregas vivas:" --include=*.md --exclude-dir=_legacy .
+Conocimiento/Knowledge-Conformacion-Pull-Request-Manual.md:145:Orquestador → COMPUERTA DE ARRANQUE — <repositorio>
+Conocimiento/Knowledge-Conformacion-Pull-Request-Manual.md:158:              COMPUERTA DE ARRANQUE — <repositorio>   (el estado con que arranca la próxima)
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:177:  Entregas vivas:          {{ninguna | rama {{nombre}}, esperando merge}}
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:178:  Veredicto de arranque:   {{EN ORDEN | SE DETUVO: {{motivo}}}}
+SDD/Devs/Orchestrator/Master-Prompt.md:1489:COMPUERTA DE ARRANQUE — {{repositorio}}
+SDD/Devs/Orchestrator/Master-Prompt.md:1492:  Entregas vivas:  {{ninguna | rama {{nombre}}, esperando merge, PR {{url}}}}
+
+$ grep -rniow --include='*.md' --exclude-dir=_legacy -- 'ajeno a la corrida' . | wc -l
+0
+
+$ grep -rniow --include='*.md' --exclude-dir=_legacy -- 'lote de la fase' . | wc -l
+0
+
+### S4  Lab-Geometria (sólo lectura): la base que el destino escribió y el origen de sus escaladas abiertas
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria rev-parse 5c95dab
+5c95dab5074717dcd72cd6322312e07f1f1a0691
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
+8:**Revisión leída:** `5c95dab` de `main`, árbol de trabajo limpio
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria log --oneline 5c95dab..archivo/reanudacion-6-2026-09-12
+1fe47af Archivo de la sexta reanudación (2026-09-12): informe de estado y registro de mesa
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria log --oneline 5c95dab..main | wc -l
+0
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n '^### E-0[1-5]'
+298:### E-01 · La etapa `i`: qué es su entregable ahora — **disparador 3, cambio de alcance**
+310:### E-02 · La API quedó públicamente alcanzable — **disparador 5, consecuencia externa**
+322:### E-03 · Los secretos de FTP y el flujo que sigue publicando — **disparador 5, obligaciones con un tercero**
+334:### E-04 · Qué evento dispara una etiqueta de versión — **disparador 1, ambigüedad de intención**
+340:### E-05 · El estado durable del front — **disparador 4, irreversibilidad acotada**
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'Tres escaladas del ciclo 1 quedan respondidas'
+460:- **Tres escaladas del ciclo 1 quedan respondidas por el testimonio** (`E-01`, `E-03` y, parcialmente, `E-02`: la exposición de la API sigue abierta porque el testimonio no la menciona).
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep 'Estrategia-Versionado.md'
+SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/09-Devops/Estrategia-Versionado.md
+SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/09-Devops/Estrategia-Versionado.md
+SDD/Docs/_legacy/2026-08-15-migracion-8.2/GeometriaFactory-Contracts/09-Devops/Estrategia-Versionado.md
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep -ci 'DESPLIEGUE.md'
+0
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'RE-REF-05\|RE-GP-02'
+422:| `RE-GP-02` | Las dos decisiones del Product Owner quedaron asentadas **en el repositorio del framework**, no en el registro de decisiones del destino | E1 | P0 |
+434:| `RE-REF-05` | **Son tres cosas, no una**: (i) el ciclo evolutivo ausente es de framework; (ii) «la decisión sin control ejecutable» es trabajo de la categoría 09 **del destino** —el framework no distribuye código y está decidido—; (iii) el registro de decisiones en el repositorio equivocado es un error **de esta corrida**, no normativo | P1 |
+
+$ ls /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs/Audit | grep -c '^Mesa-'
+6
+
+$ find /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs -name 'Decisiones-Pendientes.md' -not -path '*/_legacy/*' | wc -l
+0
+
+### S3.e  Citas que usa la decisión
+
+$ grep -n 'una duplicación que hay que mantener en paralelo se desincroniza' SDD/Devs/Rules/Migracion-Rules.md
+104:2. **El estado objetivo ya está declarado y no hay que escribirlo.** Cada archivo de reglas declara su tabla maestra, sus reglas de inclusión por tipo, sus criterios de aceptación y sus anti-patrones. Ésa es la especificación completa del destino. Un playbook la duplicaría, y una duplicación que hay que mantener en paralelo se desincroniza.
+
+$ git show 476f927:SDD/Devs/Rules/Root-Rules.md | grep -n '§8.1 corre antes que esta sección'
+744:**§8.1 corre antes que esta sección y no se repite acá.** Si el conflicto requiere intención de
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'Esta sección gobierna las cuatro familias de detención del método'
+850:**Esta sección gobierna las cuatro familias de detención del método, y la leen los tres
+
+$ git show 476f927:SDD/Devs/Guides/Coherencia-La-Pregunta-Previa.md | grep -n 'sigue siendo un juicio del agente sobre su propio trabajo'
+140:que «¿es del humano?», pero **sigue siendo un juicio del agente sobre su propio trabajo**, que es el
+
+$ git show 476f927:SDD/Devs/Rules/Mesa-Rules.md | grep -n 'emitido bajo la 1.0 sigue cumpliendo'
+668:| 1.1 | 2026-08-29 | **La convocatoria pasa de una lista de puntos a una condición declarada, y §0.0 es nueva.** La 1.0 declaraba que «el orquestador que la invoca declara **cuándo**», y los puntos que los orquestadores enumeran **no agotaban** el momento que el mecanismo pide: los dos que existían y la condición producían la misma lista el día que se escribió, y la diferencia apareció con el primer caso que la cumplía desde otro lugar. Entran las **tres cláusulas** —corpus previo, estado leído, plan o decisión de alcance por tomar—, los puntos quedan como **casos y no como definición**, y se declara que un caso sin orquestador **se convoca igual**. **§0.3 corrige la otra cara**: «no corre sobre un destino vacío» **no es** «no corre en la generación», que es la derivación que la 1.0 dejó escrita — un destino deja de estar vacío apenas la primera fase produce algo, y desde ahí nadie mira el corpus como conjunto; con su límite escrito, para no duplicar el audit de fase. **§6.1 suma la obligación de contrastar la fuente** cuando un `P0` se ancla en una declaración —fila de plan, casilla, campo de estado— porque la mesa lo incumplió **dos veces en su primera corrida real**, en el anti-patrón que el método nombra primero. **§2.1** admite el sufijo de ciclo cuando hay más de uno por fecha; **§2.2** obliga a declarar el prefijo de familia del ciclo, que no reusa una familia ya presente en la carpeta; y **§6.7** declara que el contador del ciclo **es propio y no acumula** con el de las rondas de audit, con la advertencia de que el rendimiento por especialista no cayó entre las dos primeras corridas. **Sube minor**: agrega obligaciones y no deroga ninguna regla; un registro de mesa emitido bajo la 1.0 sigue cumpliendo. | Intervención de la condición de convocatoria |
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'Cambio en el plan de §6, en la mecánica de §8 o en el flujo de §7: sube minor'
+1742:- Cambio en el plan de §6, en la mecánica de §8 o en el flujo de §7: sube minor.
+
+$ git show 476f927:SDD/Devs/Orchestrator/Master-Prompt.md | grep -n 'no agrega ninguna detención ni quita ninguna'
+1001:**Esta sección no agrega ninguna detención ni quita ninguna.** Cambia **la forma** de las que ya
+
+$ git show 476f927:SDD/Devs/Rules/Mesa-Rules.md | grep -n 'lo que ya existía al abrir la corrida'
+100:  **Con su límite, o esto duplica el audit:** la mesa mira **lo que ya existía al abrir la corrida**,

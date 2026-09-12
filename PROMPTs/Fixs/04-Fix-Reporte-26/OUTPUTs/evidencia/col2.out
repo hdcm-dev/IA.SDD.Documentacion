@@ -1,0 +1,14 @@
+### «origen» suelto dentro de las secciones que la intervención toca
+$ awk (patrón [Oo]rigen seguido de no-letra) por sección
+SDD/Devs/Orchestrator/Master-Prompt.md:624  [§7.0 Registro de decisiones pendientes y detenci�]    emitido y hallazgos aguas arriba de §10 sin corregir en su origen.
+SDD/Devs/Orchestrator/Master-Prompt.md:631  [§7.0 Registro de decisiones pendientes y detenci�]  Reconciliación normativa (solo si `SDD/Docs/` tiene contenido previo, antes de todo lo demás). El orquestador ejecuta §2.1: compara la pr
+SDD/Devs/Orchestrator/Master-Prompt.md:929  [La autocorrección: qué hace el agente cuando el ]  trece encabezados verificables contra su origen, y el orden en que consolidar dos categorías—. Ninguna
+
+### Dónde se reproduce el bloque de T0
+$ grep -rn "COMPUERTA DE ARRANQUE\|Veredicto de arranque\|Entregas vivas:" --include=*.md --exclude-dir=_legacy .
+Conocimiento/Knowledge-Conformacion-Pull-Request-Manual.md:145:Orquestador → COMPUERTA DE ARRANQUE — <repositorio>
+Conocimiento/Knowledge-Conformacion-Pull-Request-Manual.md:158:              COMPUERTA DE ARRANQUE — <repositorio>   (el estado con que arranca la próxima)
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:177:  Entregas vivas:          {{ninguna | rama {{nombre}}, esperando merge}}
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:178:  Veredicto de arranque:   {{EN ORDEN | SE DETUVO: {{motivo}}}}
+SDD/Devs/Orchestrator/Master-Prompt.md:1489:COMPUERTA DE ARRANQUE — {{repositorio}}
+SDD/Devs/Orchestrator/Master-Prompt.md:1492:  Entregas vivas:  {{ninguna | rama {{nombre}}, esperando merge, PR {{url}}}}

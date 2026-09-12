@@ -1,0 +1,284 @@
+### Base
+
+$ git -C /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD rev-parse HEAD
+476f927bf07ec5fa79167c5e8a5b95bd2f2384a9
+
+$ git -C /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD status --short | wc -l
+0
+
+### S1.a  §7.0 — qué entra al registro y cuándo se exhibe
+
+$ grep -n 'Entran: ambigüedades de §9 que el humano difirió' SDD/Devs/Orchestrator/Master-Prompt.md
+622:- Entran: ambigüedades de §9 que el humano difirió, extensiones de conjunto cerrado sin arbitrar,
+
+$ grep -n 'El orquestador lo exhibe al cerrar cada fase' SDD/Devs/Orchestrator/Master-Prompt.md
+626:**El orquestador lo exhibe al cerrar cada fase**, junto con el informe de audit, y no solo en el
+
+### S1.b  §8 — la cláusula del snapshot, literal
+
+$ grep -nF 'Si al abrir el entregable encontrás contenido que el snapshot no refleja, detenete y devolvelo como ambigüedad según §9, sin editar.' SDD/Devs/Orchestrator/Master-Prompt.md
+810:Si el bloque dice EXISTENTE, el orquestador ya archivó el estado previo del entregable en la ruta indicada, antes de construir este despacho. No lo archives de nuevo: editás el archivo vivo. Si al abrir el entregable encontrás contenido que el snapshot no refleja, detenete y devolvelo como ambigüedad según §9, sin editar.
+
+### S1.c  §8 — cuándo se toma el snapshot
+
+$ grep -n 'antes de construir este despacho' SDD/Devs/Orchestrator/Master-Prompt.md
+810:Si el bloque dice EXISTENTE, el orquestador ya archivó el estado previo del entregable en la ruta indicada, antes de construir este despacho. No lo archives de nuevo: editás el archivo vivo. Si al abrir el entregable encontrás contenido que el snapshot no refleja, detenete y devolvelo como ambigüedad según §9, sin editar.
+
+$ grep -n 'el orquestador toma el snapshot en ese momento' SDD/Devs/Orchestrator/Master-Prompt.md
+843:- Cuando resuelve `EXISTENTE`, el orquestador toma el snapshot en ese momento, según la política de deprecación de §5, y verifica que esté completo antes de despachar. **Al archivar, los enlaces relativos del snapshot que apuntan fuera de él se reescriben para que sigan resolviendo desde su ubicación nueva.** Un documento archivado baja uno o dos niveles respecto de donde vivía, de modo que toda ruta relativa suya queda corta: sin esta reescritura, cada archivado deja colgados tantos enlaces como referencias tuviera el documento, y se acumulan sin que nadie los vea. El snapshot es responsabilidad del orquestador y no del subagente: un subagente puede abortar después de haber editado y antes de haber archivado, y una fase que despacha varios subagentes produciría carpetas de archivado parciales de distintos momentos. Es la misma asignación de responsabilidad que §13.6 ya hace para el intake.
+
+### S1.d  §8.1 — la pregunta previa, la tabla de dos filas y «ante la duda»
+
+$ grep -n '¿Esto tiene respuesta en el árbol?' SDD/Devs/Orchestrator/Master-Prompt.md
+934:> **¿Esto tiene respuesta en el árbol?** Si la tiene —si se contesta abriendo los documentos y
+
+$ awk '/^### La autocorrección/{f=1} f && /^\| \*\*/{print NR": "substr($0,1,90)} /^\*\*Y la contraparte/{f=0}' SDD/Devs/Orchestrator/Master-Prompt.md
+914: | **Un defecto del propio trabajo** —un enlace mal derivado, una fila fuera de orden, un
+915: | **Una decisión de diseño** —qué salida aplicar, migrar o seguir, qué merece ser pa
+
+$ grep -n '^\*\*Ante la duda, se detiene.\*\*' SDD/Devs/Orchestrator/Master-Prompt.md
+944:**Ante la duda, se detiene.** Clasificar mal hacia «lo resuelvo yo» es peor que hacia «lo pregunto»: el
+
+### S1.e  §9 — campos del bloque de ambigüedad
+
+$ awk '/^   AMBIGÜEDAD DETECTADA/{f=1} f{print NR": "$0} f && /Qué pasa si no se responde/{f=0}' SDD/Devs/Orchestrator/Master-Prompt.md
+1016:    AMBIGÜEDAD DETECTADA
+1017:    - Subagente: {{NOMBRE_SUBAGENTE}}
+1018:    - Producto / unidad de entrega: {{NOMBRE_PRODUCTO}} / {{NOMBRE_UNIDAD_ENTREGA}}
+1019:    - Documento bloqueado: {{PATH_DOCUMENTO}}
+1020:    - Sección afectada: {{SECCION}}
+1021:    - Pregunta concreta: {{PREGUNTA}}
+1022:    - Por qué la pregunta no se puede resolver con los insumos actuales: {{JUSTIFICACION}}
+1023:    - Qué se necesita: {{TIPO_DATO_ESPERADO}}
+1024:    - Intake donde debería vivir la respuesta: {{PATH_INTAKE}} §{{SECCION_INTAKE}}
+1025:    - **Propuesta**: {{el valor o la salida que el subagente propondría, con su fundamento en una línea}}
+1026:    - **Alternativa**: {{la segunda opción, y en qué caso ganaría}}
+1027:    - **Qué pasa si no se responde ahora**: {{qué queda bloqueado y qué puede seguir}}
+
+### S1.f  Mesa-Rules §0.0, §0.1, §0.2
+
+$ grep -n 'La mesa se convoca cuando se cumplen las tres' SDD/Devs/Rules/Mesa-Rules.md
+23:**La mesa se convoca cuando se cumplen las tres:**
+
+$ grep -n 'tres no eran del Product Owner' SDD/Devs/Rules/Mesa-Rules.md
+64:| De **cinco detenciones** presentadas al Product Owner en una corrida real, **tres no eran del Product Owner**: dos filas de registro fuera de su tabla, trece encabezados verificables contra su origen y el orden de consolidar dos categorías | `Master-Prompt.md` §8.1 y `Coherencia-La-Pregunta-Previa.md` §2 | El 60 % de las consultas tenían respuesta en el árbol. No era criterio de producto: era análisis que nadie había hecho |
+
+$ grep -n 'Tres mediciones del framework' SDD/Devs/Rules/Mesa-Rules.md
+60:**Tres mediciones del framework sostienen que el hueco existe y que su costo se paga en detenciones:**
+
+$ grep -n '^| | Auditoría entre fases' SDD/Devs/Rules/Mesa-Rules.md
+75:| | Auditoría entre fases (`Master-Prompt.md` §10) | Mesa de evaluación (este archivo) |
+
+### S1.g  Mesa-Rules §7 — filas de disparadores, cita de la inversión, §7.1
+
+$ awk '/^## 7\. Escalada/{f=1} /^### 7\.1/{f=0} f && /^\| [0-9] \|/' SDD/Devs/Rules/Mesa-Rules.md | wc -l
+7
+
+$ tr '\n' ' ' < SDD/Devs/Rules/Mesa-Rules.md | grep -o 'una consulta de *más en un lote de veinte entrena a firmar el lote sin leerlo' 
+una consulta de más en un lote de veinte entrena a firmar el lote sin leerlo
+
+$ grep -n 'Las escaladas se entregan agrupadas al cierre del ciclo, no de a una' SDD/Devs/Rules/Mesa-Rules.md
+572:**Las escaladas se entregan agrupadas al cierre del ciclo, no de a una.** Las de tipo 2 y 3 son la
+
+$ grep -n '^  SI NO RESPONDÉS' SDD/Devs/Rules/Mesa-Rules.md
+579:  SI NO RESPONDÉS
+
+### S1.h  Reanudación §6 — el criterio de la lista cerrada
+
+$ grep -n 'Toda consulta que R2 le hizo al humano es una escalada' SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md
+501:- [ ] [enumerable] **Toda consulta que R2 le hizo al humano es una escalada de `Mesa-Rules.md` §7**, y
+
+### S1.i  Memoria de antecedentes §2.2
+
+$ grep -n 'hubo que abrir los cinco y cruzarlos a mano\|tres no eran lo que decían\|Los cuatro «enlaces rotos» viajaron tres informes' /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/Informes/Memoria-De-Antecedentes-Casos-Resueltos.md
+80:quedaba pendiente hubo que abrir los cinco y cruzarlos a mano.
+82:**Al abrirlos uno por uno, tres no eran lo que decían:**
+90:**Los cuatro «enlaces rotos» viajaron tres informes** antes de que alguien los abriera. Cada informe
+
+### S1.j  «procedencia» por sección (ocurrencias y líneas)
+
+$ awk '/^#+ /{s=$0; sub(/^#+ /,"",s); s=substr(s,1,45)} {l=$0; n=gsub(/[Pp]rocedencia/,"",l); if(n){o[s]+=n; c[s]++; t+=n; tl++}} END{for(k in o) printf "%3d occ %3d lín | %s\n",o[k],c[k],k; printf "TOTAL %d occ en %d líneas\n",t,tl}' SDD/Devs/Orchestrator/Master-Prompt.md | sort -t'|' -k2
+TOTAL 17 occ en 14 líneas
+  1 occ   1 lín | §0 Cómo usar este prompt
+  3 occ   3 lín | §16 Versionado del prompt orquestador
+  9 occ   7 lín | §2.1 Reconciliación normativa
+  1 occ   1 lín | §3 Fase de validación de intake y derivaci�
+  2 occ   1 lín | §5.1 Detalle operativo de la política de de
+  1 occ   1 lín | §7.0 Registro de decisiones pendientes y det
+
+$ awk '/^#+ /{s=$0; sub(/^#+ /,"",s); s=substr(s,1,45)} {l=$0; n=gsub(/[Pp]rocedencia/,"",l); if(n){o[s]+=n; c[s]++; t+=n; tl++}} END{for(k in o) printf "%3d occ %3d lín | %s\n",o[k],c[k],k; printf "TOTAL %d occ en %d líneas\n",t,tl}' SDD/Devs/Rules/Migracion-Rules.md | sort -t'|' -k2
+TOTAL 23 occ en 16 líneas
+  1 occ   1 lín | 0. El problema que resuelve
+  3 occ   1 lín | 2.3 Nomenclatura
+  1 occ   1 lín | 3. El principio de estado objetivo
+  1 occ   1 lín | 4.3.2 Migración estructural: del proyecto de
+  3 occ   3 lín | 4.5 Destinos sin procedencia declarada
+  4 occ   2 lín | 4.6 Migración parcial como estado final
+  1 occ   1 lín | 5. Preguntas guía
+  4 occ   3 lín | 6. Criterios de aceptación
+  3 occ   2 lín | 7. Anti-patrones a evitar
+  2 occ   1 lín | 9. Control de cambios
+
+### S1.k  La misma cláusula del snapshot, en el orquestador de migración
+
+$ grep -n 'contenido que el snapshot no refleja' SDD/Devs/Orchestrator/Master-Prompt-Migracion.md SDD/Devs/Orchestrator/Master-Prompt.md SDD/Devs/Rules/Migracion-Rules.md
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:291:**Correcciones manuales.** Si al abrir un documento el subagente encuentra contenido que el snapshot no refleja, se detiene y lo devuelve como ambigüedad según `Master-Prompt.md` §9, sin editar. El orquestador enumera las diferencias, declara cómo las interpretó y espera confirmación antes de propagar. Es la regla de `Migracion-Rules.md` §4.2 y el mismo patrón que el criterio de re-ejecución del orquestador de generación.
+SDD/Devs/Orchestrator/Master-Prompt.md:810:Si el bloque dice EXISTENTE, el orquestador ya archivó el estado previo del entregable en la ruta indicada, antes de construir este despacho. No lo archives de nuevo: editás el archivo vivo. Si al abrir el entregable encontrás contenido que el snapshot no refleja, detenete y devolvelo como ambigüedad según §9, sin editar.
+
+### S1.l  T0 — el formato de salida no lleva commit
+
+$ awk '/^COMPUERTA DE ARRANQUE/{f=1} f{print NR": "$0} f && /Veredicto:/{f=0}' SDD/Devs/Orchestrator/Master-Prompt.md
+1489: COMPUERTA DE ARRANQUE — {{repositorio}}
+1490:   Rama:            {{rama}}   {{al día | N detrás | N adelante}}
+1491:   Árbol:           {{limpio | N cambios, de los cuales M borrados y K sin seguir}}
+1492:   Entregas vivas:  {{ninguna | rama {{nombre}}, esperando merge, PR {{url}}}}
+1493:   Ramas a borrar:  {{ninguna | lista}}
+1494:   Veredicto:       {{EN ORDEN, se puede empezar | SE DETIENE: {{motivo}}}}
+
+$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
+8:**Revisión leída:** `5c95dab` de `main`, árbol de trabajo limpio
+
+### S1.m  §5 — política de archivado: ruta por fecha, sufijo por versión, correcciones sin subir
+
+$ grep -n '_legacy/<YYYY-MM-DD>/`, donde recibe el sufijo de la versión' SDD/Devs/Orchestrator/Master-Prompt.md
+460:| Política de deprecación | Un solo archivo por nombre lógico en la carpeta de trabajo, y ese archivo es la versión vigente. Al ser superado se copia completo a `<carpeta-del-artefacto>/_legacy/<YYYY-MM-DD>/`, donde recibe el sufijo de la versión que preserva, con un bloque de archivado antepuesto que declara estado `Superado` y enlaza a la versión vigente. El cuerpo del snapshot no se modifica | Heredado D5. Detalle operativo debajo de esta tabla. |
+
+$ grep -n 'se absorben dentro de la versión en curso, sin subir' SDD/Devs/Orchestrator/Master-Prompt.md
+459:| Política de versionado de docs | Inicio en la versión `1.0` declarada en la cabecera, subir minor en cambios no breaking, major en breaking. Las correcciones derivadas del audit de la propia fase de emisión se absorben dentro de la versión en curso, sin subir, mientras el documento esté en estado `Borrador` o `Propuesto`: el audit forma parte del ciclo de emisión y no de una revisión posterior a la publicación. Desde que el documento pasa a `Aprobado` o `Vigente` —lo que ocurre en el corte de fase con confirmación humana, o cuando otro artefacto lo cita como insumo, lo que suceda primero— toda corrección sube versión y archiva el estado anterior. Cada corrección absorbida deja su fila en el control de cambios citando el hallazgo del informe de audit que la origina | Heredado D5, precisado con la cadencia del audit de §10. |
+
+$ grep -n 'Un despacho de corrección posterior a un audit es siempre `EXISTENTE`' SDD/Devs/Orchestrator/Master-Prompt.md
+842:- `{{VACIO | EXISTENTE}}` se resuelve verificando la carpeta de salida antes de construir el despacho. Un despacho de corrección posterior a un audit es siempre `EXISTENTE`.
+
+$ grep -n 'La regla de §8 que obliga al orquestador a archivar el estado previo antes de despachar \*\*no rige acá\*\*' SDD/Devs/Orchestrator/Master-Prompt.md
+745:**Sobre el snapshot previo.** La regla de §8 que obliga al orquestador a archivar el estado previo antes de despachar **no rige acá**. En este tramo el eje de identidad de un documento no tocado es su `last_review` y su estado, no un snapshot por corrida: la Fase I se re-ejecuta una vez por incremento y archivar en cada una produciría un `_legacy/` que crece sin lector que lo consuma. Lo que se archiva es únicamente el estado con el que el documento cerró el corte anterior, cuando el corte en curso lo sube de versión.
+
+### S1.n  El propio reporte: «cuarta» y «tercera»
+
+$ grep -n 'es una cuarta\|es una tercera\|\*\*tercera\*\*' /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/Reportes/26-La-Pregunta-Previa-No-Distingue-Quien-Genero-La-Situacion.md
+126:### 2.4 La causa que el Product Owner describe no está medida — es una cuarta
+136:**La del Product Owner es una tercera**: el agente **genera** la situación con su acción y la descarga
+
+$ grep -n 'Pero corre en puntos fijos\|ni existe fuera de la mesa el campo' /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/Reportes/26-La-Pregunta-Previa-No-Distingue-Quien-Genero-La-Situacion.md
+145:distingue del audit por eso. **Pero corre en puntos fijos**: entre dos fases de la reanudación, o en una
+159:primera vez, ni existe fuera de la mesa el campo que dice qué pasa si no se contesta.
+
+### S2.a  Búsqueda por ausencia — términos, sobre todo el árbol vivo (sin _legacy/)
+  26  «a medias»
+   0  «dejó a medias»
+   0  «estado a medias»
+   4  «sin cerrar»
+   2  «estado propio»
+   0  «propio agente»
+   0  «que el agente produjo»
+   0  «produjo y no cerró»
+   0  «generó el propio»
+   2  «de esta corrida»
+  11  «de la corrida»
+   0  «origen del hecho»
+   0  «procedencia del hecho»
+  24  «preexistente»
+   0  «autoinformad»
+   0  «quién produjo»
+   0  «quién generó»
+
+--- líneas de los términos con ocurrencias, para clasificar su sentido
+== «a medias»
+./CHANGELOG.md:1049:**La autocorrección.** Detectar un defecto propio y ofrecerlo como opción **es entregar trabajo a medias**:
+./CHANGELOG.md:1270:Un bloque obligatorio: **qué pasó**, **estado de avance** cuantificado cuando lo que se decide está a medias, **opciones** con qué se conserva de 
+./PROMPTS/PROMPT-Agente-Reanudacion-SDD.md:108:| 1.2 | 2026-08-17 | Las salidas pasan de cuatro a **cinco** con **E, retomar una migración a medias**, y cada una declara
+./SDD/Devs/Rules/Migracion-Rules.md:306:recuentos también quedaron viejos no se reconecta a medias**: reescribirle los identificadores y
+./SDD/Devs/Rules/Migracion-Rules.md:621:1. **El bloque de procedencia no se reescribe.** Una procedencia que declara la versión vigente sobre un árbol migrado a medias 
+./SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:251:| Migración en curso detectada (§2 paso 5) | **Se convoca**, y su objeto es el corpus **más el plan a medias**
+./SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:409:disponibles no incluían la única correcta —**terminar lo que estaba a medias**— y la más parecida era
+./SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md:537:| 1.3 | 2026-08-17 | **R0 suma el paso 0, normalizar el repositorio**, que va antes que las dimensiones porque el
+./SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:50:**Forma de las detenciones.** Todas las de este prompt siguen `Master-Prompt.md` §8.1: llevan **análisis y propues
+./SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:372:| 2.7 | 2026-08-17 | Las detenciones de M1 a M6 adoptan la forma de `Master-Prompt.md` §8.1: **análisis y propues
+./SDD/Devs/Orchestrator/Master-Prompt.md:873:  ESTADO DE AVANCE                        (obligatorio si lo que se decide está a medias)
+./SDD/Devs/Orchestrator/Master-Prompt.md:909:**Detectar un defecto propio y ofrecerlo como opción es entregar trabajo a medias.** Hay que separar dos
+./SDD/Devs/Orchestrator/Master-Prompt.md:1761:| 8.4 | 2026-08-17 | **§8.1 es nueva: toda detención lleva análisis y propuesta**, y la leen los tres orquestadores. Medi
+./SDD/Devs/Orchestrator/Master-Prompt.md:1763:| 8.6 | 2026-08-18 | **§8.1 suma tres cosas.** **La autocorrección**: un defecto **del propio trabajo** se corrige en la m
+./SDD/Devs/References/Design/Design-Rules-Acceso-Monousuario.md:93:Anatomía: superficie del shell de trabajo, contenedor angosto, con secreto actual, secreto nuevo, conf
+./SDD/Devs/Guides/Coherencia-Orquestador-Reanudacion.md:51:**Y una decisión que conviene defender: las salidas son cuatro y no tres.** *(La 9.2 sumó una quinta —retom
+./SDD/Devs/Guides/Coherencia-Dueno-Fuentes-Declarativas.md:20:## 2. El diagnóstico, y por qué el mío estaba a medias
+./SDD/Devs/Guides/Coherencia-Reportes-00-11.md:131:a medias— y porque los encontró una comprobación mecánica y no una lectura.
+./SDD/Devs/Guides/Coherencia-Condicion-De-Convocatoria.md:81:| 4 | Un `P0` anclado en una fuente declarativa exige su contraste, **y entra como caso de banco** | **CUMPLI
+./SDD/Devs/Guides/Coherencia-Condicion-De-Convocatoria.md:84:**Cuatro cumplidos y uno a medias, declarado.** El criterio 4 no se puede cumplir entero desde el
+./SDD/Devs/Guides/Coherencia-Condicion-De-Convocatoria.md:111:estables, y devolución al origen con **cuatro criterios cumplidos y uno declarado a medias con su
+./SDD/Devs/Guides/Coherencia-Cierre-De-Unidad.md:33:**Detectar un defecto propio y ofrecerlo como opción es entregar trabajo a medias.** El framework no
+./SDD/Devs/Guides/Coherencia-Sustitucion-Lexica-Y-Gobierno-Glosario.md:55:El enunciado que el intake de ese producto había alcanzado por su cuenta —«no se califica cu
+./SDD/Devs/Guides/Coherencia-Traspaso-Por-Pull-Request.md:62:**la única salida correcta —terminar lo que estaba a medias— no estaba en la lista, y la más parecida
+./SDD/Devs/Guides/Coherencia-Traspaso-Por-Pull-Request.md:121:## 9. Lo que esta nota dejaba anotado, y cómo se cerró a medias
+./SDD/Devs/Guides/Coherencia-Traspaso-Por-Pull-Request.md:150:| 1.1 | 2026-08-17 | §9 pasa a **cómo se cerró a medias**: la compuerta T0 de la 9.3 verifica que no haya
+== «sin cerrar»
+./SDD/Devs/Rules/Root-Rules.md:227:- ¿Las tablas tienen filas completas sin valores "TBD" ni placeholders sin cerrar?
+./SDD/Devs/Orchestrator/Master-Prompt.md:465:| Convenciones de tablas | Cada tabla declara encabezado completo, sin filas "TBD" ni placeholders sin cerrar | Heredado D2 y
+./SDD/Devs/Orchestrator/Master-Prompt.md:1439:| Decisiones pendientes | Se **lee** del registro único de decisiones pendientes del producto, no se reconstruye: ambigüed
+./SDD/Devs/Bootstrap/Audit-Fase-3.md:123:  5. Decisiones pendientes (ambigüedades no resueltas, ADRs sin cerrar, por confirmar).
+== «estado propio»
+./Conocimiento/Knowledge-Template-Blazor-Interactive-Server-SDD-Default.md:138:cuando su bloque `@code` supera unas veinte líneas o tiene estado propio; si no, el bloque
+./Conocimiento/Knowledge-Template-HTML-SDD-Default.md:143:colecciones compartidas, diálogos y arranque. Un submódulo con estado propio —si el producto tiene un
+== «de esta corrida»
+./SDD/Devs/Guides/Coherencia-Cierre-De-Unidad.md:91:| **D9** Evidencia | Conforme | El defecto de §2 es una entrega concreta de esta corrida, contrastable contra T4 y F4
+./SDD/Devs/Guides/Coherencia-Barrido-8.7-Dos-Ejes.md:89:forma de defecto que el resto de esta corrida: **una fuente que afirma algo falso sobre sí misma**, y
+== «de la corrida»
+./CHANGELOG.md:1785:- **§6 suma cuatro criterios de aceptación**, incluida la distinción entre «ninguno se sobrescribió» y «la fusión terminó», que la auditorí
+./SDD/Devs/Rules/Rules-Documentacion.md:737:- ¿El `AGENTS.md` se refrescó en este corte, o quedó de la corrida anterior?
+./SDD/Devs/Rules/Mesa-Rules.md:77:| **Qué mira** | Lo que la fase acaba de producir | El corpus que ya existía antes de la corrida |
+./SDD/Devs/Rules/Migracion-Rules.md:24:| La mecánica de la migración: qué principio la gobierna, qué se preserva, qué no se inventa y cómo se verifica | El orden en
+./SDD/Devs/Rules/Migracion-Rules.md:761:| 1.0 | 2026-07-29 | Regla inicial de migración normativa, decimoctava regla del framework y sexta transversal. Fija el **princip
+./SDD/Devs/Orchestrator/Master-Prompt.md:508:| Campo `evidencia` de los contratos `VER-XXXXX` | Se sobrescribe con la salida de la corrida en curso y la anterior no se co
+./SDD/Devs/Orchestrator/Master-Prompt.md:735:| Campo `evidencia` de los contratos `VER-XXXXX` | Se sobrescribe con la salida real de la corrida en curso. La evidencia ant
+./SDD/Devs/Guides/Coherencia-Devolucion-Al-Origen.md:48:**Resultado de la corrida, sobre todo el árbol vivo:**
+./SDD/Devs/Guides/Coherencia-Items-Empaquetados.md:53:**Resultado de la corrida, sobre todo el árbol vivo, incluidos los bloques cercados y el texto propio:**
+./SDD/Devs/Guides/Coherencia-Item-Diferido.md:42:**Resultado de la corrida, sobre todo el árbol vivo:**
+./SDD/Guides/SDD-Development-Guide.md:725:Toda intervención que toque más de un archivo emite una nota de coherencia siguiendo el patrón de [`../Devs/Guides/Coherencia
+== «preexistente»
+./CHANGELOG.md:2356:- **`§6.5` de `Maqueta-Rules.md` no existe**, y tres archivos lo citaban. §6 es una lista numerada sin subsecciones y la verificación de ofuscació
+./Conocimiento/Knowledge-Clean-Architecture-DataManager.md:145:| **Sin ORM** | La base es preexistente y el esquema manda. Un ORM agrega una capa de traducción sobre un 
+./Conocimiento/Knowledge-Clean-Architecture-DataManager.md:158:**Se adopta conscientemente**, con el mismo criterio que el resto: el esquema es preexistente y estable,
+./SDD/Devs/Rules/Rules-Documentacion.md:389:| `ISSUE-XXXXX` | Entrada de troubleshooting del integrador | `Troubleshooting` | Preexistente, se conserva |
+./SDD/Devs/Rules/Vocabulario-Rules.md:55:2. `Raiz-Codigo` **se declara** en el perfil de convención del intake. Solo se deriva de `Nombre-Producto` cuando el intake no d
+./SDD/Devs/Rules/Vocabulario-Rules.md:262:| **R1** | La intervención sobre el propio framework que renombró su vocabulario en la versión 5.0 | Las filas de control de 
+./SDD/Devs/Rules/Vocabulario-Rules.md:263:| **R2** | Las migraciones de datos y de esquema del **producto documentado** | `Rules-Arquitectura-Tecnica.md` (migración inic
+./SDD/Devs/Intake/PRODUCT-INTAKE-template.md:385:Los nombres de código resultantes deben coincidir con los directorios de `/src` de §16. La regla de nombres se aplica a
+./SDD/Devs/Orchestrator/Master-Prompt.md:210:**Lo que se declara.** `Raiz-Codigo` se toma del perfil de convención de `PRODUCT-INTAKE` §13. Es una decisión técnica de
+./SDD/Devs/Orchestrator/Master-Prompt.md:1725:| 3.6 | 2026-07-26 | Incorporación del ciclo de documentación viva posterior al handoff. §0 suma `/samples/` y `AGENTS.md
+./SDD/Devs/References/Design/Coherencia-Incorporacion.md:68:1. Fin de línea CRLF (informativa, preexistente). La tabla de invariantes de producto del master-prompt menci
+./SDD/Devs/References/Design/Coherencia-Incorporacion.md:74:Las invariantes verificadas (Título-Con-Guiones, versión declarada en la cabecera y no en el nombre, encodin
+./SDD/Devs/References/Design/Coherencia-Config-Esquema.md:49:| D7 — Neutralidad de dominio (crítica) | Cumple | El catálogo no contiene literales del dominio de moder
+./SDD/Devs/References/Design/Coherencia-Config-Esquema.md:67:1. Fin de línea CRLF (informativa, preexistente). Como en la incorporación previa del catálogo, todos los 
+./SDD/Devs/References/Design/Coherencia-Config-Esquema.md:74:Las invariantes D1–D8 se cumplen, con D7 verificada de forma explícita (ningún literal del dominio de mod
+./SDD/Devs/Guides/Coherencia-Renumeracion-AG.md:225:| **D4** | Sufijo de versión en copias archivadas | El snapshot usa la convención de carpeta de §VI.5 (`_legacy/<ve
+./SDD/Devs/Guides/Coherencia-Roles-Y-Defectos-Verificados.md:103:| D1 — Idioma y registro | Cumple | Adiciones en español rioplatense neutro técnico, sin emojis ni ne
+./SDD/Devs/Guides/Coherencia-Roles-Y-Defectos-Verificados.md:122:| Terminología uniforme | Cumple | «Product Owner» sin traducir en los ocho archivos, coherente con el
+./SDD/Devs/Guides/Coherencia-Roles-Y-Defectos-Verificados.md:128:3. **Once enlaces relativos no resuelven**, todos en `Root-Rules.md` y `Rules-Necesidades-Negocio.md`. So
+./SDD/Devs/Guides/Coherencia-Roles-Y-Defectos-Verificados.md:138:Las cinco observaciones son: una decisión de alcance deliberadamente no tomada sobre la lista de siglas,
+./SDD/Devs/Guides/Coherencia-Sin-Codigo-Ejecutable.md:48:Ésta no cambia ninguna: **agrega una sección que declara un estado preexistente**. Declarar un barrido
+./SDD/Devs/Guides/Coherencia-Auditoria-Marco.md:48:| D1 — Idioma | Cumple | Adiciones en español rioplatense técnico, tono alineado con el marco; sin emojis ni negrit
+./SDD/Devs/Guides/Coherencia-Auditoria-Marco.md:70:1. Fin de línea CRLF (informativa, preexistente). La cabecera del marco declara "EOL LF", pero todos los archivos del 
+./SDD/Devs/Guides/Coherencia-Auditoria-Marco.md:77:El marco refleja ahora, de forma coherente y completa, las mejoras de configuración dirigida por esquema y su AI-readi
+
+### S2.b  Formatos de detención y de presentación — ¿alguno tiene campo de procedencia u origen?
+== bloque «DETENCIÓN — {{familia}}» (SDD/Devs/Orchestrator/Master-Prompt.md)
+   (sin campo de procedencia u origen)
+== bloque «CIERRE DE UNIDAD — » (SDD/Devs/Orchestrator/Master-Prompt.md)
+8:    Corregido:   {{defectos propios detectados y corregidos, o "ninguno"}}
+== bloque «   AMBIGÜEDAD DETECTADA» (SDD/Devs/Orchestrator/Master-Prompt.md)
+33:`../IA.SDD/Conocimiento/Index-Knowledge.md` tiene filas. Con el catálogo vacío no hay a quién pedirle y
+== bloque «PEDIDO DE CONOCIMIENTO» (SDD/Devs/Orchestrator/Master-Prompt.md)
+   (sin campo de procedencia u origen)
+== bloque «TRABAJO ENTREGADO — » (SDD/Devs/Orchestrator/Master-Prompt.md)
+   (sin campo de procedencia u origen)
+== bloque «COMPUERTA DE ARRANQUE — » (SDD/Devs/Orchestrator/Master-Prompt.md)
+   (sin campo de procedencia u origen)
+== bloque de escalada de mesa (SDD/Devs/Rules/Mesa-Rules.md §7.1)
+7:su alternativa razonable, y qué se necesita— **más un campo propio de la mesa**:
+== bloque «Estado del destino» (SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md §3)
+5:  Procedencia declarada:   SDD {{VERSION_ORIGEN}}
+7:  Estado:                  {{al día | desfasado en N versiones | sin procedencia}}
+== bloque «RECOMENDACIÓN» (SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md §4.0)
+2:  Continuidad del origen: {{sostenible | comprometida: {{qué major la rompe}}}}
+== fila del registro de decisiones pendientes (SDD/Devs/Orchestrator/Master-Prompt.md §7.0)
+619:- Una fila por decisión, con: identificador, qué hay que decidir, quién la origina —categoría,
+620-  proyecto de código y fase—, qué artefactos quedan condicionados a la respuesta, qué rige mientras
+621-  tanto, y su estado.

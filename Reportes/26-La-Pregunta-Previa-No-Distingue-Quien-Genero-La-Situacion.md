@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.10** (`Master-Prompt.md` §7.0, §8, §8.1 y §9 · `Mesa-Rules.md` §0.1, §0.2 y §7 · `Master-Prompt-Reanudacion.md` §6) |
 | Artefactos del framework alcanzados | `SDD/Devs/Orchestrator/Master-Prompt.md` **§8.1** —donde nace—, §7.0 y §9 · `SDD/Devs/Rules/Mesa-Rules.md` §7.1 · `SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md` §6 |
 | Naturaleza | **Un eje de corte que falta, y un mecanismo que existe y no se usa para esto.** La decisión de elevar algo al humano se toma con **una sola pregunta** —¿esto tiene respuesta en el árbol?— y ninguna regla pregunta **quién produjo el estado que motiva la consulta**. Un estado que el propio agente dejó a medias **no tiene respuesta en el árbol por construcción**, y con el criterio literal cae del lado de «se detiene». Y el dato que lo resolvería —el estado previo, archivado antes de despachar— **ya se toma y no se usa para esto** |
-| Estado | **Abierto** |
+| Estado | **RESUELTO en SDD 13.11** — ver §8, «Cómo se resolvió» |
 | Reportes relacionados | **`13`**, que estableció la pregunta previa de §8.1 y **rechazó con fundamento** la alternativa de tres estratos: este reporte **no la reabre**, agrega una cláusula anterior. **`23`**, sobre la reconciliación entre roles de la mesa: comparte el terreno de las detenciones y no el objeto. **`24`**, que mide la decisión que no vuelve sobre quien preguntó: es el camino de vuelta, éste es el de ida. **`25`**, con el que comparte la corrida de origen y **no el artefacto**, por lo que va separado |
 
 ---
@@ -289,6 +289,70 @@ procedencia propia sale sin declarar por qué la autocorrección no alcanzaba**?
 
 ---
 
+## 8. Cómo se resolvió
+
+**Aplicado en SDD 13.11**, con nota de coherencia `SDD/Devs/Guides/Coherencia-Origen-Del-Hecho.md`. El framework
+estaba en la **13.10** que este reporte evaluó. La verificación de las citas, la decisión, el plan y la verificación del
+plan aplicado —cada afirmación con su comando y su salida— están en
+[`PROMPTs/Fixs/04-Fix-Reporte-26/OUTPUTs/`](../PROMPTs/Fixs/04-Fix-Reporte-26/OUTPUTs/).
+
+### 8.1 Lo que la verificación le corrigió a este reporte antes de intervenir
+
+**El cuerpo no se reescribe**: es evidencia con su fecha. Lo que la verificación encontró queda acá.
+
+| Lo que el reporte afirma | Lo medido contra 13.10 |
+|---|---|
+| §2.1.1: la cláusula del snapshot de `Master-Prompt.md` §8 produce el caso, porque *«el snapshot se tomó antes»* | **No se sostiene.** El snapshot se toma **al construir cada despacho** y ya contiene lo que dejaron las unidades anteriores de la misma corrida: **la cláusula no se dispara en el caso de este reporte**. Se dispara con una edición ajena o con un despacho paralelo sobre un proyecto compartido. **Y de esa lectura salía la pieza que §5.3 proponía** |
+| §2.5: *«ni existe fuera de la mesa el campo que dice qué pasa si no se contesta»* | **`Master-Prompt.md` §9 lo tiene**: «Qué pasa si no se responde ahora». Faltaba en el bloque general de §8.1 |
+| §2.5: la mesa *«corre en puntos fijos»* | Desde la **13.8** se convoca **por condición**, como el propio §3.1 reconoce |
+| §2.1: **14** ocurrencias de `procedencia` en `Master-Prompt.md` y **16** en `Migracion-Rules.md` | Son **líneas**: hay **17** y **23** ocurrencias. La lista de secciones de `Master-Prompt.md` omite §16, y la frase de la v1.2 sobre `Migracion-Rules.md` omite siete secciones. **La conclusión —ninguna en §8, §8.1 ni §9— se confirmó** |
+| §2.4: *«es una cuarta»* en el título, *«es una tercera»* en el cuerpo | **Contradicción interna.** Las mediciones existentes son de dos causas y ésta es la tercera |
+| §2.2 y §2.3: tres formatos de detención sin campo de procedencia | **Son diez**, contando la presentación de la reanudación, la compuerta de arranque, la entrega y la fila del registro. **Ninguno lo tenía** |
+
+**Ninguna cae sobre la tesis**, que seguía viva en 13.10.
+
+### 8.2 Desenlace de las cinco preguntas de §5
+
+| # | Pregunta | Desenlace |
+|---|---|---|
+| §5.3 | ¿Derivado o declarado? | **Derivado**, y decidido primero. **Pero no del snapshot**: contra él, un estado a medias de la corrida se lee como previo, que es el valor equivocado. Se calcula contra **la base de la corrida** —el commit sobre el que corre la compuerta T0, que T2 garantiza limpio y que T0 **no publicaba**—, con dos valores, **de la corrida** y **ajeno a la corrida**, y **ante la duda, de la corrida**. Lo calcula el orquestador; nunca quien tropezó. **El nombre se midió**: `procedencia` colisionaba en tres secciones que la corrección toca, y el campo se llama `origen del hecho` |
+| §5.1 | La cláusula anterior | **Sí, dentro de `Master-Prompt.md` §8.1**, antes de la pregunta previa, y no en una regla aparte. Lo de la corrida **no se evalúa contra el árbol** sino contra la autocorrección sobre el conjunto, y sólo sale si corregir cambia una decisión que el humano ya tomó, si es un arbitraje o si exige intención de producto que ninguna fuente contiene — declarando por qué la autocorrección no alcanzaba |
+| §5.2 | La tercera fila | **Sí.** El agente, **sobre el conjunto de lo que la corrida produjo**, y lo declara en el cierre con su alcance ampliado |
+| §5.4 | El agrupamiento | **Sí, con dos acotaciones.** `Master-Prompt.md` §7.0 hereda la forma de `Mesa-Rules.md` §7.1 como **lote de la fase**, con lo bloqueante acotado a dos casos: el arbitraje y la detención sin la cual ninguna otra unidad avanza. **El registro no agrupa toda detención ni suma columna**: el lote es la forma de presentar. **La mesa no gana ningún punto de invocación** |
+| §5.5 | El criterio enumerable | **Sí**, `[enumerable]` en `Mesa-Rules.md` §8 y `Master-Prompt-Reanudacion.md` §6, y como obligación de cierre en `Master-Prompt.md` §8.1 |
+
+**§6, respetado.** **No reabre el `13`**: aquello era una clasificación por juicio, paralela a la pregunta previa, que
+la cita volvía innecesaria; esto es un dato calculado que ordena qué prueba corre primero, y la cita no lo reemplaza
+porque un estado a medias de la corrida no tiene cita posible. **Declarado por el agente, sí habría sido el `13`** —y
+por eso la derivación no era opcional—. **Sin rol nuevo**: lo calcula el orquestador, y en la mesa el presidente.
+
+### 8.3 Los cinco criterios de §7, uno por uno
+
+| # | Criterio | Veredicto |
+|---|---|---|
+| 1 | Reproducir el caso en una corrida real | **A MEDIAS.** El mecanismo está escrito y **el caso real no existe todavía**. El único candidato del registro de la corrida que originó este reporte es un hallazgo de mesa clasificado como de esa corrida **por lectura**, resuelto con un parche **sin llegar al humano como detención**. Mismo desenlace que el criterio 4 del reporte `18` |
+| 2 | La procedencia se calcula sin leer lo que el agente declaró | **CUMPLIDO, contra la base y no contra el snapshot.** Reproducido sobre tres hechos de la propia intervención —ajeno, de la corrida, y de la corrida por una línea que estaba en la base y se reescribió— y sobre **la escalada `E-04` del 2026-09-12 de `Lab-Geometria`**, cuyo hecho vive en dos documentos que están en la base `5c95dab` sin cambios: **ajena**. `E-05` cita un documento que no está en el repositorio: **no calculable**, de la corrida por duda |
+| 3 | Contar; si da cero, no funciona | **SIN VEREDICTO: requiere una corrida con la corrección aplicada.** **No hay cuenta, y por lo tanto no hay cero que celebrar.** Queda la forma de contar —el renglón `Cómo` separa lo calculado de lo tratado por duda— y la advertencia escrita en §8.1 |
+| 4 | Comprobar el agrupamiento | **SIN VEREDICTO**, por el mismo motivo. La regla está en §7.0 |
+| 5 | El criterio de §5.5, enumerable | **CUMPLIDO** |
+
+**Dos cumplidos, uno a medias y dos sin veredicto.** El reporte se cierra **en el framework** —sus cinco preguntas
+tienen desenlace escrito— y **no se declara funcionando**: tres de sus criterios dependen de una corrida real que el
+framework no produce desde adentro.
+
+### 8.4 Lo que este reporte deja andando
+
+- **La medición pendiente de §2.4.** Si en las primeras corridas reales el origen sale **todo por duda**, la base no se
+  está publicando; si sale **todo ajeno** mientras el humano sigue recibiendo problemas que la corrida generó, se está
+  calculando contra otra cosa.
+- **Para la intervención `05`**, que reutiliza esta pieza: **lo que se deriva no es «el estado previo archivado antes de
+  despachar» sino la base de la corrida**. Su prompt y el README de la serie la nombran de la primera forma, y conviene
+  medirlo antes de aplicarla.
+- **Tres defectos que la intervención encontró al tocar y no eran de este reporte**: «Qué no cambia» de §8.1 negaba que
+  la sección quite detenciones, falso desde la 9.19, y dos registros de control de cambios estaban desordenados.
+
+---
+
 ## Control de cambios
 
 | Versión | Fecha | Cambios | Autor |
@@ -296,4 +360,4 @@ procedencia propia sale sin declarar por qué la autocorrección no alcanzaba**?
 | 1.0 | 2026-09-12 | Emisión inicial. Documenta que la decisión de elevar se toma por **un solo eje** y que un estado producido por el propio agente **no tiene respuesta en el árbol por construcción**. Su propuesta central —que la procedencia se **derive del estado previo ya archivado** en vez de declararse— la levantó el refutador del ciclo 4 al atacar la versión autoinformada, que habría dejado el requisito cumplido en la letra. Declara además que la causa que lo origina es una **tercera medición pendiente**, distinta de las dos que el framework ya midió. | Mesa R1.5, ciclo 4 (AH-008 disciplina de escalada; corrección del refutador), sobre un requisito del Product Owner |
 | 1.1 | 2026-09-12 | **Correcciones levantadas al verificar las citas contra SDD 13.10**, antes de intervenir. **(a)** Se deja constancia de que el término **`procedencia` ya está tomado** por el framework con otro significado, **y de que acá no colisiona**: las 14 ocurrencias de `Master-Prompt.md` están en §0, §2.1, §3, §5 y §7, y ninguna en §8, §8.1 ni §9. La verificación se hizo porque `Vocabulario-Rules.md` §9.4 declara que **desambiguar sin verificar la colisión es el defecto**, y la primera redacción de esta versión afirmaba la colisión sin medirla — el mismo falso positivo que esa regla nombra. El campo se llama `origen del hecho` por claridad, no por obligación. **(b)** Aparece **§2.1.1**, la cláusula que convierte el hueco en obligación y que la v1.0 no había citado: `Master-Prompt.md` §8, bloque `Estado previo del entregable`, manda *«si al abrir el entregable encontrás contenido que el snapshot no refleja, detenete y devolvelo como ambigüedad según §9, sin editar»* — y un estado que el propio agente dejó a medias **es** contenido que el snapshot no refleja. El hueco queda localizado con precisión de línea, y en el mismo párrafo está el insumo que lo resuelve. **(c)** El agrupamiento de §5.4 **no hay que inventarlo**: `Mesa-Rules.md` §7.1 ya lo hace, con su campo `SI NO RESPONDÉS`, y está confinado a la mesa; y §7 **ya invirtió la asimetría de §8.1** con el mismo razonamiento que este reporte, lo que prueba que el framework no la considera universal. | Verificación previa de la intervención `04` |
 | 1.2 | 2026-09-12 | **Corrección de una cita propia, levantada por el refutador de la mesa del 2026-09-12 y verificada contra el árbol**: §2.1 citaba `Migracion-Rules.md` **§4.7** como el lugar donde `procedencia` colisiona, y §4.7 —«La revisión de apartamientos»— **no tiene una sola ocurrencia** del término. Las que hay viven en §4.5, §4.6 y la checklist de §6. Es la tercera cita de sección equivocada de esta serie de trabajo, todas del orquestador y todas detectadas por relectura ajena, que es exactamente el dato que el reporte `28` mide. | Refutación del ciclo 5 |
-
+| 1.3 | 2026-09-12 | **RESUELTO en SDD 13.11**, con su §8. La intervención verificó las citas —literales— y corrigió **cinco afirmaciones de evidencia** sin tocar el cuerpo: la cláusula del snapshot no produce el caso porque el snapshot se toma por despacho, §9 sí tiene el campo de qué pasa si no se responde, la mesa se convoca por condición, los recuentos de `procedencia` son de líneas, y el título de §2.4 contradice a su cuerpo. **La propuesta central entró derivando el origen del hecho de la base de la corrida y no del snapshot**, que medido no contenía el dato. Dos criterios cumplidos, uno a medias y dos sin veredicto hasta una corrida real. | Intervención `04` |
