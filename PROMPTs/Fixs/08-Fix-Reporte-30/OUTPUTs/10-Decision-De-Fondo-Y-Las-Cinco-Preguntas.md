@@ -116,7 +116,7 @@ destino por `SDD-Development-Guide.md` §II.7—.
 **La forma del sample de un artefacto que otro proyecto carga**, tomada de P-6 sin sus herramientas: anfitrión
 mínimo sobre el artefacto **construido y no copiado**; sólo la superficie pública; datos, salida esperada y
 prueba; **sin servidor o servido**; **doble del consumidor** si hay retorno, con la lista derivada de una
-sola fuente (P-6 punto 1, la divergencia medida en DEV.Maps); y **la superficie completa cubierta por el
+sola fuente (P-6 punto 1, la divergencia medida en <biblioteca-de-mapas>); y **la superficie completa cubierta por el
 conjunto** (P-6 punto 5).
 
 **Lo que no entra, y por qué**: las dos formas de adaptación de P-2 nombran un framework de front y son

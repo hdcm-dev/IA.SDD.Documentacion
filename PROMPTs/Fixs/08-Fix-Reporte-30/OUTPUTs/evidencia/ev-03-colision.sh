@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # §5.2: colisión de los nombres candidatos, por contexto de lectura (Vocabulario-Rules.md §9.2), sobre la base main.
-F=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
+F=<workspace>/IA/SDD/IA.SDD
 echo "## base IA.SDD main = $(git -C $F rev-parse main)"
 # Lectores de la clase de arista: quien completa el intake, quien deriva y valida el manifiesto,
 # AG-00050 (vista de producto), AG-00090 (pipeline de producto), AG-00100 (samples) y el orquestador (glosario §15).

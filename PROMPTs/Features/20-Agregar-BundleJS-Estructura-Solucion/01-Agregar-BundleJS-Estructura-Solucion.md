@@ -14,7 +14,7 @@
 
   Leer `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Features/20-Agregar-BundleJS-Estructura-Solucion/INPUTs/Idea-Central.md`, `Geometria` cuenta de ideas que se pueden considerar a la hora de estructurar una solución .net armonizada, organizadas y estructuradas como una solución .net que toma proyectos otros proyectos. Este incluye un visor para figuras 3d y arbol de un json en javascript.
 
-  Leer `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Features/20-Agregar-BundleJS-Estructura-Solucion/INPUTs/Contexto-DEVMap.md`, describe una estructura mas deseable a incorporar.
+  Leer `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Features/20-Agregar-BundleJS-Estructura-Solucion/INPUTs/Contexto-Biblioteca-Mapas.md`, describe una estructura mas deseable a incorporar.
 
   En `Geometria` se plantea una estructura 
   1- Un bundle - o weback transpilado -  desarrollado typescript que encapsula la logica de representación grafica final en el navegador y cuyo interfaz proponga dto que sirvan de intercambio entre fuera y dentro de ese bundle javascript
@@ -33,9 +33,9 @@
   }
   //...
 ```
-  Como referencia está: `/Ng/Ng.Core/DEV/DEV.Maps/JS.Bundle/Maps/GoogleMaps`
+  Como referencia está: `<repo-privado-de-mapas>/JS.Bundle/Maps/GoogleMaps`
 
-  3- Este visualizador es recomendable trabajarlo a traves de libreria de clases para Blazor .NET. Como referencia esta: `DEV.Maps.Core.Blazor.Components` 
+  3- Este visualizador es recomendable trabajarlo a traves de libreria de clases para Blazor .NET. Como referencia esta: `<Mapas>.Core.Blazor.Components` 
 
 
   Se busca aun el criterio y homogeinazar la estructura la solución general y armonizar el dicha solución bajo los puntos:

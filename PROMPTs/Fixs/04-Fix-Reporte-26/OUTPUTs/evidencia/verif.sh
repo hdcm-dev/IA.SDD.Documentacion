@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verificación del plan aplicado — intervención 04 (SDD 13.11)
-cd /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
+cd <workspace>/IA/SDD/IA.SDD
 B=476f927
 MP=SDD/Devs/Orchestrator/Master-Prompt.md; MR=SDD/Devs/Rules/Mesa-Rules.md; RE=SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md
 MI=SDD/Devs/Orchestrator/Master-Prompt-Migracion.md; CA=SDD/Devs/Rules/Catalogo-De-Criterios.md

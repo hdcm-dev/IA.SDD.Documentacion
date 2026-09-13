@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Evidencia de las solicitudes 1 y 2 de la intervención 06. Corre contra dos commits, nunca contra el árbol de trabajo.
-R=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
+R=<workspace>/IA/SDD/IA.SDD
 E=$(cd "$(dirname "$0")" && pwd)
 B=$(mktemp -d)
 git -C "$R" archive 476f927 SDD | tar -x -C "$B" && mv "$B/SDD" "$B/v1310"

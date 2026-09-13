@@ -4,23 +4,23 @@
 # agente escribiendo en estos tres).
 set -e
 echo "== destinos con SDD/Docs (excluye _legacy y node_modules) =="
-find /home/fernando/workspaces/workspace-dev -type d -path "*/SDD/Docs" -not -path "*/_legacy/*" -not -path "*/node_modules/*"
+find <workspace> -type d -path "*/SDD/Docs" -not -path "*/_legacy/*" -not -path "*/node_modules/*"
 
 echo
 echo "== carpetas tareas-tecnicas/ en TODO el workspace (reproduce el comando del reporte, §2.4) =="
-find /home/fernando/workspaces/workspace-dev -type d -name tareas-tecnicas -not -path "*/_legacy/*" -not -path "*/node_modules/*"
+find <workspace> -type d -name tareas-tecnicas -not -path "*/_legacy/*" -not -path "*/node_modules/*"
 echo "(el de arriba es el de Lab-Geometria en fase-k; en el resto del workspace: sin salida antes de esta corrida)"
 
 echo
 echo "== carpetas historias-usuario/ en TODO el workspace (ampliación de la solicitud 2) =="
-find /home/fernando/workspaces/workspace-dev -type d -name historias-usuario -not -path "*/_legacy/*" -not -path "*/node_modules/*"
+find <workspace> -type d -name historias-usuario -not -path "*/_legacy/*" -not -path "*/node_modules/*"
 
 echo
 echo "---- RPI.VideoControl (una unidad, cinco proyectos de código, pre-8.0: sin Unidades-Entrega/) ----"
-F=/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/Product-Backlog.md
+F=<workspace>/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/Product-Backlog.md
 head -12 "$F"
 echo "BT totales:"
-grep -o -E "BT-[0-9]{5}" /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/Backlog-Tecnico.md | sort -u | wc -l
+grep -o -E "BT-[0-9]{5}" <workspace>/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/Backlog-Tecnico.md | sort -u | wc -l
 echo "US por proyecto de código, según los rangos que el propio Product-Backlog.md declara (PRODUCT-INTAKE §13.4):"
 python3 -c "
 import re
@@ -34,18 +34,18 @@ for name,(a,b) in ranges.items():
 print('total unidad', tot)
 "
 echo "US con archivo individual bajo historias-usuario/:"
-find /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/historias-usuario -name "US-*.md" | wc -l
+find <workspace>/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/historias-usuario -name "US-*.md" | wc -l
 echo "tareas-tecnicas/ existe:"
-find /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl -iname "tareas-tecnicas" -type d || echo "(no existe)"
+find <workspace>/Repos-RPIs/RPI.VideoControl -iname "tareas-tecnicas" -type d || echo "(no existe)"
 
 echo
 echo "---- SAI.Service.Core (una unidad = un proyecto, convención pre-Unidades-Entrega, sufijo -v1.0) ----"
-BT=/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/Backlog-Tecnico-v1.0.md
+BT=<workspace>/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/Backlog-Tecnico-v1.0.md
 echo "BT totales:"; grep -o -E "BT-[0-9]+" "$BT" | sort -u | wc -l
-echo "US con archivo individual:"; find /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/historias-usuario -name "US-*.md" | wc -l
-echo "US mencionadas en Product-Backlog-v1.0.md:"; grep -o -E "US-[0-9]+" /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/Product-Backlog-v1.0.md | sort -u | wc -l
-echo "tareas-tecnicas/ existe:"; find /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core -iname "tareas-tecnicas" -type d || echo "(no existe)"
+echo "US con archivo individual:"; find <workspace>/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/historias-usuario -name "US-*.md" | wc -l
+echo "US mencionadas en Product-Backlog-v1.0.md:"; grep -o -E "US-[0-9]+" <workspace>/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/Product-Backlog-v1.0.md | sort -u | wc -l
+echo "tareas-tecnicas/ existe:"; find <workspace>/DEV/SAI.Service.Core -iname "tareas-tecnicas" -type d || echo "(no existe)"
 
 echo
 echo "---- SelfHosted.Service.Core (sin categoría 06 generada aún) ----"
-find /home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs -maxdepth 1 -type d
+find <workspace>/DEV/SelfHosted.Service.Core/SDD/Docs -maxdepth 1 -type d

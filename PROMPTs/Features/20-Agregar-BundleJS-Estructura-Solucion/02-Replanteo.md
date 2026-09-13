@@ -15,5 +15,5 @@ así que el rol de esos proyectos samples , van un poco mas lejos que ser simple
 Ahora , bajo el concepto de que puede que haya proyectos fuera de lo que es .net, por ejemplo generar un bundle javascript que luego una libreria de clases blazor.net integrar para pintar , como es el caso de los mapas, algo en el navegador .
 
 
-Aquí para estos proyectos no ordinarios, compo puede ser en nodejs se puede plantear en samples bajo un proyecto simple html que integre pero que se piense en una estructura como propone el `DEVMap` pensado para que sirva de guia para la integración en el proyecto de clases Blazor .NET
+Aquí para estos proyectos no ordinarios, compo puede ser en nodejs se puede plantear en samples bajo un proyecto simple html que integre pero que se piense en una estructura como propone el `biblioteca-de-mapas` pensado para que sirva de guia para la integración en el proyecto de clases Blazor .NET
 

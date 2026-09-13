@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Evidencia de las solicitudes 1 y 2 — intervención 04 sobre el reporte 26
-F=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
-D=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion
+F=<workspace>/IA/SDD/IA.SDD
+D=<workspace>/IA/SDD/IA.SDD.Documentacion
 MP=SDD/Devs/Orchestrator/Master-Prompt.md
 MR=SDD/Devs/Rules/Mesa-Rules.md
 RE=SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md
@@ -45,7 +45,7 @@ echo; echo "### S1.k  La misma cláusula del snapshot, en el orquestador de migr
 run "grep -n 'contenido que el snapshot no refleja' $MI $MP SDD/Devs/Rules/Migracion-Rules.md"
 echo; echo "### S1.l  T0 — el formato de salida no lleva commit"
 run "awk '/^COMPUERTA DE ARRANQUE/{f=1} f{print NR\": \"\$0} f && /Veredicto:/{f=0}' $MP"
-run "git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'"
+run "git -C <workspace>/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'"
 echo; echo "### S1.m  §5 — política de archivado: ruta por fecha, sufijo por versión, correcciones sin subir"
 run "grep -n '_legacy/<YYYY-MM-DD>/\`, donde recibe el sufijo de la versión' $MP"
 run "grep -n 'se absorben dentro de la versión en curso, sin subir' $MP"

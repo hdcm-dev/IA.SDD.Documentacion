@@ -45,15 +45,15 @@
 | `/IA/SDD/IA.SDD/SDD/Devs/Orchestrator/Master-Prompt.md` §0, §3.5, §13 | íd. | Salidas fuera de `SDD/`; casos de escritura del intake |
 | `/PROG2/Geometria/Lab-Geometria` | `89f3ab3`, 2026-09-06 | Repositorio real generado con SDD; proyecto Node `visor/`; samples implementados |
 | `/PROG2/Geometria/Lab-Geometria.Documentacion/ia-db/` | v3.0, 2026-09-11 | Índices 02 y 05 |
-| `/Ng/Ng.Core/DEV/DEV.Maps` | `e223662`, 2026-09-11 | Referencia del patrón `main.js` + bundle + RCL + sandbox + `examples/WebBlazor_JS` |
-| `/Ng/Ng.Core/DEV/DEV.Maps.Documentacion/ia-db/` | v1.0, 2026-09-11 | Índices 00, 01, 03, 05 |
+| `<repo-privado-de-mapas>` | `e223662`, 2026-09-11 | Referencia del patrón `main.js` + bundle + RCL + sandbox + `examples/WebBlazor_JS` |
+| `<repo-privado-de-mapas>.Documentacion/ia-db/` | v1.0, 2026-09-11 | Índices 00, 01, 03, 05 |
 | `INPUTs/Idea-Central.md` | 2026-09-11 | **La convención normativa deseada** (§1–§14: `src/dotnet`, `src/javascript`, `poc/`, `main.js`, opciones de integración, `.gitignore`) |
-| `INPUTs/Contexto-DEVMap.md` | 2026-09-11 | Descripción corta (13 líneas) de cómo está armado `DEV.Maps` y de qué es cada carpeta |
+| `INPUTs/Contexto-Biblioteca-Mapas.md` | 2026-09-11 | Descripción corta (13 líneas) de cómo está armado `<biblioteca-de-mapas>` y de qué es cada carpeta |
 | `02-Replanteo.md` | 2026-09-11 | El replanteo del Product Owner: no hay PoC, hay samples con doble rol |
 | Mesa evaluadora (ciclo 1) | 2026-09-11 | Siete especialistas + abogado del diablo; 49 hallazgos; veredictos en §9.2 |
 
 **Correcciones de ruta.** El prompt cita `/PORG2/...`; es `/PROG2/...`. La carpeta de salida existe
-como `OUPUTs/`. **Las versiones 1.0–2.1 de este documento atribuían a `Contexto-DEVMap.md` lo que
+como `OUPUTs/`. **Las versiones 1.0–2.1 de este documento atribuían a `Contexto-Biblioteca-Mapas.md` lo que
 está en `Idea-Central.md`**; esta versión cita el archivo correcto.
 
 ---
@@ -144,7 +144,7 @@ consolidaron el 2026-08-16, absorbiendo los de `GeometriaFactory-Visor`»).
 | Divergencias documentales | `samples/README.md` dice «Esqueleto — sin código» (2026-08-11) y enlaza 19 veces a `SDD/Docs/Proyectos/…`, ruta que no existe; `samples/visor/01-basico/README.md` dice «Implementado» y enlaza a `Unidades-Entrega/GeometriaFactory-Web/10-Examples/` | archivos citados |
 | Ambiente | `.devcontainer/devcontainer.json` (SDK 10 + Node 22) es «el único ambiente»; el host no tiene `dotnet` en el PATH | `Plan-Etapa-A.md` §2.2; `which dotnet` |
 
-### §3.2 `DEV.Maps` — el bundle de Google Maps
+### §3.2 `<biblioteca-de-mapas>` — el bundle de Google Maps
 
 | Aspecto | Estado verificado | Fuente |
 | --- | --- | --- |
@@ -156,16 +156,16 @@ consolidaron el 2026-08-16, absorbiendo los de `GeometriaFactory-Visor`»).
 | Pruebas del paquete | `tests/e2e/{contrato,dibujo,frontera}.spec.js` con `webServer: npm run dev` (`playwright.config.js` l. 31–36, puerto 8082). `frontera.spec.js` recorre cuatro páginas con un solo invariante («nada que salga hacia .NET escapa a JSON»). 5 de 8 páginas tienen spec | archivos citados |
 | `fake-blazor.js` | `METODOS_JSINVOKABLE = ['OnMarkerCoordenadaChanged', 'OnMarkerClick']` (l. 21). **Desactualizado**: `GoogleMaps.razor` l. 455 expone además `OnPolygonClick`, que el `main.js` **copiado** invoca y el `main.js` fuente no (commit `d903b56` tocó las copias, no el fuente); `contrato.spec.js` l. 60–61 afirma la lista vieja | archivos citados |
 | DTO | `src/interfaces.ts` define `MarkerInfo`/`PolygonInfo` pero no se distribuye (`files: ["dist"]`); `Infos/PolygonInfo.cs` agrega `tipo`; el sandbox usa formas distintas (`{"Id","Latitud",…}` vs `label`) | archivos citados |
-| Consumidores .NET | RCL `src/DEV.Maps.Core.Blazor.Components/` (`GoogleMaps.razor` importa `./js/components/GoogleMaps/main.js` en 9 lugares, relativo al host, con mayúscula) + `examples/WebBlazor_JS/` (`ProjectReference` a la RCL; `App.razor` l. 20 carga el global por `<script>`; íconos `imgs/icon-rojo.png` relativos al host) | archivos citados; ia-db 01 §8 |
+| Consumidores .NET | RCL `src/<Mapas>.Core.Blazor.Components/` (`GoogleMaps.razor` importa `./js/components/GoogleMaps/main.js` en 9 lugares, relativo al host, con mayúscula) + `examples/WebBlazor_JS/` (`ProjectReference` a la RCL; `App.razor` l. 20 carga el global por `<script>`; íconos `imgs/icon-rojo.png` relativos al host) | archivos citados; ia-db 01 §8 |
 | Bundle → consumidor | Copia manual; tres copias de `main.js` (las dos de `wwwroot/` idénticas entre sí y distintas del origen) versionadas en git | ia-db 03 §1; `git ls-files` |
-| `.sln` | `DEV.Maps.Core.Blazor.Components.sln`: 3 `.csproj` + 2 «Web Site» .NET Fx 4.8 (`{E24C65DC-…}`) + Solution Folders con `SolutionItems`. **Los Web Site rompen `dotnet build` en Linux**: `MSB4249: Unable to build website project "GoogleMaps"`; al quitarlos hay que limpiar `NestedProjects` (`MSB5023`) | reproducido por la mesa sobre copia, SDK 10.0.400 |
+| `.sln` | `<Mapas>.Core.Blazor.Components.sln`: 3 `.csproj` + 2 «Web Site» .NET Fx 4.8 (`{E24C65DC-…}`) + Solution Folders con `SolutionItems`. **Los Web Site rompen `dotnet build` en Linux**: `MSB4249: Unable to build website project "GoogleMaps"`; al quitarlos hay que limpiar `NestedProjects` (`MSB5023`) | reproducido por la mesa sobre copia, SDK 10.0.400 |
 | Restore | `NU1101: Unable to find package NgForms.Component` (csproj l. 23) sin `nuget.config` → «clon limpio + `dotnet build`» exige un feed privado | reproducido por la mesa |
 | Publicación | `.github/workflows/static.yml` corre `npm run pages` desde `JS.Bundle/Maps/GoogleMaps` y publica `.sandbox/` en GitHub Pages (l. 44–67) | `static.yml` |
 | `.gitignore` | El de `JS.Bundle/Maps/` ignora `dist`, `.sandbox`, `GoogleMaps/sandbox/lab/*`; el raíz sólo `node_modules/` | `git check-ignore -v` |
 
 ### §3.3 Lo que importa de la comparación
 
-`samples/visor/01-basico` de Geometría y `sandbox/` de DEV.Maps **comparten la idea** (HTML que carga el
+`samples/visor/01-basico` de Geometría y `sandbox/` de <biblioteca-de-mapas> **comparten la idea** (HTML que carga el
 bundle, un anfitrión que hace las llamadas, datos, una prueba) pero **no son el mismo artefacto**:
 el primero corre desde `file://`, con `<script>` clásico, sin red ni credencial, y lleva contrato de
 verificación; el segundo se construye con webpack, exige un dev-server y una clave de Google Maps,
@@ -180,10 +180,10 @@ convertir el banco de pruebas en ocho samples.
 | # | Idea del replanteo | Ya está en la norma | Falta |
 | --- | --- | --- | --- |
 | R-1 | «Esos poc serían en realidad samples» | Sí. «PoC» no existe en el conjunto normativo; arista A de §0.1 | Nada. Se retira `poc/` |
-| R-2 | El sample prueba contratos durante «las fases de codeo y revisión» | Sí: arista B; contrato «se ejecuta durante la codificación»; §0.2 pasada de ejecución «ante cada incremento» | Que los repositorios lo cumplan (DEV.Maps no tiene contratos) |
+| R-2 | El sample prueba contratos durante «las fases de codeo y revisión» | Sí: arista B; contrato «se ejecuta durante la codificación»; §0.2 pasada de ejecución «ante cada incremento» | Que los repositorios lo cumplan (<biblioteca-de-mapas> no tiene contratos) |
 | R-3 | La forma del sample la fija el consumidor | **Sí, en lo esencial**: §0 condiciona por «quién va a consumir»; §1.2 pide el cliente «en el lenguaje del integrador típico» y «apps consumidoras»; §2.2 admite capacidades extra. Lo que P-5 de la versión 2.x llamaba «regla nueva» son ejemplos de aplicación de esas tres | Ejemplos concretos (P-5), sin regla nueva |
-| R-4 | «Esos samples son proyectos dentro de la solución» | No dice nada. Geometría no los tiene en el `.sln`; DEV.Maps sí (`WebBlazor_JS`) | Criterio de inclusión (P-7). Para el visor de Geometría, el manifiesto ya decidió que **no** pertenece al `.sln` → escalada ESC-001 |
-| R-5 | Sample HTML con la estructura de DEV.Maps como guía del componente Blazor | Parcialmente: Geometría ya lo hizo (HTML + anfitrión + tests con contrato) | La forma canónica con sus **dos sub-formas** y lo que una guía debe contener para serlo (P-6) |
+| R-4 | «Esos samples son proyectos dentro de la solución» | No dice nada. Geometría no los tiene en el `.sln`; <biblioteca-de-mapas> sí (`WebBlazor_JS`) | Criterio de inclusión (P-7). Para el visor de Geometría, el manifiesto ya decidió que **no** pertenece al `.sln` → escalada ESC-001 |
+| R-5 | Sample HTML con la estructura de <biblioteca-de-mapas> como guía del componente Blazor | Parcialmente: Geometría ya lo hizo (HTML + anfitrión + tests con contrato) | La forma canónica con sus **dos sub-formas** y lo que una guía debe contener para serlo (P-6) |
 
 ---
 
@@ -209,7 +209,7 @@ forma). `src/dotnet/` + `src/javascript/` (Idea-Central §4) se descarta por con
 
 - **Bundle**: la salida del `entry` del empaquetador (`googlemaps.min.js`; `geometriafactory-visor.js`).
 - **Adaptador**: el código que conoce `DotNetObjectReference` o el DOM del anfitrión (`main.js`;
-  `surface-interaction.js`). Puede distribuirse junto al bundle (DEV.Maps copia `main.js` a `dist/`)
+  `surface-interaction.js`). Puede distribuirse junto al bundle (<biblioteca-de-mapas> copia `main.js` a `dist/`)
   **sin ser parte de él**.
 
 **Obligación**: el bundle no conoce Blazor ni .NET (verificado en los dos repos: §3.1, §3.2). Lo que
@@ -219,7 +219,7 @@ decía 2.x, es falso en ambos repos y se retira.
 
 | Forma | Dónde vive el adaptador | Qué le exige al anfitrión | Canal JS → .NET | Quién la usa |
 | --- | --- | --- | --- | --- |
-| **1 — Adaptador en el paquete** (`src/interop/main.js`: clase `<Nombre>Blazor` + `export async function ...Async(dotnetHelper, options)`) | En el paquete JS, distribuido junto al bundle | Cargar el global por `<script>` clásico **y** el adaptador por `import` de módulo ES (`interop.d.ts` l. 11–14; `GoogleMaps.razor` l. 212); escribir los `[JSInvokable]` que el adaptador invoca | Sí: `dotnetHelper.invokeMethodAsync` | DEV.Maps |
+| **1 — Adaptador en el paquete** (`src/interop/main.js`: clase `<Nombre>Blazor` + `export async function ...Async(dotnetHelper, options)`) | En el paquete JS, distribuido junto al bundle | Cargar el global por `<script>` clásico **y** el adaptador por `import` de módulo ES (`interop.d.ts` l. 11–14; `GoogleMaps.razor` l. 212); escribir los `[JSInvokable]` que el adaptador invoca | Sí: `dotnetHelper.invokeMethodAsync` | <biblioteca-de-mapas> |
 | **2 — Fachada plana + adaptador en el anfitrión** | En el front, como JS propio que lee el DOM | Cargar el global por `<script>` clásico; emitir los datos en el marcado (`data-*`) | No hay JS interop; el retorno es un callback JS (`onPieceSelected`) que el adaptador del front resuelve | Geometría (`ADR-10006`, `ADR-12002`) |
 
 **No son intercambiables para un integrador** (hallazgo H-INT-04): quien elija la 2 no obtiene un
@@ -236,7 +236,7 @@ Sin cambio de rumbo respecto de 2.x, con cuatro correcciones que la mesa reprodu
    Static Web Assets en el primer build** (`ResolveProjectStaticWebAssets` toma `@(Content)` evaluado
    antes de correr targets): reproducido con SDK 10.0.400 —endpoint ausente en el build 1, presente
    en el 2; `publish` desde limpio con `Endpoints: []`—. Vale para el front (Geometría) y para la RCL
-   por `_content/` (DEV.Maps).
+   por `_content/` (<biblioteca-de-mapas>).
 2. **El Target corre en todo `build`, `publish` y `test`** (`Integration.Tests` referencia
    `Web.csproj`). Donde no hay Node se pasa `-p:SkipVisorBuild=true`: la etapa `sdk:10.0` de
    `Dockerfile.web` (l. 78) y cualquier `dotnet test` sin red. La etapa `node:22` del `Dockerfile.web`
@@ -247,7 +247,7 @@ Sin cambio de rumbo respecto de 2.x, con cuatro correcciones que la mesa reprodu
    reescriben para invocar `dotnet build`. El guion queda como lo que el Target ejecuta.
 4. **Sello de caché derivado del build.** Idea-Central §9.1 pide que la versión «DEBERÍA generarse
    desde el proceso de build [...] no escribirse a mano», y hoy Geometría no tiene sello (§3.1) y
-   DEV.Maps lo escribe a mano (`ComponentVersion.cs` l. 5). Con P-3 el bundle cambia en cada build con
+   <biblioteca-de-mapas> lo escribe a mano (`ComponentVersion.cs` l. 5). Con P-3 el bundle cambia en cada build con
    el mismo nombre: sin sello, el navegador sirve el anterior. Opción a verificar primero en el
    devcontainer: `MapStaticAssets` + `@Assets["js/…"]` de .NET 9+ (huella por contenido), que
    convive con la declaración `Content` del punto 1; si no aplica al modo de render del producto,
@@ -307,10 +307,10 @@ copia física de `wwwroot/js/`** (si coexisten, `MSB4018` por clave duplicada en
 | Página HTML que carga el bundle con anfitrión, datos y prueba | **Sample** de la unidad de entrega que contiene al bundle | `samples/<segmento>/XX-<slug>/` | `VER-XXXXX` (§4.6) |
 | Aplicación .NET que consume la RCL / el NuGet / la REST | **Sample** de la unidad consumida | `samples/<segmento>/XX-<slug>/` | `VER-XXXXX` |
 | Banco de medición de una puerta de calidad (`visor/verification/`) | Instrumento de la categoría 08 | Con el paquete | Es la puerta (`PT-02`); no lleva `VER` |
-| **Banco de trabajo del paquete con pruebas propias** (`sandbox/` + `tests/e2e/` de DEV.Maps) | Instrumento de desarrollo del paquete; su README lo declara «no son ejemplos de uso» | Con el paquete (`sandbox/`, `tests/`); se publica a Pages como hoy | Sus specs; no `VER` |
+| **Banco de trabajo del paquete con pruebas propias** (`sandbox/` + `tests/e2e/` de <biblioteca-de-mapas>) | Instrumento de desarrollo del paquete; su README lo declara «no son ejemplos de uso» | Con el paquete (`sandbox/`, `tests/`); se publica a Pages como hoy | Sus specs; no `VER` |
 | Páginas de exploración sin aserción (`sandbox/lab/`) | Trabajo en curso | Con el paquete, ignoradas por git como hoy | Ninguno |
 
-**Fila nueva respecto de 2.x** (veredicto G-05, hallazgo H-ADD-01): el sandbox de DEV.Maps **no se
+**Fila nueva respecto de 2.x** (veredicto G-05, hallazgo H-ADD-01): el sandbox de <biblioteca-de-mapas> **no se
 convierte en ocho samples**. Su spec `frontera.spec.js` verifica un invariante transversal sobre
 cuatro páginas; partirlo sería el anti-patrón «contrato duplicado como test separado» (§4.5) y tres
 páginas sin spec (`index`, `ver-todo`, `ver-markers-json-many-windows`) quedarían degradadas por una
@@ -319,7 +319,7 @@ regla que el Product Owner no pidió. DC-1 se sostiene en lo que dice: no hay ca
 Regla derivada de §0.1: **un sample sin contrato no es sample** (es lo que §4.2 ítem 9 llama «demo»).
 `<segmento>` es la convención de carpeta que Geometría declaró como «carpeta extra» de §2.3
 (`samples/README.md` §2) y se deriva del proyecto de código que el sample ejercita, en minúscula
-(`domain`, `visor`, `web`); para DEV.Maps: `googlemaps` (bundle) y `blazor` (RCL).
+(`domain`, `visor`, `web`); para <biblioteca-de-mapas>: `googlemaps` (bundle) y `blazor` (RCL).
 
 ### P-5 · La forma del sample según el consumidor previsto: ejemplos de aplicación de la norma, no regla nueva
 
@@ -351,7 +351,7 @@ difiere, y ningún sample real cumple las dos a la vez:
 | Cómo se abre | `file://` (los módulos ES no cargan así; por eso A exige `<script>` clásico) | Servidor estático o `webServer` de Playwright sobre HTTP |
 | Dependencias externas | Ninguna: sin red, sin credencial (`samples/visor/01-basico/README.md` l. 29) | Las del proveedor (clave de API por `shared/config.js`, nunca literal; CDN) |
 | Doble de .NET | No hace falta | `shared/fake-blazor.js` con `METODOS_JSINVOKABLE` |
-| Modelo real | `samples/visor/01-basico` (Geometría) | `sandbox/` de DEV.Maps, **reducido a una página con contrato** |
+| Modelo real | `samples/visor/01-basico` (Geometría) | `sandbox/` de <biblioteca-de-mapas>, **reducido a una página con contrato** |
 
 Estructura (los elementos marcados `B` sólo en la sub-forma B):
 
@@ -361,7 +361,7 @@ samples/<segmento>/01-basico/
 ├── package.json              # scripts: verify (= comando del contrato); B: además serve
 ├── index.html                # carga el bundle CONSTRUIDO desde ../../../src|<raiz-js>/dist/, no una copia
 ├── shared/
-│   ├── config.js             # opciones comunes; ninguna clave literal (DEV.Maps config.js l. 3–7)
+│   ├── config.js             # opciones comunes; ninguna clave literal (<biblioteca-de-mapas> config.js l. 3–7)
 │   └── fake-blazor.js        # B: doble de DotNetObjectReference con METODOS_JSINVOKABLE
 ├── anfitrion.js              # el anfitrión mínimo: invoca la fachada y nada más (Geometría)
 ├── datos/                    # escenarios, un archivo por escenario, nombrados por id del intake
@@ -373,7 +373,7 @@ La ruta desde `samples/<segmento>/01-basico/` hasta la raíz del repositorio tie
 (`../../../`), como en Geometría; 2.x decía dos.
 
 **Qué tiene que contener para ser la guía del componente Blazor** (hallazgos H-INT-01/02; hoy no lo
-es en DEV.Maps):
+es en <biblioteca-de-mapas>):
 
 1. **La lista de `[JSInvokable]` derivada de una sola fuente y verificada**: una prueba que falle si
    `METODOS_JSINVOKABLE`, el `main.js` fuente y el `.razor` divergen (hoy divergen: §3.2).
@@ -381,7 +381,7 @@ es en DEV.Maps):
    `dist/`), no reconstruidos a mano en `Infos/*.cs`.
 3. **El caso de error de cada función con su valor de retorno** afirmado por la prueba.
 4. **El recorrido de liberación con aserción** (`liveInstanceCount` en Geometría; `DisposeMapAsync`
-   nunca se invoca en DEV.Maps).
+   nunca se invoca en <biblioteca-de-mapas>).
 5. **La fachada completa cubierta por el conjunto de samples**, no por cada uno: `anfitrion.js` de
    `01-basico` invoca tres de seis funciones y no ejerce el callback; la afirmación «es la lista de
    llamadas que el front hace» vale sobre `01+02+03` sólo si `02` y `03` cubren el resto y
@@ -406,7 +406,7 @@ de la mesa comparó tres formas de cumplirla y adoptó **D** (5-0):
 
 Hechos que acotan «proyecto de la solución»:
 
-- Los «Web Site» .NET Fx 4.8 de `DEV.Maps.Core.Blazor.Components.sln` **no son inocuos**: rompen
+- Los «Web Site» .NET Fx 4.8 de `<Mapas>.Core.Blazor.Components.sln` **no son inocuos**: rompen
   `dotnet build` en Linux (`MSB4249`) antes de compilar nada. Retirarlos (con su `NestedProjects`) es
   **precondición** de todo el plan §7.2.
 - SDK 10 emite `.slnx` por omisión en `dotnet new sln`; `dotnet sln migrate` conserva `SolutionItems`
@@ -583,7 +583,7 @@ devcontainer del repositorio (no hay `dotnet` en el host). Cada paso lleva su cr
 
 Precondiciones: paso 0 ejecutado y confirmado por el Product Owner antes del paso 5; el trabajo va por rama y pull request.
 
-### §7.2 `DEV.Maps`
+### §7.2 `<biblioteca-de-mapas>`
 
 Precondiciones: autorización del Product Owner (la ia-db lo declara de solo lectura para agentes que la
 usen); **feed NuGet configurado** para `NgForms.Component` (sin él `dotnet restore` falla `NU1101`:
@@ -591,9 +591,9 @@ agregar `nuget.config` o declarar el feed en el README).
 
 | # | Paso | Criterio de aceptación |
 | --- | --- | --- |
-| 1 | **Bloqueante**: retirar los dos «Web Site» y sus entradas en `NestedProjects` de `DEV.Maps.Core.Blazor.Components.sln`; Solution Folder `src/googlemaps` con `SolutionItems` (opcional) | `dotnet build DEV.Maps.Core.Blazor.Components.sln` pasa el parseo de la solución (sin `MSB4249`/`MSB5023`) y el restore con el feed |
+| 1 | **Bloqueante**: retirar los dos «Web Site» y sus entradas en `NestedProjects` de `<Mapas>.Core.Blazor.Components.sln`; Solution Folder `src/googlemaps` con `SolutionItems` (opcional) | `dotnet build <Mapas>.Core.Blazor.Components.sln` pasa el parseo de la solución (sin `MSB4249`/`MSB5023`) y el restore con el feed |
 | 2 | Borrar `JS.Bundle/Maps/OpenStreet/` (obsoleto declarado). El paquete `GoogleMaps/` **no se mueve** en este ciclo (mismo criterio que P-1: primero que compile y sirva; mover es cosmético). `.gitignore` anidado se conserva | `git ls-files JS.Bundle/Maps/OpenStreet` vacío |
-| 3 | RCL con Static Web Assets (P-3): Target en `DEV.Maps.Core.Blazor.Components.csproj` que construye el paquete (`npm ci && npm run build`, con `SkipMapsBuild`), copia `dist/` a `wwwroot/js/components/googlemaps/` (minúscula) **y lo declara como `Content`**; `GoogleMaps.razor`: los 9 `import` pasan a `./_content/DEV.Maps.Core.Blazor.Components/js/components/googlemaps/main.js`; los íconos por defecto (`imgs/icon-rojo.png`, l. 264/292/339) pasan a `_content/…/imgs/`; `git rm --cached` de las copias versionadas en `src/…/wwwroot/js/components/GoogleMaps/` y `.gitignore` de la ruta generada | **Primer** `dotnet build` desde clon limpio: `staticwebassets.build.endpoints.json` del host lista `_content/DEV.Maps.Core.Blazor.Components/js/components/googlemaps/main.js`; `diff JS.Bundle/Maps/GoogleMaps/src/interop/main.js <servido>` vacío |
+| 3 | RCL con Static Web Assets (P-3): Target en `<Mapas>.Core.Blazor.Components.csproj` que construye el paquete (`npm ci && npm run build`, con `SkipMapsBuild`), copia `dist/` a `wwwroot/js/components/googlemaps/` (minúscula) **y lo declara como `Content`**; `GoogleMaps.razor`: los 9 `import` pasan a `./_content/<Mapas>.Core.Blazor.Components/js/components/googlemaps/main.js`; los íconos por defecto (`imgs/icon-rojo.png`, l. 264/292/339) pasan a `_content/…/imgs/`; `git rm --cached` de las copias versionadas en `src/…/wwwroot/js/components/GoogleMaps/` y `.gitignore` de la ruta generada | **Primer** `dotnet build` desde clon limpio: `staticwebassets.build.endpoints.json` del host lista `_content/<Mapas>.Core.Blazor.Components/js/components/googlemaps/main.js`; `diff JS.Bundle/Maps/GoogleMaps/src/interop/main.js <servido>` vacío |
 | 4 | El global sigue cargándose desde `App.razor` del host (l. 20) —una RCL no puede inyectar `<script>`—: documentar en `guides/Blazor-Componente-User-Guide.md` el contrato de instalación (el `<script>` de `_content/…/googlemaps.min.js`, sin copias, sin `imgs/` propios) | La guía lista los tres puntos; `examples/WebBlazor_JS/wwwroot/js/components/` y `wwwroot/imgs/` se borran y el example sigue funcionando |
 | 5 | Sello de caché: `ComponentVersion.Version` deja de escribirse a mano (P-3.4; misma verificación que Geometría) | Huella distinta tras cambiar un `.ts` |
 | 6 | `examples/WebBlazor_JS/` → `samples/blazor/01-app-basica/` **con contrato `VER-00001`** (Playwright sobre una página que crea un mapa, agrega un marcador y recibe `OnMarkerClick`); mantiene `ProjectReference` (P-7). `examples/GenJson/` → herramienta del paquete (D-3) | `dotnet run --project samples/blazor/01-app-basica` + `npm --prefix samples/blazor/01-app-basica run verify` en 0 |
@@ -620,7 +620,7 @@ agregar `nuget.config` o declarar el feed en el README).
 | --- | --- | --- | --- |
 | D-1 | Slugs para «cliente web» y «app MAUI» | Los existentes de §3.1 · slug nuevo **con ADR de apartamiento** (no hay «desvío en README») | Los existentes (`cliente-http-basico`, `app-basica`) |
 | D-2 | ¿Probar `.esproj` en el devcontainer? | Sí · No | No: D y C ya están reproducidos con NoTargets |
-| D-3 | `examples/GenJson` de DEV.Maps | herramienta del paquete · sample de datos | Herramienta |
+| D-3 | `examples/GenJson` de <biblioteca-de-mapas> | herramienta del paquete · sample de datos | Herramienta |
 | D-4 | `tests/GeometriaFactory.E2ETests` ¿entra al `.sln`? | Sí · No | Sí (DC-5); queda escrito en `Plan-Etapa-A` l.279 al reversionar |
 | D-5 | ¿Emitir documento(s) de `Conocimiento/`? | Sí (dos, `propio`) · No por ahora | No por ahora (P-8) |
 | D-6 | ¿Elevar observaciones al framework? | Por el canal de intervención del framework · cuando exista un ADR con ≥2 saltos · nunca | Registrarlas como observaciones; sin ADR no hay candidato |
@@ -635,9 +635,9 @@ agregar `nuget.config` o declarar el feed en el README).
 | Fecha | Tema | Posiciones | Resolución |
 | --- | --- | --- | --- |
 | 2026-09-11 | ¿`src/dotnet` + `src/javascript` o `src/<proyecto>`? | Idea-Central §4 la primera; intake §16 la segunda | Se sigue §16 (DC-4) |
-| 2026-09-11 | ¿Carpeta `poc/`/`demo/`? | 1.0: `poc/`; replanteo: ninguna | Ninguna (DC-1). La mesa acotó la consecuencia: el sandbox de DEV.Maps no se convierte en samples (P-4) |
+| 2026-09-11 | ¿Carpeta `poc/`/`demo/`? | 1.0: `poc/`; replanteo: ninguna | Ninguna (DC-1). La mesa acotó la consecuencia: el sandbox de <biblioteca-de-mapas> no se convierte en samples (P-4) |
 | 2026-09-11 | ¿Mover `visor/` a `src/`? | 2.x: sí; mesa: S1 (decisión cerrada del producto, beneficio nulo) | **No se mueve** (P-1) |
-| 2026-09-11 | ¿El sample prueba o muestra? | Replanteo: las dos | Ya lo exige §0.1; se cumple en Geometría, falta en DEV.Maps |
+| 2026-09-11 | ¿El sample prueba o muestra? | Replanteo: las dos | Ya lo exige §0.1; se cumple en Geometría, falta en <biblioteca-de-mapas> |
 | 2026-09-11 | ¿Forma del sample por productor o por consumidor? | 2.x: regla nueva; mesa: ya está en §0/§1.2/§2.2 y el titular es la unidad de entrega | Ejemplos, no regla (P-5) |
 | 2026-09-11 | ¿Samples y visor en el `.sln`? | Norma: no dice; intake/manifiesto de Geometría: el visor no; PO: todos, «aunque sea bajo carpetas virtuales» | DC-5. Ciclo 2: B (lista a mano) descartada, C (dueño del build) condicionada, **D (nodo inerte) adoptada 5-0**; samples `.csproj` construidos, 10 textos a reescribir, `QG-03` medido (P-7) |
 | 2026-09-11 | ¿`ProjectReference` es desvío? | 2.x: «tensión declarada»; mesa: no hay obligación para `redistribuible:false` | Sin desvío; cláusula `PackageReference` no ejercida (P-7) |
@@ -665,7 +665,7 @@ cierre:
     postergados_por_cupo: []
     aporte_nulo: []
   hallazgos: { detectados: 49 (+1 mecánico), consolidados: 10 grupos + 7 del abogado, procedentes: 16 ítems, no_procede: 1 (NoTargets por defecto), no_aplicar: 1 (.dockerignore), aplicados: 16 (fusionados en la reescritura 3.0), revertidos: 0 }
-  coherencia: { contradicciones_internas: 0, referencias_colgadas_P-x_D-x: 0, citas_a_INPUTs_verificadas: todas contra encabezados de Idea-Central.md, terminos: «sample» y «PoC» con un solo sentido (PoC sólo como término de DEV.Maps/Idea-Central) }
+  coherencia: { contradicciones_internas: 0, referencias_colgadas_P-x_D-x: 0, citas_a_INPUTs_verificadas: todas contra encabezados de Idea-Central.md, terminos: «sample» y «PoC» con un solo sentido (PoC sólo como término de <biblioteca-de-mapas>/Idea-Central) }
   deuda_declarada:
     - NoTargets no adoptado: alternativa condicionada a dos consumidores del mismo bundle (G-04d)
     - .dockerignore no agregado: innecesario mientras el visor no esté bajo src/ (G-04e)
@@ -708,7 +708,7 @@ retiro de los Web Site, `ProjectReference`, DC-4, inventarios de §3) está inta
 | --- | --- | --- |
 | 3.2 | 2026-09-12 | §7.1 ejecutado: rama, PR #187 y evidencia; paso 4 resuelto con hash de contenido (el mecanismo `@Assets` no aplica por el guardián 1). Sube patch. |
 | 3.1 | 2026-09-12 | **Ciclo 2 de la mesa, sobre la respuesta del Product Owner a ESC-001 (DC-5: todo bajo el árbol de solución, aunque sea en carpetas virtuales).** P-7 reescrita: opción D (nodo NoTargets inerte en `visor/`) adoptada 5-0; C condicionada con cinco condiciones (incluye `MSB4018` con copia física y `MSB9008` silencioso en `Dockerfile.web`); B descartada; samples `.csproj` construidos con la solución, diez textos «NO ENTRA» a reescribir y `QG-03` medido; `verify` de samples HTML nunca en `Build`. P-3: preguntas de nivel C cerradas con reproducción. §6.1 y §7.1: la escritura va en el intake §13.2 (caso (a), major) y el manifiesto se re-deriva; paso 0 nuevo; `Plan-Etapa-A` l.279. §8: ESC-001 cerrada; D-7. §9.3 cierre del ciclo 2. Sube minor. |
-| 3.0 | 2026-09-11 | **Corrección por mesa evaluadora (ciclo 1; siete especialistas + abogado del diablo; 49 hallazgos, 16 ítems procedentes fusionados).** Citas a `INPUTs/` reatribuidas a `Idea-Central.md`. P-1: no se mueve `visor/` (decisión cerrada del producto; beneficio nulo). P-2: definición de bundle vs adaptador; obligación acotada; las dos formas no intercambiables. P-3: `Content` dentro del Target (reproducido), `SkipVisorBuild` en `publish`/`test`, un único generador, sello de caché; NoTargets como alternativa condicionada. P-4: el sandbox de DEV.Maps es banco de trabajo, no ocho samples. P-5: degradada a ejemplos; titular = unidad de entrega; slugs existentes. P-6: dos sub-formas y los cinco contenidos de una guía. P-7: sin «tensión»; Web Site bloqueantes (`MSB4249`); `SolutionItems` por archivo; E2ETests. P-8: sin documento de `Conocimiento/` por ahora; «candidato a regla» con el criterio real (saltos). §6.1 y §7 rehechos con criterio evaluable por paso y ambiente. ESC-001. Sube major: cambia el criterio de P-1, P-5, P-6 y P-8. |
+| 3.0 | 2026-09-11 | **Corrección por mesa evaluadora (ciclo 1; siete especialistas + abogado del diablo; 49 hallazgos, 16 ítems procedentes fusionados).** Citas a `INPUTs/` reatribuidas a `Idea-Central.md`. P-1: no se mueve `visor/` (decisión cerrada del producto; beneficio nulo). P-2: definición de bundle vs adaptador; obligación acotada; las dos formas no intercambiables. P-3: `Content` dentro del Target (reproducido), `SkipVisorBuild` en `publish`/`test`, un único generador, sello de caché; NoTargets como alternativa condicionada. P-4: el sandbox de <biblioteca-de-mapas> es banco de trabajo, no ocho samples. P-5: degradada a ejemplos; titular = unidad de entrega; slugs existentes. P-6: dos sub-formas y los cinco contenidos de una guía. P-7: sin «tensión»; Web Site bloqueantes (`MSB4249`); `SolutionItems` por archivo; E2ETests. P-8: sin documento de `Conocimiento/` por ahora; «candidato a regla» con el criterio real (saltos). §6.1 y §7 rehechos con criterio evaluable por paso y ambiente. ESC-001. Sube major: cambia el criterio de P-1, P-5, P-6 y P-8. |
 | 2.1 | 2026-09-11 | Suma §6.1: `Lab-Geometria` con la propuesta aplicada. |
 | 2.0 | 2026-09-11 | Replanteo del Product Owner: se retira `poc/`; todo es `samples/` con las dos aristas. |
 | 1.0 | 2026-09-11 | Emisión inicial con carpeta `poc/`. Superada. |

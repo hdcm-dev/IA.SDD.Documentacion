@@ -1,18 +1,18 @@
 ### find -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"
-/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria-dc5/SDD/Docs
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs
-/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs
+<workspace>/DEV/SAI.Service.Core/SDD/Docs
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs
+<workspace>/PROG2/Geometria/Lab-Geometria-dc5/SDD/Docs
+<workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs
+<workspace>/Repos-RPIs/RPI.VideoControl/SDD/Docs
 
 ### repositorio al que pertenece cada ruta (git-common-dir)
-/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core -> /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/.git @ 6fd23d5 [main]
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core -> /home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/.git @ 82fb235 [main]
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria-dc5 -> /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/.git @ 1ce1b2c [estructura/dc5-samples-en-la-solucion]
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria -> /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/.git @ 1ce1b2c [main]
-/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl -> /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/.git @ 9aabe5c [main]
+<workspace>/DEV/SAI.Service.Core -> <workspace>/DEV/SAI.Service.Core/.git @ 6fd23d5 [main]
+<workspace>/DEV/SelfHosted.Service.Core -> <workspace>/DEV/SelfHosted.Service.Core/.git @ 82fb235 [main]
+<workspace>/PROG2/Geometria/Lab-Geometria-dc5 -> <workspace>/PROG2/Geometria/Lab-Geometria/.git @ 1ce1b2c [estructura/dc5-samples-en-la-solucion]
+<workspace>/PROG2/Geometria/Lab-Geometria -> <workspace>/PROG2/Geometria/Lab-Geometria/.git @ 1ce1b2c [main]
+<workspace>/Repos-RPIs/RPI.VideoControl -> <workspace>/Repos-RPIs/RPI.VideoControl/.git @ 9aabe5c [main]
 
-======== /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria (HEAD 1ce1b2c)
+======== <workspace>/PROG2/Geometria/Lab-Geometria (HEAD 1ce1b2c)
 -- archivos de proyecto por ecosistema (commiteados, sin node_modules):
 dotnet: GeometriaFactory.sln
 dotnet: src/GeometriaFactory.Api/GeometriaFactory.Api.csproj
@@ -49,7 +49,7 @@ node: visor/package.json
   NO-COMP  samples/visor/03-avanzado
   NO-COMP  samples/web/01-datos-seed
 
-======== /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl (HEAD 9aabe5c)
+======== <workspace>/Repos-RPIs/RPI.VideoControl (HEAD 9aabe5c)
 -- archivos de proyecto por ecosistema (commiteados, sin node_modules):
 dotnet: VideoControl.sln
 dotnet: src/VideoControl.Application/VideoControl.Application.csproj
@@ -66,7 +66,7 @@ dotnet: tests/VideoControl.Web.Pruebas/VideoControl.Web.Pruebas.csproj
 -- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
   (sin samples/ commiteado)
 
-======== /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core (HEAD 6fd23d5)
+======== <workspace>/DEV/SAI.Service.Core (HEAD 6fd23d5)
 -- archivos de proyecto por ecosistema (commiteados, sin node_modules):
 dotnet: SAI.Service.Core.sln
 dotnet: src/SAI.Service.Core/SAI.Service.Core.Api/SAI.Service.Core.Api.csproj
@@ -80,7 +80,7 @@ dotnet: tests/SAI.Service.Core.Integration.Tests/SAI.Service.Core.Integration.Te
 -- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
   (sin samples/ commiteado)
 
-======== /home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core (HEAD 82fb235)
+======== <workspace>/DEV/SelfHosted.Service.Core (HEAD 82fb235)
 -- archivos de proyecto por ecosistema (commiteados, sin node_modules):
 -- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
   (sin samples/ commiteado)

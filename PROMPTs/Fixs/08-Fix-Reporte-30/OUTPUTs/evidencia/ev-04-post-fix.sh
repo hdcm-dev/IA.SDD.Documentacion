@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Verificación posterior sobre el worktree IA.SDD-i08 (rama intervencion/08-reporte-30), contra la base main.
-F=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD-i08
-L=/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria
+F=<workspace>/IA/SDD/IA.SDD-i08
+L=<workspace>/PROG2/Geometria/Lab-Geometria
 cd $F
 T="SDD/Devs/Rules/Intake-Rules.md SDD/Devs/Rules/Rules-Devops.md SDD/Devs/Rules/Rules-Examples.md SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md SDD/Devs/Orchestrator/Master-Prompt.md SDD/Devs/Rules/Catalogo-De-Criterios.md SDD/Devs/Intake/PRODUCT-MANIFEST-template.md SDD/Devs/Intake/PRODUCT-INTAKE-template.md"
 echo "## base main=$(git rev-parse main)  rama=$(git rev-parse --abbrev-ref HEAD)"

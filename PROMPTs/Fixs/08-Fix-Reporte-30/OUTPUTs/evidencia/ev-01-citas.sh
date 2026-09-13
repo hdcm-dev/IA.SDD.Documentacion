@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Solicitud 1: citas del reporte 30 contra la base (main) de IA.SDD y de Lab-Geometria. Sólo objetos commiteados.
-F=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
-L=/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria
+F=<workspace>/IA/SDD/IA.SDD
+L=<workspace>/PROG2/Geometria/Lab-Geometria
 echo "## base IA.SDD main = $(git -C $F rev-parse main)"
 echo "## base Lab-Geometria main = $(git -C $L rev-parse main)"
 s(){ git -C $F show "main:$1"; }

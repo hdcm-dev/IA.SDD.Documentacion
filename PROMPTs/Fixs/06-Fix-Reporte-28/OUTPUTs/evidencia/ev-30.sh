@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Evidencia de la verificación del plan aplicado (OUTPUTs/30), corrida sobre el árbol de trabajo
 set -uo pipefail
-cd /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
+cd <workspace>/IA/SDD/IA.SDD
 
 echo "=== 1. git diff --stat contra main (lo aplicado) ==="
 git diff --stat main

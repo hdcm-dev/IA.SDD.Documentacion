@@ -69,44 +69,44 @@ $ grep -rniow --include='*.md' --exclude-dir=_legacy -- 'lote de la fase' . | wc
 
 ### S4  Lab-Geometria (sólo lectura): la base que el destino escribió y el origen de sus escaladas abiertas
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria rev-parse 5c95dab
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria rev-parse 5c95dab
 5c95dab5074717dcd72cd6322312e07f1f1a0691
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
 8:**Revisión leída:** `5c95dab` de `main`, árbol de trabajo limpio
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria log --oneline 5c95dab..archivo/reanudacion-6-2026-09-12
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria log --oneline 5c95dab..archivo/reanudacion-6-2026-09-12
 1fe47af Archivo de la sexta reanudación (2026-09-12): informe de estado y registro de mesa
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria log --oneline 5c95dab..main | wc -l
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria log --oneline 5c95dab..main | wc -l
 0
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n '^### E-0[1-5]'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n '^### E-0[1-5]'
 298:### E-01 · La etapa `i`: qué es su entregable ahora — **disparador 3, cambio de alcance**
 310:### E-02 · La API quedó públicamente alcanzable — **disparador 5, consecuencia externa**
 322:### E-03 · Los secretos de FTP y el flujo que sigue publicando — **disparador 5, obligaciones con un tercero**
 334:### E-04 · Qué evento dispara una etiqueta de versión — **disparador 1, ambigüedad de intención**
 340:### E-05 · El estado durable del front — **disparador 4, irreversibilidad acotada**
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'Tres escaladas del ciclo 1 quedan respondidas'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'Tres escaladas del ciclo 1 quedan respondidas'
 460:- **Tres escaladas del ciclo 1 quedan respondidas por el testimonio** (`E-01`, `E-03` y, parcialmente, `E-02`: la exposición de la API sigue abierta porque el testimonio no la menciona).
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep 'Estrategia-Versionado.md'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep 'Estrategia-Versionado.md'
 SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/09-Devops/Estrategia-Versionado.md
 SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/09-Devops/Estrategia-Versionado.md
 SDD/Docs/_legacy/2026-08-15-migracion-8.2/GeometriaFactory-Contracts/09-Devops/Estrategia-Versionado.md
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep -ci 'DESPLIEGUE.md'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria ls-tree -r --name-only 5c95dab | grep -ci 'DESPLIEGUE.md'
 0
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'RE-REF-05\|RE-GP-02'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Mesa-2026-09-12.md | grep -n 'RE-REF-05\|RE-GP-02'
 422:| `RE-GP-02` | Las dos decisiones del Product Owner quedaron asentadas **en el repositorio del framework**, no en el registro de decisiones del destino | E1 | P0 |
 434:| `RE-REF-05` | **Son tres cosas, no una**: (i) el ciclo evolutivo ausente es de framework; (ii) «la decisión sin control ejecutable» es trabajo de la categoría 09 **del destino** —el framework no distribuye código y está decidido—; (iii) el registro de decisiones en el repositorio equivocado es un error **de esta corrida**, no normativo | P1 |
 
-$ ls /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs/Audit | grep -c '^Mesa-'
+$ ls <workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs/Audit | grep -c '^Mesa-'
 6
 
-$ find /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs -name 'Decisiones-Pendientes.md' -not -path '*/_legacy/*' | wc -l
+$ find <workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs -name 'Decisiones-Pendientes.md' -not -path '*/_legacy/*' | wc -l
 0
 
 ### S3.e  Citas que usa la decisión

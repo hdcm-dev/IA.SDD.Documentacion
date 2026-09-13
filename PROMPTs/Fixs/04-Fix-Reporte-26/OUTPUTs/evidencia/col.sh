@@ -1,4 +1,4 @@
-cd /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
+cd <workspace>/IA/SDD/IA.SDD
 run(){ echo; echo "\$ $*"; eval "$@"; }
 echo "### Colisión de los nombres candidatos — árbol vivo, sin _legacy/"
 for t in "origen del hecho" "base de la corrida" "procedencia" "origen"; do printf '%5d  «%s»\n' "$(grep -rniow --include='*.md' --exclude-dir=_legacy -- "$t" . | wc -l)" "$t"; done

@@ -1,19 +1,19 @@
 == destinos con SDD/Docs (excluye _legacy y node_modules) ==
-/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs
-/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs
+<workspace>/Repos-RPIs/RPI.VideoControl/SDD/Docs
+<workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs
+<workspace>/DEV/SAI.Service.Core/SDD/Docs
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs
 
 == carpetas tareas-tecnicas/ en TODO el workspace (reproduce el comando del reporte, §2.4) ==
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/tareas-tecnicas
+<workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/tareas-tecnicas
 (el de arriba es el de Lab-Geometria en fase-k; en el resto del workspace: sin salida antes de esta corrida)
 
 == carpetas historias-usuario/ en TODO el workspace (ampliación de la solicitud 2) ==
-/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/historias-usuario
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/06-Backlog-Tecnico/historias-usuario
-/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/historias-usuario
-/home/fernando/workspaces/workspace-dev/IA/TEMP/Ejemplos_IA_SDD2.1D_Sistema_Georreferencia/SDD2.1D/docs/proyectos/geovial-api/06_backlog-tecnico/historias-usuario
-/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/historias-usuario
+<workspace>/Repos-RPIs/RPI.VideoControl/SDD/Docs/06-Backlog-Tecnico/historias-usuario
+<workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/06-Backlog-Tecnico/historias-usuario
+<workspace>/PROG2/Geometria/Lab-Geometria/SDD/Docs/Unidades-Entrega/GeometriaFactory-Api/06-Backlog-Tecnico/historias-usuario
+<workspace>/IA/TEMP/Ejemplos_IA_SDD2.1D_Sistema_Georreferencia/SDD2.1D/docs/proyectos/geovial-api/06_backlog-tecnico/historias-usuario
+<workspace>/DEV/SAI.Service.Core/SDD/Docs/06-Backlog-Tecnico/historias-usuario
 
 ---- RPI.VideoControl (una unidad, cinco proyectos de código, pre-8.0: sin Unidades-Entrega/) ----
 # Backlog de Producto — Videocontrol de cámaras y actuadores
@@ -51,10 +51,10 @@ US mencionadas en Product-Backlog-v1.0.md:
 tareas-tecnicas/ existe:
 
 ---- SelfHosted.Service.Core (sin categoría 06 generada aún) ----
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs/00-Contexto
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs/Audit
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs/03-UX-UI-DX
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs/01-Necesidades-Negocio
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs/02-Especificacion-Funcional
-/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs/_legacy
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs/00-Contexto
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs/Audit
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs/03-UX-UI-DX
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs/01-Necesidades-Negocio
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs/02-Especificacion-Funcional
+<workspace>/DEV/SelfHosted.Service.Core/SDD/Docs/_legacy
