@@ -86,10 +86,12 @@ Todo esto **sin que la forma mínima deje de llenarse en minutos**, y alineando 
 - **Correr los comandos del reporte, §2, y pegar la salida.**
 - Confirmar la versión vigente (`CHANGELOG.md`) y si la 13.17 ya se fusionó.
 
-**2 · Leer las respuestas del Product Owner al lote** (folio 015 §5), antes de decidir nada.
-- Por cada escalada, E-1, E-2 y E-3: si hay respuesta, dónde está y qué dice.
-- Si no la hay, **rige el `SI NO RESPONDÉS`**: E-1 → `IA.SDD/Expedientes/`; E-2 → redactar; E-3 → D9 intacta y salto minor.
-- **No volver a preguntar lo que el lote ya preguntó.**
+**2 · Tomar el lote como resuelto, no como pregunta.** Las tres escaladas del folio 015 §5 **se resolvieron con el conjunto en el folio 018** y no se elevaron:
+- **E-1 → A.** Los expedientes del framework viven en `IA.SDD/Expedientes/`, por la ruta literal del Product Owner en `ev-07`. **Esta intervención declara la reformulación de `README.md` l.152** en su nota de coherencia.
+- **E-2 → A.** El nombre copiado era un dato personal y ya está redactado (S2 aplicada en el folio 018). La fuente en `Lab-Geometria` la trata el Product Owner después de la migración: **no la toques**.
+- **E-3 → insumo de esta intervención, no pregunta.** La presentación del Product Owner (`ev-07`) dice que «las pruebas que aporse yo o las que obtuviesen los agentes quedarian como prte de las especificaciones». Es intención declarada y fechada. **Si D9 suma una oración para la aprobación dada por conversación, y con qué forma, lo decide la mesa de la solicitud 5, con esa cita como restricción dura del contrato de entrada.** Si la suma, el salto es major con bloque de impacto; si no, minor. En los dos casos el fundamento se escribe.
+
+**No vuelvas a preguntar nada de esto al Product Owner.**
 
 **3 · Respetar las cinco cosas que el reporte declara que no afirma (§6).** En particular:
 - no mudar nada de `Audit/` ni de `OUTPUTs/`;
@@ -116,7 +118,7 @@ Todo esto **sin que la forma mínima deje de llenarse en minutos**, y alineando 
 | Q4 | Identificador | **Colisión medida con comando** (`Vocabulario-Rules.md` §9.4), **incluida la rama `migracion/a-13.16`**. Número local de cinco dígitos y familia excluida, **sin tocar D3** |
 | Q5 | Estados | Mapeo tipo → estado **total**, verificado por enumeración, con Formal |
 | Q6 | Inmutabilidad y foliatura | S1 sobre la carpeta entera contra la rama principal ya fusionada. S3 sobre la fusión. Sin folio por commit ni trailer obligatorio |
-| Q7 | Evidencia | Medición contra observación. Huella sólo para lo no versionado. Testimonio **clasificado por contenido**. S2 con Seguridad |
+| Q7 | Evidencia | Medición contra observación. Huella sólo para lo no versionado. Testimonio **clasificado por contenido**, y la oración de D9 decidida con la restricción dura de E-3. S2 con Seguridad |
 | Q8 | Evidencia → especificación | Una sola vía declarada, la fila de control de cambios. La inversa, con `git grep` |
 | Q9 | Relación con `Audit/` y con los reportes | Folio por enlace. `Mesa-Rules.md` §8 criterio 1 cuando el registro es el expediente |
 | Q10 | Retroactivo | Forma histórica para los adelantos y el precedente. Nada se reescribe |
