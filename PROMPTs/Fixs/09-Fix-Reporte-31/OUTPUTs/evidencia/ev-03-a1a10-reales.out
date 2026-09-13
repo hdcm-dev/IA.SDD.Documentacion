@@ -1,0 +1,125 @@
+# ev-03 · A1–A10 sobre los dos expedientes reales (forma histórica) · 2026-09-13T14:56:28-03:00
+## IA.SDD main a501857 · Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework
+== A1
+1
+== A2
+FALTA Base
+== A3
+== A4
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/001-presentacion-del-product-owner.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/002-providencia-convocatoria-de-mesa.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/003-constancia-segunda-convocatoria-y-dato-nuevo.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/004-informe-gestion-documental.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/005-informe-evidencia-digital.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/006-informe-ingenieria-de-software.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/007-informe-metodologia-academica.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/008-informe-lector-sin-contexto.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/009-informe-procedimiento-de-expediente.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/010-informe-verificacion.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/011-informe-requisitos.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/013-consolidacion-y-plan-compuesto.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/014-refutacion-del-plan-compuesto.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/015-veredicto-del-jurado.md
+FALTA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/016-dictamen.md
+5
+== A5
+== A6
+== A7
+(fusión: 650053e)
+== A8
+== A9
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-01-base.out
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-01-base.sh
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-02-snapshot.out
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-02-snapshot.sh
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-03-colision.out
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-03-colision.sh
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-04-inventario.out
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-04-inventario.sh
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-05-citas.out
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-05-citas.sh
+head: error al leer 'Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria': Es un directorio
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria
+head: error al leer 'Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-08-cartas-despachadas': Es un directorio
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-08-cartas-despachadas
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/SHA256SUMS
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/SHA256SUMS-ev-07
+== A10
+== fin
+
+## Lab-Geometria main d12fb1c · SDD/Expedientes/0001-Migracion-Normativa-A-13.16
+== A1
+1
+== A2
+FALTA Base
+== A3
+== A4
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/002-testimonio-ok-fase-k.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/002-testimonio-ok-fase-k.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/002-testimonio-ok-fase-k.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/002-testimonio-ok-fase-k.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/003-informe-m0-reconocimiento-del-destino.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/003-informe-m0-reconocimiento-del-destino.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/003-informe-m0-reconocimiento-del-destino.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/003-informe-m0-reconocimiento-del-destino.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/004-mesa-evaluacion-m1.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/004-mesa-evaluacion-m1.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/004-mesa-evaluacion-m1.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/004-mesa-evaluacion-m1.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/005-providencia-tratamiento-de-las-aprobaciones.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/005-providencia-tratamiento-de-las-aprobaciones.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/005-providencia-tratamiento-de-las-aprobaciones.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/005-providencia-tratamiento-de-las-aprobaciones.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/006-informe-propuestas-m2-m4.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/006-informe-propuestas-m2-m4.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/006-informe-propuestas-m2-m4.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/006-informe-propuestas-m2-m4.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/007-testimonio-despacho-del-orquestador-de-la-serie.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/007-testimonio-despacho-del-orquestador-de-la-serie.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/007-testimonio-despacho-del-orquestador-de-la-serie.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/007-testimonio-despacho-del-orquestador-de-la-serie.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/008-testimonio-instruccion-del-coordinador-sobre-la-aprobacion.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/008-testimonio-instruccion-del-coordinador-sobre-la-aprobacion.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/008-testimonio-instruccion-del-coordinador-sobre-la-aprobacion.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/008-testimonio-instruccion-del-coordinador-sobre-la-aprobacion.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/009-auditoria-m6.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/009-auditoria-m6.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/009-auditoria-m6.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/009-auditoria-m6.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/010-resolucion-lote-al-product-owner.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/010-resolucion-lote-al-product-owner.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/010-resolucion-lote-al-product-owner.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/010-resolucion-lote-al-product-owner.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/011-testimonio-aprobacion-plan-e-intake.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/011-testimonio-aprobacion-plan-e-intake.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/011-testimonio-aprobacion-plan-e-intake.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/011-testimonio-aprobacion-plan-e-intake.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/012-auditoria-cierre-m4.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/012-auditoria-cierre-m4.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/012-auditoria-cierre-m4.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/012-auditoria-cierre-m4.md
+FALTA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/013-resolucion-final.md
+FALTA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/013-resolucion-final.md
+FALTA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/013-resolucion-final.md
+FALTA Corrige SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/013-resolucion-final.md
+0
+== A5
+== A6
+SIN PASE 013-resolucion-final.md
+== A7
+(fusión: 1d4afc4)
+921c739 docs(expediente): actuación 013, resolución final; EXP-0001 resuelto
+== A8
+== A9
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-006b-derivar_ciclo.py
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-006f-derivar_ciclo_v4.py
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-006h-derivar_ciclo_v5.py
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-014b-check36.sh
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-017-jurado-integro.md
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-024-audit-de-cierre-integro.md
+== A10
+== fin

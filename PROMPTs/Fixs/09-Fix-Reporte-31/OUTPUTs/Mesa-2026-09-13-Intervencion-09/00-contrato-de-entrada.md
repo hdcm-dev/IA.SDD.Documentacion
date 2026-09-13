@@ -1,0 +1,16 @@
+# Mesa de la intervención 09 (reporte 31) — contrato de entrada (`Mesa-Rules.md` §4)
+
+**Desde dónde se convoca.** Por la condición de `Mesa-Rules.md` §0.0, sin orquestador: hay corpus previo (el expediente `IA.SDD/Expedientes/0001-…`, 18 folios, fusionado en `main` `a501857`; la norma 13.17), el estado está leído (este contrato) y hay un plan por aprobar (el borrador de `Expediente-Rules.md` 1.0 y el plan de aplicación). Es el ciclo siguiente que el folio 016 §9 dejó pendiente. Presidente: el orquestador de la intervención (AG-00970), sin voto.
+
+**Prefijo de familia del ciclo:** `M9-` (medido: `git grep -c 'M9-' main -- SDD PROMPTS Templates Conocimiento README.md Expedientes` → 0 archivos).
+
+| Campo | Valor |
+|---|---|
+| `objeto` | El plan de la intervención 09: el borrador de la regla transversal `Expediente-Rules.md` 1.0 y los 18 cambios del plan de aplicación, contra el dictamen del expediente 0001 (folio 016) y la norma 13.17. Volumen: la regla (unas 330 líneas), el plan, y el conjunto normativo 13.17 (133 archivos) |
+| `estado` | `IA.SDD` `main` `a501857` = 13.17 (la 13.17 ya está fusionada; el expediente 0001 entró por squash en `650053e`). `_legacy/13.17/` tomado. `Lab-Geometria` `main` `d12fb1c` con su `SDD/Expedientes/0001-Migracion-Normativa-A-13.16/` fusionado (PR #205 y #206) y `EXP-0001` en 20 archivos. `RPI.VideoControl` `HEAD` `9aabe5c`, con `SDD/Docs/Audit/evidencia/` y sin expedientes. Los comandos del reporte 31 §2 vuelven a dar lo que el reporte dice (ev-01), salvo que `Audit/` de `Lab-Geometria` tiene 116 y no 113 archivos (la migración sumó tres). E-1 = A, E-2 = A, E-3 = insumo de esta mesa (folio 018) |
+| `diff_normativo` | 13.17 → 13.18: lo que este plan propone. Minor salvo E-3 = A |
+| `restricciones_duras` | (R1) `Master-Prompt.md` §8.2 y `Root-Rules.md` §12 no se modifican. (R2) Nada de `Audit/` ni de `OUTPUTs/` se muda. (R3) El reporte `12` no se reabre: ningún verificador aparte; los comandos viven en la regla. (R4) La forma mínima se llena en minutos y se verifica enumerando: 18 campos en un caso de dos folios, sin datos derivados a mano. (R5) `ev-07` como restricción dura de E-3: «las pruebas que aporse yo o las que obtuviesen los agentes quedarian como prte de las especificaciones». (R6) Destinos sólo lectura. (R7) El expediente 0001 no se reescribe. (R8) Presupuesto de nueve pasos de la guía, Parte IV |
+| `decisiones_cerradas` | Las del folio 015 §4 (forma aprobada por pregunta, Q1–Q12) y del folio 016; E-1 = A y E-2 = A (folio 018); D3 no se toca (J-06 opción A); registro de mesa en `Audit/` (`Mesa-Rules.md` §2.1); condición de convocatoria y no lista (§0.0); ciclo de origen congelado. Se reabren sólo con ancla E1 o E2 que muestre contradicción |
+| `fuera_de_alcance` | Reanalizar el caso 0001; modificar destinos; D-1 (es de la corrida de migración); el diseño de un verificador |
+| `pendientes_declarados` | D-2 (Seguridad, S2), D-5 (Formal, tipos→estado), D-6 (Trazabilidad, identificadores y enlaces), D-7 (disposición), D-3 (alineación 13.17). Residuo de S2 en el 0001: cuatro piezas con la ruta del scratchpad que contiene el usuario del host (`git grep -ci <u> main -- Expedientes` → 4), ya en `main` |
+| Tope | Ocho hallazgos por comisión, más hasta tres «lo que revisé y está bien» |

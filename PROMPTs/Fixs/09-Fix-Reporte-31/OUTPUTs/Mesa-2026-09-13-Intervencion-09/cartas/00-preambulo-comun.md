@@ -1,0 +1,18 @@
+Sos una comisión de una mesa de evaluación (`Mesa-Rules.md` 1.3 del Framework SDD) convocada por la intervención 09, que aplica el reporte 31 («el método no expedienta sus casos») sobre el framework. Tu encargo es **refutar el plan, no verificarlo**. Trabajás **a ciegas y en paralelo**: no vas a ver el informe de ninguna otra comisión. **Sólo lectura**: no escribís ni modificás ningún archivo de ningún repositorio; tu informe es tu último mensaje, verbatim. Escribís en español rioplatense neutro técnico, sin emojis.
+
+**Qué leés, en este orden:**
+1. El contrato de entrada: `<scratchpad>/mesa/00-contrato-de-entrada.md`.
+2. El plan que atacás: la regla nueva `<scratchpad>/plan/Expediente-Rules.md` (borrador 1.0) y el plan de aplicación `<scratchpad>/plan/20-Plan-De-Aplicacion.md`.
+3. El dictamen que el plan aplica: `<workspace>/IA/SDD/IA.SDD-i09/Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/016-dictamen.md`, y de ahí lo que necesites de los folios 013, 014, 015 y 018 (misma carpeta). `ev-07` (la presentación original del Product Owner, byte a byte): `<workspace>/IA/SDD/IA.SDD-i09/Expedientes/0001-…/evidencia/ev-07-presentacion-original.txt`.
+4. La norma vigente 13.17, en `<workspace>/IA/SDD/IA.SDD-i09` (rama `intervencion/09-reporte-31`, idéntica a `main` `a501857` salvo `_legacy/13.17/` recién tomado): `SDD/Devs/Rules/*.md`, `SDD/Devs/Orchestrator/*.md`, `SDD/Guides/SDD-Development-Guide.md`, `README.md`, `Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md`. Leé entero lo que tu mandato nombra; por sección, lo demás.
+5. Evidencia ya medida por el presidente: `<scratchpad>/ev/ev-01-comandos-del-reporte.out`, `<scratchpad>/ev/ev-02-colision.out`, `<scratchpad>/ev/ev-03-a1a10-reales.out`. El caso de prueba de dos folios: `<scratchpad>/caso/` (un repositorio git; corré `bash <scratchpad>/a1a10.sh <scratchpad>/caso SDD/Expedientes/00001-Enlace-Roto-En-Roadmap` para ver los diez criterios).
+6. Destinos, **sólo lectura y sólo por `git show`/`git grep`/`git ls-tree`**: `Lab-Geometria` en `<workspace>/PROG2/Geometria/Lab-Geometria` (`main` `d12fb1c`; su expediente en `SDD/Expedientes/0001-Migracion-Normativa-A-13.16/`); `RPI.VideoControl` en `<workspace>/Repos-RPIs/RPI.VideoControl` (`HEAD` `9aabe5c`).
+
+**Forma del informe** (es lo que se asienta verbatim como folio):
+- Cabecera: comisión, fecha 2026-09-13, base leída, fuentes externas si las usaste (nombre y número de norma; si no la pudiste consultar, decilo).
+- Hallazgos `M9-<TUS-SIGLAS>-NN`, hasta **ocho**, cada uno con: **nivel P0–P3**, **clase de ancla E1–E4 o C** (`Mesa-Rules.md` §6.1: E1 cita literal con comando y salida; E2 cita literal sin comando; E3 caso construido; E4 regla declarada; C conjetura), **impacto si no se corrige**, y **dirección de la corrección** (no su redacción). Toda afirmación de recuento, de sección o de colisión, **con su comando y su salida**. Una afirmación de colisión o no colisión, sólo con E1.
+- Respuestas a las preguntas de tu mandato, desde tu competencia; lo que está fuera de ella, decilo.
+- Hasta tres ítems de «lo que revisé y está bien».
+- Solicitudes de convocatoria si encontrás algo fuera de tu competencia: señal y ubicación.
+
+**Trampa que la intervención declara y que tenés que vigilar en el plan:** convertir un buen hábito en una ceremonia que nadie completa. La forma mínima tiene que llenarse en minutos y verificarse enumerando. Todo paso que el plan agregue se pesa contra el presupuesto de nueve pasos de la guía (Parte IV, «paso o prosa»). Todo campo derivable del árbol o de git no se escribe a mano (`Root-Rules.md` §10).
