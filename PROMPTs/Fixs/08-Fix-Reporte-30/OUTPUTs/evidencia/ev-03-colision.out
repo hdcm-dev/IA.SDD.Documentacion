@@ -1,0 +1,97 @@
+## base IA.SDD main = 47be07d2cec0445cc1ba9a264c09d2fbdb25c433
+
+### compuesto: "activo de construcci" — en los lectores, y en todo el árbol vivo
+  0  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  0  SDD/Devs/Rules/Intake-Rules.md
+  0  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  0  SDD/Devs/Rules/Rules-Devops.md
+  0  SDD/Devs/Rules/Rules-Examples.md
+  0  SDD/Devs/Orchestrator/Master-Prompt.md
+  0  SDD/Devs/Rules/Vocabulario-Rules.md
+  árbol vivo (sin _legacy): 0
+
+### compuesto: "insumo de construcci" — en los lectores, y en todo el árbol vivo
+  0  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  0  SDD/Devs/Rules/Intake-Rules.md
+  0  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  0  SDD/Devs/Rules/Rules-Devops.md
+  0  SDD/Devs/Rules/Rules-Examples.md
+  0  SDD/Devs/Orchestrator/Master-Prompt.md
+  0  SDD/Devs/Rules/Vocabulario-Rules.md
+  árbol vivo (sin _legacy): 0
+
+### compuesto: "referencia de proyecto" — en los lectores, y en todo el árbol vivo
+  0  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  0  SDD/Devs/Rules/Intake-Rules.md
+  0  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  0  SDD/Devs/Rules/Rules-Devops.md
+  0  SDD/Devs/Rules/Rules-Examples.md
+  0  SDD/Devs/Orchestrator/Master-Prompt.md
+  0  SDD/Devs/Rules/Vocabulario-Rules.md
+  árbol vivo (sin _legacy): 0
+
+### compuesto: "cadena de herramientas" — en los lectores, y en todo el árbol vivo
+  0  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  0  SDD/Devs/Rules/Intake-Rules.md
+  0  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  0  SDD/Devs/Rules/Rules-Devops.md
+  0  SDD/Devs/Rules/Rules-Examples.md
+  0  SDD/Devs/Orchestrator/Master-Prompt.md
+  0  SDD/Devs/Rules/Vocabulario-Rules.md
+  árbol vivo (sin _legacy): 0
+
+### compuesto: "otro ecosistema" — en los lectores, y en todo el árbol vivo
+  0  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  0  SDD/Devs/Rules/Intake-Rules.md
+  0  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  0  SDD/Devs/Rules/Rules-Devops.md
+  0  SDD/Devs/Rules/Rules-Examples.md
+  0  SDD/Devs/Orchestrator/Master-Prompt.md
+  0  SDD/Devs/Rules/Vocabulario-Rules.md
+  árbol vivo (sin _legacy): 0
+
+### compuesto: "sin construcci" — en los lectores, y en todo el árbol vivo
+  0  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  0  SDD/Devs/Rules/Intake-Rules.md
+  0  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  0  SDD/Devs/Rules/Rules-Devops.md
+  0  SDD/Devs/Rules/Rules-Examples.md
+  0  SDD/Devs/Orchestrator/Master-Prompt.md
+  0  SDD/Devs/Rules/Vocabulario-Rules.md
+  árbol vivo (sin _legacy): 0
+
+### forma desnuda "activo(s)" en los lectores (sentido que ya tiene)
+  SDD/Devs/Rules/Rules-Examples.md:352:    - "La publicación de la fuente está activa: es estado previo y no algo que este sample ejercite"
+  SDD/Devs/Orchestrator/Master-Prompt.md:401:| `multi_tenant` | unidad de entrega | §17 P.4 (persistencia) de la unidad de entrega | true si **alguno de los proyectos de código que la componen** dec
+  SDD/Devs/Orchestrator/Master-Prompt.md:404:| `tiene_portal_developers` | unidad de entrega | §17 de la unidad de entrega y su rol en §13.1 | true si la unidad de entrega declara portal de develope
+  SDD/Devs/Orchestrator/Master-Prompt.md:405:| `tiene_extensibilidad` | unidad de entrega | §17 P.2 (estilo arquitectónico) y el rol de la unidad de entrega en §13.1 | true si la unidad de entrega 
+  SDD/Devs/Orchestrator/Master-Prompt.md:406:| `tiene_persistencia` | unidad de entrega | §17 P.4 de la unidad de entrega | true si **alguno de los proyectos de código que la componen** declara un m
+  SDD/Devs/Orchestrator/Master-Prompt.md:443:- Cualquier flag con valor `desconocido` por intake incompleto activa el patrón de §2 (detención por intake incompleto), no se asume default.
+  SDD/Devs/Orchestrator/Master-Prompt.md:1617:| Flags activos | Flags de §4 por producto y por proyecto de código con su valor final. |
+  SDD/Devs/Orchestrator/Master-Prompt.md:1859:| desktop-app | vision, alcance, roadmap, compatibilidad, acuerdo-equipo | 6 CU | UX/UI (escritorio, mínimo 4 ventanas) | 3 ADR (estilo, persistencia loc
+  SDD/Devs/Orchestrator/Master-Prompt.md:1860:| mobile-app-maui | vision, alcance, roadmap, compatibilidad, acuerdo-equipo | 6 CU | UX/UI móvil + accesibilidad reforzada | 4 ADR (estilo, persistencia
+  SDD/Devs/Orchestrator/Master-Prompt.md:1908:| Fase B2 | Fase opcional de validación visual de maqueta, por proyecto de código, entre la Fase B y la Fase C. Se activa con el flag `requiere_maqueta`
+  SDD/Devs/Orchestrator/Master-Prompt.md:1997:| 8.13 | 2026-08-23 | **Se activa `AG-00980`** (framework 13.5), que desde la 13.2 tenía identificador y contrato pero **no se convocaba nunca**: faltaba
+
+### forma desnuda "insumo(s)" en los lectores: recuento y muestra del sentido
+  3  SDD/Devs/Intake/PRODUCT-INTAKE-template.md
+  0  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md
+  2  SDD/Devs/Rules/Intake-Rules.md
+  3  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md
+  2  SDD/Devs/Rules/Rules-Devops.md
+  1  SDD/Devs/Rules/Rules-Examples.md
+  65  SDD/Devs/Orchestrator/Master-Prompt.md
+  5  SDD/Devs/Rules/Vocabulario-Rules.md
+7:**Prerequisitos:** `SDD/Intake/PRODUCT-INTAKE-<Slug-Producto>.md` completo. El `PRODUCT-MANIFEST` lo deriva el orquestador del intake durante la fase de validación (§3); no es un insumo a completa
+18:- Insumos de solo lectura (reglas, plantillas, prompts, guías y este master-prompt) viven en el repositorio fuente y se referencian como `../IA.SDD/SDD/Devs/...` y `../IA.SDD/SDD/Guides/...`.
+153:| **A — Plan de migración normativa** | Emite `SDD/Docs/Audit/Plan-Migracion-<origen>-a-<vigente>.md` con una fila por documento afectado: path, regla que lo gobierna, qué cambió en esa regla
+459:| Política de versionado de docs | Inicio en la versión `1.0` declarada en la cabecera, subir minor en cambios no breaking, major en breaking. Las correcciones derivadas del audit de la propia f
+532:3. **La reapertura trae el insumo, no solo el turno.** Si la categoría N necesita para cerrar un
+616:**Por qué el anexo no es decorativo.** Estos escenarios son insumo declarado de cuatro consumidores aguas abajo: el modelo conceptual de `02-Especificacion-Funcional`, los datos de la maqueta de 
+753:| §17 P.13 conocimiento a aplicar | No genera documento: **alimenta el despacho** de la categoría o el subagente que el índice declare | Insumo adicional en la lista de insumos obligatorios |

@@ -8,7 +8,7 @@
 | Versión del framework evaluada | SDD **13.15** (`PRODUCT-INTAKE-template.md` §13 y §16.1 · `PRODUCT-MANIFEST-template.md` §1.2, §2 y §13 · `Vocabulario-Rules.md` §2 · `Rules-Examples.md` §1.2 y §3 · `Rules-Contexto.md` · `Rules-Devops.md` · `Rules-Base-Conocimiento.md` §0.1 y §4.5) |
 | Artefactos del framework alcanzados | `SDD/Devs/Intake/PRODUCT-INTAKE-template.md` §16.1 —donde nace la contradicción— y §13 · `SDD/Devs/Intake/PRODUCT-MANIFEST-template.md` §13 · `SDD/Devs/Rules/Rules-Examples.md` · la regla que gobierne la vista de producto y su grafo de compilación |
 | Naturaleza | **Un caso que el método no modela, resuelto a mano en un destino, y un canal de aprendizaje que se cerró por diseño.** El framework declara la «solución de código» como agrupador del ecosistema y el stack por proyecto, pero **no tiene cómo expresar que un proyecto de un ecosistema es insumo de construcción de un proyecto de otro dentro de la misma solución**, ni cómo entra al agrupador un sample que no se compila. Un destino que lo necesite lo inventa, y lo que inventa no vuelve |
-| Estado | **Abierto** |
+| Estado | **RESUELTO en SDD 13.16** |
 | Reportes relacionados | **`12`**, que decidió que el banco de pruebas es del destino y no del framework: este reporte **no reabre esa decisión**, pide lo que el método necesita para describir la estructura. **`25`**, que dio al método el evento para recibir un cambio de producto posterior al handoff: acá el cambio sí se recibió en el destino, y lo que falta es del framework |
 
 ---
@@ -228,3 +228,85 @@ especificación tiene que declararse superada.
 | Versión | Fecha | Cambios | Autor |
 |---|---|---|---|
 | 1.0 | 2026-09-13 | Emisión inicial. Documenta que el framework no modela un proyecto de otro ecosistema dentro de una solución de código ni cómo entra al agrupador un sample que no se compila, con el caso de `Lab-Geometria` resuelto a mano por la Feature 20 y **once samples fuera del árbol** como evidencia. Verifica contra 13.15 las tres observaciones que la especificación dejó sin vehículo (P-8) y suma dos. **La especificación de la Feature 20 no está versionada al emitirse este reporte**; se cita por su ruta. | Orquestador, sobre el planteo del Product Owner al cerrar la fase `k` |
+| 1.1 | 2026-09-13 | **RESUELTO en SDD 13.16**, con §8 «Cómo se resolvió». Lo que la verificación encontró inexacto en este reporte se declara en §8 sin reescribir el cuerpo: la cita de `Vista-Producto.md` es una celda de tabla y no la frase que se transcribe. | Intervención `08` |
+
+---
+
+## 8. Cómo se resolvió
+
+**Verificación previa (solicitud 1).** Todas las citas al framework siguen literales en la base
+(`IA.SDD` `main` `47be07d`, 13.15), y los pasajes del destino también (`Lab-Geometria` `main` `1ce1b2c`),
+con dos precisiones: la clase «activo de construcción» de `Vista-Producto.md` está en una **celda de tabla**
+(l.65) y en §3 (l.113), no en §3.1 ni con la forma corrida que §2.1 transcribe; y los once samples, las diez
+fechas del 2026-08-11 y la del 2026-09-13 se reprodujeron por objetos commiteados. **Tres afirmaciones de la
+especificación de la Feature 20 no son literales en la norma**: §18 del intake **no** atribuye D8 al
+proyecto (`grep -c D8` = 0); ni `Migracion-Rules.md` §4.7 ni `Root-Rules.md` §11 dicen que el ADR con dos
+saltos sea **el único** canal; y su §3.1 es la foto del 2026-09-06, anterior a la reestructuración. Detalle en
+`PROMPTs/Fixs/08-Fix-Reporte-30/OUTPUTs/00-Verificacion-De-Citas-Y-Alcance.md`.
+
+**Alcance (solicitud 2).** Cinco rutas con `SDD/Docs/`, **cuatro repositorios** (`Lab-Geometria-dc5` es un
+worktree de `Lab-Geometria`). El proyecto de otro ecosistema y los samples que no se compilan alcanzan a **uno**,
+`Lab-Geometria`; la construcción con la cadena de herramientas de más de un ecosistema, a **dos**: también
+`RPI.VideoControl`, cuyo proyecto `VideoControl.PinMap` corre la cadena de JavaScript dentro de su propia
+construcción, un caso que este reporte no había medido.
+
+**§5.1, la decisión de fondo: sí.** El método reconoce el proyecto de otro ecosistema dentro de la solución de
+código **cuando un proyecto de esa solución toma su artefacto como insumo de construcción**; si ninguno lo toma,
+es su propia solución. El fundamento no es de preferencia: `Vocabulario-Rules.md` §2 delimita la solución por
+**el comando de construcción**, y en el caso medido ese comando genera el bundle del visor a través del front.
+El «no» habría obligado a declarar como consumo de artefacto publicado un artefacto que no se publica.
+**`Vocabulario-Rules.md` no se modifica**: su definición por frontera sigue siendo exacta. La regla vive en
+`Intake-Rules.md` §4.
+
+**§5.2: una segunda clase de arista, `insumo de construcción`**, junto a `referencia de proyecto`, con **único
+generador** y marca en la columna de dependencias; colisión medida en cero en los ocho lectores y en el árbol
+vivo. **No se adoptó «activo de construcción»**, el nombre del destino: su forma desnuda ya es adjetivo y verbo
+en `Master-Prompt.md` y `Rules-Examples.md`, y «insumo» ya tiene ahí el sentido que el término necesita.
+**§5.3: sí**, en `Rules-Devops.md` §4.9 punto 4: un modo de construcción explícito donde falta la cadena, y sin él
+la construcción **falla y la nombra** —la propiedad que `ADR-10008` y `VideoControl.PinMap` ya cumplían por su
+cuenta—. **§5.4: sí**, `Rules-Examples.md` §3.6: dos formas de entrada al agrupador, la verificación **nunca**
+enganchada a la construcción, la cobertura comprobada por enumeración **con un instrumento del destino** —el
+reporte `12` no se reabre— y la forma del anfitrión mínimo de un artefacto que otro proyecto carga, tomada de P-6
+y P-7 sin sus herramientas. **§5.5: sí**, §16.1 dice D8 de la unidad de entrega, y el barrido corrigió dos residuos
+más en los archivos tocados y declaró cinco con su motivo. **§5.6: P-8 queda superada en su premisa** —la vía al
+framework no estaba cerrada por la norma, y la comprobación 13 de la guía ya nombra un reporte como origen—, **y
+la guía no se toca**: escribir ahí sobre especificaciones de destino rompería la autosuficiencia. La mitad de P-8
+que niega un documento de `Conocimiento/` se sostiene. Fundamento completo en `OUTPUTs/10-Decision-De-Fondo-Y-Las-Cinco-Preguntas.md`.
+
+**Aplicado: SDD 13.16, minor**, en ocho archivos: `Intake-Rules.md` 4.3, `Rules-Devops.md` 6.2,
+`Rules-Examples.md` 6.6, `Rules-Arquitectura-Tecnica.md` 4.6, `Master-Prompt.md` 8.19,
+`Catalogo-De-Criterios.md` 1.18, `PRODUCT-MANIFEST-template.md` 6.1 y `PRODUCT-INTAKE-template.md` 3.6, más la
+nota `Coherencia-Proyecto-De-Otro-Ecosistema.md` y el snapshot `_legacy/13.15/` **entero** (130 archivos,
+verificados blob por blob contra `main`, cero no conformes).
+
+**Veredicto de los cinco criterios de §7:**
+
+1. **§16.1 dice D8 de la unidad.** **Cumplido.** El `grep` de §2.2 a) ya no encuentra la instrucción: su única
+   ocurrencia es la fila 3.6 del control de cambios que declara la corrección.
+2. **El grafo admite la arista y `Vista-Producto` puede declararla sin inventar la clase.** **Cumplido**, con otro
+   nombre que el del destino: `insumo de construcción` (`Rules-Arquitectura-Tecnica.md` §4.8 punto 3).
+3. **Un manifiesto con un proyecto npm dentro de una solución .NET, sólo con el framework.** **Cumplido**,
+   reproducido en `OUTPUTs/30` §3: perfil por ecosistema, fila del paquete, marca de la arista y único generador
+   salen del texto. Lo único que el framework deja al destino es la forma concreta con que su ecosistema muestra
+   un proyecto sin construirlo, y la regla lo declara así.
+4. **Un sample que no se compila tiene forma declarada, y su verificación no se engancha a la construcción.**
+   **Cumplido**, `Rules-Examples.md` §3.6, con un criterio `[enumerable]` y otro `[interpretativo]` en §6.
+5. **Ningún texto normativo nombra una herramienta.** **Cumplido**: `grep -rn -i "NoTargets\|csproj\|webpack"
+   SDD/Devs/Rules` vacío (`exit=1`) antes y después, y cero nombres de herramienta o ecosistema en las líneas
+   agregadas a `SDD/Devs/Rules` y `SDD/Devs/Orchestrator`. El único lugar donde un ecosistema se nombra es el
+   ejemplo del perfil de convención de `PRODUCT-MANIFEST-template.md` §1.2, que es el lugar declarado para eso.
+
+**Qué le exige a `Lab-Geometria`**, que no se tocó: en su próxima migración, re-expresar «activo de construcción»
+como `insumo de construcción` y marcar la arista `GeometriaFactory-Visor (insumo de construcción)` en §13.2 del
+intake, con el manifiesto re-derivado; declarar el perfil del ecosistema npm en §1.2 en lugar de la «excepción
+declarada» de identidad (apartamiento absorbido); re-expresar §16.1 del intake y el mapa de §2 de su
+`Vista-Producto.md` sin D8 por proyecto. **Sobre los samples no le exige nada**: los once ya cumplen
+`Rules-Examples.md` §3.6 en `main` `b58dec3`, fusionado durante esta intervención —entraron a
+`GeometriaFactory.sln` como nodos sin construcción, ninguno con un target, y `scripts/verify-solution-tree.sh`
+falla en CI si una carpeta queda afuera—. **Lo que ya cumple, además**: el único generador (`ADR-10008`) y la construcción que falla sin
+la cadena salvo bandera explícita.
+
+**Lo no verificado**: ninguna corrida del orquestador ejerció las validaciones nuevas de `Intake-Rules.md` §4 sobre
+un intake real; no se construyó nada en ningún destino; y no se midió si `Pipeline-Producto.md` de
+`RPI.VideoControl` declara los ambientes sin cadena (su `grep` por la cadena de JavaScript no devuelve nada, que
+no prueba que falte).

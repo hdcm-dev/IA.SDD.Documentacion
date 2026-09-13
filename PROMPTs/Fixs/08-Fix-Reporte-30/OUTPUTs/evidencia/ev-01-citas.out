@@ -1,0 +1,107 @@
+## base IA.SDD main = 47be07d2cec0445cc1ba9a264c09d2fbdb25c433
+## base Lab-Geometria main = 1ce1b2cb639516bb4306117c84e0e76518b193a4
+
+### (a) §16.1 — grep -n "tipo D8 de cada proyecto de código" PRODUCT-INTAKE-template.md
+465:Instrucción: Describir cómo se materializan los samples según el tipo D8 de cada proyecto de código que los produce. Cada sample autocontenido, ejecutable, con su nivel de complejidad.
+### (a) fila 3.0 del control de cambios de la plantilla
+773:| 3.0 | 2026-08-15 | **La composición se declara en dos ejes** (framework 8.0). §13 pasa de una tabla de proyectos de código a tres subsecciones: §13.1 unidades de entrega con su `tipo_unidad_entrega` D8, su `redistribuible` y su estado —vigente o di
+### (a) la especificación F20 dice que §18 también lo dice: ocurrencias de "D8" en §18
+0
+
+### (b) grep -rn -i "activo de construcci" SDD --include=*.md | grep -v _legacy
+(exit: vacío si no hay líneas arriba)
+
+### (c) PRODUCT-MANIFEST-template l.155 y columna Stack
+120:| `Nombre-Proyecto-Codigo` | `Identidad-Codigo` | Solución de código | Stack | Rol en la arquitectura | Dependencias de compilación | Path `/src` |
+155:La regla se expresa de forma agnóstica de stack a propósito. El perfil de convención de §1.2 es donde un producto concreto materializa la convención de su ecosistema.
+### (c) ejemplo de identidad con forma npm (minúscula-guion) en la plantilla del manifiesto: identidades en backticks
+`cli-tool`
+`desktop-app`
+`mobile-app-maui`
+`rest-api`
+`web-microservices`
+`web-monolith`
+`worker-service`
+
+### (d) Vocabulario-Rules.md §2, solución de código
+33:| **Solución de código** | El artefacto del ecosistema que agrupa la construcción: el archivo de solución en .NET, el POM agregador en Maven, el *workspace* en Cargo o npm | El comando de construcción que la toma como entrada única | código |
+### (d) grep -rn -i -E "otro stack|stack distinto|dos stacks|más de un ecosistema|ecosistemas distintos" SDD
+(vacío si no hay líneas arriba)
+
+### (e) Rules-Examples.md §1.2 rest-api
+81:| rest-api | Sample Engineer + API Demo | Cliente HTTP de referencia (curl + lenguaje del integrador típico), colección Postman o Bruno, SDK generado a partir del contrato OpenAPI. |
+### (e) Rules-Examples.md: ¿dice si un sample entra al agrupador?
+(vacío si no hay líneas arriba)
+
+### §2.3 del reporte: Rules-Base-Conocimiento.md §0.1 y §4.5
+47:**Describe el artefacto, no el método.** Qué documentos produce una categoría, con qué criterios se
+289:| **Conocimiento disfrazado de regla** `[enumerable]` | El documento define criterios de aceptación de un entregable del framework, nomenclatura de artefactos generados o gating por tipo D8 | Es una regla escrita en el lugar equivocado, sin el gobierno de una regla. §8 del documento existe para hacerlo visible |
+### P-8 dice «el único canal es un ADR»: ¿«único» en Migracion-Rules §4.7 o Root-Rules §11?
+20:autoridad en el agente para elegir. Lo único que cambia es qué se contradice — allá dos categorías del
+(sólo «Lo único que cambia», ajeno)
+### comprobación 13 de la guía: el origen de una intervención puede ser un reporte, un incidente, un pedido
+743:| 13 | **Devolución al origen**: cuando la intervención declara un **origen** —un reporte, un incidente, un pedido—, la nota **enumera los criterios de aceptación que ese origen fija** y de
+
+### Rules-Devops.md: paquete-npm como canal genérico de library
+248:| library | paquete del gestor del runtime: paquete-npm, paquete-pypi, paquete-cargo, paquete-maven, paquete-gem, paquete-composer, paquete-nuget, paquete-github-packages, etc. | binarios-github-r
+
+### Pipeline-Producto §4.9 punto 4: build conjunto en el repositorio
+282:4. Coordinación inter-proyecto. Por cada arista de dependencia, cómo el proyecto de código consumidor obtiene el artefacto del productor: por referencia al paquete publicado (el redistribuible se publica primero) o por build conjunto en el repositorio. Declara la política para cada dependenc
+
+### Criterio 5, antes: grep -rn -i "NoTargets\|csproj\|webpack" SDD/Devs/Rules
+exit=1 (1 = vacío)
+
+======== DESTINO Lab-Geometria (main) ========
+### PRODUCT-MANIFEST fila GeometriaFactory-Visor
+161:| `GeometriaFactory-Visor` | `geometriafactory-visor` | Node.js con TypeScript y webpack; nodo `Microsoft.Build.NoTargets` en el agrupador | Produce el bundle del visor 3D. Visualizador puro (RA-02) | — | `visor/` (archivo de proyecto `visor/geometriafactory-visor.csproj`) |
+### Vista-Producto: "activo de construcción"
+65:| Aristas de compilación | **8**, de dos clases: **7** referencias de proyecto y **1** activo de construcción (`Visor → Web`) | §3.1 de este documento, **cerrada el 2026-08-31** contra los seis `.csproj` |
+113:activo de construcción (1), que un `.csproj` expresa con un target y no con una referencia
+262:| 1.10 | 2026-09-12 | **§3.1 deja de decir que ningún `.csproj` puede expresar la arista `Visor → Web`**: desde el 2026-09-12 la expresa el target `BuildVisor` de `GeometriaFactory.Web.csproj` (`Web ADR-10008`), y la clase «activo de construcción» **se conserva** —sigue sin ser una referencia de proyecto—. Además el visor entra a `GeometriaFactory.sln` como nodo sin construcción por decisión del Product Owner (intake 4.0, manifiesto 6.0); el §2 no cambia porque la excepción de nombre y de ruta sigue vigente. Sube minor: cambia una justificación, no el grafo, los recuentos ni las decisiones. |
+### Vista-Producto: la frase citada «Aristas de compilación: 8, de dos clases»
+(vacío si no hay líneas arriba)
+### ADR-10008 cabecera
+# ADR-10008 — El bundle del visor lo genera el proyecto del front, y es el único que lo genera
+
+**Unidad de entrega:** GeometriaFactory-Web
+**Documento:** ADR-10008-El-Bundle-Del-Visor-Lo-Genera-El-Proyecto-Del-Front.md
+**Versión:** 1.0
+**Estado:** Aprobado
+### GeometriaFactory.Web.csproj targets
+77:  <Target Name="BuildVisor" BeforeTargets="BeforeBuild"
+83:  <Target Name="DeclareVisorAsset" AfterTargets="BuildVisor" BeforeTargets="ResolveProjectStaticWebAssets"
+102:  <Target Name="SealVisorAsset" AfterTargets="DeclareVisorAsset" BeforeTargets="CoreCompile">
+### SkipVisorBuild en deploy/Dockerfile.web
+69:# ESTA ETAPA NO TIENE NODE, y por eso `publish` corre con `SkipVisorBuild=true`: el `.csproj` del
+94:      -p:SkipVisorBuild=true
+### visor/geometriafactory-visor.csproj Sdk
+<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
+### samples sin .csproj (reporte: 11)
+samples/api/01-basico
+samples/api/02-intermedio
+samples/api/03-avanzado
+samples/api/04-cliente-http-basico
+samples/contracts/01-basico
+samples/contracts/02-intermedio
+samples/contracts/03-avanzado
+samples/visor/01-basico
+samples/visor/02-intermedio
+samples/visor/03-avanzado
+samples/web/01-datos-seed
+total: 11
+### grep -c samples\\(visor|api|contracts|web) GeometriaFactory.sln (reporte: 0)
+0
+### fecha de alta de samples/api/04-cliente-http-basico
+9413dfc Sun Sep 13 00:31:28 2026 -0300
+### fecha de alta del resto de los no compilables
+samples/api/01-basico 2026-08-11
+samples/api/02-intermedio 2026-08-11
+samples/api/03-avanzado 2026-08-11
+samples/api/04-cliente-http-basico 2026-09-13
+samples/contracts/01-basico 2026-08-11
+samples/contracts/02-intermedio 2026-08-11
+samples/contracts/03-avanzado 2026-08-11
+samples/visor/01-basico 2026-08-11
+samples/visor/02-intermedio 2026-08-11
+samples/visor/03-avanzado 2026-08-11
+samples/web/01-datos-seed 2026-08-11

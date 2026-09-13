@@ -1,0 +1,143 @@
+## base main=47be07d2cec0445cc1ba9a264c09d2fbdb25c433  rama=intervencion/08-reporte-30
+
+### Versiones: base -> nueva, y la de _legacy/13.15 (tiene que ser la base)
+  SDD/Devs/Rules/Intake-Rules.md  4.2 -> 4.3  (legacy 4.2)
+  SDD/Devs/Rules/Rules-Devops.md  6.1 -> 6.2  (legacy 6.1)
+  SDD/Devs/Rules/Rules-Examples.md  6.5 -> 6.6  (legacy 6.5)
+  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md  4.5 -> 4.6  (legacy 4.5)
+  SDD/Devs/Orchestrator/Master-Prompt.md  8.18 -> 8.19  (legacy 8.18)
+  SDD/Devs/Rules/Catalogo-De-Criterios.md  1.17 -> 1.18  (legacy 1.17)
+  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md  6.0 -> 6.1  (legacy 6.0)
+  SDD/Devs/Intake/PRODUCT-INTAKE-template.md  3.5 -> 3.6  (legacy 3.5)
+
+### Comprobación 10: cabecera = última fila, orden, sin repetidas nuevas
+  SDD/Devs/Rules/Intake-Rules.md última=4.3 ordenada repetidas=[]
+  SDD/Devs/Rules/Rules-Devops.md última=6.2 ordenada repetidas=[]
+  SDD/Devs/Rules/Rules-Examples.md última=6.6 ordenada repetidas=[1.0 ]
+  SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md última=4.6 ordenada repetidas=[]
+  SDD/Devs/Orchestrator/Master-Prompt.md última=8.19 ordenada repetidas=[]
+  SDD/Devs/Rules/Catalogo-De-Criterios.md última=1.18 ordenada repetidas=[]
+  SDD/Devs/Intake/PRODUCT-MANIFEST-template.md última=6.1 ordenada repetidas=[]
+  SDD/Devs/Intake/PRODUCT-INTAKE-template.md última=3.6 ordenada repetidas=[]
+  (Rules-Examples repite 1.0 en la base: filas de los ejemplos de §7, no del registro)
+3
+
+### Criterio 1: grep -n 'tipo D8 de cada proyecto de código' PRODUCT-INTAKE-template.md
+782:| 3.6 | 2026-09-13 | **§16.1 pedía los samples «según el tipo D8 de cada proyecto 
+  instrucción vigente:
+469:Instrucción: Describir cómo se materializan los samples según el tipo D8 de cada unidad de entrega, que es el eje que lo lleva (§13.
+
+### Criterio 5: grep -rn -i 'NoTargets\|csproj\|webpack' SDD/Devs/Rules
+  exit=1
+
+### Criterio 5 ampliado: herramientas o ecosistemas en las líneas agregadas a SDD/Devs/Rules y SDD/Devs/Orchestrator
+  exit=1 (1 = ninguna)
+### dónde se nombra un ecosistema en lo agregado (sólo plantillas)
+17:+sufijo—: cambian los parámetros. Ejemplo, un producto con proyectos .NET y un paquete npm cuyo
+18:+artefacto un proyecto .NET toma como insumo de construcción:
+20:+| Parámetro | Perfil del ecosistema .NET | Perfil del ecosistema npm |
+26:+| Extensión del agrupador | `.sln`, que compone `Contoso.Turnos.sln` | Ninguna: el paquete pertenece a la solución
+
+### Recuento de anti-patrones contra el catálogo
+  Rules-Devops.md 15 8 7
+  Rules-Examples.md 19 10 9
+18:**Existe porque los criterios estaban y no se podían encontrar.** El método tiene 226 situaciones —el total de §
+112:| [`Rules-Devops.md`](../Rules/Rules-Devops.md) | 15 | 8 | 7 |
+115:| [`Rules-Examples.md`](../Rules/Rules-Examples.md) | 19 | 10 | 9 |
+122:| **Total** | **226** | **109** | **117** |
+
+### Snapshot _legacy/13.15: blob por blob contra main
+  esperados=130  en_snapshot=130  no_conformes=0
+  excluidos, como en _legacy/13.14: < .gitignore < CHANGELOG.md < vs.bat 
+
+### Barrido: D8 atribuido a proyecto de código, árbol vivo
+SDD/Devs/Rules/Rules-Devops.md:349:- [ ] [interpretativo] No aparecen menciones de stacks o protocolos del dominio fuente fuera de la tabla 
+SDD/Devs/Rules/Rules-Base-Conocimiento.md:487:| **Entrada** | La necesidad en prosa, tal como el subagente la escribió; el índice de la ba
+SDD/Devs/Rules/Rules-Base-Conocimiento.md:495:la misma disciplina con que D8 acota los tipos de proyecto de código: un agente que elige den
+SDD/Devs/Rules/Vocabulario-Rules.md:169:D8 pasa a ser atributo de la unidad de entrega, y el proyecto de código deja de tener árbol propio
+SDD/Devs/Rules/Migracion-Rules.md:403:- **El valor D8 de un proyecto de código que no es unidad de entrega se retira**, porque en la 8.0 el
+SDD/Devs/Orchestrator/Master-Prompt.md:573:- **Base de conocimiento.** Si `../IA.SDD/Conocimiento/Index-Knowledge.md` existe y tiene filas, 
+SDD/Devs/Orchestrator/Master-Prompt.md:1588:README raíz (AG-00990, regla `Root-Rules.md`): cubre la documentación generada en `SDD/Docs/`,
+SDD/Devs/Orchestrator/Master-Prompt.md:1852:La salida `SDD/Docs/` cambia según el `tipo_unidad_entrega` de cada unidad de entrega. Esta tab
+SDD/Devs/Guides/Marco-Teorico-SDD.md:1146:Las tablas y los estilos de este capítulo describen el estilo interno de cada proyecto de código
+SDD/Devs/Guides/Coherencia-Roles-Y-Defectos-Verificados.md:110:| D8 — Tipos de proyecto de código | Cumple | El conjunto cerrado de ocho 
+SDD/Devs/Guides/Coherencia-Cita-De-Conocimiento.md:93:| **D8** | No se agrega ni se altera ningún tipo de proyecto de código. `§17.P.13` 
+SDD/Devs/Guides/Coherencia-Barrido-8.7-Dos-Ejes.md:42:mismo §4 de `Intake-Rules.md` que mapea D8 desde la fila del proyecto de código vali
+SDD/Devs/Guides/Coherencia-Vocabulario-Producto-Y-Proyecto-De-Codigo.md:104:**APROBADO.** El conjunto normativo 5.0 es internamente coherent
+SDD/Devs/Guides/Coherencia-Base-Conocimiento.md:66:| **D8** Tipos cerrados | No se agrega ni se altera ningún tipo de proyecto de código. 
+SDD/Guides/SDD-Development-Guide.md:500:**Cómo llega el documento a un despacho.** Por dos vías, y la unión de las dos es lo que el orque
+SDD/Guides/SDD-Development-Guide.md:816:| **8.0** | El bloque técnico del intake pasa de colgar del proyecto de código a colgar de la unid
+PROMPTS/PROMPT-Agente-Bootstrap-SDD.md:64:3. Cada **unidad de entrega** declarada en la §13.1 del intake tiene un `tipo_unidad_entrega` que
+
+### Comprobación 2: el texto agregado a SDD/ no nombra otro repositorio
+  exit=1 (1 = ninguna)
+
+### Comprobación 3: secciones citadas en lo agregado existen
+167:### 3.2 Reglas de progresión
+179:### 3.4 Política de versionado
+189:### 3.6 El sample en la solución de código
+257:### 4.8 Anti-patrones a evitar
+277:### 4.9 Estructura de `Pipeline-Producto.md`
+65:## §4 Reglas de derivación del `PRODUCT-MANIFEST`
+273:### II.7 El framework no distribuye código ejecutable
+76:### §1.2 Perfil de convención de nombres
+165:### §2.1 Regla de nombres de código
+192:## §3 Los dos grafos
+61:### 2.1 Tabla maestra
+281:### 4.8 Secciones obligatorias de `Vista-Producto.md`
+100:## 4. Estructura de redacción del documento
+299:## 4. Mapa de la documentación
+349:## 4. Flujo de lectura recomendado
+128:2. Unidades de entrega del producto: tabla con cada unid
+24:## §2 Los seis términos
+226:### §9.1 La regla de decisión
+
+### Colisión posterior: los términos nuevos, por archivo (árbol vivo)
+  -- insumo de construcción
+     SDD/Devs/Rules/Rules-Examples.md:1
+     SDD/Devs/Rules/Intake-Rules.md:5
+     SDD/Devs/Rules/Rules-Devops.md:4
+     SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md:2
+     SDD/Devs/Intake/PRODUCT-MANIFEST-template.md:11
+     SDD/Devs/Intake/PRODUCT-INTAKE-template.md:2
+     SDD/Devs/Orchestrator/Master-Prompt.md:4
+  -- referencia de proyecto
+     SDD/Devs/Rules/Intake-Rules.md:4
+     SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md:2
+     SDD/Devs/Intake/PRODUCT-MANIFEST-template.md:4
+     SDD/Devs/Orchestrator/Master-Prompt.md:5
+
+### Criterio 3: las piezas que usa la reproducción, leídas del texto nuevo
+142:| **Referencia de proyecto** | El consumidor referencia al productor con el mecanismo del ecosistema de la solución
+143:| **Insumo de construcción** | El consumidor toma como entrada de su propia construcción el artefacto que el produ
+88:**Un perfil por ecosistema.** Cuando el producto tiene proyectos de código de más de un ecosistema
+101:| `Identidad-Codigo` del rol `Visor` | — | `contoso-turnos-visor` |
+143:**Un proyecto de código de otro ecosistema** va en la tabla de la solución de código a la que
+284:4. Coordinación inter-proyecto. Por cada arista de depe
+544:| 6.2 | 2026-09-13 | **§4.9, punto 4, suma el insumo de
+197:| **No se construye con la solución**: no se compila —un cliente de líne
+
+======== Qué le exige a Lab-Geometria (main b58dec3) ========
+### ocurrencias de «activo de construcción» (fuera de _legacy)
+main:SDD/Docs/Handoff-Checkout.md:2
+main:SDD/Docs/Producto/11-Documentacion/README.md:2
+main:SDD/Docs/Producto/Vista-Producto.md:3
+main:SDD/Docs/Unidades-Entrega/GeometriaFactory-Web/05-Arquitectura-Tecnica/Adrs/ADR-10008-El-Bundle-Del-Visor-Lo-Genera-El-Proyecto-Del-Front.md:2
+main:SDD/Intake/PRODUCT-INTAKE-Fabrica-De-Geometria.md:2
+main:SDD/Intake/PRODUCT-MANIFEST-Fabrica-De-Geometria.md:3
+main:changelog.md:1
+main:evidencia/2026-09-12-estructura-solucion/README.md:1
+main:visor/geometriafactory-visor.csproj:1
+  total: 17
+### mapa de Vista-Producto §2 (D8 y redistribuible por proyecto)
+85:| `Nombre-Proyecto-Codigo` | `Identidad-Codigo` | Tipo D8 | Rol en el producto | `redistribuible` | Arquitectura |
+### intake §16.1 (tabla por proyecto con D8)
+678:| Proyecto de código | Tipo D8 | Qué hay en `/samples` |
+### intake §13.2 fila Web: dependencia del visor sin marca de clase
+402:| **GeometriaFactory-Web** | `web-monolith` | Front Blazor Interactive Server con MudBlazor, desplegado en el hosting público. Es el único punto de contacto del navegador | `GeometriaFactory-Api
+417:| **GeometriaFactory-Web** | `GeometriaFactory.sln` | Blazor Interactive Server sobre .NET 10, con MudBlazor | Front: páginas y componentes. Es hoja del grafo y punto de entrada del usuario final
+465:| **GeometriaFactory-Web** | | X | | | | X | X |
+539:| **GeometriaFactory-Web** | Ninguno. No expone contrato a otra unidad de entrega: es el punto de entrada del usuario final | — |
+1119:| **GeometriaFactory-Web** | `GeometriaFactory.Web` | Front Blazor Interactive Server en el hosting público. Único punto de contacto del navegador |
+### excepción de identidad del intake §13.3
+490:**Excepción declarada para GeometriaFactory-Visor.** Es el único proyecto de código
