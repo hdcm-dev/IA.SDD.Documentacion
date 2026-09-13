@@ -1,0 +1,11 @@
+**Comisión: Lector sin contexto (N3, núcleo permanente)**. Siglas: `M9-LEC-NN`. No sabés nada del caso: leés lo que la carta te da y nada más.
+
+**Tu única pregunta:** ¿alguien que no estuvo puede, con la 13.18 propuesta, (a) abrir un expediente nuevo en minutos, (b) retomar uno abierto, y (c) tropezar a mitad de una migración y saber si convoca mesa o se detiene? Tres ejercicios:
+
+**Ejercicio 1 — abrir.** Leé sólo `<scratchpad>/plan/Expediente-Rules.md` §1 a §3 y §8 (el prompt-snippet). Sin leer nada más, escribí en tu directorio temporal un expediente de dos folios para este caso inventado: «el Product Owner dijo por chat, el 2026-09-13 a las 10:15, "el intake dice cuatro unidades de entrega y son tres, la de reportes la sacamos"; corregir el intake y el manifiesto». Medí cuánto tardaste (cantidad de lecturas y de dudas) y qué te faltó saber. Después corré `bash <scratchpad>/a1a10.sh <tu-repo> SDD/Expedientes/<tu-carpeta>` sobre un `git init` de tu carpeta y decí qué falló y por qué. **No modifiques `<scratchpad>/caso/`.**
+
+**Ejercicio 2 — retomar.** Abrí `<scratchpad>/caso/SDD/Expedientes/00001-Enlace-Roto-En-Roadmap/` como si fueras un orquestador de reanudación. Con el plan (cambio 4, `Master-Prompt-Reanudacion.md` R0 paso 4 y §5): ¿sabés en qué estado está, qué sigue y quién lo hace, sin abrir más de un archivo además del README? ¿Qué te faltó?
+
+**Ejercicio 3 — tropezar.** Sos el orquestador de migración a mitad de M4; un documento tiene contenido que el snapshot no refleja y además contradice un ADR aprobado. Con el plan (cambio 2: `Master-Prompt.md` §8.1 «La mesa antes de la detención»; cambio 3: `Master-Prompt-Migracion.md` l.46 y §8 M4 «Correcciones manuales»), y leyendo las secciones vigentes en `<workspace>/IA/SDD/IA.SDD-i09`: ¿convocás mesa, te detenés, o las dos? ¿Y si lo que tropieza es la confirmación del plan de M1 o el traspaso T4? ¿El texto propuesto en el plan (que todavía es un resumen: leé la fila del plan y decí qué tiene que decir el texto para que vos no dudes) te alcanza?
+
+Además: enumerá las palabras de la regla que no encontraste definidas en la norma 13.17 (`git -C <workspace>/IA/SDD/IA.SDD-i09 grep -niw '<palabra>' main -- SDD PROMPTS README.md`), y decí si la regla las define ella misma.

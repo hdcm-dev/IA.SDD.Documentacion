@@ -1,0 +1,45 @@
+# ev-06a · A1–A12 de Expediente-Rules.md §6 re-medidos sobre Lab-Geometria (forma histórica, §5.1) · 2026-09-13T17:00:29-03:00
+Método: los comandos de §6 extraídos de la regla con awk, con una marca por criterio; ( P=SDD/Expedientes; X=SDD/Expedientes/0001-Migracion-Normativa-A-13.16; PRIV=; source ), sólo lectura
+Base: Lab-Geometria main d12fb1c, árbol limpio (0 cambios)
+Quién: presidente de mesa de la intervención 09
+A1: 0 líneas
+A2: 2 líneas
+A3: 7 líneas
+A4: 65 líneas
+A5: 13 líneas
+A6: 1 líneas
+A7: 8 líneas
+A8: 0 líneas
+A9: 32 líneas
+A10: 0 líneas
+A11: 0 líneas
+A12: 3 líneas
+A6 (primeras):
+     SIN PASE SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/013-resolucion-final.md
+A2 (primeras):
+     CARÁTULA Base
+     NÚMERO
+A7 (primeras):
+     SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-006g-ciclo-de-origen-derivacion-v5.json.txt
+     SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-006h-derivar_ciclo_v5.py
+     SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-015-clasificacion-4.8.txt
+A4 (primeras):
+     CABECERA Tipo SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+     CABECERA Fecha SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+     CABECERA Autor SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+A3 (primeras):
+     002-testimonio-ok-fase-k.md
+     004-mesa-evaluacion-m1.md
+     007-testimonio-despacho-del-orquestador-de-la-serie.md
+A12 (primeras):
+     SDD/Docs/Audit/Informe-Migracion-13.7-a-13.16.md
+     SDD/Docs/Audit/Mesa-2026-09-13.md
+     SDD/Docs/Audit/Plan-Migracion-13.7-a-13.16.md
+A9 (primeras):
+     SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-007-volumen-del-corpus.txt
+     SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-006g-ciclo-de-origen-derivacion-v5.json.txt
+     SDD/Expedientes/0001-Migracion-Normativa-A-13.16/evidencia/E-021-aportes-del-presidente.txt
+A5 (primeras):
+     CORRIGE SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/001-presentacion-pedido-del-product-owner.md
+     CORRIGE SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/002-testimonio-ok-fase-k.md
+     CORRIGE SDD/Expedientes/0001-Migracion-Normativa-A-13.16/actuaciones/003-informe-m0-reconocimiento-del-destino.md

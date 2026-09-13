@@ -1,0 +1,68 @@
+# ev-01 · Comandos del reporte 31 §2 sobre IA.SDD main = a501857 (13.17), Lab-Geometria main = d12fb1c, RPI.VideoControl HEAD = 9aabe5c · 2026-09-13T14:47:36-03:00
+## §2.1
+$ git -C Lab-Geometria ls-tree -r --name-only main SDD/Docs/Audit | wc -l
+116
+$ git -C Lab-Geometria grep -E 'v1\.1\.0|v1\.0\.0' main -- SDD/Docs/Audit | wc -l
+0
+$ git -C IA.SDD.Documentacion log --oneline main -- PROMPTs/Fixs/05-Fix-Reporte-27/OUTPUTs/Mesa-2026-09-12-Colision-Lexica/06-Plan-Y-Cierre.md
+eff6729 Reportes 25 a 28 y sus cuatro intervenciones, de la corrida del 2026-09-12
+## §2.2
+$ git grep -n -i "expediente" main -- SDD PROMPTS Templates Conocimiento README.md
+main:Conocimiento/Index-Knowledge.md:38:| `Knowledge-Mesa-De-Expertos-A-Pedido.md` | `Mesa-De-Expertos-A-Pedido` | propio | Mesa de expertos convocada por un pedido explícito y no por la condición de un orquestador: lectura del pedido, clase de objeto y variante del panel, despacho verificado, expediente de la mesa y filtros de juicio medidos en su uso | transversal | — | — | — | 2.2 | Vigente |
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:5:**Tema:** Mesa de expertos convocada por un pedido explícito y no por la condición de un orquestador: lectura del pedido, clase de objeto y variante del panel, despacho verificado, expediente de la mesa y filtros de juicio medidos en su uso
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:45:| La forma normativa de un expediente de caso | **Ninguna regla la fija todavía.** §2.3 describe la práctica; si el framework adopta una norma de expedientes, esa norma gobierna y este documento se alinea |
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:58:| **Supuestos** | Hay forma de despachar agentes sin contexto compartido; si el objeto se ejecuta, hay un medio de observación declarado; la evidencia se versiona junto al expediente |
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:62:sólo se toman la lectura del pedido (§3.1) y el expediente (§2.3). Si no las cumple —no hay corpus
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:110:### 2.3 El expediente de la mesa
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:125:duplica. **Los documentos de un expediente no se reescriben**: una corrección es un documento nuevo que
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:138:| «Presentales como caso `<X>`» | `<X>` es el objeto y **la presentación literal del pedido es la primera pieza del expediente**. Las comisiones la reciben textual, no parafraseada |
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:140:| «Que vuelquen sus informes en `<ruta>`» | El expediente va en `<ruta>`, con los informes verbatim |
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:160:| **Los informes van verbatim** | El expediente deja de ser auditable: nadie puede distinguir lo que dijo la comisión de lo que entendió el presidente |
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:201:EXPEDIENTE: {{ruta}}
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:224:Escribís tu informe verbatim en {{RUTA DEL EXPEDIENTE}}/{{NN}}-Informe-{{COMISIÓN}}.md.
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:227:### 5.3 Carpeta del expediente
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:230:<expediente>/
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:252:- [ ] `[enumerable]` El expediente existe y tiene `README.md`, `00-Contrato-De-Entrada.md`, un informe por comisión convocada, el del refutador y `NN-Plan-Y-Cierre.md`.
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:285:expediente.
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:293:verifican sobre el expediente de la mesa, que no es un entregable de categoría.
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:295:**Deuda del artefacto, declarada.** La práctica de expedientes de §2.3 precede a cualquier norma: si
+main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:312:| 1.0 | 2026-09-13 | Emisión inicial. Cataloga la mesa de expertos convocada por pedido explícito: la lectura del pedido, las cuatro clases de objeto con su variante, el despacho verificado, el expediente de la mesa y los filtros de juicio que dejaron las mesas corridas, sin redefinir ninguna pieza de `Mesa-Rules.md`. |
+main:SDD/Devs/Rules/Migracion-Rules.md:669:y que se mide sobre el caso real en el expediente de la intervención que escribió esta sección, no se
+$ git grep -n -F "Punto de continuación" main -- SDD PROMPTS | cut -d: -f1,2
+main:SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md
+$ git show main:SDD/Devs/Orchestrator/Master-Prompt-Migracion.md | sed -n 46p | cut -c1-120
+| **Mesa de evaluación** | `Mesa-Rules.md`, con su contrato de entrada, su composición por señal, su jurado y su lista cerrada de escaladas | La **convoca en
+$ git show main:SDD/Devs/Orchestrator/Master-Prompt-Migracion.md | grep -n "se detiene y lo devuelve como ambigüedad" | cut -c1-80
+291:**Correcciones manuales.** Si al abrir un documento el subagente encuentra c
+## §2.3
+$ git ls-tree --name-only main
+.gitignore CHANGELOG.md Conocimiento Examples Expedientes PROMPTS README.md SDD Templates _legacy vs.bat 
+$ git ls-tree --name-only main _legacy/13.16/
+_legacy/13.16/Conocimiento _legacy/13.16/Examples _legacy/13.16/PROMPTS _legacy/13.16/README.md _legacy/13.16/SDD _legacy/13.16/Templates 
+$ git show main:SDD/Guides/SDD-Development-Guide.md | grep -n "Quedan fuera del snapshot"
+990:Quedan fuera del snapshot el propio `CHANGELOG.md`, que 
+## §2.5
+$ git show main:SDD/Devs/Rules/Deriva-Rules.md | grep -n "humano.*aprobación explícita\|captura de una conversación" | cut -c1-90
+53:Tipos de evidencia admitidos: `artefacto` (un archivo del repositorio), `ejecucion` (la salida de un comando reproduc
+55:Qué no es evidencia: la afirmación de un agente sin respaldo, una cita a un documento que no existe todavía, una r
+$ git show main:Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md | grep -n "evidencia E4"
+159:| **El testimonio de quien pidió es evidencia E4**, con su fecha y su texto literal | Una decis
+## §2.7
+$ git grep -cF "/home/" main -- Expedientes | wc -l
+7
+$ git grep -c "\[nombre de cuenta redactado\]" main -- Expedientes | wc -l
+4
+$ git show main:SDD/Devs/Rules/Rules-Base-Conocimiento.md | grep -n "compuerta de ofuscación corre"
+162:- **La compuerta de ofuscación corre, y es bloqueante.** `IA.SDD` es un rep
+532:| 2.0 | 2026-08-23 | **Cambia el modelo de dónde vive la base, y con él tr
+## Versión vigente y 13.17
+$ grep -m1 "^## \[" CHANGELOG.md
+## [13.17] - 2026-09-13
+$ git branch -r --list "*mesa-de-expertos*"; git merge-base --is-ancestor cab03ed main && echo "13.17 fusionada"
+13.17 fusionada en main
+$ git log --oneline main -3
+a501857 Merge pull request #65 from hdcm-dev/conocimiento/mesa-de-expertos-a-pedido
+650053e Expediente 0001: expedientes como comportamiento del framework (#66)
+cab03ed SDD 13.17 — la mesa de expertos que se pide por nombre, catalogada como conocimiento
+$ git ls-tree -r --name-only main Expedientes | wc -l
+63

@@ -1,0 +1,15 @@
+# Los diez criterios de Expediente-Rules.md §6, tal como están escritos en la regla.
+# Uso: bash a1a10.sh <raíz-del-repo> <X: carpeta del expediente relativa a la raíz> [<carpeta padre: SDD/Expedientes | Expedientes>]
+R="$1"; X="$2"; P="${3:-SDD/Expedientes}"
+cd "$R" || exit 2
+echo "== A1"; ls "$P" | grep -vcE '^[0-9]{5}-'; ls "$P" | cut -c1-5 | sort | uniq -d
+echo "== A2"; for c in Número Título Apertura Origen Base; do grep -q "^| $c |" "$X/README.md" || echo "FALTA $c"; done
+echo "== A3"; i=1; for f in $(ls "$X/actuaciones" | sort); do [ $((10#${f%%-*})) -eq $i ] || echo "SALTO $f"; i=$((i+1)); done
+echo "== A4"; for f in "$X"/actuaciones/*.md; do for c in Tipo Fecha Autor Corrige; do grep -q "^| $c |" "$f" || echo "FALTA $c $f"; done; done; grep -h '^| Tipo |' "$X"/actuaciones/*.md | grep -vcE 'presentacion|providencia|informe|constancia|resolucion|archivo'
+echo "== A5"; grep -hoE '^\| Corrige \| [0-9]{3}' "$X"/actuaciones/*.md | awk '{print $4}' | while read n; do ls "$X/actuaciones/$n"-* >/dev/null 2>&1 || echo "$n"; done
+echo "== A6"; f=$(ls "$X/actuaciones" | sort | tail -1); tail -1 "$X/actuaciones/$f" | grep -q '^Sigue:' || grep -q '^| Tipo | archivo' "$X/actuaciones/$f" || echo "SIN PASE $f"
+echo "== A7"; m=$(git log --first-parent --format=%h --diff-filter=A main -- "$X/README.md" | tail -1); echo "(fusión: $m)"; git log -M --diff-filter=MDR --format='%h %s' "$m..main" -- "$X"
+echo "== A8"; for f in $(grep -l '^```testimonio$' "$X"/actuaciones/*.md); do h=$(awk '/^```testimonio$/{f=1;next} /^```$/{f=0} f' "$f" | sha256sum | cut -c1-64); grep -q "^| Huella | \`$h\`" "$f" || echo "HUELLA $f"; done
+echo "== A9"; find "$X/evidencia" -type f 2>/dev/null | while read f; do head -3 "$f" | grep -qiE '^(#|//)? ?(Método|Comando|Medio)' || [ -e "${f%.*}.txt" ] || echo "$f"; done
+echo "== A10"; git grep -ohE '(^|[^/A-Za-z0-9.-])(SDD/)?Expedientes/[0-9]{5}-[A-Za-z0-9-]+' -- SDD Expedientes 2>/dev/null | sed -E 's/^[^SE]*//' | sort -u | while read d; do [ -d "$d" ] || echo "$d"; done
+echo "== fin"

@@ -1,0 +1,53 @@
+Sos **un juez** del jurado de cinco funciones (`Mesa-Rules.md` §6.4 del Framework SDD) de la mesa de la intervención 09, que aplica el reporte 31 («el método no expedienta sus casos»). **Cada juez es un agente distinto** y no ve el voto de los otros: el ciclo anterior se declaró sospechoso de homogeneidad porque un solo agente votó por los cinco. **Tu función es una sola**, la que te nombra el despacho, y votás desde ella aunque otra lectura te parezca mejor por otros motivos. Sólo lectura; tu voto es tu último mensaje. Español rioplatense neutro técnico, sin emojis, sin nombres propios de personas, sin rutas con el usuario del host (escribí `<u>`).
+
+**Las cinco funciones** (una por juez):
+- **Ev — evidencia**: ¿el ancla de cada lectura es la que dice ser (E1 con comando y salida, E2 cita literal, E3 caso construido, E4 regla, C conjetura)? Una lectura fundada en C no gana.
+- **Im — impacto**: ¿qué se rompe, y para quién, si se elige cada lectura?
+- **CB — costo y beneficio**: ¿cuánto cuesta aplicarla y sostenerla (campos, pasos contra el presupuesto de nueve, artefactos tocados), y qué compra?
+- **CH — coherencia histórica**: ¿contradice una decisión cerrada (folios 015 y 016 del expediente 0001, el contrato de entrada) sin ancla E1/E2 que la reabra? ¿Es coherente con la norma 13.17 vigente?
+- **Ri — riesgo e irreversibilidad**: ¿qué es irreversible si sale mal? Tenés **veto** sobre un ítem cuyo error sería irreversible y P0.
+
+**Qué leés** (lo que necesites; el ítem ya trae las siglas):
+- Informes del panel y del refutador, verbatim: `<scratchpad>/mesa/informes/01-Seguridad-AG-00050.md` a `07-Refutador.md` (el 07 está en `<workspace>/IA/SDD/IA.SDD.Documentacion-i09/PROMPTs/Fixs/09-Fix-Reporte-31/OUTPUTs/Mesa-2026-09-13-Intervencion-09/informes/07-Refutador.md`).
+- El plan atacado: `<scratchpad>/plan/Expediente-Rules.md` y `<scratchpad>/plan/20-Plan-De-Aplicacion.md`.
+- El dictamen anterior: `<workspace>/IA/SDD/IA.SDD-i09/Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/015-veredicto-del-jurado.md` §4 y `016-dictamen.md`.
+- La norma vigente en `<workspace>/IA/SDD/IA.SDD-i09` (13.17).
+
+**Decisiones del coordinador de la sesión y del Product Owner que ya están tomadas y no se votan** (sí podés decir si una lectura choca con ellas):
+1. E-3: si el jurado respalda la opción C, se aplica sin elevar al Product Owner; D9 queda intacta.
+2. Los commits del PR #66 con un nombre de cuenta: evaluado, sin acción, porque la misma información es pública en su fuente, un repositorio público.
+3. Visibilidad: los repositorios públicos (`Lab-Geometria`, `IA.*`, `Lab-*`) se nombran libremente; los privados se ofuscan (nombre, organización, dominio, cliente); de un repositorio privado se pueden usar conceptos de diseño, nunca detalles de infraestructura (IPs, hosts, puertos, usuarios, dispositivos, topología); las rutas del host siempre se redactan. La compuerta S2 tiene que distinguir público de privado **con la visibilidad verificada**, y admitir una **declaración fechada del dueño** de que un destino es público de consulta (el Product Owner la dio para `Lab-Geometria` el 2026-09-13).
+4. El expediente 0001 ya fusionado recibe en esta intervención un folio de constancia S2 que redacta dos piezas con un repositorio privado, y después el folio de resolución.
+
+**Ítems a votar.** Por cada uno: `PROCEDE` (se aplica la lectura propuesta) o `NO_PROCEDE` (se mantiene la alternativa), con fundamento de dos a cuatro líneas desde tu función, citando siglas o líneas. Si proponés una variante, decila en una línea.
+
+| Ítem | Lectura propuesta | Alternativa | Siglas |
+|---|---|---|---|
+| **J9-01** | Se adopta el caso como figura normada (regla transversal `Expediente-Rules.md`), minor | Decisión negativa (precedente reporte 12) | todas |
+| **J9-02** | E-3 opción **C**: D9 intacta; la regla declara que el asiento literal con canal, fecha-hora y huella **es** la «aprobación explícita registrada con fecha» de `Deriva-Rules.md` l.53; la opción A (oración nueva en D9, major) queda preparada y no se aplica | Opción A (major) | REQ-01, REF-05 |
+| **J9-03** | Número de expediente de **cuatro dígitos** `NNNN-<Titulo>`, excluido en `Root-Rules.md` §9.2 con forma propia; los dos históricos quedan conformes en nombre y A1 da 0 | Cinco dígitos (dictamen Q4) con excepción declarada para las carpetas históricas en A1 | REF-07, VER-03, FOR-04 |
+| **J9-04** | En un destino, los informes de una mesa **no** se asientan como folios: el expediente folia el registro de `Audit/` con una constancia `ruta@commit`; «verbatim como folio» rige sólo donde no hay `Audit/` (el framework); las cartas siempre en `evidencia/` | Verbatim como folio en todo repositorio | REF-01, TRZ-04 |
+| **J9-05** | Condición de apertura con precedencia: se abre si (1 o 2) **y ninguna** exclusión aplica; rama 1 = el caso atraviesa más de una corrida o repositorio **observado en la presentación** (pide un acto que esta corrida no ejecuta, o nació en otro repositorio); rama 2 = entra material externo que funda una decisión (letra de Q2, sin «y sin casa»); se quita «ante la duda, no se abre»; radicación: el repositorio donde corre la corrida que trata el caso | El borrador (con «sin casa» y «ante la duda, no se abre») | FOR-03, REQ-02, REQ-05, LEC-03 |
+| **J9-06** | Estado derivado sobre la secuencia: un folio con `Corrige` no cambia el estado (hereda el del corregido); reabrir = `presentacion` con `Corrige` a la `resolucion` o `archivo` que reabre; después de `archivo` sólo cabe esa reapertura o una `constancia` con `Corrige` (errata), que no cambia el estado; `Suspende hasta:` rige hasta el folio siguiente que no la repita, y se declara | Estado = tipo del último folio a secas | FOR-01, FOR-02 |
+| **J9-07** | S1: nada de la carpeta cambia **después del primer push**, comprobado contra la rama principal; A7 con rama derivada, renombres de carpeta con `-M` sobre el padre, y salida `NO EVALUABLE` explícita; **única excepción**: la redacción S2 de datos de un repositorio privado o del host, con folio de constancia que registra huellas antes y después | «Después de la fusión», sin excepción | REQ-04, VER-04, FOR-04, LEC-02, pedido del coordinador |
+| **J9-08** | S2 autónoma (no «extensión» de `Rules-Base-Conocimiento.md` §2.2): tres clases con respuesta (secreto → revocar siempre; dato personal o infraestructura de un repositorio privado → no se asienta, y si llegó, constancia; ruta o usuario del host → redacción antes del push); visibilidad del destino **verificada** (sonda anónima al remoto, asentada como observación) o **declaración fechada del dueño**; corre **antes de cada push** con comando sobre `<base>..HEAD`, criterio A11; la redacción con marca es la única edición admitida a un verbatim; campo `Huella del original` cuando se redactó un testimonio | S2 del borrador | SEG-01..08, REF-03 |
+| **J9-09** | La custodia del testimonio rige en el expediente y en los dos lugares donde la aprobación se produce (respuesta al lote de `Master-Prompt.md` §7.0 y a una escalada de `Mesa-Rules.md` §7.1), **no retroactiva** | «Donde se asiente», sin límite | REF-04, LEC-03 |
+| **J9-10** | Vínculo: una vía declarada, la fila de control de cambios, que puede citar el expediente **directamente o a través del registro de `Audit/` que lo cita** (dos saltos); la inversa se deriva en dos pasos excluyendo `_legacy`; cita calificada `<repositorio>/SDD/Expedientes/<carpeta>/` con el nombre del repositorio remoto; alfabeto del título = D3 más punto interno; A10 corregido y con alcance declarado | Una sola vía directa | TRZ-01..03, TRZ-06, FOR-07, VER-06 |
+| **J9-11** | Q11 como **párrafo con fundamento** en `Master-Prompt.md` §8.1: lo bloqueante de §7.0 sale en el momento, sin mesa; una ambigüedad no bloqueante que sobrevive al origen del hecho y a la pregunta previa va a **una mesa por fase o por corte de M4**, con contrato = base de la corrida + último registro de mesa como corpus + el lote de tropiezos; lo que la mesa escala va al lote y **no reingresa**; cableado en `Master-Prompt-Migracion.md` l.46 (modificación declarada) y M4, y en la reanudación (su detención por contradicción del árbol cita el mismo párrafo) | Procedimiento de cinco pasos numerados; sin cablear la reanudación | FOR-08, LEC-05..07, REQ-06, REF-02 pregunta 4 |
+| **J9-12** | R0 paso 4 lee sólo expedientes de forma vigente cuyo último folio no es `resolucion` ni `archivo`, o cuyo pase nombra un evento de cierre no cumplido; los históricos se nombran y no cuentan como pendientes; el pase admite `Cierra con: <artefacto §sección>` | Todo expediente cuyo último folio no es `archivo` | REF-06, LEC-04 |
+| **J9-13** | La carátula suma **`Objeto`** (una a tres oraciones, fijo desde la apertura): seis campos, diecinueve en el caso de dos folios; Número y Título se comparan con la carpeta en A2 | Cinco campos (dictamen Q3), el título describe | REQ-03, TRZ-05 |
+| **J9-14** | Tres momentos de uso con pasos cortos (abrir; despachar; publicar o cerrar), el resto en prosa | Todo en prosa en el prompt-snippet | REF-02 |
+| **J9-15** | Alcance de esta etapa: la regla, `Master-Prompt.md` (§3.5, §8.1, §12.1 T1), `Master-Prompt-Migracion.md`, `Master-Prompt-Reanudacion.md`, `Mesa-Rules.md` (§7.1, §8 criterio 1), `Migracion-Rules.md` §2.2, `Root-Rules.md` §9.2, guía §VI.5 y §VI.3.2 (clase `Expedientes/`), `README.md` (anatomía y l.152), `Catalogo-De-Criterios.md` (lo exige la comprobación 12 de la guía), la 13.17 **por remisión** con la oración E4 corregida, nota de coherencia, `CHANGELOG.md`; `_legacy/README.md`, guía de usuario e `Index-Knowledge.md` en la misma pasada sólo si son una fila; `Deriva-Rules.md` no se toca | Los 18 cambios del plan | REF-08, REQ pregunta 5 |
+| **J9-16** | El expediente 0001 se cierra con dos folios nuevos, **sin editar su README**: 019 constancia S2 (redacción de dos piezas con un repositorio privado, huellas antes y después, manifiestos regenerados, custodia fuera del repositorio) y 020 `resolucion` que cita la 13.18 y lo declara forma histórica | Folio de resolución con fila nueva en el README | REF-08, VER pregunta 5, pedido del coordinador |
+| **J9-17** | `Examples/` se ofusca dentro de la 13.18 (IP → `<IP-del-host>`, rutas privadas → descripciones), declarado en el `CHANGELOG`; los `_legacy/` anteriores no se tocan y quedan como deuda declarada (IP de red privada, no alcanzable desde Internet) | Corregir `Examples/` en otra versión | pedido del coordinador |
+
+**Forma del voto:**
+
+```
+JUEZ: <Ev|Im|CB|CH|Ri>
+| Ítem | Voto | Fundamento |
+| J9-01 | PROCEDE | … |
+…
+VETO: <ninguno | ítem y motivo>
+VARIANTES: <ninguna | ítem: variante en una línea>
+```

@@ -1,0 +1,65 @@
+# ev-02 · Colisión de nombres, IA.SDD main a501857, sin _legacy ni Expedientes · 2026-09-13T14:48:43-03:00
+## Nombre del archivo de regla
+$ git ls-tree -r --name-only main -- SDD/Devs/Rules | grep -i expedient
+(exit 1)
+## Términos que la regla acuña, por ocurrencias en el conjunto normativo (git grep -o | wc -l) y por archivos (-l | wc -l)
+expediente: ocurrencias=1 archivos=1
+folio: ocurrencias=0 archivos=0
+actuación: ocurrencias=0 archivos=0
+carátula: ocurrencias=0 archivos=0
+providencia: ocurrencias=0 archivos=0
+constancia: ocurrencias=11 archivos=9
+resolución: ocurrencias=97 archivos=37
+presentación: ocurrencias=37 archivos=16
+pase: ocurrencias=13 archivos=10
+archivo: ocurrencias=807 archivos=107
+## "pase" y "folio" exactos, por archivo
+main:SDD/Devs/Guides/Coherencia-Auditoria-Marco.md:8:**Autor:** AG-ROOT (Arquitecto de Soluciones, pase de QA) con verificación de AG-08
+main:SDD/Devs/Guides/Coherencia-Auditoria-Marco.md:14:Pase de verificación en lectura sobre la auditoría de `Marco-Teorico-SDD.md` contra 
+main:SDD/Devs/Guides/Coherencia-Compuerta-Con-Banco.md:126:| 3 | Un hallazgo sobre el instrumento no pasa a «cerrado» sin su caso | **Exig
+main:SDD/Devs/Guides/Coherencia-Renumeracion-AG.md:168:**Y tres notas de coherencia de `References/Design/` fueron alcanzadas por el segundo
+main:SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:60:**Nota de habilitación de M2.** La escritura del intake que M2 propone es un caso 
+main:SDD/Devs/Orchestrator/Master-Prompt.md:1249:3. **«No concluyente» admitido explícitamente**, para que una confirmación débil no pa
+main:SDD/Devs/References/Design/Coherencia-Config-Esquema.md:8:**Autor:** AG-ROOT (Arquitecto de Soluciones, pase de QA)
+main:SDD/Devs/References/Design/Coherencia-Config-Esquema.md:14:Pase de verificación en lectura sobre la incorporación de la extensión po
+main:SDD/Devs/References/Design/Coherencia-Incorporacion.md:14:Pase de verificación en lectura sobre la incorporación del catálogo de reg
+main:SDD/Devs/References/Design/Coherencia-Panel-Monolitico.md:8:**Autor:** AG-ROOT (Arquitecto de Soluciones, pase de QA)
+main:SDD/Devs/References/Design/Coherencia-Panel-Monolitico.md:14:Pase de verificación en lectura sobre la incorporación de tres extension
+main:SDD/Devs/Rules/Root-Rules.md:614:pase a ser dato— sin tocar ninguna invariante. La decisión queda escrita para que no vuelva a
+main:SDD/Devs/Rules/Rules-Backlog-Tecnico.md:137:cruzan, que siguen inline en el mismo documento. Forzar que toda la unidad pase a archivo i
+## tipos de actuación como celda `| Tipo | x |`: cero en el conjunto normativo
+$ git grep -nE "^\| Tipo \|" main -- SDD PROMPTS Templates README.md | wc -l
+12
+## EXP- y EV- en los repositorios (Lab-Geometria main ya tiene fusionada migracion/a-13.16)
+$ git grep -c "EXP-" main -- . | wc -l  (IA.SDD, sin _legacy: incluye Expedientes)
+fatal: Magia de pathspec '_' no implementada en ':!_legacy'
+0
+$ git -C Lab-Geometria grep -c "EXP-" main | wc -l ; ocurrencias:
+20
+49
+$ git -C Lab-Geometria grep -lE "\bEV-[0-9]+" main | wc -l
+9
+$ git -C RPI.VideoControl grep -c "EXP-" HEAD | wc -l ; grep -lE "\bEV-[0-9]+" | wc -l
+0
+45
+$ git -C IA.SDD.Documentacion grep -c "EXP-" main | wc -l
+2
+## Nombres de carpeta de expediente existentes
+0001-Expedientes-Como-Comportamiento-Del-Framework
+SDD/Expedientes/0001-Migracion-Normativa-A-13.16
+$ git grep -c "EXP-" main -- SDD PROMPTS Templates Conocimiento README.md Expedientes | wc -l  (corregido)
+23
+0
+$ git grep -nE "^\| Tipo \|" main -- SDD PROMPTS Templates README.md | cut -c1-120
+main:SDD/Devs/Guides/Marco-Teorico-SDD.md:1320:| Tipo | Qué prueba | Cuándo aplica |
+main:SDD/Devs/Rules/Maqueta-Rules.md:36:| Tipo | ¿Se maqueta? | Superficie de la maqueta | Especialidad específica |
+main:SDD/Devs/Rules/Rules-Arquitectura-Tecnica.md:31:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Backlog-Tecnico.md:30:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Calidad-Y-Pruebas.md:33:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Devops.md:36:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Documentacion.md:204:| Tipo | Especialidad específica | Foco del rol de intervención dominan
+main:SDD/Devs/Rules/Rules-Especificacion-Funcional.md:24:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Examples.md:74:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Plan-Sprint.md:24:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-Prompts-AI.md:24:| Tipo | Especialidad específica | Justificación |
+main:SDD/Devs/Rules/Rules-UX-UI-DX.md:33:| Tipo | Variante | Especialidad específica | Justificación |

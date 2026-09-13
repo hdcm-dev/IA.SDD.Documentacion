@@ -1,0 +1,11 @@
+$ git archive main Conocimiento Examples PROMPTS README.md SDD Templates | tar -x -C _legacy/13.17
+$ find _legacy/13.17 -type f | wc -l
+133
+$ git ls-tree -r --name-only main -- Conocimiento Examples PROMPTS README.md SDD Templates | wc -l
+133
+$ find _legacy/13.17 -path '*Expedientes*' | wc -l
+0
+$ diff <(git ls-tree ... | sort) <(find ... | sort) && echo listas idénticas
+listas idénticas
+$ git rev-parse main
+a50185702a706bbc8317f297d7b150b56a56af78

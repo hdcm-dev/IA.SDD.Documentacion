@@ -1,0 +1,92 @@
+# ev-05 · Verificación post-aplicación: visibilidad, barrido por concepto, comprobación 10, D2 · 2026-09-13T16:59:03-03:00
+Método: comandos de abajo sobre el árbol de trabajo de la rama intervencion/09-reporte-31 (base main a501857)
+Base: 35212d7 + cambios sin commitear de la intervención
+Quién: presidente de mesa de la intervención 09
+== Visibilidad (ls-remote sin credenciales; exit 0 = público)
+hdcm-dev/IA.SDD → exit 0
+hdcm-dev/IA.SDD.Documentacion → exit 0
+hdcm-dev/Lab-Geometria → exit 0
+<destino privado> → exit 128
+== Barrido por concepto (sin _legacy, sin .git)
+$ grep -rnF 'Ninguna regla la fija todavía' (sin _legacy)
+  → 0
+$ grep -rnF 'evidencia E4' (sin _legacy)
+Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md:307:| 1.1 | 2026-09-13 | **Se alinea con `Expediente-Rules.md` por remisión** (framework 13.18, r
+SDD/Devs/Guides/Coherencia-Mesa-De-Expertos-A-Pedido.md:55:| Testimonio de quien pide como evidencia E4 | Registro `Mesa-2026-09-12.md` de `Lab-Geomet
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/003-constancia-segunda-convocatoria-y-dato-nuevo.md:59:- §3.2 declara *«E
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/014-refutacion-del-plan-compuesto.md:307:**Contra la 13.17.** §3.2 (l.159)
+  → 4
+$ grep -rnF '00-Contrato-De-Entrada' (sin _legacy)
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/009-informe-procedimiento-de-expediente.md:159:- `00-Contrato-De-Entrada.md
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-04-inventario.out:49:00-Contrato-De-Entrada.md
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/003-constancia-segunda-convocatoria-y-dato-nuevo.md:55:- §2.3 fija la carp
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-03-colision.out:20:IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/05-Fix-Reporte
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/014-refutacion-del-plan-compuesto.md:225:| 13.17 §2.3 | ninguno | `00-Cont
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/014-refutacion-del-plan-compuesto.md:416:l.252      §6    criterio [enumer
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria/V1.md:57:- El precedente ya muestra el defecto. En
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/011-informe-requisitos.md:25:| Base leída | Actuaciones 001 y 002. `README
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/011-informe-requisitos.md:68:**La tercera carpeta cambia el alcance (pregun
+  → 9
+$ grep -rnF 'NN-Plan-Y-Cierre' (sin _legacy)
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/003-constancia-segunda-convocatoria-y-dato-nuevo.md:55:- §2.3 fija la carp
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/014-refutacion-del-plan-compuesto.md:225:| 13.17 §2.3 | ninguno | `00-Cont
+  → 2
+$ grep -rnF 'reconvoca dos veces' (sin _legacy)
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md:376:| 2.11 | 2026-09-13 | **La mesa se vuelve a convocar a mitad de la migración, por la condición 
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/015-veredicto-del-jurado.md:82:| **Q11** | **Plan 013 con estos cambios de 
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/008-informe-lector-sin-contexto.md:105:- l.46: la mesa «la **convoca en M1
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/008-informe-lector-sin-contexto.md:197:- **Evidencia**: `Master-Prompt-Migr
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/016-dictamen.md:35:| **Q11** | **«Ante un problema, mesa y no detención»
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/014-refutacion-del-plan-compuesto.md:333:- Que el «cableado en l.46» se d
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria/N3.md:49:| 2.2 | ¿Convoco mesa? | **Sólo por inf
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria/N3.md:95:- **Hecho.** `Master-Prompt-Migracion.md`
+  → 8
+$ grep -rnF 'veinte archivos' (sin _legacy)
+SDD/Devs/Rules/Catalogo-De-Criterios.md:20:de resolución, repartidas en veinte archivos de reglas y tres orquestadores, **sin ningún punto de
+CHANGELOG.md:2668:- **Unos veinte archivos habían sido modificados sin dejar fila**: los nueve del catálogo `References/Design/`, las notas de coher
+SDD/Devs/Guides/Coherencia-Sustitucion-Lexica-Y-Gobierno-Glosario.md:150:| **D5** Una sola versión vigente | Un archivo por nombre lógico. **Se corr
+SDD/Devs/Guides/Coherencia-Eje-Del-Principal.md:84:| **D4**, **D5** | Conforme | Los veinte archivos subieron versión y registraron su fila; comproba
+SDD/Guides/SDD-Development-Guide.md:420:**Es el cambio de mayor impacto que existe**, y conviene entender por qué antes de intentarlo. Una invariante
+SDD/Guides/SDD-User-Guide.md:376:Debería listar los **tres** master-prompts en `Orchestrator/` de la fuente —`Master-Prompt.md`, que genera; `Maste
+  → 6
+$ grep -rnF 'ocho transversales' (sin _legacy)
+  → 0
+$ grep -rnF 'Las cuatro que siguen' (sin _legacy)
+  → 0
+$ grep -rnF '226 situaciones' (sin _legacy)
+  → 0
+$ grep -rnF 'Ningún archivo de este repositorio referencia otro repositorio' (sin _legacy)
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/006-informe-ingenieria-de-software.md:183:- **En el framework**: raíz (`IA
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/007-informe-metodologia-academica.md:140:- `IA.SDD/README.md` l.152: *«Nin
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/011-informe-requisitos.md:64:- **Autosuficiencia** (`README.md` l.152): *«
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria/N1.md:197:- l.152 declara la autosuficiencia (*«N
+Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-06-segunda-convocatoria/V1.md:102:- `README.md` del framework, l.152: *«N
+  → 5
+$ grep -rnF 'cero referencias fuera del árbol' (sin _legacy)
+SDD/Devs/Guides/Coherencia-Condicion-De-Convocatoria.md:59:| 2 | Autosuficiencia: cero referencias fuera del árbol | **Cero.** El reporte `18` vive e
+SDD/Devs/Guides/Coherencia-Migracion.md:80:| 2 | Autosuficiencia: cero referencias fuera del árbol de este repositorio | Cero ocurrencias. La migraci
+SDD/Guides/SDD-Development-Guide.md:735:| 2 | Autosuficiencia: cero referencias fuera del árbol de este repositorio | Cero ocurrencias |
+  → 3
+== Comprobación 10: cabecera = mayor fila
+SDD/Devs/Orchestrator/Master-Prompt.md cabecera=8.20 últimafila=8.20 OK
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md cabecera=2.11 últimafila=2.11 OK
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md cabecera=1.14 últimafila=1.14 OK
+SDD/Devs/Rules/Mesa-Rules.md cabecera=1.4 últimafila=1.4 OK
+SDD/Devs/Rules/Migracion-Rules.md cabecera=3.21 últimafila=3.21 OK
+SDD/Devs/Rules/Root-Rules.md cabecera=8.8 últimafila=8.8 OK
+SDD/Devs/Rules/Catalogo-De-Criterios.md cabecera=1.19 últimafila=1.19 OK
+SDD/Guides/SDD-Development-Guide.md cabecera=1.31 últimafila=1.31 OK
+Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md cabecera=1.1 últimafila=1.1 OK
+SDD/Devs/Rules/Expediente-Rules.md cabecera=1.0 últimafila=1.0 OK
+== D2: UTF-8 sin BOM, LF
+(fin D2)
+== D7: nombres de plataforma o stack en lo agregado a SDD/
+0
+== Enlaces relativos nuevos que resuelven
+ok ../Rules/Expediente-Rules.md
+ok ../Rules/Expediente-Rules.md
+ok Expedientes/
+ok SDD/Devs/Rules/Expediente-Rules.md
+ok SDD/Devs/Rules/Expediente-Rules.md
+ok Expedientes/
+ok SDD/Devs/Rules/Expediente-Rules.md

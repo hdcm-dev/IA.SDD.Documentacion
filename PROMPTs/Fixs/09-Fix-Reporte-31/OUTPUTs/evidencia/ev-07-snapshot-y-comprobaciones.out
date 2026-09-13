@@ -1,0 +1,63 @@
+# ev-07 · Snapshot, anti-patrones contados, comprobaciones de la guía · 2026-09-13T17:04:02-03:00
+Método: comandos de abajo sobre la rama intervencion/09-reporte-31 en 9337b20
+Base: main a501857
+Quién: presidente de mesa de la intervención 09
+== _legacy/13.17 no contiene la versión nueva de ningún archivo tocado
+SDD/Devs/Orchestrator/Master-Prompt.md legacy=8.19 vivo=8.20
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md legacy=2.10 vivo=2.11
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md legacy=1.13 vivo=1.14
+SDD/Devs/Rules/Mesa-Rules.md legacy=1.3 vivo=1.4
+SDD/Devs/Rules/Migracion-Rules.md legacy=3.20 vivo=3.21
+SDD/Devs/Rules/Root-Rules.md legacy=8.7 vivo=8.8
+SDD/Devs/Rules/Catalogo-De-Criterios.md legacy=1.18 vivo=1.19
+SDD/Guides/SDD-Development-Guide.md legacy=1.30 vivo=1.31
+SDD/Guides/SDD-User-Guide.md legacy=1.21 vivo=1.22
+Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md legacy=1.0 vivo=1.1
+$ ls _legacy/13.17/SDD/Devs/Rules/Expediente-Rules.md → 1
+$ diff -rq <(git archive main ...) _legacy/13.17 → 0 diferencias
+$ find _legacy/13.17 -path '*Expedientes*' | wc -l → 0
+== Anti-patrones de Expediente-Rules.md §7
+filas: 7 · enumerable: 5 · interpretativo: 2
+== Comprobación 5 y 10 (cabecera = mayor fila) sobre todo lo tocado desde main
+Conocimiento/Knowledge-Mesa-De-Expertos-A-Pedido.md cabecera=1.1 última=1.1 ordenada repetidas=0
+SDD/Devs/Orchestrator/Master-Prompt-Migracion.md cabecera=2.11 última=2.11 ordenada repetidas=0
+SDD/Devs/Orchestrator/Master-Prompt-Reanudacion.md cabecera=1.14 última=1.14 ordenada repetidas=0
+SDD/Devs/Orchestrator/Master-Prompt.md cabecera=8.20 última=8.20 ordenada repetidas=0
+SDD/Devs/Rules/Catalogo-De-Criterios.md cabecera=1.19 última=1.19 ordenada repetidas=0
+SDD/Devs/Rules/Expediente-Rules.md cabecera=1.0 última=1.0 ordenada repetidas=0
+SDD/Devs/Rules/Mesa-Rules.md cabecera=1.4 última=1.4 ordenada repetidas=0
+SDD/Devs/Rules/Migracion-Rules.md cabecera=3.21 última=3.21 ordenada repetidas=0
+SDD/Devs/Rules/Root-Rules.md cabecera=8.8 última=8.8 ordenada repetidas=0
+SDD/Guides/SDD-Development-Guide.md cabecera=1.31 última=1.31 ordenada repetidas=0
+SDD/Guides/SDD-User-Guide.md cabecera=1.22 última=1.22 ordenada repetidas=0
+== Comprobación 3: enlaces relativos de los archivos tocados que no resuelven (sin rutas ilustrativas)
+      1 ROTO SDD/Devs/Rules/Migracion-Rules.md → .../CU-14-....md
+      2 ROTO SDD/Devs/Rules/Root-Rules.md → 00-Contexto/
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → 01-Necesidades-Negocio/
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → 02-Especificacion-Funcional/
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → 10-Examples/
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → 11-Documentacion/
+      2 ROTO SDD/Devs/Rules/Root-Rules.md → Producto/
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → ruta
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → Unidades-Entrega/Gestion-De-Turnos-API/
+      1 ROTO SDD/Devs/Rules/Root-Rules.md → Unidades-Entrega/<Nombre-Unidad-Entrega>/
+      1 ROTO SDD/Guides/SDD-Development-Guide.md → 00-Contexto/
+(fin)
+== Comprobación 2 (autosuficiencia en el conjunto normativo): otros repositorios nombrados en lo agregado a SDD/
+1
+      1 Lab-Geometria/SDD/Expedientes/0001-Migracion-Normativa-A-13.16/
+
+--- autocorrección de la comprobación 2 (2026-09-13T17:04:34-03:00): §5.1 dejaba de nombrar otro repositorio dentro del conjunto normativo
+$ git diff -U0 main -- SDD | grep '^+' | grep -cE 'Lab-Geometria|RPI\.VideoControl|IA\.SDD\.Documentacion'
+0
+--- anti-patrones de Expediente-Rules.md §7, contados bien (el filtro anterior descartaba las filas que empiezan con «S»)
+filas: 12 · [enumerable]: 6 · [interpretativo]: 6
+--- comprobación 3: los enlaces que no resuelven son los mismos que en _legacy/13.17 (rutas ilustrativas, exclusión de la comprobación 3)
+1,5d0
+< README.md → CHANGELOG.md
+< README.md → CHANGELOG.md
+< README.md → CHANGELOG.md
+< README.md → _legacy/
+< README.md → _legacy/
+$ enlaces de Expediente-Rules.md que no resuelven:
+(fin)
