@@ -41,7 +41,7 @@ comprobar que no quedó un despacho vivo** (folio 003 del 0001).
 6. **S1**: el dictamen dice «primer push», el borrador «fusión» (REQ-04). **S2**: comando de §7 errado
    (7 falsos positivos, 0 verdaderos), respuesta por clase de dato (revocar / retiro / constancia),
    autónoma de `Rules-Base-Conocimiento.md` §2.2, redacción como única edición de un verbatim; los
-   originales pre-S2 del 0001 **siguen públicos** en los commits del PR #66 (SEG-01..08).
+   originales pre-S2 del 0001 siguen accesibles en los commits del PR #66 (SEG-01..08). **Evaluado, sin acción**: la misma información es pública en su fuente, `Lab-Geometria`, desde el 2026-09-02.
 7. **Vínculo**: la vía única pierde 13 de 31 artefactos de la migración real, que citan el plan y no el
    expediente (cadena de dos saltos); `ruta@commit` sin forma; calificador de repositorio sin fuente
    (TRZ-03/04/06/07).
@@ -57,5 +57,5 @@ comprobar que no quedó un despacho vivo** (folio 003 del 0001).
 3. Dictamen del ciclo, corrección del borrador y del plan, y recién ahí aplicar en `IA.SDD-i09`
    (rama `intervencion/09-reporte-31`, sobre el snapshot ya commiteado), nota de coherencia,
    `CHANGELOG.md` `[13.18]`, verificación, cierre del reporte 31 y fila 09 de `PROMPTs/Fixs/README.md`.
-4. **Lote al Product Owner (sin enviar todavía)**: E-3 opción A o C; si pide el retiro de los commits
-   del PR #66 con el dato personal; si acepta que `Expedientes/` público nombre destinos.
+4. Sin lote al Product Owner: E-3 se resolvió por C con el jurado; el PR #66, evaluado sin acción; los
+   nombres de destinos siguen la regla de visibilidad del coordinador (dictamen §4).

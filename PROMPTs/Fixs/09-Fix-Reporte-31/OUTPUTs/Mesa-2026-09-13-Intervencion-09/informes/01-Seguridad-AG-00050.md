@@ -127,9 +127,9 @@ Y hay un cuarto punto que la extensión literal volvería contradictorio: §2.2 
 ```
 $ git grep -c 'RPI.VideoControl' main -- Expedientes | wc -l
 32
-$ git grep -n 'HDCM-Infra' main -- Expedientes | cut -c1-160
-…/actuaciones/005-informe-evidencia-digital.md:212:hdcm-dev/IA.SDD 200 · … · HDCM-Infra/RPI.VideoControl 404
-$ curl -s -o /dev/null -w '%{http_code}\n' https://api.github.com/repos/HDCM-Infra/RPI.VideoControl
+$ git grep -n '<organización de infraestructura del PO>' main -- Expedientes | cut -c1-160
+…/actuaciones/005-informe-evidencia-digital.md:212:hdcm-dev/IA.SDD 200 · … · <organización de infraestructura del PO>/<destino privado> 404
+$ curl -s -o /dev/null -w '%{http_code}\n' https://api.github.com/repos/<organización de infraestructura del PO>/<destino privado>
 404
 ```
 
@@ -211,8 +211,8 @@ Lo que sí depende de la visibilidad es **la respuesta a lo ya empujado** (M9-SE
 
 ```
 $ git -C RPI.VideoControl remote get-url origin
-https://…@github.com/HDCM-Infra/RPI.VideoControl.git
-$ curl -s -o /dev/null -w '%{http_code}\n' https://api.github.com/repos/HDCM-Infra/RPI.VideoControl
+https://…@github.com/<organización de infraestructura del PO>/<destino privado>.git
+$ curl -s -o /dev/null -w '%{http_code}\n' https://api.github.com/repos/<organización de infraestructura del PO>/<destino privado>
 404                    ← privado (o inexistente para un anónimo, que a estos efectos es lo mismo)
 $ curl -s -o /dev/null -w '%{http_code}\n' https://api.github.com/repos/hdcm-dev/Lab-Geometria
 200                    ← público
@@ -220,7 +220,7 @@ $ curl -s -o /dev/null -w '%{http_code}\n' https://api.github.com/repos/hdcm-dev
 
 Es una **observación** (§3.4), no una medición: vale con fecha y hora, y se asienta como tal. Nada que preguntar al Product Owner.
 
-Un matiz que la regla debe nombrar, porque los destinos lo muestran: `RPI.VideoControl` tiene dos `/home/` que **no** son el host del orquestador sino rutas del propio banco de pruebas del producto (`herramientas/banco-de-superficie/sd-00244.mjs:10`, `file:///home/<u>/…/Panel-De-Operacion.html`), y un expediente de infraestructura va a citar `/home/pi/…` de un dispositivo con toda legitimidad. S2 dice «rutas del directorio personal **del host**»: hay que decir de cuál host (el que corre al orquestador), para que el comando de M9-SEG-02 tenga excepción declarada y no se «pase» a mano.
+Un matiz que la regla debe nombrar, porque los destinos lo muestran: `RPI.VideoControl` tiene dos `/home/` que **no** son el host del orquestador sino rutas del propio banco de pruebas del producto (detalles de infraestructura, no transcriptos), y un expediente de infraestructura va a citar rutas de un dispositivo con toda legitimidad. S2 dice «rutas del directorio personal **del host**»: hay que decir de cuál host (el que corre al orquestador), para que el comando de M9-SEG-02 tenga excepción declarada y no se «pase» a mano.
 
 **Dirección.** S2 fija su fundamento propio (permanencia + visibilidad mutable) en vez de heredar «`IA.SDD` es público»; declara la sonda de visibilidad como observación que condiciona sólo la respuesta; y precisa «host» = la máquina donde corre el orquestador, con la excepción del objeto del caso declarada en la pieza.
 
