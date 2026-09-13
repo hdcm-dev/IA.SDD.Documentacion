@@ -1,61 +1,39 @@
 # OUTPUTs de la intervención 09 — reporte 31
 
-**Estado: en curso, cortado.** Este archivo es el punto de continuación. Lo que está acá se produjo el
-2026-09-13 contra `IA.SDD` `main` `a501857` (13.17), `Lab-Geometria` `main` `d12fb1c` y
-`RPI.VideoControl` `HEAD` `9aabe5c`.
+**Estado: aplicada. SDD 13.18, minor**, en la rama `intervencion/09-reporte-31` del worktree `IA.SDD-i09`,
+sin push, sin pedido de fusión y sin fusión. El reporte `31` quedó **RESUELTO en SDD 13.18**.
 
-## Qué hay
+## Qué hay, en orden de lectura
 
 | Pieza | Qué es |
 |---|---|
-| `evidencia/ev-00-snapshot-13.17.out` | Snapshot `_legacy/13.17/` tomado de `main` sin editar: 133 archivos = `git ls-tree`, sin `Expedientes/`. Commiteado en `IA.SDD-i09` como `35212d7` |
-| `evidencia/ev-01-comandos-del-reporte.out` | Los comandos del reporte 31 §2 corridos sobre `main`. Todo literal salvo `Audit/` de `Lab-Geometria`: 116 y no 113 (la migración sumó tres). La 13.17 está fusionada |
-| `evidencia/ev-02-colision.out` | Colisión de términos y prefijos (`expediente`, `folio`, `EXP-`, `EV-`, `M9-`) |
-| `evidencia/ev-03-a1a10-reales.out` y `ev-03b-…sh.txt` | A1–A10 del borrador sobre los dos expedientes reales. **Tomado con una versión anterior de A9** (M9-VER-07): se retoma con los comandos definitivos |
-| `borrador/Expediente-Rules.md`, `borrador/20-Plan-De-Aplicacion.md` | El plan que la mesa atacó: decisión de fondo **sí**, regla transversal nueva, 18 cambios |
-| `Mesa-2026-09-13-Intervencion-09/` | Contrato de entrada, cartas asentadas **antes** de despachar, y seis informes verbatim del panel a ciegas: Seguridad, Formal, Trazabilidad, Requisitos, Verificación, Lector sin contexto |
-| `HUELLAS-ANTES-S2.txt` | SHA-256 de las piezas antes de la redacción S2 (usuario del host en rutas → `<u>`, `<workspace>`, `<scratchpad>`). Los originales quedaron en el scratchpad de la sesión, **que no es custodia durable** (M9-SEG-05) |
+| `10-Decision-De-Fondo-Y-Las-Doce-Preguntas.md` | Verificación previa, el lote tomado como resuelto, **la decisión de fondo (sí)** y Q1 a Q12 |
+| `Mesa-2026-09-13-Intervencion-09/00-contrato-de-entrada.md` | Contrato de la mesa |
+| `Mesa-2026-09-13-Intervencion-09/cartas/` | Las nueve cartas, asentadas antes de despachar |
+| `Mesa-2026-09-13-Intervencion-09/informes/` | Los siete informes verbatim: Seguridad, Formal, Trazabilidad, Requisitos, Verificación, Lector sin contexto y Refutador |
+| `Mesa-2026-09-13-Intervencion-09/07-constancia-redespacho-del-refutador.md` | El primer despacho del refutador murió por el límite de sesión; se comprobó que no quedaba vivo antes de repetir |
+| `Mesa-2026-09-13-Intervencion-09/jurado/` | Los cinco votos, cada uno de un agente distinto: `Ev`, `Im`, `CB`, `CH`, `Ri` |
+| `Mesa-2026-09-13-Intervencion-09/09-Dictamen-Del-Ciclo.md` | Veredicto (17/17, 5-0), homogeneidad, variantes, **testimonio del Product Owner** sobre `Lab-Geometria`, deuda D9-1 a D9-3 |
+| `30-Verificacion-Del-Plan-Aplicado.md` | Commits, versiones, criterios probados fallando, **A1 a A12 re-medidos sobre los dos expedientes reales**, lo no verificado |
+| `borrador/` | El plan que la mesa atacó, como quedó antes de la mesa |
+| `evidencia/` | `ev-00` a `ev-07`, cada una con su comando y su salida |
+| `HUELLAS-ANTES-S2.txt` | Huellas de las piezas de esta carpeta antes de su redacción S2 |
 
-## Dónde se cortó
+**Sobre las redacciones S2 de esta carpeta.** El informe de Seguridad ofuscó la organización de un repositorio
+privado y detalles de infraestructura: huella `c9f7179e11b01691765a64efd79333fe757278d04593be47a929c17b7976c6a2` →
+`dcbfb9f6dda9b4ba31cdeec76e999da8794f2684172fac5e6a09c51130170e9d`. Las rutas con el usuario del host pasaron a
+`<u>`, `<workspace>` y `<scratchpad>`. Los originales quedaron en la custodia de sesión, que no es durable (D9-1).
 
-El **refutador** fue despachado con los seis informes a la vista y **no terminó** (límite de sesión de la
-API). No hay informe del refutador, ni jurado, ni dictamen de este ciclo. **Antes de volver a despachar,
-comprobar que no quedó un despacho vivo** (folio 003 del 0001).
+**El PR #66 del framework**, que conserva originales anteriores a la redacción del folio 018: **evaluado, sin
+acción**. La misma información es pública en su fuente, `Lab-Geometria`, desde el 2026-09-02.
 
-## Qué dijo el panel, en una línea por raíz (para retomar sin releer; la fuente son los informes)
+## Punto de continuación
 
-1. **E-3**: esta mesa no puede modificar D9 (README l.145); opción **C** —D9 intacta, el asiento con
-   original, canal, fecha-hora y huella *es* la «aprobación explícita registrada» de `Deriva-Rules.md`
-   l.53— minor, con A preparada para el Product Owner (M9-REQ-01).
-2. **Criterios rotos**: A4 sin anclas, A9 vacuo para `.txt`, A1 imposible con carpetas de cuatro dígitos,
-   A7 con `main` fijo, sin renombres y «vacío» cuando no evalúa, A8 frágil (forma de la celda, CRLF, dos
-   bloques, salto final), A10 trunca títulos con punto y no reconoce la cita del dictamen
-   (FOR-04..07, VER-01..06, TRZ-01/02, LEC-01/02).
-3. **Estado derivado**: una `constancia` de errata muda el estado; «reabierto» con dos definiciones; qué
-   sigue a `archivo` (FOR-01/02). Tipo en nombre y cabecera, Número/Título duplicados (TRZ-05).
-4. **§1 apertura**: listas que se intersecan sin precedencia; «ante la duda, no se abre» y «sin casa» no
-   estaban en el dictamen; el testimonio de un cambio de intake no tiene casa (FOR-03, REQ-05, LEC-03).
-5. **Q11**: el paso 5 vacía el 3 para el arbitraje (l.640 vs. `Mesa-Rules.md` l.562); «cumple §0.0» a
-   mitad de fase sin contrato; sin punto fijo; «lote» en M4 indefinido; falta la reanudación
-   (FOR-08, LEC-05..07, REQ-06).
-6. **S1**: el dictamen dice «primer push», el borrador «fusión» (REQ-04). **S2**: comando de §7 errado
-   (7 falsos positivos, 0 verdaderos), respuesta por clase de dato (revocar / retiro / constancia),
-   autónoma de `Rules-Base-Conocimiento.md` §2.2, redacción como única edición de un verbatim; los
-   originales pre-S2 del 0001 siguen accesibles en los commits del PR #66 (SEG-01..08). **Evaluado, sin acción**: la misma información es pública en su fuente, `Lab-Geometria`, desde el 2026-09-02.
-7. **Vínculo**: la vía única pierde 13 de 31 artefactos de la migración real, que citan el plan y no el
-   expediente (cadena de dos saltos); `ruta@commit` sin forma; calificador de repositorio sin fuente
-   (TRZ-03/04/06/07).
-8. **Requisitos**: el README tiene que describir el caso (campo `Objeto`), criterio de radicación «donde
-   estás parada», foliatura de `Audit/` sin criterio, estándares sin rastro (REQ-02/03/07/08).
-9. **Folio 019 sobre el 0001 fusionado** choca con S1 (VER, fuera de competencia).
+**Dónde está:** aplicada y verificada; commits en las dos ramas, sin push.
 
-## Qué sigue
+**Sigue:** la revisión y la fusión, que son del Product Owner o del coordinador de la sesión. Si se fusiona el
+framework, **no aplastar la historia** de la rama: lleva folios de expediente (`Expediente-Rules.md` §4, S3).
 
-1. Re-despachar el **refutador** (`cartas/07-Refutador.md`, más los seis informes), después de comprobar
-   que no hay despacho vivo.
-2. **Jurado de cinco agentes distintos**, uno por función (Ev, Im, CB, CH, Ri).
-3. Dictamen del ciclo, corrección del borrador y del plan, y recién ahí aplicar en `IA.SDD-i09`
-   (rama `intervencion/09-reporte-31`, sobre el snapshot ya commiteado), nota de coherencia,
-   `CHANGELOG.md` `[13.18]`, verificación, cierre del reporte 31 y fila 09 de `PROMPTs/Fixs/README.md`.
-4. Sin lote al Product Owner: E-3 se resolvió por C con el jurado; el PR #66, evaluado sin acción; los
-   nombres de destinos siguen la regla de visibilidad del coordinador (dictamen §4).
+**Queda abierto:** D9-1 (custodia durable), D9-2 (dirección y credencial en `_legacy/`; **la credencial tiene
+que rotarse**), D9-3 (guía de usuario y remisiones de `Mesa-Rules.md`); D-1, de la corrida de migración de
+`Lab-Geometria`.

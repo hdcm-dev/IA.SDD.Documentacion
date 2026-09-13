@@ -1,0 +1,46 @@
+# ev-04 · A1–A12 de Expediente-Rules.md §6, extraídos de la regla con awk (sin copiar a mano), sobre un caso de dos folios con remoto · 2026-09-13T16:47:37-03:00
+Método: awk '/^## 6\. /{s=1} s&&/^```bash$/{b=1;next} b&&/^```$/{exit} b' SDD/Devs/Rules/Expediente-Rules.md > a6.sh; ( P=SDD/Expedientes; X=<carpeta>; PRIV=<nombres>; source a6.sh )
+Base: caso construido en un repositorio de prueba con remoto desnudo (origin/HEAD = main)
+Quién: presidente de mesa de la intervención 09
+== conforme (vacío = conforme)
+campos: README 6 · 001 7+1 · 002 4+1 · archivos 3
+== A2 número distinto de la carpeta
+NÚMERO
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/README.md
+== A3 salto de folio
+SALTO 003-resolucion-corregir.md
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/003-resolucion-corregir.md
+== A4 tipo por subcadena
+TIPO SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+== A5 Corrige de cuatro dígitos
+CORRIGE SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+== A5 Corrige a sí mismo
+CORRIGE SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+== A6 sin pase
+SIN PASE SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/002-resolucion-corregir.md
+== A7 README editado después del push
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/README.md
+== A7 borrado en evidencia/ después del push (criterio 4 del reporte 31)
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/evidencia/001-a.txt
+== A7 redacción S2 con constancia: A7 vacío, A8 marca la huella del bloque redactado
+HUELLA SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/001-presentacion-enlace-roto.md
+== A8 testimonio alterado
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/001-presentacion-enlace-roto.md
+HUELLA SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/001-presentacion-enlace-roto.md
+== A8 cerco con espacio
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/001-presentacion-enlace-roto.md
+CERCO SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/actuaciones/001-presentacion-enlace-roto.md
+== A9 .txt sin sus tres líneas
+SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/evidencia/001-arbol.txt
+== A9 pieza ejecutable
+100755 blob e7e7916ad29d97aeb84e4d43f86db5cc46927a76	SDD/Expedientes/0001-Enlace-Roto-En-Roadmap/evidencia/001-a.sh
+== A10 cita rota (la calificada y la existente no se marcan)
+SDD/Expedientes/0002-No-Existe
+== A11 ruta del host y nombre privado declarado en PRIV
++ruta /tmp/x/-home-<u>-w/y y OrgPrivada/RepoX
+== A12 registro de Audit/ que cita el expediente sin foliar
+SDD/Docs/Audit/Mesa-2026-09-13.md

@@ -1,0 +1,61 @@
+B=$(git rev-parse --abbrev-ref origin/HEAD | sed 's#^origin/##')     # rama principal; P y X los fija quien corre
+
+# A1 · carpetas de cuatro dígitos, título conforme, sin números repetidos        → vacío
+ls "$P" | grep -vE '^[0-9]{4}-[A-Za-z0-9][A-Za-z0-9.-]*[A-Za-z0-9]$'; ls "$P" | cut -c1-4 | sort | uniq -d
+
+# A2 · carátula de seis campos, cada uno una vez, y el número igual al de la carpeta   → vacío
+for c in Número Título Objeto Apertura Origen Base; do [ "$(grep -c "^| $c |" "$X/README.md")" = 1 ] || echo "CARÁTULA $c"; done
+grep -q "^| Número | $(basename "$X" | cut -c1-4) |" "$X/README.md" || echo "NÚMERO"
+
+# A3 · nombres de folio conformes y foliatura contigua desde 001                  → vacío
+ls "$X/actuaciones" | grep -vE '^[0-9]{3}-(presentacion|providencia|informe|constancia|resolucion|archivo)-[a-z0-9-]+\.md$'
+i=1; for f in $(ls "$X/actuaciones" | sort); do [ "$((10#${f%%-*}))" -eq "$i" ] || echo "SALTO $f"; i=$((i+1)); done
+
+# A4 · cabecera de cuatro campos, cada uno una vez, y el tipo igual al del nombre   → vacío
+for f in "$X"/actuaciones/*.md; do
+  for c in Tipo Fecha Autor Corrige; do [ "$(grep -c "^| $c |" "$f")" = 1 ] || echo "CABECERA $c $f"; done
+  grep -qE "^\| Tipo \| $(basename "$f" | cut -d- -f2) \|$" "$f" || echo "TIPO $f"
+done
+
+# A5 · todo Corrige nombra un folio anterior que existe                          → vacío
+for f in "$X"/actuaciones/*.md; do
+  c=$(sed -nE 's/^\| Corrige \| ([^ |]+) \|$/\1/p' "$f"); [ "$c" = "—" ] && continue
+  { echo "$c" | grep -qxE '[0-9]{3}' && [ "$c" \< "$(basename "$f" | cut -c1-3)" ] && ls "$X/actuaciones/$c"-*.md >/dev/null 2>&1; } || echo "CORRIGE $f"
+done
+
+# A6 · el último folio termina con su pase, salvo el archivo, que no lo lleva       → vacío
+f=$(ls "$X"/actuaciones/*.md | sort | tail -1); u=$(grep -v '^[[:space:]]*$' "$f" | tail -1)
+if grep -qE '^\| Tipo \| archivo \|$' "$f"; then case "$u" in Sigue:*) echo "ARCHIVO CON PASE";; esac
+else case "$u" in Sigue:*) ;; *) echo "SIN PASE $f";; esac; fi
+
+# A7 · S1: nada cambió después de publicarse, salvo lo nombrado en una constancia S2 → vacío
+p=$(git log --format=%H --diff-filter=A "$B" -- "$X/README.md" | tail -1)
+if [ -z "$p" ]; then echo "NO EVALUABLE: $X no está en $B"; else
+  git -c core.quotepath=off log -M --format= --name-status "$p..$B" -- "$P" | grep -E '^(M|D|R)' | grep -F "$(basename "$X")/" | awk '{print $NF}' | sort -u |
+  while read r; do c=$(grep -lE '^Redacción S2:' "$X"/actuaciones/*.md 2>/dev/null); { [ -n "$c" ] && grep -qF "${r#"$X"/}" $c; } || echo "$r"; done
+fi
+
+# A8 · un solo bloque testimonio por folio, con cerco exacto y huella que verifica  → vacío
+for f in "$X"/actuaciones/*.md; do
+  n=$(tr -d '\r' < "$f" | grep -cE '^(```|~~~)[[:space:]]*testimonio'); [ "$n" -le 1 ] || echo "BLOQUES $f"; [ "$n" = 0 ] && continue
+  grep -qx '```testimonio' "$f" || { echo "CERCO $f"; continue; }
+  h=$(awk '/^```testimonio$/{b=1;next} /^```$/{b=0} b' "$f" | sha256sum | cut -c1-64)
+  grep -qE "^\| Huella \| .$h. \|$" "$f" || echo "HUELLA $f"
+done
+
+# A9 · toda pieza de evidencia abre con sus tres líneas y no es ejecutable          → vacío
+find "$X/evidencia" -type f 2>/dev/null | while read f; do
+  case "$f" in *.txt|*.md|*.out|*.sh|*.py|*.json|*.diff|*.log) m="$f";; *) m="${f%.*}.txt";; esac
+  { [ -f "$m" ] && [ "$(head -3 "$m" | grep -ciE '^(# |// )?(Método|Comando|Medio|Base|Fecha-hora|Quién):')" = 3 ]; } || echo "$f"
+done
+git -c core.quotepath=off ls-tree -r "$B" -- "$X" | grep -v '^100644 blob'
+
+# A10 · toda cita local a un expediente resuelve (las calificadas y las históricas se excluyen)   → vacío
+git grep -ohE '(^|[^/A-Za-z0-9._-])(SDD/)?Expedientes/[0-9]{4}-[A-Za-z0-9][A-Za-z0-9.-]*[A-Za-z0-9]' -- . ':!*_legacy*' ':!Expedientes/0001-*' ':!SDD/Expedientes/0001-*' |
+  sed -E 's#^[^SE]*##' | sort -u | while read d; do [ -d "$d" ] || echo "$d"; done
+
+# A11 · S2 sobre lo que se va a empujar: rutas y usuario del host, y nombres privados declarados en PRIV   → vacío
+git log -p --format= "origin/$B..HEAD" -- "$P" | grep -E '^\+' | grep -iE "(/|-)home[/-][a-z0-9_]+|/Users/[A-Za-z]|C:\\\\Users|$(id -un)${PRIV:+|$PRIV}"
+
+# A12 · todo registro de Audit/ que cita el expediente está foliado por ruta@commit (sólo en destino)   → vacío
+git -c core.quotepath=off grep -l "Expedientes/$(basename "$X")" -- SDD/Docs/Audit 2>/dev/null | while read a; do grep -rqF "$a@" "$X/actuaciones" || echo "$a"; done

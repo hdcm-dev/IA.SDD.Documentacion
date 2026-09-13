@@ -1,0 +1,47 @@
+# ev-06b · A1–A12 de Expediente-Rules.md §6 re-medidos sobre el expediente 0001 del framework (forma histórica, §5.1) · 2026-09-13T17:00:52-03:00
+Método: los comandos de §6 extraídos de la regla, con una marca por criterio; P=Expedientes; X=Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework; PRIV=<organización del destino privado>
+Base: IA.SDD rama intervencion/09-reporte-31 en 12e9580 sobre main a501857
+Quién: presidente de mesa de la intervención 09
+--- corrida 1: B = rama principal (main), tal como está hoy
+A1: 0 líneas
+A2: 2 líneas
+A3: 5 líneas
+A4: 47 líneas
+A5: 19 líneas
+A6: 0 líneas
+A7: 0 líneas
+A8: 0 líneas
+A9: 49 líneas
+A10: 0 líneas
+A11: 0 líneas
+A12: 0 líneas
+A2 (primeras):
+     CARÁTULA Base
+     NÚMERO
+A4 (primeras):
+     CABECERA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/001-presentacion-del-product-owner.md
+     TIPO Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/001-presentacion-del-product-owner.md
+     CABECERA Corrige Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/002-providencia-convocatoria-de-mesa.md
+A3 (primeras):
+     013-consolidacion-y-plan-compuesto.md
+     014-refutacion-del-plan-compuesto.md
+     015-veredicto-del-jurado.md
+A9 (primeras):
+     Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-01-base.sh
+     Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-04-inventario.out
+     Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-03-colision.out
+A5 (primeras):
+     CORRIGE Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/001-presentacion-del-product-owner.md
+     CORRIGE Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/002-providencia-convocatoria-de-mesa.md
+     CORRIGE Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/actuaciones/003-constancia-segunda-convocatoria-y-dato-nuevo.md
+--- corrida 2: A7 con B = la rama de la intervención, como quedaría después de fusionar sin aplastar
+NO NOMBRADA "Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-08-cartas-despachadas/08-N303272cleo--comisi303263n-de-verificaci303263n.md"
+NO NOMBRADA "Expedientes/0001-Expedientes-Como-Comportamiento-Del-Framework/evidencia/ev-08-cartas-despachadas/16-N303272cleo--comisi303263n-de-verificaci303263n.md"
+(modificadas después de publicarse: 8; altas: 2)
+--- A11 sobre lo que se empujaría (origin/main..HEAD), con PRIV
+0
+
+--- autocorrección: A7, A9 y A12 con core.quotepath=off en la regla; corrida 2 repetida con el comando de la regla (2026-09-13T17:01:19-03:00)
+(A7 corrida 2: fin; vacío = sólo piezas nombradas en la constancia S2)
+--- caso de prueba conforme con la regla corregida
+(fin)
