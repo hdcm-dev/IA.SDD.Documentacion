@@ -73,9 +73,11 @@ cero. Es la razón de medir sobre los reales y no sólo sobre el caso construido
 - **Barrido por concepto**: nota §4, nueve patrones con residuo cero fuera de las clases excluidas.
 - **Snapshot**: `_legacy/13.17/` no contiene la versión nueva de ningún archivo tocado ni `Expedientes/` (`ev-07`).
 - **Barridos del coordinador**, sin `_legacy`, sobre el framework:
-  `grep -rnE 'HDCM-Infra|Notions|DEV\.Maps|Container\.|Host\.Infra|192\.168\.|/home/[a-z]'` → **0**;
-  `grep -rniE 'dahua|encore|rtsp|videocontrolsrv'` → **0**;
-  en `Examples/`, `grep -rnE '192\.168\.|Host\.Infra|explorador[0-9]|Legacy-Service'` → **0**.
+  el de nombres de organizaciones y repositorios privados, direcciones de red privada y rutas del host → **0**;
+  el de marcas y protocolos de la infraestructura de un destino privado → **0**;
+  y en `Examples/`, el de direcciones, rutas de infraestructura y versiones del servicio anterior → **0**.
+  Los patrones literales están en los pedidos del coordinador y no se transcriben acá, porque este archivo
+  quedaría encontrándose a sí mismo en el barrido que declara.
   Sobre la carpeta `OUTPUTs/` de esta intervención, los dos barridos → **0**. Las carpetas de resultados de las
   intervenciones 04 a 08 y `PROMPTs/Features/` quedan fuera de alcance, por decisión del coordinador.
 
