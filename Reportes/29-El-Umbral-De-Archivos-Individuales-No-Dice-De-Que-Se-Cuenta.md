@@ -107,7 +107,7 @@ escrita en ningún lado.
 ### 2.4 El mecanismo nunca se ejerció
 
 ```bash
-find /home/fernando/workspaces/workspace-dev -type d -name tareas-tecnicas -not -path "*/_legacy/*" -not -path "*/node_modules/*"
+find <workspace> -type d -name tareas-tecnicas -not -path "*/_legacy/*" -not -path "*/node_modules/*"
 → (sin salida)
 ```
 

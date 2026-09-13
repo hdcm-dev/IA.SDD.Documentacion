@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Evidencia de la decisión (solicitudes 4, 6 y 13) — intervención 04
-F=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
-L=/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria
+F=<workspace>/IA/SDD/IA.SDD
+L=<workspace>/PROG2/Geometria/Lab-Geometria
 MP=SDD/Devs/Orchestrator/Master-Prompt.md
 cd "$F"
 run(){ echo; echo "\$ $*"; eval "$@"; }

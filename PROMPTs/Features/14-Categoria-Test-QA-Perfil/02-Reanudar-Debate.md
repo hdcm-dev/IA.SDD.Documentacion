@@ -13,7 +13,7 @@
 
   El `Frameowork sdd` plantea un prompt orquestador que se aplica sobre un repositorio destino del cual tiene dos documentos iniciales, un intake y otro manifiesto. este prompt se puede aplicar sobre un marco documental de especificación procedente de un framework sdd de una versión anterior.
 
-  Leer `/Repos-Docker/Home/Container-Runner-Services/Runner-Test/Dev/Container.RunnerGitHub.Test.Dev/README.md` es una `Prueba de concepto de E2E` utiliznado playwrigth y stagehand con IA. La idea es utilizar runners propios con capacidadesde IA para hacer pruebas automatizadas.
+  Leer `<repo-privado-banco-e2e>/README.md` es una `Prueba de concepto de E2E` utiliznado playwrigth y stagehand con IA. La idea es utilizar runners propios con capacidadesde IA para hacer pruebas automatizadas.
 
   Leer `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Features/14-Categoria-Test-QA-Perfil/OUTPUTs/Analisis-Categoria-DevOps.md`, Es un documento de estudio que habría que actualizar sobre en base a las ultimas acutalizaciones de `Frameowork SDD`.
 

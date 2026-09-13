@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Criterio 2 del reporte 26: el origen del hecho se reproduce contrastando contra la base, sin leer lo que declaró el agente
-F=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
-L=/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria
+F=<workspace>/IA/SDD/IA.SDD
+L=<workspace>/PROG2/Geometria/Lab-Geometria
 REF=${1:-}   # vacío: árbol de trabajo; o un commit de la corrida
 run(){ echo; echo "\$ $*"; eval "$@"; }
 cd "$F"; B=476f927

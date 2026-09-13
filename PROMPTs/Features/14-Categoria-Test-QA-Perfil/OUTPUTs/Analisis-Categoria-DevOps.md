@@ -93,7 +93,7 @@ La secuencia del contexto y la del framework describen los dos momentos del mism
 
 ### 3.3 Hueco 3 — El runner no es un recurso declarado, y su capacidad de IA no es un flag
 
-`Rules-Devops.md` §4.2 punto 2 pide «matriz de SO y runtime», que es una propiedad del software. El banco de pruebas `Container.RunnerGitHub.Test.Dev` muestra que en un runner propio hay decisiones que no son ni SO ni runtime y que rompen el pipeline si no están declaradas:
+`Rules-Devops.md` §4.2 punto 2 pide «matriz de SO y runtime», que es una propiedad del software. El banco de pruebas `<banco-privado-de-pruebas-e2e>` muestra que en un runner propio hay decisiones que no son ni SO ni runtime y que rompen el pipeline si no están declaradas:
 
 - **Etiquetas de runner.** Los dos workflows corren sobre `[self-hosted, i7infra-dev]`.
 - **Caché que sobrevive al contenedor efímero.** Chromium sale de `/cache/ms-playwright` vía `PLAYWRIGHT_BROWSERS_PATH`; sin eso, cada corrida reinstala el navegador.
@@ -176,7 +176,7 @@ El fundamento no es teórico: es el modelo de tres estaciones que el workspace y
 | --- | --- | --- | --- |
 | Desarrollo | `DEV/Discord.Bot.Moderador.Core` | Fuentes, tests, `Dockerfile`, `.github/workflows/`, documentación SDD | Alcance del Framework SDD |
 | Proyecto de despliegue | `Repos-Docker/Home/Container.Discord.Bot` | `docker/docker-compose.yml`, guía de instalación, `CHANGELOG.md` del contenedor | Infraestructura, repositorio propio |
-| Instancia | `/home/fernando/docker/discord-bot` | El compose parametrizado y `data/discordmoderador.db` | Operación, sin control de versiones del producto |
+| Instancia | `<home>/docker/discord-bot` | El compose parametrizado y `data/discordmoderador.db` | Operación, sin control de versiones del producto |
 
 La tercera estación deja ver por qué el corte va donde va: lo que vive ahí es el compose **ya parametrizado** más la base de datos de esa instancia. Ninguna de las dos cosas es una propiedad del producto. El repositorio de despliegue no es un apéndice del repositorio de desarrollo: tiene su propio ciclo, su propio `CHANGELOG.md` y su propia guía de instalación.
 
@@ -769,9 +769,9 @@ Toda afirmación de este documento se apoya en uno de estos archivos, leídos el
 | `IA.SDD/SDD/Devs/Rules/Rules-Devops.md` (4.0) | §0 posición y frontera con 11; §2.1 tabla maestra de seis artefactos `.md`; §2.2 modelo de ambientes y artefacto publicable por D8; §4.2 estructura del pipeline; §4.7 tabla de stages con columna bloqueante; §4.8 anti-patrones; §4.9 pipeline de producto y gate de integración |
 | `IA.SDD/SDD/Devs/Rules/Rules-Calidad-Y-Pruebas.md` (4.1) | §0 dos clases de sonda; §2.1 tabla maestra; §4.3 tooling; §4.6 catálogo de TC con `actual output`; §6 criterios sobre la matriz de sensado |
 | `IA.SDD/SDD/Devs/Orchestrator/Master-Prompt.md` | §4 tabla de flags y sus niveles; §6 plan de fases A-J y la regla «ninguna categoría emite un artefacto de otra»; §7 separación en dos tramos; §7.0 detención por arbitraje; §7.1 precondición dura; §7.2 tratamiento de la evidencia; §12 handoff |
-| `Container.RunnerGitHub.Test.Dev/README.md` | Las dos suites y sus disparadores; costo medido 3 s contra ~600 s; rol de red de seguridad y rol de taller; etiquetas `[self-hosted, i7infra-dev]`; caché `/cache/ms-playwright`; endpoint `http://my-ai-api:11434` y la macvlan; hardware sin AVX2 ni GPU; piso de ruido 10–15 %; la trampa del esquema con rama nula |
+| `<banco-privado-de-pruebas-e2e>/README.md` | Las dos suites y sus disparadores; costo medido 3 s contra ~600 s; rol de red de seguridad y rol de taller; etiquetas `[self-hosted, i7infra-dev]`; caché `/cache/ms-playwright`; endpoint `http://my-ai-api:11434` y la macvlan; hardware sin AVX2 ni GPU; piso de ruido 10–15 %; la trampa del esquema con rama nula |
 | `DEV/Discord.Bot.Moderador.Core` | Caso de referencia del estado objetivo. `Dockerfile`; `.github/workflows/` con `ci.yml`, `docker-publish.yml`, `publish.yml` y `benchmark.yml`; `scripts/ci/verificar-cobertura.ps1`; `tests/` con proyecto unitario por capas y proyecto E2E standalone; `SDD2.2D/docs/` con las categorías 08 y 09 generadas. Las citas cruzadas de los workflows a `pipeline-ci-cd_v1.0.md` §2 y de `.csproj` a `estrategia-testing_v1.0.md` §1/§2/§7 |
-| `Repos-Docker/Home/Container.Discord.Bot` | Segunda estación del modelo de §5.3: `docker/docker-compose.yml`, guía de instalación y `CHANGELOG.md` propios, en repositorio separado. Su `README.md` documenta la tercera estación, `/home/fernando/docker/discord-bot`, con el compose parametrizado y la base de datos de la instancia |
+| `Repos-Docker/Home/Container.Discord.Bot` | Segunda estación del modelo de §5.3: `docker/docker-compose.yml`, guía de instalación y `CHANGELOG.md` propios, en repositorio separado. Su `README.md` documenta la tercera estación, `<home>/docker/discord-bot`, con el compose parametrizado y la base de datos de la instancia |
 
 Lo que este documento **no** afirma, por no tener evidencia: que la suite asistida resuelva efectivamente las sondas visuales de la matriz de sensado (§6.3 lo plantea como hipótesis a verificar); que la separación en tres estaciones de §5.3 esté hoy escrita en alguna regla del framework (está operando, no está normada); y que los artefactos ejecutables del caso de referencia hayan sido emitidos por una fase declarada de SDD (no lo fueron: los escribió el ciclo de codificación, y ése es exactamente el hueco de §3.1 y §3.2).
 

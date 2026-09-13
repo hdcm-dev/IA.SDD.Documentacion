@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Verificación del plan aplicado (solicitud 9 y 10), sobre el árbol de trabajo de IA.SDD ya editado.
 set -e
-cd /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD
+cd <workspace>/IA/SDD/IA.SDD
 echo "== versión de las reglas =="
 grep -n "Versión de las reglas" SDD/Devs/Rules/Rules-Backlog-Tecnico.md
 

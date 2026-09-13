@@ -3,7 +3,7 @@
 # código) y por unidad de entrega, sobre objetos commiteados (no se lee el disco: otro agente
 # escribe en el árbol de trabajo).
 set -e
-cd /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria
+cd <workspace>/PROG2/Geometria/Lab-Geometria
 echo "== SHA de main y de fase-k/backlog-tecnico-v2 =="
 git rev-parse main
 git rev-parse fase-k/backlog-tecnico-v2

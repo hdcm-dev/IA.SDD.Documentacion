@@ -45,7 +45,7 @@ Decidir si el método reconoce un proyecto de código cuyo ecosistema difiere de
 
 **1 · Verificar primero qué ya está resuelto.** Por cada cita del reporte —plantillas de intake y manifiesto, `Vocabulario-Rules.md` §2, `Rules-Examples.md` §1.2, `Rules-Base-Conocimiento.md` §0.1 y §4.5, y los pasajes del destino—, abrir el archivo vigente y decir si sigue literal. **Correr los comandos del reporte y pegar la salida.**
 
-**2 · Medir el alcance real antes de decidir.** ¿Cuántos destinos del workspace con `SDD/Docs/` tienen proyectos de más de un ecosistema, o samples que no se compilan? (`find /home/fernando/workspaces/workspace-dev -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"`.) El número decide si la corrección es minor o major y a quién alcanza.
+**2 · Medir el alcance real antes de decidir.** ¿Cuántos destinos del workspace con `SDD/Docs/` tienen proyectos de más de un ecosistema, o samples que no se compilan? (`find <workspace> -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"`.) El número decide si la corrección es minor o major y a quién alcanza.
 
 **3 · Respetar las cuatro cosas que el reporte no afirma (§6).** En particular: **no nombrar herramientas en reglas** (el criterio 5 de §7 lo verifica con `grep`) y **no reabrir el reporte `12`**.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Solicitud 2: alcance real. Destinos del workspace con SDD/Docs, y por cada uno: ecosistemas en la construcción y samples no compilables.
-W=/home/fernando/workspaces/workspace-dev
+W=<workspace>
 echo '### find -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"'
 find $W -type d -path "*/SDD/Docs" -not -path "*/_legacy/*" 2>/dev/null | sort
 echo; echo '### repositorio al que pertenece cada ruta (git-common-dir)'

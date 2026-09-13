@@ -66,7 +66,7 @@ declaran antes de usarla como fuente:
 
 ## 2. El alcance real
 
-`find /home/fernando/workspaces/workspace-dev -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"` devuelve
+`find <workspace> -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"` devuelve
 **cinco rutas, que son cuatro repositorios**: `Lab-Geometria-dc5` es un worktree del mismo repositorio que
 `Lab-Geometria` (`git-common-dir` = `Lab-Geometria/.git`, rama `estructura/dc5-samples-en-la-solucion`, en
 `1ce1b2c`), el del agente que está entrando los once samples al agrupador. Se cuenta una vez.

@@ -1,9 +1,9 @@
 ### Base
 
-$ git -C /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD rev-parse HEAD
+$ git -C <workspace>/IA/SDD/IA.SDD rev-parse HEAD
 476f927bf07ec5fa79167c5e8a5b95bd2f2384a9
 
-$ git -C /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD status --short | wc -l
+$ git -C <workspace>/IA/SDD/IA.SDD status --short | wc -l
 0
 
 ### S1.a  §7.0 — qué entra al registro y cuándo se exhibe
@@ -90,7 +90,7 @@ $ grep -n 'Toda consulta que R2 le hizo al humano es una escalada' SDD/Devs/Orch
 
 ### S1.i  Memoria de antecedentes §2.2
 
-$ grep -n 'hubo que abrir los cinco y cruzarlos a mano\|tres no eran lo que decían\|Los cuatro «enlaces rotos» viajaron tres informes' /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/Informes/Memoria-De-Antecedentes-Casos-Resueltos.md
+$ grep -n 'hubo que abrir los cinco y cruzarlos a mano\|tres no eran lo que decían\|Los cuatro «enlaces rotos» viajaron tres informes' <workspace>/IA/SDD/IA.SDD.Documentacion/Informes/Memoria-De-Antecedentes-Casos-Resueltos.md
 80:quedaba pendiente hubo que abrir los cinco y cruzarlos a mano.
 82:**Al abrirlos uno por uno, tres no eran lo que decían:**
 90:**Los cuatro «enlaces rotos» viajaron tres informes** antes de que alguien los abriera. Cada informe
@@ -135,7 +135,7 @@ $ awk '/^COMPUERTA DE ARRANQUE/{f=1} f{print NR": "$0} f && /Veredicto:/{f=0}' S
 1493:   Ramas a borrar:  {{ninguna | lista}}
 1494:   Veredicto:       {{EN ORDEN, se puede empezar | SE DETIENE: {{motivo}}}}
 
-$ git -C /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
+$ git -C <workspace>/PROG2/Geometria/Lab-Geometria show archivo/reanudacion-6-2026-09-12:SDD/Docs/Audit/Estado-Del-Destino-2026-09-12.md | grep -n 'Revisión leída'
 8:**Revisión leída:** `5c95dab` de `main`, árbol de trabajo limpio
 
 ### S1.m  §5 — política de archivado: ruta por fecha, sufijo por versión, correcciones sin subir
@@ -154,11 +154,11 @@ $ grep -n 'La regla de §8 que obliga al orquestador a archivar el estado previo
 
 ### S1.n  El propio reporte: «cuarta» y «tercera»
 
-$ grep -n 'es una cuarta\|es una tercera\|\*\*tercera\*\*' /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/Reportes/26-La-Pregunta-Previa-No-Distingue-Quien-Genero-La-Situacion.md
+$ grep -n 'es una cuarta\|es una tercera\|\*\*tercera\*\*' <workspace>/IA/SDD/IA.SDD.Documentacion/Reportes/26-La-Pregunta-Previa-No-Distingue-Quien-Genero-La-Situacion.md
 126:### 2.4 La causa que el Product Owner describe no está medida — es una cuarta
 136:**La del Product Owner es una tercera**: el agente **genera** la situación con su acción y la descarga
 
-$ grep -n 'Pero corre en puntos fijos\|ni existe fuera de la mesa el campo' /home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/Reportes/26-La-Pregunta-Previa-No-Distingue-Quien-Genero-La-Situacion.md
+$ grep -n 'Pero corre en puntos fijos\|ni existe fuera de la mesa el campo' <workspace>/IA/SDD/IA.SDD.Documentacion/Reportes/26-La-Pregunta-Previa-No-Distingue-Quien-Genero-La-Situacion.md
 145:distingue del audit por eso. **Pero corre en puntos fijos**: entre dos fases de la reanudación, o en una
 159:primera vez, ni existe fuera de la mesa el campo que dice qué pasa si no se contesta.
 

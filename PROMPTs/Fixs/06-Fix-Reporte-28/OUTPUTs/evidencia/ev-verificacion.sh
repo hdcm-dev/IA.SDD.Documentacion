@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verificación de lo aplicado, contra el árbol de trabajo de la rama intervencion/06-reporte-28 de IA.SDD.
-R=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD; cd "$R"
+R=<workspace>/IA/SDD/IA.SDD; cd "$R"
 BASE=9dc8ded
 TOC="SDD/Devs/Rules/Vocabulario-Rules.md SDD/Devs/Orchestrator/Master-Prompt.md SDD/Devs/Rules/Mesa-Rules.md SDD/Guides/SDD-Development-Guide.md SDD/Guides/SDD-User-Guide.md SDD/Devs/Rules/Catalogo-De-Criterios.md"
 sec() { awk -v a="$2" -v b="$3" '$0 ~ a {p=1} p && $0 ~ b && !($0 ~ a) {exit} p' "$1"; }
@@ -23,7 +23,7 @@ done
 echo; echo "### C4 — el costo de calificar un sentido nuevo en un archivo que se lee íntegro, sin refutador"
 grep -n '^| Orquestador de migración |' SDD/Devs/Rules/Vocabulario-Rules.md | cut -c1-160
 grep -n 'el costo de una familia calificada se mide igual' SDD/Devs/Rules/Vocabulario-Rules.md | cut -c1-40
-L=/home/fernando/workspaces/workspace-dev/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/06-Fix-Reporte-28/OUTPUTs/evidencia/localizar.sh
+L=<workspace>/IA/SDD/IA.SDD.Documentacion/PROMPTs/Fixs/06-Fix-Reporte-28/OUTPUTs/evidencia/localizar.sh
 $L procedencia SDD/Devs/Rules/Migracion-Rules.md SDD/Devs/Orchestrator/Master-Prompt-Migracion.md | grep '(archivo)'
 
 echo; echo "### C5 — la compuerta localiza sin decidir: el comando publicado en §10.0, extraído y corrido"
