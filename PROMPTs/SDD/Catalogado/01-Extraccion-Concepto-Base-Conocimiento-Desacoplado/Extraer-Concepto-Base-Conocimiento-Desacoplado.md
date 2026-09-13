@@ -1,8 +1,8 @@
 # Tool-Prompt — Extracción de comportamientos. 
 
-> **Invocación**: Leer y ejecutar `/IA/SDD/IA.SDD.Documentacion/PROMPTs/Analisis/02-Extraccion-Concepto-Base-Conocimiento-Desacoplado/Extraer-Concepto-Base-Conocimiento-Desacoplado.md`
+> **Invocación**: Leer y ejecutar `/IA/SDD/IA.SDD.Documentacion/PROMPTs/SDD/Catalogado/01-Extraccion-Concepto-Base-Conocimiento-Desacoplado/Extraer-Concepto-Base-Conocimiento-Desacoplado.md`
 >
-> **Overview**:  Extracción de comportamientos.
+> **Overview**:  Extracción de comportamientos - como se estructura la base de conocimiento en el framework sdd.
 
 ---
 

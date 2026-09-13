@@ -1,4 +1,5 @@
 
+> Sobre el contexto - relacionado como quería que me ubique los PoC
 
 Esos poc serian en realidad samples, 
 
