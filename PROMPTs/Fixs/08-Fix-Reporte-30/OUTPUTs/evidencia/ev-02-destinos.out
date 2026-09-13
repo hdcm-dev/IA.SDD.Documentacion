@@ -1,0 +1,99 @@
+### find -type d -path "*/SDD/Docs" -not -path "*/_legacy/*"
+/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/SDD/Docs
+/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/SDD/Docs
+/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria-dc5/SDD/Docs
+/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/SDD/Docs
+/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/SDD/Docs
+
+### repositorio al que pertenece cada ruta (git-common-dir)
+/home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core -> /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core/.git @ 6fd23d5 [main]
+/home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core -> /home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core/.git @ 82fb235 [main]
+/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria-dc5 -> /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/.git @ 1ce1b2c [estructura/dc5-samples-en-la-solucion]
+/home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria -> /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria/.git @ 1ce1b2c [main]
+/home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl -> /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl/.git @ 9aabe5c [main]
+
+======== /home/fernando/workspaces/workspace-dev/PROG2/Geometria/Lab-Geometria (HEAD 1ce1b2c)
+-- archivos de proyecto por ecosistema (commiteados, sin node_modules):
+dotnet: GeometriaFactory.sln
+dotnet: src/GeometriaFactory.Api/GeometriaFactory.Api.csproj
+dotnet: src/GeometriaFactory.Application/GeometriaFactory.Application.csproj
+dotnet: src/GeometriaFactory.Contracts/GeometriaFactory.Contracts.csproj
+dotnet: src/GeometriaFactory.Domain/GeometriaFactory.Domain.csproj
+dotnet: src/GeometriaFactory.Infrastructure/GeometriaFactory.Infrastructure.csproj
+dotnet: src/GeometriaFactory.Web/GeometriaFactory.Web.csproj
+dotnet: tests/GeometriaFactory.Application.Tests/GeometriaFactory.Application.Tests.csproj
+dotnet: tests/GeometriaFactory.Domain.Tests/GeometriaFactory.Domain.Tests.csproj
+dotnet: tests/GeometriaFactory.E2ETests/GeometriaFactory.E2ETests.csproj
+dotnet: tests/GeometriaFactory.Integration.Tests/GeometriaFactory.Integration.Tests.csproj
+dotnet: visor/geometriafactory-visor.csproj
+node: visor/package.json
+-- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
+  NO-COMP  samples/api/01-basico
+  NO-COMP  samples/api/02-intermedio
+  NO-COMP  samples/api/03-avanzado
+  NO-COMP  samples/api/04-cliente-http-basico
+  compila  samples/application/01-basico
+  compila  samples/application/02-intermedio
+  compila  samples/application/03-avanzado
+  NO-COMP  samples/contracts/01-basico
+  NO-COMP  samples/contracts/02-intermedio
+  NO-COMP  samples/contracts/03-avanzado
+  compila  samples/domain/01-basico
+  compila  samples/domain/02-intermedio
+  compila  samples/domain/03-avanzado
+  compila  samples/infrastructure/01-basico
+  compila  samples/infrastructure/02-intermedio
+  compila  samples/infrastructure/03-avanzado
+  NO-COMP  samples/visor/01-basico
+  NO-COMP  samples/visor/02-intermedio
+  NO-COMP  samples/visor/03-avanzado
+  NO-COMP  samples/web/01-datos-seed
+
+======== /home/fernando/workspaces/workspace-dev/Repos-RPIs/RPI.VideoControl (HEAD 9aabe5c)
+-- archivos de proyecto por ecosistema (commiteados, sin node_modules):
+dotnet: VideoControl.sln
+dotnet: src/VideoControl.Application/VideoControl.Application.csproj
+dotnet: src/VideoControl.Domain/VideoControl.Domain.csproj
+dotnet: src/VideoControl.Infrastructure/VideoControl.Infrastructure.csproj
+dotnet: src/VideoControl.PinMap/VideoControl.PinMap.csproj
+node: src/VideoControl.PinMap/package.json
+dotnet: src/VideoControl.Web/VideoControl.Web.csproj
+dotnet: tests/VideoControl.Application.Conformidad/VideoControl.Application.Conformidad.csproj
+dotnet: tests/VideoControl.Application.Pruebas/VideoControl.Application.Pruebas.csproj
+dotnet: tests/VideoControl.Domain.Pruebas/VideoControl.Domain.Pruebas.csproj
+dotnet: tests/VideoControl.Infrastructure.Pruebas/VideoControl.Infrastructure.Pruebas.csproj
+dotnet: tests/VideoControl.Web.Pruebas/VideoControl.Web.Pruebas.csproj
+-- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
+  (sin samples/ commiteado)
+
+======== /home/fernando/workspaces/workspace-dev/DEV/SAI.Service.Core (HEAD 6fd23d5)
+-- archivos de proyecto por ecosistema (commiteados, sin node_modules):
+dotnet: SAI.Service.Core.sln
+dotnet: src/SAI.Service.Core/SAI.Service.Core.Api/SAI.Service.Core.Api.csproj
+dotnet: src/SAI.Service.Core/SAI.Service.Core.Application/SAI.Service.Core.Application.csproj
+dotnet: src/SAI.Service.Core/SAI.Service.Core.Domain/SAI.Service.Core.Domain.csproj
+dotnet: src/SAI.Service.Core/SAI.Service.Core.Infrastructure/SAI.Service.Core.Infrastructure.csproj
+dotnet: src/SAI.Service.Core/SAI.Service.Core.Web/SAI.Service.Core.Web.csproj
+dotnet: tests/SAI.Service.Core.Application.Tests/SAI.Service.Core.Application.Tests.csproj
+dotnet: tests/SAI.Service.Core.Domain.Tests/SAI.Service.Core.Domain.Tests.csproj
+dotnet: tests/SAI.Service.Core.Integration.Tests/SAI.Service.Core.Integration.Tests.csproj
+-- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
+  (sin samples/ commiteado)
+
+======== /home/fernando/workspaces/workspace-dev/DEV/SelfHosted.Service.Core (HEAD 82fb235)
+-- archivos de proyecto por ecosistema (commiteados, sin node_modules):
+-- carpetas de samples (samples/<seg>/<NN>) y cuáles no tienen .csproj:
+  (sin samples/ commiteado)
+
+### RPI.VideoControl: el proyecto PinMap corre la cadena de JavaScript dentro de su construcción
+34:  <Target Name="VerificarNode" BeforeTargets="ConstruirBundle">
+35:    <Exec Command="node --version" ConsoleToMsBuild="true" StandardOutputImportance="low"
+40:    <Error Condition="'$(NodeAusente)' != '0'"
+48:  <Target Name="RestaurarDependenciasDeJavascript"
+50:    <Exec Command="npm ci --no-audit --no-fund" WorkingDirectory="$(MSBuildProjectDirectory)" />
+60:  <Target Name="ConstruirBundle"
+65:    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)" />
+74:  <Target Name="CopiarHojaDeEstilos"
+94:  <Target Name="PruebasDeTypeScript"
+98:    <Exec Command="npm test" WorkingDirectory="$(MSBuildProjectDirectory)" />
+137:| `VideoControl-PinMap` | `VideoControl.PinMap` | `VideoControl.sln` | Biblioteca de clases Razor `net10.0` con TypeScript compilado por esbuild dentro del propio `dotnet build` | Componente de presentación que dibuja la cabecera de pines del equipo con el estado de cada punto | — | `src/VideoControl.PinMap/` |
