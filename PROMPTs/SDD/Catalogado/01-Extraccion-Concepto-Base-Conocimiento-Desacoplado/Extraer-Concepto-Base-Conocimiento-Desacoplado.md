@@ -24,9 +24,8 @@
 
 ## Solicitudes
 
-  1. En `IA/SDD/IA.SDD.Documentacion/PROMPTs/Analisis/02-Extraccion-Concepto-Base-Conocimiento-Desacoplado/OUTPUTs/Especificacion-Base-Conocimiento-Desacoplada.md` genera un markdown que extraiga el patrón implementado aquí de tal forma que pueda evaluarlo con los agentes IA para incoporarlos en otros Frameworks similares en concepto a este `Framework SDD` de tal forma que documentos de conocimientos generados en `/IA/SDD/IA.SDD/Conocimiento` puedo compartirlos con esos otros Frameworks y le sean compatibles. Y al mismo tiempo este documento debe servir para que incoporten este patrón en sus prompts orquestadores.
+  En `IA/SDD/IA.SDD.Documentacion/PROMPTs/Analisis/02-Extraccion-Concepto-Base-Conocimiento-Desacoplado/OUTPUTs/Especificacion-Base-Conocimiento-Desacoplada.md` genera un markdown que extraiga el patrón implementado aquí de tal forma que pueda evaluarlo con los agentes IA para incoporarlos en otros Frameworks similares en concepto a este `Framework SDD` de tal forma que documentos de conocimientos generados en `/IA/SDD/IA.SDD/Conocimiento` puedo compartirlos con esos otros Frameworks y le sean compatibles. Y al mismo tiempo este documento debe servir para que incoporten este patrón en sus prompts orquestadores.
 
-  
 
 ---
 

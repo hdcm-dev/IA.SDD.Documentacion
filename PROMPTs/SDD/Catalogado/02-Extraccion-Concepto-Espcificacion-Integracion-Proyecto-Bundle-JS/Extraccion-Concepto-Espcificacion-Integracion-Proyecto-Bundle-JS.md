@@ -42,7 +42,7 @@
 
   Este documento markdown de base de conocimiento, no quiero que quede incorporado directamente en el repositorio del `Framework SDD`, y se genere interdependencia o acoplamiento en ambos sentidos (Framework vs base de conocimeinto), así que dejalo en `/IA/SDD/IA.SDD.Documentacion/PROMPTs/SDD/Catalogado/02-Extraccion-Concepto-Espcificacion-Integracion-Proyecto-Bundle-JS/OUTPUTs`, así luego el cliente que use `Framework SDD` sume dichos documentos en su fork de este framework o lo incopore a su propio framework SDD.
 
-  Basate en `/IA/PROMPTs/IA.Prompts/Base/Mesa-Evaluadora.md` para organizar una mesa evaluadora, y planificadora para relevar caracteristicas, clasificarlas, estructurarlas y clasificarlas adecuadamente y transcribirlas. Incopora los especialista necesarios, dales toda la autoridad para tomar decisiones necesarias para cumplir con los objetivos y/o necesidades demandadas. Que la mesa evaluadora levante un expediente dentro de una carpeta nuemrada  en `/IA/SDD/IA.SDD/Expedientes`, en cuanto a la carpeta del expediente, fijate los expedientes que hay para seguir la misma nomenclatura de nombrado de dicha carpeta.
+  Basate en `/IA/PROMPTs/IA.Prompts/Base/Mesa-Evaluadora.md` para organizar una mesa evaluadora, y planificadora para relevar caracteristicas, clasificarlas, estructurarlas y clasificarlas adecuadamente y transcribirlas. Incopora los especialista necesarios, dales toda la autoridad para tomar decisiones necesarias para cumplir con los objetivos y/o necesidades demandadas. Que la mesa evaluadora levante un expediente dentro de una carpeta numeradas  en `/IA/SDD/IA.SDD/Expedientes`, en cuanto a la carpeta del expediente, fijate los expedientes que hay para seguir la misma nomenclatura de nombrado de dicha carpeta.
 
 ---
 

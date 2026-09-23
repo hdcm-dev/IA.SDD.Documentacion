@@ -3,6 +3,22 @@
 Todos los cambios relevantes de este repositorio (`IA.SDD.Documentacion`) se documentan acá.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.21] - 2026-09-23
+
+Entra `Catalogado/03` completa: el tool-prompt que pidió catalogar la **conformación automática del pull request** —el agente orquestador abre, informa, fusiona, borra la rama remota, prepara el local y sigue sin acuse humano— y sus tres salidas. Como `Knowledge-Bundle-JS`, el conocimiento **no se incorpora a `IA.SDD`** a propósito: queda acá con su fila de índice aparte, para que quien use el framework lo sume a su fork. Los tool-prompts `01` y `02` reciben retoques de redacción.
+
+### Añadido
+
+- **`PROMPTs/SDD/Catalogado/03-Extraccion-Extension-Conformacion-PR-Automatico/Extraccion-Extension-Conformacion-PR-Automatico.md`**, el tool-prompt. Toma como modelo `Knowledge-Conformacion-Pull-Request-Manual.md` y pide su variante sin intervención humana, catalogada como `Conformacion-Pull-Request-Automatico`: el mismo informe con el enlace del PR, pero con el merge, el borrado de la rama remota y la preparación del repositorio local a cargo del agente. Manda una mesa evaluadora sobre `Mesa-Evaluadora.md`, deja la salida fuera del framework y fija las reglas de siempre: no inventar, evidencia verificable, no modificar el `Framework SDD`.
+- **`…/OUTPUTs/Knowledge-Conformacion-Pull-Request-Automatico.md`** 1.0, alias `Conformacion-Pull-Request-Automatico`, naturaleza `canonico`, consumidor `transversal`, **`Hereda-de: Conformacion-Pull-Request-Manual`**, compatible con `Rules-Base-Conocimiento.md` 2.2. Escribe sólo el delta sobre el padre —turnos 5 a 7—, y **no se activa solo**: se carga por cita del alias y vale únicamente si la delegación del merge está asentada en el repositorio destino; sin ella rige el traspaso manual. Fija la credencial por cuenta sin exponerla en argumentos, una **guarda de merge** que sólo acepta `clean` —`unstable` son controles fallando—, las reservas que devuelven el merge al humano, el commit de merge como método —nunca `squash` ni `rebase` por defecto—, el borrado sólo de la cabeza del propio PR con comprobación, y la relectura de los controles del commit de merge en la principal. Se declara como **desviación** de `Master-Prompt.md` §12.1 T1, no como sustitución, porque T1 no está rotulado como decisión de stack.
+- **`…/OUTPUTs/Index-Knowledge-Fila-Conformacion-Pull-Request-Automatico.md`** 1.0, la segunda pieza que exige `Rules-Base-Conocimiento.md` §2.1 y §8: la fila del índice, a continuación de la del padre, con los cinco pasos para darla de alta en un fork.
+- **`…/OUTPUTs/Registro-Mesa-Conformacion-Pull-Request-Automatico.md`**, la constancia de la mesa —no se incorpora a un fork—: lectura del pedido, evidencia relevada **ofuscada** —la reglamentación de la delegación en un proyecto privado del taller, el registro de corridas y la API de la plataforma medida el 2026-09-19—, panel de seis roles núcleo y señal más uno ad hoc de conformidad con la base, 43 hallazgos en 18 ítems con 14 procedentes aplicados, y la verificación: la guarda, el merge y el borrado probados 9/9 contra una API simulada. **No se ejecutó un merge real** por este documento, y la deuda queda declarada.
+
+### Cambiado
+
+- **`PROMPTs/SDD/Catalogado/01-…/Extraer-Concepto-Base-Conocimiento-Desacoplado.md`**: la solicitud única pierde la numeración `1.` y una línea en blanco sobrante.
+- **`PROMPTs/SDD/Catalogado/02-…/Extraccion-Concepto-Espcificacion-Integracion-Proyecto-Bundle-JS.md`**: corrige «nuemrada» por «numeradas».
+
 ## [1.20] - 2026-09-13
 
 Nace `PROMPTs/SDD/`, la carpeta para los prompts que operan **sobre el framework** y no sobre un producto, con su primer subnivel `Catalogado/` para las extracciones de conocimiento que se catalogan en la base desacoplada. La unidad `02` de `Analisis/` —la extracción del patrón de base de conocimiento— se muda ahí como `Catalogado/01`, y entra `Catalogado/02` completa: el tool-prompt que pidió el conocimiento `Bundle-JS`, su insumo de análisis y la salida `Knowledge-Bundle-JS.md` 1.0, que **no se incorpora a `IA.SDD`** a propósito —queda acá para que quien use el framework la sume a su fork—. Se suma también la unidad `21` de `Features/`, el prompt que pidió expedientar las mesas y convocarlas a pedido, y del que salieron el expediente `0001` de `IA.SDD` y las notas de contexto de la unidad `20`.
